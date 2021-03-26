@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>javascript\adminView.js - Documenting JavaScript with YUIDoc</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title="Documenting JavaScript with YUIDoc" width="117" height="52"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 1.0.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/Client side from login.html">Client side from login</a></li>
+                                <li><a href="../classes/Client side from register.html">Client side from register</a></li>
+                                <li><a href="../classes/client side from token.html">client side from token</a></li>
+                                <li><a href="../classes/for preventing sql-injections.html">for preventing sql-injections</a></li>
+                                <li><a href="../classes/Mainpage from this project.html">Mainpage from this project</a></li>
+                                <li><a href="../classes/Node.js server.html">Node.js server</a></li>
+                                <li><a href="../classes/routesLogin, server site processing of the Login process.html">routesLogin, server site processing of the Login process</a></li>
+                                <li><a href="../classes/Server-Side from login.html">Server-Side from login</a></li>
+                                <li><a href="../classes/Server-Side from token.html">Server-Side from token</a></li>
+                                <li><a href="../classes/Simple database connection.html">Simple database connection</a></li>
+                                <li><a href="../classes/Tests for login, register and simple functions.html">Tests for login, register and simple functions</a></li>
+                                <li><a href="../classes/to change the password of a user stores it in the database..html">to change the password of a user stores it in the database.</a></li>
+                                <li><a href="../classes/to generate a object for password changing.html">to generate a object for password changing</a></li>
+                                <li><a href="../classes/to hash a given string and compares it afterwards.html">to hash a given string and compares it afterwards</a></li>
+                                <li><a href="../classes/utility class to return parameter from url.html">utility class to return parameter from url</a></li>
+                                <li><a href="../classes/.html"></a></li>
+                                <li><a href="../classes/to receive mail for changing the user&#x27;s password.html">to receive mail for changing the user&#x27;s password</a></li>
+                            </ul>
+                
+                
+                            <ul id="api-modules" class="apis modules">
+                                <li><a href="../modules/This router is for processing GETs to html files and simple GETs.html">This router is for processing GETs to html files and simple GETs</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1 class="file-heading">File: javascript\adminView.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+ * Version 1.0
+ * 24.07.2020
+ * AUTHOR: Louis Kottmann
+ */
+
+const connection = require(&#x27;../getConnectionDatabase.js&#x27;);
+
+
+connection.query(sql,
+    function (err, result)
+    {
+        if (err)
+            throw err;
+
+        console.log(&quot;Row inserted:  Passwort:&quot; + query.password + &quot;, E-Mail: sven.petersen@hs-osnabrueck.de&quot;);
+
+    });
+
+
+function getUser() {
+    fetch(&#x27;/getUser&#x27;)
+        .then(response =&gt; {
+            return response.json();
+        }).then(responseData =&gt; {
+console.log(responseData);
+        renderHTML(responseData)
+    })
+};
+
+
+
+/**
+ * @method
+ * This function creates the table rows and loads the data from a JSON file.
+ * @param data
+ */
+function renderHTML(data) {
+    var rowCounter = 0;
+    for (i = 0; i &lt; data.length; i++) {
+        createTableContent(&quot;userListContent&quot;, rowCounter);
+    }
+
+    function createTableContent(id, counter) {
+        var x = document.getElementById(id).insertRow(rowCounter);
+        x.setAttribute(&quot;id&quot;, &quot;row&quot;);
+        x.setAttribute(&quot;class&quot;, &quot;table-row&quot;);
+
+        var column1 = x.insertCell(0);
+        var column2 = x.insertCell(1);
+        var column3 = x.insertCell(2);
+        var column4 = x.insertCell(3);
+        var column5 = x.insertCell(4);
+        var column6 = x.insertCell(5);
+        var column7 = x.insertCell(6);
+        var column8 = x.insertCell(7);
+
+        column1.innerHTML = data[i].name;
+        column2.innerHTML = data[i].surname;
+        column3.innerHTML = data[i].e_mail;
+        column4.innerHTML = data[i].course;
+        column5.innerHTML = data[i].authorization;
+        column6.innerHTML = data[i].verified;
+        column7.innerHTML = data[i].id;
+        column8.innerHTML = data[i].password;
+
+        rowCounter++;
+    }
+}
+
+
+/**
+ * @method
+ * This function iterates through the tables and sorts by either ASC or DESC, of the selected heading of the table column.
+ * @param n
+ */
+function sortTable(n) {
+    var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+    table = document.getElementById(&quot;userlist&quot;);
+    switching = true;
+    dir = &quot;asc&quot;;
+    while (switching) {
+        switching = false;
+        rows = table.rows;
+        for (i = 1; i &lt; (rows.length - 1); i++) {
+            shouldSwitch = false;
+            x = rows[i].getElementsByTagName(&quot;TD&quot;)[n];
+            y = rows[i + 1].getElementsByTagName(&quot;TD&quot;)[n];
+            console.log(x.innerHTML)
+            if (dir == &quot;asc&quot;) {
+                if (x.innerHTML.toLowerCase() &gt; y.innerHTML.toLowerCase()) {
+                    shouldSwitch = true;
+                    break;
+                }
+            } else if (dir == &quot;desc&quot;) {
+                if (x.innerHTML.toLowerCase() &lt; y.innerHTML.toLowerCase()) {
+                    shouldSwitch = true;
+                    break;
+                }
+            }
+        }
+        if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+            switchcount++;
+        } else {
+            if (switchcount == 0 &amp;&amp; dir == &quot;asc&quot;) {
+                dir = &quot;desc&quot;;
+                switching = true;
+            }
+        }
+    }
+}
+
+/**
+ * @method
+ *  This eventlistener checks if a tablefield has been clicked and then calls a function.
+ *  This function writes the data of the clicked table rows into the input boxes of the user information.
+ */
+
+window.addEventListener(&#x27;click&#x27;, function () {
+    var table = document.getElementById(&#x27;userlist&#x27;);
+    for (var i = 1; i &lt; table.rows.length; i++) {
+        table.rows[i].addEventListener(&#x27;click&#x27;, function () {
+
+            for (var j = 0; j &lt; this.cells.length; j++) {
+                var msg = &#x27;&#x27;;
+                msg += this.cells[j].innerHTML + &#x27; &#x27;;
+                console.log(&quot;i: &quot;+i+&quot;  j:&quot;+ j +&quot;  value: &quot;+msg)
+                switch (j) {
+                    case 0:
+                        document.getElementById(&quot;vorname&quot;).value = this.cells[j].innerHTML;
+                    case 1:
+                        document.getElementById(&quot;nachname&quot;).value = this.cells[j].innerHTML;
+                    case 2:
+                        document.getElementById(&quot;e-Mail&quot;).value = this.cells[j].innerHTML;
+                    case 3:
+                        document.getElementById(&quot;studiengang&quot;).value = this.cells[j].innerHTML;
+                    case 4:
+                        document.getElementById(&quot;rolle&quot;).value = this.cells[j].innerHTML;
+                    case 5:
+                        document.getElementById(&quot;verified&quot;).value = this.cells[j].innerHTML;
+                    case 6:
+                        document.getElementById(&quot;userID&quot;).value = this.cells[j].innerHTML;
+                    case 7:
+                       document.getElementById(&quot;password&quot;).value = this.cells[j].innerHTML;
+                }
+            }
+            console.log(msg)
+        });
+    }
+})
+
+
+
+function changeEntries() {
+    let sql = &quot;UPDATE USER SET name = &#x27;&#x27;, surname = &#x27;&#x27;, e_mail = &#x27;&#x27;, password =&#x27;&#x27;, course=&#x27;&#x27;, authorization=&#x27;&#x27; &quot; +
+        &quot;WHERE e_mail = &#x27;&#x27;&quot;;
+    connection.query(sql,
+        function (err, result) {
+            if (err) throw err;
+            if (result)
+                console.log(&quot;Erfolgreich&quot;)
+        })
+}
+
+
+/**
+ * @method
+ * This function changes the status of an input field from readonly to editable or from editable to readonly
+ * @param input
+ */
+function changeFieldStatus(input) {
+    let textarea = document.getElementById(input);
+    textarea.readOnly = !textarea.readOnly;
+}
+
+/**
+ * @method
+ * This function changes the status of a dropdown field to disabled or removes this status
+ * @param input
+ */
+function changeSelectStatus(input) {
+    let dropDown = document.getElementById(input);
+    dropDown.disabled = !dropDown.disabled;
+}
+
+/**
+ * @method
+ * This function changes the type of a field to a normal text type or to a password type.
+ * @param input
+ */
+function changeVisibility(input) {
+    let passwordText = document.getElementById(input);
+    if (passwordText.type === &quot;password&quot;){
+        passwordText.type = &quot;text&quot;;
+    } else {
+        passwordText.type = &quot;password&quot;;
+    }
+}
+
+
+class UserToUpdate {
+    constructor(name, surname,email, password, authorization, course, verified, id) {
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.password = password;
+        this.authorization = authorization;
+        this.course = course;
+        this.verified = verified;
+        this.id = id;
+    }
+
+    getSelectedUser() {
+        let name = document.getElementById(&quot;vorname&quot;).value;
+        let surname = document.getElementById(&quot;nachname&quot;).value;
+        let e_mail = document.getElementById(&quot;e-Mail&quot;).value;
+        let role = document.getElementById(&quot;rolle&quot;).value;
+        let course = document.getElementById(&quot;studiengang&quot;).value;
+        console.log(document.getElementById(&quot;studiengang&quot;).value);
+        let password = document.getElementById(&quot;password&quot;).value;
+        let verified = document.getElementById(&quot;verified&quot;).value;
+        let userID = document.getElementById(&quot;userID&quot;).value;
+    }
+}
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>
