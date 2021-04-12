@@ -1,7 +1,9 @@
 # WebTech_Themenverwaltung
 
-Im Projekt befindet sich ein Ordner "config", wo eure Datenbankinformation ergänzt werden muss, den absoluten Pfad zum Projekt (C:/...)
-
+1: Node.js installieren.
+2: "npm install" im Stammverzeichnis ausführen.
+3: Im Projekt befindet sich ein Ordner "config", wo eure Datenbankinformation ergänzt werden muss, den absoluten Pfad zum Projekt (C:/...)
+4: databaseTables.sql ausführen.
 
 Euren Inhalt müsst ihr im Index.js hinzufügen. Etwa so
 https://youtu.be/TQU6BWtc3yc 
