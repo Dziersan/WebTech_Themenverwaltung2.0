@@ -116,7 +116,7 @@ VALUES (
     'Sven',
         'sven.asd@hs-osnabrueck.de',
         'petersen',
-        false,
+        true,
         'student',
         'test',
         '4',
