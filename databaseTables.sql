@@ -147,9 +147,3 @@ VALUES (
         'ABC',
         1
        );
-
-
-
-
-
-"SELECT start, end, gentoken, user FROM token where user = 3;
