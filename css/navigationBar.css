@@ -2,7 +2,7 @@
 
 html {
     height: 100%;
-    font-family: "Roboto Thin";
+    font-family: OpenSans, arial, "sans-serif";
     font-size: 100%;
     overflow-y: scroll;
     -webkit-text-size-adjust: 100%;
@@ -11,7 +11,7 @@ html {
 }
 
 body{
-    font-family: Roboto;
+    font-family: OpenSans, arial, "sans-serif";
     font-size: 16px;
     letter-spacing: .6px;
     color: #555555;
@@ -32,7 +32,7 @@ body{
 }
 
 .header_button{
-    font-family: "Roboto Light";
+    font-family: OpenSans, arial, "sans-serif";
     color: #555555;
     font-size: 16px;
     letter-spacing: .6px;
