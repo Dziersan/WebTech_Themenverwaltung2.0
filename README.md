@@ -5,6 +5,7 @@
 2: "npm install" im Stammverzeichnis ausführen.
 
 3: Im Projekt befindet sich ein Ordner "config", wo eure Datenbankinformation ergänzt werden muss, den absoluten Pfad zum Projekt (C:/...)
+   Falls datenbankConfig/pathConfig nicht vorhanden sind die jeweilige COPY datei **KOPIEREN** und umbennen, anschließen ergänzen.
 
 4: databaseTables.sql ausführen.
 
