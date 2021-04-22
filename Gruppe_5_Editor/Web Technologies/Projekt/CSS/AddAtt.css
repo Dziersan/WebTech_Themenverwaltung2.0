@@ -2,7 +2,7 @@
 
 body
 {
-    font-family: "Montserrat", sans-serif;
+    font-family: OpenSans, arial, "sans-serif";
     color: #555555;
 }
 
@@ -27,7 +27,7 @@ output
 button
 {
     color: #555555;
-    font-family: Montserrat, sans-serif;
+    font-family: OpenSans, arial, "sans-serif";
     padding: 9px 25px;
     background-color: lightskyblue;
     border: none;

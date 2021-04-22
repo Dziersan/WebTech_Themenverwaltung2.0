@@ -62,7 +62,7 @@ dd p:first-child, td p:first-child { margin-top: 0; }
 /* -- Headings -------------------------------------------------------------- */
 h1, h2, h3, h4, h5, h6 {
     color: #D98527;/*was #f80*/
-    font-family: 'Trebuchet MS', sans-serif;
+    font-family: OpenSans, arial, "sans-serif";
     font-weight: bold;
     line-height: 1.1;
     margin: 1.1em 0 0.5em;
@@ -93,7 +93,7 @@ h5, h6 { font-size: 107.692%; }
 
 /* -- Code and examples ----------------------------------------------------- */
 code, kbd, pre, samp {
-    font-family: Menlo, Monaco, 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', Courier, monospace;
+    font-family: OpenSans, arial, "sans-serif";
     font-size: 92.308%;
     line-height: 1.35;
 }
@@ -175,7 +175,7 @@ th {
     border-bottom: none;
     border-top: none;
     color: #000;/*#FFF1D5*/
-    font-family: 'Trebuchet MS', sans-serif;
+    font-family: OpenSans, arial, "sans-serif";
     font-weight: bold;
     line-height: 1.3;
     white-space: nowrap;
@@ -237,7 +237,7 @@ th {
     border-radius: 3px;
     color: #444;
     display: inline-block;
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: OpenSans, arial, "sans-serif";
     font-size: 92.308%;
     font-weight: bold;
     padding: 4px 13px 3px;
@@ -479,7 +479,7 @@ h2, h3, h4, h5, h6 {
 .apidocs ul.commas li:last-child:after { content: ''; }
 
 /* Keyboard shortcuts. */
-kbd .cmd { font-family: Monaco, Helvetica; }
+kbd .cmd { font-family: OpenSans, arial; }
 
 /* -- Generic Access Level styles ------------------------------------------- */
 .apidocs .item.protected,

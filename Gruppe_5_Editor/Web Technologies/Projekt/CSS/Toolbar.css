@@ -3,7 +3,7 @@
 
 body
 {
-    font-family: "Roboto Thin", sans-serif;
+    font-family: OpenSans, arial, "sans-serif";
     font-size: 17px;
     letter-spacing: .6px !important;
 }
@@ -17,7 +17,7 @@ body
 
 li, a, button {
     z-index: 1000;
-    font-family: "Roboto Thin", sans-serif;
+    font-family: OpenSans, arial, "sans-serif";
     font-weight: 500;
     font-size: 17px;
     color: #555555;
@@ -82,7 +82,7 @@ button:hover {
     color: #555555;
     padding: 14px 16px;
     background-color: inherit;
-    font-family: inherit;
+    font-family: OpenSans, arial, "sans-serif";
     margin: 0;
 }
 
