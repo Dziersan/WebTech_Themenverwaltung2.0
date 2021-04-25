@@ -1,5 +1,5 @@
 
-const connection = require('../getConnectionDatabase.js');
+const connection = require('../getDatabaseConnection.js');
 
 
 connection.query(sql,

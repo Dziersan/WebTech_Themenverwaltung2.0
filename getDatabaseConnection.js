@@ -12,7 +12,7 @@ const config = JSON.parse(fs.readFileSync(path.path + "/config/datenbankConfig.j
 
 /**
  * @method
- * Connects to Databse with givin credentials from datenbankConfig.json
+ * Connects to Database with given credentials from datenbankConfig.json
  * @returns {Connection}
  */
 function getConnection(){

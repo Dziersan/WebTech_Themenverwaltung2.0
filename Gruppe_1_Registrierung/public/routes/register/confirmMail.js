@@ -6,7 +6,7 @@
  *  @class
  */
 const express = require('express');
-const connection = require('../../../../getConnectionDatabase.js');
+const connection = require('../../../../getDatabaseConnection.js');
 const redirect = require("../routesRedirect");
 const app = express();
 const router = express.Router();

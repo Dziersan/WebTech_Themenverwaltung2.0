@@ -10,7 +10,7 @@ const express = require('express');
 const session = require("express-session");
 const app = express();
 const router = express.Router()
-const connection = require("../../../../getConnectionDatabase");
+const connection = require("../../../../getDatabaseConnection");
 
 var lifeTime = 1000 * 60 * 60 * 24;// 24 hour
 var lifeTimeLong = 1000 * 60 * 60 * 24 * 365 * 10;  //1 Year

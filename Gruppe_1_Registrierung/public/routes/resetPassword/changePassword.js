@@ -10,7 +10,7 @@
 const express = require('express');
 const {getTextForgotPassword,getMailOptions,sendMail} = require('../nodeMailer/nodeMailer.js');
 const {checkInputForSQLInject} = require('../../javascript/sql_InjectionTester.js');
-const connection = require('../../../../getConnectionDatabase.js');
+const connection = require('../../../../getDatabaseConnection.js');
 const redirect = require("../routesRedirect");
 
 

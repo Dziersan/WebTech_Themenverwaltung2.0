@@ -16,7 +16,7 @@ const app = express();
 const redirect = require("../routesRedirect");
 const router = express.Router()
 
-const connection = require("../../../../getConnectionDatabase");
+const connection = require("../../../../getDatabaseConnection");
 
 
 

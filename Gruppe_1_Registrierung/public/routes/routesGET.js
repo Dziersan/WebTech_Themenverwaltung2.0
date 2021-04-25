@@ -8,7 +8,7 @@
 
 const express = require('express');
 const router = express.Router();
-const connection = require('../../../getConnectionDatabase.js');
+const connection = require('../../../getDatabaseConnection.js');
 const path = require("../../../config/pathConfig.json");
 
 

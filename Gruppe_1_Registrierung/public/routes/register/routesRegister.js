@@ -9,7 +9,7 @@
 const express = require('express')
 const router = express.Router()
 const {sendMail, getTextConfirmationEmail, getMailOptions} = require('../nodeMailer/nodeMailer.js');
-const connection = require("../../../../getConnectionDatabase");
+const connection = require("../../../../getDatabaseConnection");
 var q = require('q');
 
 
