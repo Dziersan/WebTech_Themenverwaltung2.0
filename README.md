@@ -6,7 +6,7 @@
 
 3: Im Projekt befindet sich ein Ordner "config", wo eure Datenbankinformation ergänzt werden muss, den absoluten Pfad zum Projekt (C:/...)
 
-4: databaseTables.sql ausführen.
+4: databaseTables.sql und databaseSeeder.sql ausführen.
 
 Euren Inhalt müsst ihr im Index.js hinzufügen. Etwa so
 https://youtu.be/TQU6BWtc3yc 
