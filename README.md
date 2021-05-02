@@ -2,7 +2,7 @@
 
 1: Node.js installieren.
 
-2: "npm install" im Stammverzeichnis ausführen.
+2: "npm install" und "npm install q" im Stammverzeichnis ausführen.
 
 3: Im Projekt befindet sich ein Ordner "config", wo eure Datenbankinformation ergänzt werden muss, den absoluten Pfad zum Projekt (C:/...)
 
