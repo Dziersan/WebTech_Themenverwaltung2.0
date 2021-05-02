@@ -42,8 +42,8 @@ CREATE TABLE agenda (
         foreign key (presentation_id) references presentation (id)
 );
 
-DROP TABLE IF EXISTS PW_FORGOT_TOKEN;
-CREATE TABLE PW_FORGOT_TOKEN(
+DROP TABLE IF EXISTS pw_forgot_token;
+CREATE TABLE pw_forgot_token(
     id integer auto_increment primary key ,
     e_mail varchar(255),
     start datetime,
