@@ -211,7 +211,7 @@ describe("Index Tests: ", function() {
             });
         });
 
-        it('Failed to Login because Token doesnt exists', function (done) {
+        it('Failed to Login because Token10 doesnt exists', function (done) {
             token = "FalscherToken";
             email = "Email.Test@hs-osnabrueck.de";
 
@@ -248,7 +248,7 @@ describe("Index Tests: ", function() {
             });
         });
 
-        it('Failed to Login because Token is expired', function (done) {
+        it('Failed to Login because Token10 is expired', function (done) {
             token = "c3ehla";
             email = "Email.Test@hs-osnabrueck.de";
             var jsonRegisterBodyUser = {
@@ -265,7 +265,7 @@ describe("Index Tests: ", function() {
             });
         });
 
-        it('Failed to Login because Token is expired', function (done) {
+        it('Failed to Login because Token10 is expired', function (done) {
             token = "9bllcx";
             email = "Email.Test@web.de";
             var jsonRegisterBodyUser = {

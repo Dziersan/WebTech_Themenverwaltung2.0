@@ -29,15 +29,15 @@ var {
  * @method
  * Express static imports for folders which are accessable from public
  */
-app.use('/css',express.static('./Gruppe_1_Registrierung/public/css'));
-app.use('/css',express.static('./css'));
-app.use('/javascript',express.static('./javascript'));
-app.use('/css',express.static('./Gruppe_1_Registrierung/private/css'));
-app.use('/images',express.static('./Gruppe_1_Registrierung/public/images'));
-app.use('/',express.static('./Gruppe_1_Registrierung/public/html'));
-app.use('/javascript',express.static('./Gruppe_1_Registrierung/public/javascript'));
-app.use('/javascript',express.static('./Gruppe_1_Registrierung/privat/javascript'));
-app.use('/privat/images',express.static('./Gruppe_1_Registrierung/privat/images'));
+app.use('/css',express.static('./view/css'));
+//app.use('/css',express.static('./css'));
+app.use('/javascript',express.static('./services'));
+app.use('/css',express.static('./test'));
+app.use('/images',express.static('./images'));
+app.use('/',express.static('./view/html'));
+app.use('/javascript',express.static('./test'));
+app.use('/javascript',express.static('./api'));
+//app.use('/privat/images',express.static('./Gruppe_1_Registrierung/privat/images'));
 
 app.use('/CSS',express.static('./Gruppe_5_Editor/Web Technologies/Projekt/CSS'));
 app.use('/JS',express.static('./Gruppe_5_Editor/Web Technologies/Projekt/JS'));
@@ -162,7 +162,7 @@ app.use((request, respond, next) => {
  * @method
  * GET Methods from routesGET.js
  */
-router = require("./Gruppe_1_Registrierung/public/routes/routesGET.js");
+router = require("./ab/routesGET.js");
 
 app.get("/", router);
 app.get("/login",redirectHome,redirectCookie, router);
@@ -204,22 +204,22 @@ app.get("/favicon.ico", (request, response) => {
  * @method
  * POST Methods
  */
-routerConfirmation = require('./Gruppe_1_Registrierung/public/routes/register/confirmMail.js');
+routerConfirmation = require('./ab/confirmMail1.0.js');
 app.use(routerConfirmation);
 
-routerPassword = require('./Gruppe_1_Registrierung/public/routes/resetPassword/sendMailToChangePassword.js');
+routerPassword = require('./ab/sendMailToChangePassword.js');
 app.use(routerPassword);
 
-routerChangePassword = require('./Gruppe_1_Registrierung/public/routes/resetPassword/changePassword.js');
+routerChangePassword = require('./ab/changePassword1.0.js');
 app.use(routerChangePassword);
 
-routerLogin = require('./Gruppe_1_Registrierung/public/routes/login/routesLogin.js');
+routerLogin = require('./api/routesLogin.js');
 app.use(routerLogin);
 
-routerRegister = require('./Gruppe_1_Registrierung/public/routes/register/routesRegister.js');
+routerRegister = require('./api/routesRegister.js');
 app.use(routerRegister);
 
-routerToken = require("./Gruppe_1_Registrierung/public/routes/token/routesToken.js");
+routerToken = require("./ab/routesToken.js");
 app.get("/getToken", routerToken);
 app.use(routerToken);
 
