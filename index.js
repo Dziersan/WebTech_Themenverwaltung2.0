@@ -162,7 +162,7 @@ app.use((request, respond, next) => {
  * @method
  * GET Methods from routesGET.js
  */
-router = require("./ab/routesGET.js");
+router = require("./services/routesGET.js");
 
 app.get("/", router);
 app.get("/login",redirectHome,redirectCookie, router);
@@ -204,13 +204,13 @@ app.get("/favicon.ico", (request, response) => {
  * @method
  * POST Methods
  */
-routerConfirmation = require('./ab/confirmMail1.0.js');
+routerConfirmation = require('./services/confirmMail1.0.js');
 app.use(routerConfirmation);
 
-routerPassword = require('./ab/sendMailToChangePassword.js');
+routerPassword = require('./services/sendMailToChangePassword.js');
 app.use(routerPassword);
 
-routerChangePassword = require('./ab/changePassword1.0.js');
+routerChangePassword = require('./services/changePassword1.0.js');
 app.use(routerChangePassword);
 
 routerLogin = require('./api/routesLogin.js');
@@ -219,7 +219,7 @@ app.use(routerLogin);
 routerRegister = require('./api/routesRegister.js');
 app.use(routerRegister);
 
-routerToken = require("./ab/routesToken.js");
+routerToken = require("./services/routesToken.js");
 app.get("/getToken", routerToken);
 app.use(routerToken);
 

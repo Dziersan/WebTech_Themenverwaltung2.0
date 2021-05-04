@@ -8,21 +8,21 @@
 
 const express = require('express');
 const router = express.Router();
-const connection = require('./getDatabaseConnection.js');
+const connection = require('../services/getDatabaseConnection.js');
 const path = require("../config/pathConfig.json");
 
 
 
 router.get("/login",  (request, response) => {
-        response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/login.html");
+        response.sendFile(path.path + "/view/html/login.html");
 });
 
 router.get("/home", (request, response) => {
-    response.sendFile(path.path + "/Gruppe_1_Registrierung/privat/html/home.html");
+    response.sendFile(path.path + "/view/html/home.html");
 });
 
 router.get("/register", (request, response) => {
-        response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/register.html");
+        response.sendFile(path.path + "/view/html/register.html");
 });
 
 /**
@@ -107,9 +107,9 @@ router.get("/token", (request, response) => {
  */
 router.get("/showUsers", (request, response) => {
     if (request.session.userAuthorization === "lecturer") {
-        response.sendFile(path.path + '/Gruppe_1_Registrierung/privat/html/lecturerView.html');
+        response.sendFile(path.path + '/view/html/lecturerView.html');
     } else if(request.session.userAuthorization === "admin") {
-        response.sendFile(path.path + '/Gruppe_1_Registrierung/privat/html/adminView.html');
+        response.sendFile(path.path + '/view/html/adminView.html');
     } else {
         response.redirect("/userInfo");
     }
@@ -117,7 +117,7 @@ router.get("/showUsers", (request, response) => {
 
 router.get("/", (request, response) => {
 
-    response.sendFile(path.path + '/Gruppe_1_Registrierung/public/html/index.html');
+    response.sendFile(path.path + '/view/html/index.html');
 
 });
 
@@ -126,40 +126,40 @@ router.get("/agb", (request, response) => {
 });
 
 router.get("/successfullregistration", (request, response) => {
-    response.sendFile(path.path + '/Gruppe_1_Registrierung/public/html/successRegister.html');
+    response.sendFile(path.path + '/view/html/successRegister.html');
 });
 
 router.get("/changepassword", (request, response) => {
-    response.sendFile(path.path + '/Gruppe_1_Registrierung/public/html/changePassword.html');
+    response.sendFile(path.path + '/view/html/changePassword.html');
 });
 
 router.get("/confirmation", (request, response) => {
 
-    response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/confirmEmail.html");
+    response.sendFile(path.path + "/view/html/confirmEmail.html");
 });
 
 router.get("/passwordforgot", (request, response) => {
 
-    response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/passwordForgot.html");
+    response.sendFile(path.path + "/view/html/passwordForgot.html");
 
 });
 
 
 router.get("/impressum", (request, response) => {
 
-    response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/impressum.html");
+    response.sendFile(path.path + "/view/html/impressum.html");
 
 });
 
 router.get("/userInfo", (request, response) => {
 
-    response.sendFile(path.path + "/Gruppe_1_Registrierung/privat/html/userView.html");
+    response.sendFile(path.path + "/view/html/userView.html");
 
 });
 
 router.get("/admin", (request, response) => {
     if(request.session.userAuthorization === "admin") {
-        response.sendFile(path.path + '/Gruppe_1_Registrierung/privat/html/adminView.html');
+        response.sendFile(path.path + '/view/html/adminView.html');
     } else {
         response.redirect("/userInfo");
     }
@@ -167,20 +167,20 @@ router.get("/admin", (request, response) => {
 
 router.get("/lecturerView", (request, response) => {
 
-        response.sendFile(path.path + '/Gruppe_1_Registrierung/privat/html/lecturerView.html');
+        response.sendFile(path.path + '/view/html/lecturerView.html');
 });
 
 router.get("/addUser", (request, response) => {
 
-    response.sendFile(path.path + "/Gruppe_1_Registrierung/privat/html/addUser.html");
+    response.sendFile(path.path + "/view/html/addUser.html");
 
 });
 
 router.get("/showUsers", (request, response) => {
     if (request.session.userAuthorization === "lecturer") {
-        response.sendFile(path.path + '/Gruppe_1_Registrierung/privat/html/lecturerView.html');
+        response.sendFile(path.path + '/view/html/lecturerView.html');
     } else if(request.session.userAuthorization === "admin") {
-        response.sendFile(path.path + '/Gruppe_1_Registrierung/privat/html/adminView.html');
+        response.sendFile(path.path + '/view/html/adminView.html');
     } else {
         response.redirect("/profil");
     }

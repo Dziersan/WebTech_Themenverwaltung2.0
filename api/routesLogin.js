@@ -13,10 +13,10 @@ const path = require("../config/pathConfig.json");
 const fs = require('fs');
 const config = JSON.parse(fs.readFileSync(path.path + "/config/datenbankConfig.json"));
 const app = express();
-const redirect = require("../ab/routesRedirect");
+const redirect = require("../services/routesRedirect");
 const router = express.Router()
 
-const connection = require("../ab/getDatabaseConnection");
+const connection = require("../services/getDatabaseConnection");
 
 
 
