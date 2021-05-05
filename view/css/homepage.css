@@ -1,12 +1,3 @@
-/**
-@AUTHOR Dominik Dziersan
-@class CSS for the homepage.
- */
-
-* {
-    box-sizing: border-box;
-}
-
 html {
     scroll-behavior: smooth;
 }
@@ -18,9 +9,6 @@ body {
 }
 
 @media screen and (max-width: 1919px) {
-    img {
-        display: none;
-    }
 
     div.box1 {
         position: center;
@@ -36,13 +24,15 @@ body {
         color: #000000;
         border-radius: 15px;
         transition: 0.25s;
+
     }
+
 
     .video-overlay {
         position: relative;
         left: 0px;
-        top: 5%;
-        margin: 35px;
+        top: 0%;
+        margin: 0px;
         padding: 1% 1%;
         font-size: 16px;
         font-family: OpenSans, arial, "sans-serif";
@@ -51,6 +41,22 @@ body {
         background: #e8f0fe;
         background: hsla(218, 92%, 95%, 0.7);
         border-radius: 15px;
+    }
+
+    div.box2 {
+        position: center;
+        border: 0;
+        background: #e8f0fe;
+        /*left: 50%;
+        top: 60%;*/
+        margin: 20px auto;
+        /*text-align: block;*/
+        border: 60px solid #e8f0fe;
+        /*width: 40%;*/
+        font-size: 24px;
+        color: #000000;
+        border-radius: 15px;
+        transition: 0.25s;
     }
 }
 
@@ -61,14 +67,17 @@ body {
         margin-left: 8%;
         margin-right: auto;
         border-radius: 8px;
+        background-image: url('../images/priscilla-du-preez-XkKCui44iM0-unsplash.jpg');
+
 
     }
+
     div.box1 {
-        position: absolute;
+        position: center;
         border: 0;
         background: #e8f0fe;
         left: 50%;
-        top: 0%;
+        top: 50px;
         margin: 20px auto;
         /*text-align: block;*/
         border: 60px solid #e8f0fe;
@@ -80,10 +89,10 @@ body {
     }
 
     .video-overlay {
-        position: absolute;
+        position: relative;
         left: 0px;
-        top: 140px;
-        margin: 35px;
+        top: 0px;
+        margin: 0px;
         padding: 1% 1%;
         font-size: 16px;
         font-family: OpenSans, arial, "sans-serif";
@@ -95,37 +104,18 @@ body {
     }
 }
 
-#myVideo {
-    position: relative;
-    /*right: 0;*/
-    /*bottom: 500;*/
-    /*min-width: 100%;*/
-    /*min-height: 100%;*/
-    width: 100%;
-    height: 100%;
-}
+section{
 
 
-/*.video-overlay {*/
-/*    position: absolute;*/
-/*    left: 0px;*/
-/*    top: 140px;*/
-/*    margin: 35px;*/
-/*    padding: 1% 1%;*/
-/*    font-size: 16px;*/
-/*    font-family: Helvetica;*/
-/*    color: #000000;*/
-/*    !*background-color: #E8F0FE;*!*/
-/*    background: #e8f0fe;*/
-/*    background: hsla(218, 92%, 95%, 0.7);*/
-/*    border-radius: 15px;*/
-/*}*/
-
-section {
     padding: 3em;
     height: 110vh;
-    position: relative;
+    position: center;
     box-sizing: border-box;
+
+    background-image: url("../images/priscilla-du-preez-XkKCui44iM0-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
 }
 
 
@@ -161,11 +151,11 @@ img:nth-of-type(2) {
 }
 
 
-.box2 {
-    position: relative;
+div.box2 {
+    position: center;
     border: 0;
     background: #e8f0fe;
-    left: 20%;
+    left: 50%;
     top: 60%;
     margin: 20px auto;
     /*text-align: block;*/
@@ -208,7 +198,7 @@ img:nth-of-type(2) {
 .button span {
     cursor: pointer;
     display: inline-block;
-    position: relative;
+    position: center;
     transition: 0.5s;
 }
 
