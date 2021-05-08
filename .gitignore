@@ -1,3 +1,5 @@
 node_modules/
 config/datenbankConfig.json
 config/pathConfig.json
+databaseTables.sql
+package-lock.json

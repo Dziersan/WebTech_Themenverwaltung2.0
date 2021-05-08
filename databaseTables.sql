@@ -10,7 +10,6 @@ teilnehmer_anzahl INT,
 PRIMARY KEY (modul_id)
 );
 
-
 -- forgein-keys need to be added
 DROP TABLE IF EXISTS STUDENT_MODUL;
 CREATE TABLE STUDENT_MODUL(
