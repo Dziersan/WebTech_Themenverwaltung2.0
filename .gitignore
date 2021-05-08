@@ -1,5 +1,12 @@
 node_modules/
 config/datenbankConfig.json
+config/datenbankConfigCOPY.json
 config/pathConfig.json
+config/pathConfigCOPY.json
 databaseTables.sql
 package-lock.json
+.gitignore
+.idea
+
+
+
