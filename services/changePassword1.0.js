@@ -9,7 +9,7 @@
 
 const express = require('express');
 const {getTextForgotPassword,getMailOptions,sendMail} = require('../api/nodeMailer.js');
-const {checkInputForSQLInject} = require('../Test/sql_InjectionTester.js');
+const {checkInputForSQLInject} = require('../test/sql_InjectionTester.js');
 const connection = require('./getDatabaseConnection.js');
 const redirect = require("./routesRedirect");
 

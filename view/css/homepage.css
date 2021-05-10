@@ -62,7 +62,7 @@ body {
 
 @media screen and (min-width: 1920px) {
 
-    img {
+/*    img {
 
         margin-left: 8%;
         margin-right: auto;
@@ -70,7 +70,7 @@ body {
         background-image: url('../images/priscilla-du-preez-XkKCui44iM0-unsplash.jpg');
 
 
-    }
+    }*/
 
     div.box1 {
         position: center;
