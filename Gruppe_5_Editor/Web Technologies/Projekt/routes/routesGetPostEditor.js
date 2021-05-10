@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const connection = require('../../../../getConnectionDatabase.js');
+const connection = require('../../../../services/getDatabaseConnection.js');
 
 const redirect = require("../../../../index");
 const app = express();

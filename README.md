@@ -2,12 +2,12 @@
 
 1: Node.js installieren.
 
-2: "npm install" im Stammverzeichnis ausführen.
+2: "npm install" und "npm install q" im Stammverzeichnis ausführen.
 
 3: Im Projekt befindet sich ein Ordner "config", wo eure Datenbankinformation und der absoluten Pfad zum Projekt (C:/...) ergänzt werden muss.
    Falls **datenbankConfig** / **pathConfig** nicht vorhanden sind, die jeweilige COPY datei **KOPIEREN**, umbennen und anschließen ergänzen.
 
-4: databaseTables.sql ausführen.
+4: databaseTables.sql und databaseSeeder.sql ausführen.
 
 Euren Inhalt müsst ihr im Index.js hinzufügen. Etwa so
 https://youtu.be/TQU6BWtc3yc 
