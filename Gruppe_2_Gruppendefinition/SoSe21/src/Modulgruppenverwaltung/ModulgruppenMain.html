@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modulgruppenverwaltung</title>
+    <link rel="stylesheet" href="../../../../css/navigationBar.css" type="text/css">
+    <!-- <link rel="stylesheet" href="../style.css" type="text/css"> -->
+    <link rel="stylesheet" href="../reworkedStyle.css" type="text/css">
+    <title>Modulgruppenübersicht</title>
+</head>
+
+<body>
+<div id="UserMenu_All_Header">
+    <div id="All_Header_left" class="All_Header_Boxes" style="float: left; margin-right: 5px">
+        <a href="https://osca.hs-osnabrueck.de/">
+            <div class="outer-wrapper" style="float:left">
+                <div class="frame" style="height: 52px">
+                    <img id="oscaImagelogo" class="oscaLogo">
+                </div>
+            </div>
+        </a>
+
+        <div class="dropdown" style="margin-left: 5px">
+            <form action="../Modulgruppenverwaltung/ModulgruppenMain.html">
+                <button class="header_button">Modulverwaltung</button>
+            </form>
+            <div class="dropdown-content">
+                <a href="">Placeholder01</a> <!-- Hier sollen alle gewählte Module im DropDown angezeigt werden. -->
+                <a href="">Placeholder02</a>
+            </div>
+        </div>
+
+        <div class="dropdown" style="margin-left: 5px">
+            <form action="/myGroups">
+                <button class="header_button">Meine Gruppe</button>
+            </form>
+            <div class="dropdown-content">
+                <a href="/joinGroup">Gruppe beitreten</a>
+                <a href="/requirementsdefinition">Anforderungsdefinition</a>
+            </div>
+        </div>
+
+        <form action="/presentation">
+            <button class="header_button">Präsentation</button>
+        </form>
+    </div>
+
+    <div id="All_Header_right" class="All_Header_Boxes" style="float: right">
+
+        <div class="frame" style="float: left;">
+            <a href="https://my.hs-osnabrueck.de/owa/">
+                <div class="outer-wrapper" style="float:left">
+                    <div class="frame" style="height: 52px">
+                        <i id="mailIcon" class="far fa-envelope fa-lg" style="font-size: 25px"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="frame" style="float: left;">
+            <a href="https://netcase.hs-osnabrueck.de">
+                <div class="outer-wrapper" style="float:left">
+                    <div class="frame" style="height: 52px">
+                        <i id="netcaseIcon" class="fas fa-briefcase fa-lg" style="font-size: 25px"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="dropdown">
+            <form action="/showUsers">
+                <button class="header_button">Benutzer</button>
+            </form>
+        </div>
+        <div class="dropdown">
+            <form action="/logout" method="post">
+                <button class="header_button">Logout</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="pageContent" style="width: 1500px; margin:0 auto">
+    <h1>Modulgruppenübersicht</h1>
+    <p>Das ist ein Testparagraph.</p>
+</div>
+
+</body>
+</html>

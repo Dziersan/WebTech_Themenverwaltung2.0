@@ -1,0 +1,19 @@
+
+h1 {
+    align-content: center;
+}
+
+.pageContent h1{
+    color: #000000;
+    display: block;
+    background-color: lightgray;
+    font-weight: 200;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding: 10px;
+}
+
+.pageContent h2{
+    color: red;
+}
