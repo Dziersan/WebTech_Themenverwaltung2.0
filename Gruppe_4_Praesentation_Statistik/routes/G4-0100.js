@@ -34,17 +34,17 @@ getValuesfromDb0100()
 
 function getValuesfromDb0100() {
     //Datum
-    var sql0100 = "SELECT datum FROM G4_PRAESENTATION ";
+    var sql0100 = "SELECT date FROM presentation ";
     con.query(sql0100, function (err, result) {
         if (err) throw err;
         //durchläuft alle Zeilen und gibt diese Werte an result weiter
         for (var i = 0; i < result.length; i++) {
             console.log(result);
-            datum[i] = result[i].datum;
+            datum[i] = result[i].date;
         }
     });
     //Raum
-    var sql0101 = "SELECT raum FROM G4_PRAESENTATION ";
+    var sql0101 = "SELECT room FROM presentation ";
     con.query(sql0101, function (err, result) {
         if (err) throw err;
         for (var i = 0; i < result.length; i++) {
@@ -52,7 +52,7 @@ function getValuesfromDb0100() {
         }
     });
     //Anlass
-    var sql0102 = "SELECT anlass FROM G4_PRAESENTATION";
+    var sql0102 = "SELECT occasion FROM presentation";
     con.query(sql0102, function (err, result) {
         if (err) throw err;
         for (var i = 0; i < result.length; i++) {

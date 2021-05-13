@@ -45,22 +45,22 @@ function getConnection() {
  */
 function getValuesfromDb0050() {
 
-    var sql = "SELECT modul_id FROM MODUL";
+    var sql = "SELECT module_id FROM module";
     con.query(sql, function (err, result) {
         if (err) throw err;
         //durchläuft alle Zeilen und gibt diese Werte an result weiter
         for (var i = 0; i < result.length; i++) {
 
-            modulid[i] = result[i].modul_id;
+            modulid[i] = result[i].module_id;
         }
     });
     //modul_bezeichnung
-    var sql1 = "SELECT beschreibung FROM MODUL";
+    var sql1 = "SELECT description FROM module";
     con.query(sql1, function (err, result) {
         if (err) throw err;
         for (var i = 0; i < result.length; i++) {
 
-            modul_bezeichnung[i] = result[i].beschreibung;
+            modul_bezeichnung[i] = result[i].description;
         }
     });
 }

@@ -14,16 +14,16 @@ app.get('/Messsage',function (request,result) {
     result.render('DozentenNachricht.ejs');
 
 });
-con.query("Select * from Nachrichten",function (result,err)
+con.query("Select * from messages",function (result,err)
 {
     if (err) throw err;
 
     for (var i= 0; i<result.length;i++)
     {
-        id[i] = result[i].Nachricht_ID;
-        nachricht[i] = result[i].Nachricht;
-        datum[i] = result[i].Datum;
-        anfrageArt[i] = result[i].Anfrage_art;
+        id[i] = result[i].message_id;
+        nachricht[i] = result[i].message;
+        datum[i] = result[i].date;
+        anfrageArt[i] = result[i].type;
     }
 });
 app.listen(8080);

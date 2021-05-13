@@ -50,15 +50,15 @@ getValuesFromDb();
  */
 function getValuesFromDb() {
     //Anlass
-    var sql = "SELECT anlass FROM G4_PRAESENTATION /*,modul WHERE modul(von Tabelle praesentation) = mid(die mitgegeben wurde)*/ ";
+    var sql = "SELECT occasion FROM presentation /*,modul WHERE modul(von Tabelle praesentation) = mid(die mitgegeben wurde)*/ ";
     con.query(sql, function (err, result) {
         if (err) throw err;
         for (var i = 0; i < result.length; i++) {
-            anlass[i] = result[i].anlass;
+            anlass[i] = result[i].occasion;
         }
     });
     //Datum
-    var sql1 = "SELECT datum FROM G4_PRAESENTATION /*,modul WHERE modul(von Tabelle praesentation) = mid(die mitgegeben wurde) */";
+    var sql1 = "SELECT date FROM presentation /*,modul WHERE modul(von Tabelle praesentation) = mid(die mitgegeben wurde) */";
     con.query(sql1, function (err, result) {
         if (err) throw err;
         //Attribute durchlaufen und in result laden
@@ -67,14 +67,14 @@ function getValuesFromDb() {
         }
     });
     //Raum
-    var sql2 = "SELECT raum FROM G4_PRAESENTATION /*,modul  WHERE modul(von Tabelle praesentation) = mid(die mitgegeben wurde) */";
+    var sql2 = "SELECT room FROM presentation /*,modul  WHERE modul(von Tabelle praesentation) = mid(die mitgegeben wurde) */";
     con.query(sql2, function (err, result) {
         if (err) throw err;
         for (var i = 0; i < result.length; i++) {
             raum[i] = result[i].raum;
         }
     });
-    var sql3 = "SELECT pid FROM G4_PRAESENTATION /*,modul  WHERE modul(von Tabelle praesentation) = mid(die mitgegeben wurde) */";
+    var sql3 = "SELECT id FROM presentation /*,modul  WHERE modul(von Tabelle praesentation) = mid(die mitgegeben wurde) */";
     con.query(sql3, function (err, result) {
         if (err) throw err;
         for (var i = 0; i < result.length; i++) {

@@ -32,14 +32,14 @@ getValuesFromDb();
  */
 function getValuesFromDb() {
     //alle Attribute aus Relation modul abfragen
-    var sql = "SELECT * FROM MODUL /* da muss noch ne Abfrage für den speziellen USER hinzugefügt werden */";
+    var sql = "SELECT * FROM module /* da muss noch ne Abfrage für den speziellen USER hinzugefügt werden */";
     con.query(sql, function (err, result) {
 
         if(err) throw err;
         //alle Attribute durchlaufen und in result laden
         for (var i = 0; i < result.length; i++) {
-            modul_id[i] = result[i].modul_id;
-            modul_bezeichnung[i] = result[i].beschreibung;
+            modul_id[i] = result[i].module_id;
+            modul_bezeichnung[i] = result[i].description;
         }
     });
 }
