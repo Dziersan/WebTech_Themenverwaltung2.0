@@ -356,7 +356,6 @@ function miniAll() {
 
     table = document.getElementById("reqtable");
     tr = table.getElementsByTagName("tr");
-    console.log(tr);
     for (i = 0; i < tr.length - 1; i++) {
         td = tr[i + 1].getElementsByTagName("td");
         subs = td[0].innerHTML.substr(1);
@@ -383,7 +382,6 @@ function maxAll() {
 
     table = document.getElementById("reqtable");
     tr = table.getElementsByTagName("tr");
-    console.log(tr);
     for (i = 0; i < tr.length - 1; i++) {
         td = tr[i + 1].getElementsByTagName("td");
         val = parseFloat(td[0].innerHTML);
@@ -403,8 +401,6 @@ function letsdel(){
     let letsdel = document.getElementById("newButtID");
     let row = letsdel.parentNode.parentNode;
     row.parentNode.removeChild(row);
-
-    //wir deleten das noch in der Zukunft aus der Datenbank
 }
 
 /**

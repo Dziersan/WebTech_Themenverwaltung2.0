@@ -7,7 +7,6 @@
 
 const tokenMaxLife = 5256000; //10 Years
 
-
 class Token10 {
     constructor(start, end, token, time) {
         this.start = start;
@@ -30,7 +29,7 @@ function createToken() {
 
     let tokenTime = document.getElementById("token").value;
 
-    if (tokenTime === ""){
+    if (tokenTime === "") {
         tokenTime = 0
     }
 
@@ -41,7 +40,6 @@ function createToken() {
 
     start = start.toISOString().slice(0, 19).replace('T', ' ');
     end = end.toISOString().slice(0, 19).replace('T', ' ');
-
 
 
     token = new Token10(start, end, genToken, time);
@@ -70,19 +68,18 @@ function deleteToken() {
         .then(data => {
 
             alert(data.token);
-            
+
 
         })
         .catch(error => console.error(error))
 }
-
 
 /**
  * @method
  * Creates token object from datetime-local fields, brings the data in the right format and
  * uses postCreateToken
  */
-function createTokenCalender(){
+function createTokenCalender() {
     startCalender = document.getElementById("startCalender").value;
     endCalender = document.getElementById("endCalender").value;
 
@@ -92,10 +89,10 @@ function createTokenCalender(){
     var testDate1 = new Date(endCalender);
     var time = diffMinutes(testDate, testDate1)
 
-    let token = new Token10(startCalender, endCalender, genToken, time );
+    let token = new Token10(startCalender, endCalender, genToken, time);
 
-    if(startCalender === ""
-    || endCalender === ""){
+    if (startCalender === ""
+        || endCalender === "") {
         alert("Token10 konnte nicht erstellt werden");
     } else {
         postCreateToken(token);
@@ -113,7 +110,7 @@ function createTokenCalender(){
  *  POSTs givin token to /createToken
  * @param token
  */
-function postCreateToken(token){
+function postCreateToken(token) {
 
     const options = {
         method: "POST",
@@ -130,7 +127,6 @@ function postCreateToken(token){
         })
         .catch(error => console.error(error));
 }
-
 
 /**
  * @method
@@ -153,8 +149,7 @@ function validate(evt) {
     }
 }
 
-
-window.onload = function() {
+window.onload = function () {
     setMaxDate();
 };
 
@@ -162,7 +157,7 @@ window.onload = function() {
  * @method
  * Limit the datetime-locals to a maximum of 10 years
  */
-function setMaxDate(){
+function setMaxDate() {
     var maxDate = new Date();
     maxDate.setMinutes(maxDate.getMinutes()
         + parseInt(tokenMaxLife));
@@ -171,7 +166,7 @@ function setMaxDate(){
     var day = maxDate.getUTCDate();
     var year = maxDate.getUTCFullYear();
 
-    if(month < 10){
+    if (month < 10) {
         month = "0" + month;
     }
 
@@ -180,10 +175,8 @@ function setMaxDate(){
     document.getElementById("startCalender").max = maxDate + "T23:59";
 }
 
-
-function diffMinutes(dt2, dt1)
-{
-    var diff =(dt2.getTime() - dt1.getTime()) / 1000;
+function diffMinutes(dt2, dt1) {
+    var diff = (dt2.getTime() - dt1.getTime()) / 1000;
     diff /= 60;
     return Math.abs(Math.round(diff));
 }
@@ -192,18 +185,15 @@ function diffMinutes(dt2, dt1)
  * @method
  * Gets token
  */
-function getToken(){
+function getToken() {
 
     fetch('/getToken')
         .then(response => response.json())
         .then(data => {
 
-            if (data.token === "error"){
+            if (data.token === "error") {
                 alert("Es konnte nichts gefunden werden.")
-            } else {
-                console.log(data)
             }
         })
         .catch(error => console.error(error))
 }
-

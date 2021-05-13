@@ -19,7 +19,6 @@ const router = express.Router()
 const connection = require("../services/getDatabaseConnection");
 
 
-
 var lifeTime = 1000 * 60 * 60 * 24;// 24 hour
 var lifeTimeLong = 1000 * 60 * 60 * 24 * 365 * 10;  //1 Year
 const tokenLifeTime = 60 * 24 * 366;// 10 + 1 day year
@@ -31,7 +30,6 @@ var {
     sessionName = "sid",
     secretSession = "test"
 } = process.env;
-
 
 
 app.use(session({
@@ -54,7 +52,7 @@ app.use(session({
  * Creates an session with the user if the login succes. Else the server respond with a errormessage
  * request: json with email and password.
  */
-router.post("/login",  (request, response) => {
+router.post("/login", (request, response) => {
 
     connection.query("SELECT id, name,verified, token, e_mail, password, authorization from user where "
         + 'e_mail = "' + request.body.email + '"'
@@ -65,27 +63,20 @@ router.post("/login",  (request, response) => {
             else {
                 if (result.length == 0) {
                     //If there is no match login failed
-                    console.log("login fehlgeschlafen (Falsche Daten oder nicht registriert)");
                     response.json({login: "Fehlgeschlagen: Falsche Informationen oder nicht registriert"});
-
                 } else {
                     //Check if User is verified
                     if (result[0].verified == false) {
-                        console.log("login fehlgeschlafen (nicht verifiziert)");
                         response.json({login: "Fehlgeschlagen: Nicht Verifiziert"});
                     } else {
-                        console.log("login erfolgreich");
-
-                        if(request.body.checkboxLogin === true){
+                        if (request.body.checkboxLogin === true) {
                             request.session.cookie.maxAge = lifeTimeLong;
                         }
-
                         request.session.userId = result[0].id;
                         request.session.userName = result[0].name;
                         request.session.userAuthorization = result[0].authorization;
 
                         response.json({login: "success"})
-
                     }
                 }
             }
@@ -96,17 +87,15 @@ router.post("/login",  (request, response) => {
  * @method
  * Deletes session with the user
  */
-router.post("/logout",  (request, respond) => {
+router.post("/logout", (request, respond) => {
 
     request.session.destroy(err => {
         if (err) {
             return respond.redirect("/home");
         }
         respond.clearCookie(sessionName);
-        console.log("cookies deleted!")
         respond.redirect("/login");
     })
 });
 
 module.exports = router;
-

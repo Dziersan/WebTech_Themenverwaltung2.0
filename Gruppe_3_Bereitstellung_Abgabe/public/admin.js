@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () =>{
+document.addEventListener('DOMContentLoaded', () => {
     getData()
     getNotification()
 });
@@ -6,25 +6,19 @@ document.addEventListener('DOMContentLoaded', () =>{
 async function getData() {
     const response = await fetch('/getSFTWPOOLData');
     const data = await response.json();
-
-    // console.log(data)
     loadHTML(data);
-
 }
 
-
-async function getNotification(){
+async function getNotification() {
     const response = await fetch('/getNotificationData')
     const data = await response.json();
 
     loadNotification(data);
 }
 
-
-
 document.getElementById('btn').addEventListener('click', insertData);
 
-async function insertData(){
+async function insertData() {
     const name = document.getElementById('sftwname').value;
     const beschreibung = document.getElementById('sftwbeschreibung').value;
     const link = document.getElementById('sftwlink').value;
@@ -33,7 +27,7 @@ async function insertData(){
         Beschreibung: beschreibung,
         Link: link
     }
-   
+
     const options = {
         method: 'POST',
         headers: {
@@ -47,19 +41,16 @@ async function insertData(){
 }
 
 
-
-
-
-function loadHTML(data){
+function loadHTML(data) {
     const tbody = document.getElementById('data-table');
     let tbodyHTML = "";
 
-    if(data.length === 0){
+    if (data.length === 0) {
         tbody.innerHTML = "<tr><td class='no-dat' colspan='5'> No Data</td></tr>"
         return;
     }
 
-    for(item of data) {
+    for (item of data) {
         tbodyHTML += "<tr>";
         tbodyHTML += `<td>${item.ID}</td>`
         tbodyHTML += `<td>${item.SOFTWARENAME}</td>`;
@@ -73,16 +64,16 @@ function loadHTML(data){
 }
 
 
-function loadNotification(data){
+function loadNotification(data) {
     const tbody = document.getElementById('notification-table');
     let tbodyHTML = "";
 
-    if(data.length === 0){
+    if (data.length === 0) {
         tbody.innerHTML = "<tr><td class='no-dat' colspan='5'> No Data</td></tr>"
         return;
     }
 
-    for(item of data) {
+    for (item of data) {
         tbodyHTML += "<tr>";
         tbodyHTML += `<td>${item.ID}</td>`
         tbodyHTML += `<td>${item.GROUP_NAME}</td>`;
@@ -94,31 +85,28 @@ function loadNotification(data){
     tbody.innerHTML = tbodyHTML;
 }
 
-
-document.getElementById('data-table').addEventListener('click', function(event) {
+document.getElementById('data-table').addEventListener('click', function (event) {
     if (event.target.className === "delete-row-btn") {
         deleteRow(event.target.dataset.id);
     }
 });
 
-document.getElementById('notification-table').addEventListener('click', function(event) {
+document.getElementById('notification-table').addEventListener('click', function (event) {
     if (event.target.className === "delete-row-btn") {
         deleteNoctificationRow(event.target.dataset.id);
     }
 });
 
-async function deleteNoctificationRow(id){
+async function deleteNoctificationRow(id) {
 
     const deleteOption = {
-        
-            method: 'DELETE',
-            headers: {
-                'Content-Type': "application/json"
-            },
+
+        method: 'DELETE',
+        headers: {
+            'Content-Type': "application/json"
+        },
     };
 
     const response = await fetch('/deleteNotification/' + id, deleteOption);
     const data = await response.json();
-
-    console.log(data);
 }

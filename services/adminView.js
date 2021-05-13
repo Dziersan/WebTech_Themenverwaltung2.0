@@ -8,8 +8,7 @@ const connection = require('./getDatabaseConnection.js');
 
 
 connection.query(sql,
-    function (err, result)
-    {
+    function (err, result) {
         if (err)
             throw err;
 
@@ -23,11 +22,9 @@ function getUser() {
         .then(response => {
             return response.json();
         }).then(responseData => {
-console.log(responseData);
         renderHTML(responseData)
     })
 };
-
 
 
 /**
@@ -86,7 +83,6 @@ function sortTable(n) {
             shouldSwitch = false;
             x = rows[i].getElementsByTagName("TD")[n];
             y = rows[i + 1].getElementsByTagName("TD")[n];
-            console.log(x.innerHTML)
             if (dir == "asc") {
                 if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
                     shouldSwitch = true;
@@ -126,7 +122,6 @@ window.addEventListener('click', function () {
             for (var j = 0; j < this.cells.length; j++) {
                 var msg = '';
                 msg += this.cells[j].innerHTML + ' ';
-                console.log("i: "+i+"  j:"+ j +"  value: "+msg)
                 switch (j) {
                     case 0:
                         document.getElementById("vorname").value = this.cells[j].innerHTML;
@@ -143,14 +138,12 @@ window.addEventListener('click', function () {
                     case 6:
                         document.getElementById("userID").value = this.cells[j].innerHTML;
                     case 7:
-                       document.getElementById("password").value = this.cells[j].innerHTML;
+                        document.getElementById("password").value = this.cells[j].innerHTML;
                 }
             }
-            console.log(msg)
         });
     }
 })
-
 
 
 function changeEntries() {
@@ -192,16 +185,15 @@ function changeSelectStatus(input) {
  */
 function changeVisibility(input) {
     let passwordText = document.getElementById(input);
-    if (passwordText.type === "password"){
+    if (passwordText.type === "password") {
         passwordText.type = "text";
     } else {
         passwordText.type = "password";
     }
 }
 
-
 class UserToUpdate {
-    constructor(name, surname,email, password, authorization, course, verified, id) {
+    constructor(name, surname, email, password, authorization, course, verified, id) {
         this.name = name;
         this.surname = surname;
         this.email = email;
@@ -218,7 +210,6 @@ class UserToUpdate {
         let e_mail = document.getElementById("e-Mail").value;
         let role = document.getElementById("rolle").value;
         let course = document.getElementById("studiengang").value;
-        console.log(document.getElementById("studiengang").value);
         let password = document.getElementById("password").value;
         let verified = document.getElementById("verified").value;
         let userID = document.getElementById("userID").value;

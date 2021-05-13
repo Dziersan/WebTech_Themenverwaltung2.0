@@ -1,4 +1,3 @@
-
 /**
  * Version 1.0
  * 23.07.2020
@@ -39,10 +38,10 @@ app.use(session({
  * @method
  * Creates token from the request of the client
  */
-router.post("/createToken",  (request, response) => {
+router.post("/createToken", (request, response) => {
 
     if (request.session.userAuthorization == "admin"
-    || request.session.userAuthorization == "lecturer") {
+        || request.session.userAuthorization == "lecturer") {
         //Checks if the tokenlife is not to long
         if (request.body.time < tokenLifeTime) {
 
@@ -56,7 +55,6 @@ router.post("/createToken",  (request, response) => {
                 function (err) {
                     if (err)
                         throw err;
-                    console.log("Inserted TOKEN")
                 }
 
             response.json({token: "Freischaltcode wurde erstellt."})
@@ -76,7 +74,7 @@ router.post("/createToken",  (request, response) => {
 router.post("/deleteToken", (request, response) => {
 
     console.log(request.session);
-    if (request.session.userAuthorization === "admin"){
+    if (request.session.userAuthorization === "admin") {
         connection.query("SELECT gentoken from token WHERE GENTOKEN = " + '"' + request.body.token + '";',
             function (err, result) {
                 if (err)
@@ -107,26 +105,22 @@ router.post("/deleteToken", (request, response) => {
  */
 router.get("/getToken", (request, response) => {
 
-    console.log(request.session.userId);
-
     var userId = request.session.userId;
     var authorization = request.session.userAuthorization;
 
-    var sqlStatementAdmin       = "SELECT start, end, gentoken, user FROM token;";
-    var sqlStatementLecturer    = "SELECT start, end, gentoken, user FROM token where user = " + userId + ";";
+    var sqlStatementAdmin = "SELECT start, end, gentoken, user FROM token;";
+    var sqlStatementLecturer = "SELECT start, end, gentoken, user FROM token where user = " + userId + ";";
 
-    if (authorization === "admin"){
+    if (authorization === "admin") {
         connection.query(sqlStatementAdmin,
             function (err, result) {
                 if (err)
-                    console.log(result);
                     response.json(result);
             });
-    } else if (authorization === "lecturer"){
+    } else if (authorization === "lecturer") {
         connection.query(sqlStatementLecturer,
             function (err, result) {
                 if (err)
-                    console.log("result " + result);
                     response.json(result);
             });
     } else {

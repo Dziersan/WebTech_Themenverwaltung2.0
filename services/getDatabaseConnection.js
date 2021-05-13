@@ -15,9 +15,9 @@ const config = JSON.parse(fs.readFileSync(path.path + "/config/datenbankConfig.j
  * Connects to Database with given credentials from datenbankConfig.json
  * @returns {Connection}
  */
-function getConnection(){
+function getConnection() {
 
-   return  mysql.createConnection(
+    return mysql.createConnection(
         {
             host: config.host,
             user: config.user,
@@ -25,9 +25,7 @@ function getConnection(){
             database: config.database,
             multipleStatements: true
         }
-
     );
-
 };
 
 module.exports = getConnection();

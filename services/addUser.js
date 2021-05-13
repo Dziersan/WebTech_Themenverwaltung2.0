@@ -1,41 +1,31 @@
 class UserToAdd {
-    constructor(name, surname,email, password, authorization, course, verified, id) {
+    constructor(name, surname, email, password, authorization, course, verified, id) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
         this.authorization = authorization;
-
     }
 
-    getSelectedUser(){
-        let name    =  document.getElementById("vorname").value;
-        let surname =  document.getElementById("nachname").value;
-        let e_mail  =  document.getElementById("email").value;
-        let role     = document.getElementById("role").value;
+    getSelectedUser() {
+        let name = document.getElementById("vorname").value;
+        let surname = document.getElementById("nachname").value;
+        let e_mail = document.getElementById("email").value;
+        let role = document.getElementById("role").value;
         let password = document.getElementById("password").value;
 
-
-        console.log(name);
-        console.log(surname);
-        console.log(e_mail);
-        console.log(role);
-        console.log(password);
-
-        return new UserToAdd( name, surname, e_mail, password, role);
+        return new UserToAdd(name, surname, e_mail, password, role);
 
     }
 }
+
 /**
  * @method
  * This function creates a new instance of the UserToUpdate class and parse the data into a JSON file.
  * Then the fetch /addUser is called and the JSON file is written to the database.
  */
-function sendAddUser(){
+function sendAddUser() {
     let user = new UserToAdd().getSelectedUser();
-    console.log(user);
-    console.log(JSON.stringify(user))
-
 
     const options = {
         method: "POST",
@@ -45,7 +35,6 @@ function sendAddUser(){
 
     fetch('/addUser', options)
         .then(response => response.json())
-
 }
 
 /**

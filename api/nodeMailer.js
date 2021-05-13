@@ -36,12 +36,11 @@ const transporter = nodemailer.createTransport({
  *
  * @param mailOptions contains information about receipting, subject and body.
  */
-function sendMail(mailOptions){
+function sendMail(mailOptions) {
     transporter.sendMail(mailOptions, function (err, data) {
-        if(err) {
+        if (err) {
             console.log('Error Occurs', err);
-        }
-        else {
+        } else {
             console.log('Email sent!!');
             console.log(data);
         }
@@ -54,17 +53,14 @@ function sendMail(mailOptions){
  * @param emailnto determine validity and identity of request
  * @returns {string} body for email.
  */
-function getTextForgotPassword(resetToken, email){
+function getTextForgotPassword(resetToken, email) {
     let link = `http://webtech-01.lin.hs-osnabrueck.de/changepassword?opt=${resetToken}&email=${email}`;
-    let bodytext =  `Guten Tag, \n ` +
-        `Um Ihr Passwort für die Hausarbeitsthemenverwaltung der Hochschule Osnabrück zurückzusetzen`+
+    let bodytext = `Guten Tag, \n ` +
+        `Um Ihr Passwort für die Hausarbeitsthemenverwaltung der Hochschule Osnabrück zurückzusetzen` +
         ` benötigen Sie den folgenden Link: \n` +
         ` ${link} \n` +
         ` Bite klicken Sie auf diesen Link um ihr Passwort für die Hausarbeitsthemenverwaltung der Hochschule Osnabrueck` +
         `zurückzusetzen. \n `;
-
-    console.log(bodytext);
-
     return bodytext;
 }
 
@@ -76,7 +72,7 @@ function getTextForgotPassword(resetToken, email){
  * @param text actual body of mail
  * @returns {{subject: *, from: *, to: *, text: *}}
  */
-function getMailOptions(recipient, subject, text ) {
+function getMailOptions(recipient, subject, text) {
     let mailOptions = {
         from: config.e_mail,
         to: recipient,
@@ -97,16 +93,10 @@ function getMailOptions(recipient, subject, text ) {
 function getTextConfirmationEmail(randomtoken, e_mail, name) {
 
     let url = `http://webtech-01.lin.hs-osnabrueck.de/confirmation?opt=${randomtoken}&email=${e_mail}`;
-    let bodyText = `Guten Tag Herr ${name}, Um Ihr E-Mail zu bestaetigen`+
+    let bodyText = `Guten Tag Herr ${name}, Um Ihr E-Mail zu bestaetigen` +
         `klicken Sie bitte auf folgenden Link. Der Link verliert nach 3 Stunden seine Gültigkeit!"\n ` +
         `${url} \n Mit freundlichen Grüßen \n Ihre Hausarbeitsthemenverwaltung`;
-
-    console.log(bodyText);
     return bodyText;
-}
-// kommt noch
-function getTextPersonalData(e_mail, name) {
-
 }
 
 module.exports = {

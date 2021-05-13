@@ -12,7 +12,6 @@ function getToken() {
         .then(response => {
             return response.json();
         }).then(responseData => {
-        console.log(responseData);
         renderHTML(responseData)
     })
 };
@@ -44,7 +43,6 @@ function renderHTML(data) {
     }
 }
 
-
 function sortTable(n) {
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     table = document.getElementById("userlist");
@@ -57,7 +55,6 @@ function sortTable(n) {
             shouldSwitch = false;
             x = rows[i].getElementsByTagName("TD")[n];
             y = rows[i + 1].getElementsByTagName("TD")[n];
-            console.log(x.innerHTML)
             if (dir == "asc") {
                 if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
                     shouldSwitch = true;
@@ -83,9 +80,6 @@ function sortTable(n) {
     }
 }
 
-
-
-
 function createToken() {
 
     let start = new Date();
@@ -93,7 +87,7 @@ function createToken() {
 
     let tokenTime = document.getElementById("token").value;
 
-    if (tokenTime === ""){
+    if (tokenTime === "") {
         tokenTime = 0
     }
 
@@ -107,11 +101,8 @@ function createToken() {
 
     token = new Token(start, end, genToken, time);
 
-
     postCreateToken(token);
 }
-
-
 
 function clearToken() {
 
@@ -133,8 +124,7 @@ function clearToken() {
         .catch(error => console.error(error))
 }
 
-
-function createTokenCalender(){
+function createTokenCalender() {
     startCalender = document.getElementById("startCalender").value;
     endCalender = document.getElementById("endCalender").value;
 
@@ -144,19 +134,17 @@ function createTokenCalender(){
     var testDate1 = new Date(endCalender);
     var time = diffMinutes(testDate, testDate1)
 
-    let token = new Token(startCalender, endCalender, genToken, time );
+    let token = new Token(startCalender, endCalender, genToken, time);
 
-    if(startCalender === ""
-    || endCalender === ""){
+    if (startCalender === ""
+        || endCalender === "") {
         alert("Token10 konnte nicht erstellt werden");
     } else {
         postCreateToken(token);
     }
-
-
 }
 
-function postCreateToken(token){
+function postCreateToken(token) {
 
     const options = {
         method: "POST",
@@ -168,16 +156,13 @@ function postCreateToken(token){
         .then(response => response.json())
         .then(data => {
 
-            if (data.token === "success"){
+            if (data.token === "success") {
             } else {
                 location.reload();
             }
-
-
         })
         .catch(error => console.error(error));
 }
-
 
 
 function validate(evt) {
@@ -196,10 +181,7 @@ function validate(evt) {
     }
 }
 
-
-
-
-function setMaxDate(){
+function setMaxDate() {
     var maxDate = new Date();
     maxDate.setMinutes(maxDate.getMinutes()
         + parseInt(5256000));
@@ -208,7 +190,7 @@ function setMaxDate(){
     var day = maxDate.getUTCDate();
     var year = maxDate.getUTCFullYear();
 
-    if(month < 10){
+    if (month < 10) {
         month = "0" + month;
     }
 
@@ -217,22 +199,19 @@ function setMaxDate(){
     document.getElementById("startCalender").max = maxDate + "T23:58";
 }
 
+function diffMinutes(dt2, dt1) {
 
-function diffMinutes(dt2, dt1)
-{
-
-    var diff =(dt2.getTime() - dt1.getTime()) / 1000;
+    var diff = (dt2.getTime() - dt1.getTime()) / 1000;
     diff /= 60;
 
     return Math.abs(Math.round(diff));
-
 }
 
 function deleteMessage() {
 
-    if(confirm("ACHTUNG!\nSie sind dabei einen Token10 zu löschen")){
+    if (confirm("ACHTUNG!\nSie sind dabei einen Token10 zu löschen")) {
         clearToken();
         location.reload();
-    }else {
+    } else {
     }
 }

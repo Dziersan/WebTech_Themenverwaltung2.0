@@ -1,4 +1,3 @@
-
 /**
  * Version 1.0
  * 23.07.2020
@@ -17,7 +16,6 @@ var lifeTime = 1000 * 60 * 60 * 24;// 24 hour
 var lifeTimeLong = 1000 * 60 * 60 * 24 * 365 * 10;  //1 Year
 var tokenLifeTime = 60 * 24 * 366;// 10 + 1 day year
 
-
 var {
     PORT = 3000,
     sessionLifetime = lifeTime,
@@ -29,19 +27,19 @@ var {
  * @method
  * Express static imports for folders which are accessable from public
  */
-app.use('/css',express.static('./view/css'));
+app.use('/css', express.static('./view/css'));
 //app.use('/css',express.static('./css'));
-app.use('/javascript',express.static('./services'));
-app.use('/css',express.static('./test'));
-app.use('/images',express.static('./images'));
-app.use('/',express.static('./view/html'));
-app.use('/javascript',express.static('./test'));
-app.use('/javascript',express.static('./api'));
+app.use('/javascript', express.static('./services'));
+app.use('/css', express.static('./test'));
+app.use('/images', express.static('./images'));
+app.use('/', express.static('./view/html'));
+app.use('/javascript', express.static('./test'));
+app.use('/javascript', express.static('./api'));
 //app.use('/privat/images',express.static('./Gruppe_1_Registrierung/privat/images'));
 
-app.use('/CSS',express.static('./Gruppe_5_Editor/Web Technologies/Projekt/CSS'));
-app.use('/JS',express.static('./Gruppe_5_Editor/Web Technologies/Projekt/JS'));
-app.use('/HTML',express.static('./Gruppe_5_Editor/Web Technologies/Projekt/HTML'));
+app.use('/CSS', express.static('./Gruppe_5_Editor/Web Technologies/Projekt/CSS'));
+app.use('/JS', express.static('./Gruppe_5_Editor/Web Technologies/Projekt/JS'));
+app.use('/HTML', express.static('./Gruppe_5_Editor/Web Technologies/Projekt/HTML'));
 
 //Limit sizes of json files of the server accepts
 app.use(express.json({limit: "10kb"}));
@@ -74,9 +72,8 @@ app.use(session({
  * @param next
  */
 const redirectCookie = (request, response, next) => {
-    console.log(request.session)
     if (request.session.enabledCookies === false
-    || request.session.enabledCookies === undefined) {
+        || request.session.enabledCookies === undefined) {
         request.session.enabledCookies = false;
         response.redirect("/");
     } else {
@@ -128,13 +125,10 @@ const redirectHome = (request, response, next) => {
 function ignoreFavicon(req, res, next) {
     if (req.originalUrl === '/favicon.ico') {
         res.status(204).json({nope: true});
-        console.log("ignored");
     } else {
-        console.log("next");
         next();
     }
 };
-
 
 /**
  * AUTHOR: Dominik Dziersan
@@ -165,22 +159,22 @@ app.use((request, respond, next) => {
 router = require("./services/routesGET.js");
 
 app.get("/", router);
-app.get("/login",redirectHome,redirectCookie, router);
-app.get("/register",redirectHome, ignoreFavicon,redirectCookie,  router);
-app.get("/agb",redirectCookie, router);
-app.get("/successfullregistration",redirectCookie, router);
+app.get("/login", redirectHome, redirectCookie, router);
+app.get("/register", redirectHome, ignoreFavicon, redirectCookie, router);
+app.get("/agb", redirectCookie, router);
+app.get("/successfullregistration", redirectCookie, router);
 app.get("/resetpassword", router);
-app.get("/token",redirectLogin, router);
-app.get("/home",redirectLogin, router);
-app.get("/admin",redirectLogin, router);
-app.get("/getUser",redirectLogin, router);
+app.get("/token", redirectLogin, router);
+app.get("/home", redirectLogin, router);
+app.get("/admin", redirectLogin, router);
+app.get("/getUser", redirectLogin, router);
 app.get("/confirmation", router);
 app.get("/passwordforgot", router);
 app.get("/register", router);
 app.get("/changepassword", router);
-app.get("/adminView",redirectLogin, router);
+app.get("/adminView", redirectLogin, router);
 app.get("/impressum", router);
-app.get("/userInfo",redirectLogin, router);
+app.get("/userInfo", redirectLogin, router);
 app.get("/presentation", router);
 //Get without HTML|| email
 app.get("/cookie", (request, response) => {
@@ -196,9 +190,8 @@ app.get("/joinGroup", router);
 app.get("/requirementsdefinition", router);
 
 app.get("/favicon.ico", (request, response) => {
-    response.writeHead(204, {'Content-Type': 'image/x-icon'} );
+    response.writeHead(204, {'Content-Type': 'image/x-icon'});
     response.end();
-    console.log('favicon requested');
 });
 /**
  * @method
@@ -226,7 +219,7 @@ app.use(routerToken);
 //Gruppe 5 Editor
 routerEdit = require("./Gruppe_5_Editor/Web Technologies/Projekt/routes/routesGetPostEditor.js");
 
-app.get("/requirements",redirectLogin, routerEdit);
+app.get("/requirements", redirectLogin, routerEdit);
 app.use(routerEdit);
 
 app.post("/enableCookie", (request, response) => {
@@ -235,15 +228,13 @@ app.post("/enableCookie", (request, response) => {
     response.end();
 });
 
-
-app.post("/logout",  (request, respond) => {
+app.post("/logout", (request, respond) => {
 
     request.session.destroy(err => {
         if (err) {
             return respond.redirect("/home");
         }
         respond.clearCookie(sessionName);
-        console.log("cookies deleted!")
         respond.redirect("/");
     })
 });
@@ -256,12 +247,10 @@ app.post("/index.html", redirectLogin, (request, response, next) => {
     next();
 });
 
-
 const server = app.listen(PORT, () => console.log(
     "listening on: " +
     `http://localhost:${PORT}`
 ));
-
 
 module.exports = {
     server: server,

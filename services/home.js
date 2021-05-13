@@ -6,7 +6,5 @@ fetch('/cookie')
 
         document.getElementById("name").innerHTML = greeting;
 
-
     })
     .catch(error => console.error(error))
-

@@ -5,7 +5,6 @@
  * @class Client side from register
  */
 
-
 /**
  * @method
  * Gets information from input fields, creates Person object and validates the password and email to
@@ -22,7 +21,6 @@ function register() {
             this.email = email;
             this.password = password;
             this.verified = verified;
-
         }
 
         toString() {
@@ -59,7 +57,7 @@ function register() {
 
                 console.log(data);
 
-                if (data.register === "created"){
+                if (data.register === "created") {
 
                     window.location.replace("/successfullregistration");
 
@@ -83,8 +81,7 @@ function checkPasswordRequirements() {
     var strenghbar = document.getElementById("strengh");
     let password = document.getElementById("password").value;
 
-    if (password.match(/[!§@§%&()=?`²³{[]}\<>|]/))
-    {
+    if (password.match(/[!§@§%&()=?`²³{[]}\<>|]/)) {
         strengh += 1;
     }
     if (password.match(/[a-z]/)) {
@@ -119,8 +116,8 @@ function checkPasswordRequirements() {
             strenghbar.value = 100;
             break
     }
-
 }
+
 /**
  * @method
  * Manipulates the background color of the input field if the second password doesnt match
@@ -149,6 +146,3 @@ function checkPasswords() {
 function validateEmail(email) {
     return /^\"?[\w-_\.]*\"?@hs-osnabrueck\.de$/.test(email);
 }
-
-
-
