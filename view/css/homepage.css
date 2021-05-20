@@ -28,7 +28,7 @@ body {
     }
 
 
-    .video-overlay {
+    .top-area {
         position: relative;
         left: 0px;
         top: 0%;
@@ -68,8 +68,6 @@ body {
         margin-right: auto;
         border-radius: 8px;
         background-image: url('../images/priscilla-du-preez-XkKCui44iM0-unsplash.jpg');
-
-
     }*/
 
     div.box1 {
@@ -88,7 +86,7 @@ body {
         transition: 0.25s;
     }
 
-    .video-overlay {
+    .top-area {
         position: relative;
         left: 0px;
         top: 0px;
@@ -104,14 +102,11 @@ body {
     }
 }
 
-section{
-
-
+section {
     padding: 3em;
     height: 110vh;
     position: center;
     box-sizing: border-box;
-
     background-image: url("../images/priscilla-du-preez-XkKCui44iM0-unsplash.jpg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -171,7 +166,6 @@ div.box2 {
     position: static;
     left: 0;
     bottom: 0;
-
     width: 100%;
     background-color: #e8f0fe;
     color: #000000;
@@ -193,7 +187,6 @@ div.box2 {
     cursor: pointer;
     margin: 5px;
 }
-
 
 .button span {
     cursor: pointer;

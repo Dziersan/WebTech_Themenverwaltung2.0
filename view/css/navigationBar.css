@@ -10,7 +10,7 @@ html {
     letter-spacing: .6px !important;
 }
 
-body{
+body {
     font-family: OpenSans, arial, "sans-serif";
     font-size: 16px;
     letter-spacing: .6px;
@@ -18,8 +18,7 @@ body{
     text-decoration: none;
 }
 
-#UserMenu_All_Header{
-
+#UserMenu_All_Header {
     font-size: 17px;
     letter-spacing: .6px;
     -webkit-text-size-adjust: none;
@@ -30,10 +29,9 @@ body{
     background-color: #e5e5e5;
     height: 60px;
     margin-bottom: 52px;
-
 }
 
-.header_button{
+.header_button {
     font-family: OpenSans, arial, "sans-serif";
     color: #555555;
     font-size: 18px;
@@ -42,21 +40,19 @@ body{
     border: none;
     background-color: transparent;
     outline: none;
-
 }
 
-.All_Header_Boxes{
+.All_Header_Boxes {
     margin: 0em 1em 0em 1em;
     height: 52px;
     vertical-align: bottom;
-
 }
 
 .dropdown {
     float: left;
 }
 
-.header_button:hover{
+.header_button:hover {
     color: #1c9dd9;
 }
 
@@ -69,11 +65,11 @@ body{
     z-index: 1;
 }
 
-.header_button:hover .dropdown-content{
+.header_button:hover .dropdown-content {
     display: block;
 }
 
-.header_button:focus{
+.header_button:focus {
     outline: none;
 }
 
@@ -90,21 +86,20 @@ body{
     background-color: #ddd;
 }
 
-.dropdown:hover .dropdown-content{
+.dropdown:hover .dropdown-content {
     display: block;
 }
 
-.frame{
+.frame {
     width: auto;
     height: 100%;
     vertical-align: middle;
     text-align: center;
     display: table-cell;
     margin: 0em 5px 0em 5px;
-
 }
 
-#oscaImagelogo{
+#oscaImagelogo {
     content: url("osca3-white.png");
     max-height: 65px ;
     display: block;
@@ -115,20 +110,19 @@ body{
     width: 105px;
 }
 
-
-#netcaseIcon{
+#netcaseIcon {
     color: #555555;
 }
 
-#netcaseIcon:hover{
+#netcaseIcon:hover {
     color: #1c9dd9;
 }
 
-#mailIcon{
+#mailIcon {
     color: #555555;
 }
 
-#mailIcon:hover{
+#mailIcon:hover {
     color: #1c9dd9;
 }
 
