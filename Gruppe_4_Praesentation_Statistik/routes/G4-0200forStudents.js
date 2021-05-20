@@ -59,24 +59,24 @@ getValuesfromDb();
 
 function getValuesfromDb() {
 
-    var sql = "SELECT * FROM AGENDA /* WHERE PID IS = */";
+    var sql = "SELECT * FROM agenda /* WHERE PID IS = */";
 
     con.query(sql, function (err,result) {
         if (err) throw err;
 
 
         for (var i = 0; i < result.length; i++) {
-            reihenfolge[i] = result[i].reihenfolge;
-            gruppe[i] = result[i].gruppenNummer;
-            thema[i] = result[i].thema;
-            mitglieder[i] = result[i].anzahl_mitglieder;
-            startzeit[i] = result[i].start_vortrag;
-            dauer[i] = result[i].dauer_vortrag;
-            ende[i] = result[i].ende_vortrag;
+            reihenfolge[i] = result[i].group_order;
+            gruppe[i] = result[i].group_number;
+            thema[i] = result[i].topic;
+            mitglieder[i] = result[i].number_members;
+            startzeit[i] = result[i].start_presentation;
+            dauer[i] = result[i].duration_presentation;
+            ende[i] = result[i].end_presentation;
 
         }
     });
-    var sql1 = "SELECT raum, anlass, datum, modul FROM G4_PRAESENTATION /* WHERE pid = */ ";
+    var sql1 = "SELECT room, occasion, date, module FROM presentation /* WHERE pid = */ ";
 
     con.query(sql1, function (err,result) {
         if (err) throw err;
@@ -84,10 +84,10 @@ function getValuesfromDb() {
 
         for (var i = 0; i < result.length; i++) {
 
-            raum[i] = result[i].raum;
-            tag[i] = result[i].datum;
-            anlass = result[i].anlass;
-            modul = result[i].modul;
+            raum[i] = result[i].room;
+            tag[i] = result[i].date;
+            anlass = result[i].occasion;
+            modul = result[i].module;
         }
     });
 }
