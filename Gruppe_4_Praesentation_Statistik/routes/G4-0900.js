@@ -27,7 +27,7 @@ app.get('/G4-0900', function (request, response) {
 // CALL OF the form sendMessage
 
 app.post('/sendMessage', function (request, result) {
-    var sql = "INSERT INTO Nachrichten(Nachricht,Datum,Anfrage_art) VALUES('"+
+    var sql = "INSERT INTO messages(message, date, type) VALUES('"+
         request.body.message + "','" + request.body.date + "','"
         + request.body.dateRequestQuestion + "');";
     con.query(sql, function (err) {

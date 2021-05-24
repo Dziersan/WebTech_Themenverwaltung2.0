@@ -9,45 +9,45 @@ html {
     -ms-text-size-adjust: 100%;
     letter-spacing: .6px !important;
 }
-body{
+
+body {
     font-family: OpenSans, arial, "sans-serif";
     font-size: 16px;
-
 }
 
-.userProfilContent{
+/*.userProfilContent {
 
-}
+}*/
 
-.testContent{
+.testContent {
     display: grid;
     grid-template-columns: 70% 30%;
 }
 
-.nameContent{
+.nameContent {
     display: grid;
 }
 
-.userImage{
+.userImage {
     width: 200px;
     height: 200px;
     object-fit: cover;
     display: block;
 }
-.form-group{
+
+.form-group {
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
 
 hr {
-
     margin-top: 1rem;
     margin-bottom: 1rem;
     border: 0;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-#userImageLogo{
+#userImageLogo {
     content: url("images/avatar-icon-user-svg.png");
     max-height: 200px ;
     max-width: 200px;

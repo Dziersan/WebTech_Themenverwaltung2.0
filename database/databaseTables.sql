@@ -79,25 +79,25 @@ CREATE TABLE user(
 
 
 
-/* unused for now
 
-DROP TABLE IF EXISTS NACHRICHTEN ;
-create table NACHRICHTEN
+DROP TABLE IF EXISTS messages ;
+create table messages
 (
-    Nachricht_ID int auto_increment primary key,
-    Gruppen_ID   int          null,
-    Nachricht    varchar(500) null,
-    Datum        date         null,
-    Anfrage_art  varchar(50)  null
+    message_id int auto_increment primary key,
+    group_id   int          null,
+    message    varchar(500) null,
+    date        date         null,
+    type  varchar(50)  null
 );
 
-DROP TABLE IF EXISTS MODUL;
-CREATE TABLE MODUL(
-    modul_id INT,
-    beschreibung VARCHAR (255),
-    teilnehmer_anzahl INT,
-    PRIMARY KEY (modul_id)
+DROP TABLE IF EXISTS module;
+CREATE TABLE module(
+    module_id INT auto_increment primary key,
+    description VARCHAR (255),
+    participants_number INT
 );
+
+/* unused for now
 
 DROP TABLE IF EXISTS STUDENT_MODUL;
 CREATE TABLE STUDENT_MODUL(

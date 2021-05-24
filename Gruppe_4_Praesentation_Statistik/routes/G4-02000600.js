@@ -54,31 +54,31 @@ G4_02000600.get('/G4-0200', function (request, result) {
 //Datenbankabfrage
 function getValuesfromDb() {
 
-    var sql = "SELECT DISTINCT * FROM agenda WHERE pid = '57'";
+    var sql = "SELECT DISTINCT * FROM agenda WHERE presentation_id = '57'";
 
     pool.query(sql, function (err,result) {
         if (err) throw err;
 
         for (var i = 0; i < result.length; i++) {
-            reihenfolge[i] = result[i].Reihenfolge;
-            gruppe[i] = result[i].GruppenNummer;
-            thema[i] = result[i].thema;
-            mitglieder[i] = result[i].anzahl_mitglieder;
-            startzeit[i] = result[i].start_vortrag;
-            dauer[i] = result[i].dauer_vortrag;
-            ende[i] = result[i].ende_vortrag;
+            reihenfolge[i] = result[i].group_prder;
+            gruppe[i] = result[i].group_number;
+            thema[i] = result[i].topic;
+            mitglieder[i] = result[i].number_members;
+            startzeit[i] = result[i].start_presentation;
+            dauer[i] = result[i].duration_presentation;
+            ende[i] = result[i].end_presentation;
         }
     });
 
-    var sql1 = "SELECT  raum, datum, anlass FROM praesentation  WHERE pid = '57' ";
+    var sql1 = "SELECT  room, date, occasion FROM presentation  WHERE id = '57' ";
 
     pool.query(sql1, function (err,result) {
         if (err) throw err;
 
         for (var i = 0; i < result.length; i++) {
-            raum[i] = result[i].raum;
-            tag[i] = result[i].datum;
-            anlass[i] = result[i].anlass;
+            raum[i] = result[i].room;
+            tag[i] = result[i].date;
+            anlass[i] = result[i].occasion;
 
         }
     });
@@ -119,7 +119,7 @@ G4_02000600.post('/Livetracking', function (request,result)
 
 G4_02000600.post('/sendToDB', function (request,result) {
     var plusone = parseInt(request.body.i)+1;
-    sqlStatement= "UPDATE agenda SET start_vortrag='"+request.body.start+"',Dauer='"+request.body.dauer+"',Endzeit = CAST(start_vortrag+dauer_vortrag AS TIME) WHERE Reihenfolge="+ plusone+";";
+    sqlStatement= "UPDATE agenda SET start_presentation='"+request.body.start+"',Dauer='"+request.body.dauer+"',Endzeit = CAST(start_vortrag+dauer_vortrag AS TIME) WHERE Reihenfolge="+ plusone+";";
     pool.query(sqlStatement, function (err) {
         if (err) throw err;
     });
