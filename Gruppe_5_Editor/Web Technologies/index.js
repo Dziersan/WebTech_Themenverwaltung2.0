@@ -53,7 +53,6 @@ app.get("/loadtable", (request, response) => {
         if (err)
             throw err;
         else {
-            console.log(result);
             response.send(result);
         }
     });
@@ -74,9 +73,6 @@ app.post("/createTable", (request, response) => {
         function (err) {
             if (err)
                 throw err;
-            else {
-                console.log("Table created");
-            }
         });
     response.end();
 });
@@ -89,20 +85,17 @@ app.post("/saveReqData", (request, response) => {
         response.status(204).send('');
     }
 
-  connection.query("INSERT INTO Anforderungen(id,name,shortdesc,starttime,endtime) VALUES("
-      + '"' + request.body.id + '",'
-      + '"' + request.body.name + '",'
-      + '"' + request.body.shortdesc + '",'
-      + '"' + request.body.startdate + '",'
-      + '"' + request.body.enddate + '")',
-      function (err) {
-        if (err)
-          throw err;
-        else {
-          console.log("Requirement created");
-        }
-      });
-  response.end();
+    connection.query("INSERT INTO Anforderungen(id,name,shortdesc,starttime,endtime) VALUES("
+        + '"' + request.body.id + '",'
+        + '"' + request.body.name + '",'
+        + '"' + request.body.shortdesc + '",'
+        + '"' + request.body.startdate + '",'
+        + '"' + request.body.enddate + '")',
+        function (err) {
+            if (err)
+                throw err;
+        });
+    response.end();
 });
 
 app.post("/delReqData", (request, response) => {
@@ -117,9 +110,6 @@ app.post("/delReqData", (request, response) => {
         function (err) {
             if (err)
                 throw err;
-            else {
-                console.log("Requirement deleted");
-            }
         });
     response.end();
 });
@@ -137,9 +127,6 @@ app.post("/editReq", (request, response) => {
         function (err) {
             if (err)
                 throw err;
-            else {
-                console.log("Requirement deleted");
-            }
         });
     response.end();
 });

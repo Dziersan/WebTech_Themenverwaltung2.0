@@ -9,14 +9,13 @@ window.onbeforeunload = function () {
     window.scrollTo(0, 0);
 }
 
-
 var confirmCookie = false;
 
-window.onload = function() { cookieConsent(); };
-console.log(getCookie("cookiesDismiss") + " Test1");
+window.onload = function () {
+    cookieConsent();
+};
 
-if (getCookie("cookiesDismiss") == 1){
-    console.log("test2");
+if (getCookie("cookiesDismiss") == 1) {
     cookiePopup();
 }
 
@@ -24,36 +23,34 @@ if (getCookie("cookiesDismiss") == 1){
  * @method
  * Checks if the user already accept cookies and POST it
  */
-function cookiePopup (){
+function cookiePopup() {
     fetch('/cookie')
         .then(response => response.json())
         .then(data => {
-                if (confirmCookie === true
-                    || getCookie('cookiesDismiss') == 1) {
+            if (confirmCookie === true
+                || getCookie('cookiesDismiss') == 1) {
 
-                    var enableCookie = {cookie: true};
+                var enableCookie = {cookie: true};
 
-                    const options = {
-                        method: "POST",
-                        headers: {"Content-Type": "application/json"},
-                        body: JSON.stringify(enableCookie)
-                    };
+                const options = {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify(enableCookie)
+                };
 
-                    fetch('/enableCookie', options)
-                        .then(response => response.json())
-                        .then(data => {
-                        })
-                        .catch(error => console.error(error))
+                fetch('/enableCookie', options)
+                    .then(response => response.json())
+                    .then(data => {
+                    })
+                    .catch(error => console.error(error))
 
-                } else {
-                    // alert("Sie müssen Cookies akzeptieren, damit diese Seite funktioiert!")
-                    cookieConsent()
-                }
+            } else {
+                // alert("Sie müssen Cookies akzeptieren, damit diese Seite funktioiert!")
+                cookieConsent()
+            }
         })
         .catch(error => console.error(error))
-
 }
-
 
 var cookieTitle = "Cookies.";
 var cookieDesc = "Diese Website benutzt Cookies. Um den Umfang dieser Seite nutzen zu können, müssen Sie Cookies akzeptieren.";
@@ -68,7 +65,7 @@ var cookieName = "cookiesDismiss";
  * @param elem
  * @param display
  */
-function pureFadeIn(elem, display){
+function pureFadeIn(elem, display) {
     var el = document.getElementById(elem);
     el.style.opacity = 0;
     el.style.display = display || "block";
@@ -88,7 +85,7 @@ function pureFadeIn(elem, display){
  * @param elem
  * @param display
  */
-function pureFadeOut(elem){
+function pureFadeOut(elem) {
     var el = document.getElementById(elem);
     el.style.opacity = 1;
 
@@ -108,14 +105,14 @@ function pureFadeOut(elem){
  * @param value
  * @param days
  */
-function setCookie(name,value,days) {
+function setCookie(name, value, days) {
     var expires = "";
     if (days) {
         var date = new Date();
-        date.setTime(date.getTime() + (days*24*60*60*1000));
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
         expires = "; expires=" + date.toUTCString();
     }
-    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
 }
 
 /**
@@ -126,10 +123,10 @@ function setCookie(name,value,days) {
 function getCookie(name) {
     var nameEQ = name + "=";
     var ca = document.cookie.split(';');
-    for(var i=0;i < ca.length;i++) {
+    for (var i = 0; i < ca.length; i++) {
         var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
     }
     return null;
 }
@@ -140,7 +137,7 @@ function getCookie(name) {
  * @returns {string|null}
  */
 function cookieDismiss() {
-    setCookie(cookieName,'1',7);
+    setCookie(cookieName, '1', 7);
     pureFadeOut("cookieConsentContainer");
     confirmCookie = true;
     cookiePopup();
@@ -171,5 +168,3 @@ function cookieConsent() {
         pureFadeIn("cookieConsentContainer");
     }
 }
-
-

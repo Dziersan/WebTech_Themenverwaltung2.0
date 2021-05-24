@@ -8,31 +8,24 @@ let cookieID = ""
 fetch('/cookie')
     .then(response => response.json())
     .then(data => {
-     cookieID = data.userId
-        console.log(data.userId);
+        cookieID = data.userId
     })
     .catch(error => console.error(error))
 
+fetch('/getOneUser')
 
+    .then(response => response.json())
+    .then(data => {
 
-    fetch('/getOneUser')
+        document.getElementById("vorname").value = data[0].name;
+        document.getElementById("nachname").value = data[0].surname;
+        document.getElementById("e-Mail").value = data[0].e_mail;
+        document.getElementById("studiengang").value = data[0].course;
+        document.getElementById("password").value = data[0].password;
+        document.getElementById("semester").value = data[0].semester;
 
-        .then(response => response.json())
-        .then(data => {
-
-
-            document.getElementById("vorname").value = data[0].name;
-            document.getElementById("nachname").value = data[0].surname;
-            document.getElementById("e-Mail").value = data[0].e_mail;
-            document.getElementById("studiengang").value = data[0].course;
-            document.getElementById("password").value = data[0].password;
-            document.getElementById("semester").value = data[0].semester;
-
-
-            console.log(data);
-
-        })
-        .catch(error => console.error(error))
+    })
+    .catch(error => console.error(error))
 
 /**
  * @method
@@ -69,13 +62,10 @@ function addReadonly() {
  * If it is rejected, the window closes and the function ends.
  */
 function deleteMyUserMessage() {
-    if(confirm("ACHTUNG!\nSie sind dabei Ihren Account zu löschen!")){
+    if (confirm("ACHTUNG!\nSie sind dabei Ihren Account zu löschen!")) {
 
 
         let user = new UserToUpdate().getSelectUser();
-        console.log(user);
-        console.log("t_: "+JSON.stringify(user))
-
 
         const options = {
             method: "POST",
@@ -88,20 +78,15 @@ function deleteMyUserMessage() {
             .then(data => {
             })
 
-
-
         fetch('/logout', options)
             .then(response => response.json())
             .then(data => {
-
             })
-
     }
 }
 
-
 class UserToUpdate {
-    constructor(name, surname,email, password, course, id) {
+    constructor(name, surname, email, password, course, id) {
         this.name = name;
         this.surname = surname;
         this.email = email;
@@ -110,22 +95,15 @@ class UserToUpdate {
         this.id = id;
     }
 
-    getSelectUser(){
-        let name    =  document.getElementById("vorname").value;
-        let surname =  document.getElementById("nachname").value;
-        let e_mail  =  document.getElementById("e-Mail").value;
+    getSelectUser() {
+        let name = document.getElementById("vorname").value;
+        let surname = document.getElementById("nachname").value;
+        let e_mail = document.getElementById("e-Mail").value;
         let password = document.getElementById("password").value;
-        let course   = document.getElementById("studiengang").value;
+        let course = document.getElementById("studiengang").value;
         let id = cookieID
 
-        console.log(name);
-        console.log(surname);
-        console.log(e_mail);
-        console.log(course);
-        console.log(password);
-        console.log(cookieID)
-
-        return new UserToUpdate( name, surname, e_mail, password,course,id);
+        return new UserToUpdate(name, surname, e_mail, password, course, id);
 
     }
 }
@@ -135,9 +113,8 @@ class UserToUpdate {
  * This function creates a new instance of the UserToUpdate class and parse the data into a JSON file.
  * Then the fetch /changeMyUser is called and the JSON file is written to the database.
  */
-function sendMyData(){
+function sendMyData() {
     let user = new UserToUpdate().getSelectUser();
-console.log(JSON.stringify(user))
 
     const options = {
         method: "POST",

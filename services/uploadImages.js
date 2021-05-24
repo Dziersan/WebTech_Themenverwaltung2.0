@@ -31,7 +31,7 @@ app.use(fileUpload({
 
 app.post('/uploadProfilePicture', async (req, res) => {
     try {
-        if(!req.files) {
+        if (!req.files) {
             res.send({
                 status: false,
                 message: 'No file uploaded'
@@ -60,7 +60,3 @@ app.post('/uploadProfilePicture', async (req, res) => {
 });
 
 module.exports = app;
-
-
-
-

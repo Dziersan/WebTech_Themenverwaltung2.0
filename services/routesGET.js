@@ -1,4 +1,3 @@
-
 /**
  * Version 1.0
  * 23.07.2020
@@ -12,9 +11,8 @@ const connection = require('../services/getDatabaseConnection.js');
 const path = require("../config/pathConfig.json");
 
 
-
-router.get("/login",  (request, response) => {
-        response.sendFile(path.path + "/view/html/login.html");
+router.get("/login", (request, response) => {
+    response.sendFile(path.path + "/view/html/login.html");
 });
 
 router.get("/home", (request, response) => {
@@ -22,7 +20,7 @@ router.get("/home", (request, response) => {
 });
 
 router.get("/register", (request, response) => {
-        response.sendFile(path.path + "/view/html/register.html");
+    response.sendFile(path.path + "/view/html/register.html");
 });
 
 /**
@@ -33,9 +31,8 @@ router.get("/getUser", (request, response) => {
 
     let sql = "SELECT id, name, surname, e_mail, password, course, authorization, verified FROM USER;";
 
-    connection.query(sql,(err, result, )  => {
-        if(err) {
-            console.log(err);
+    connection.query(sql, (err, result,) => {
+        if (err) {
             response.end();
         }
         response.contentType('application/json');
@@ -52,9 +49,8 @@ router.get("/updateUser", (request, response) => {
 
     let sql = "SELECT id, name, surname, e_mail, password, course, authorization FROM USER;";
 
-    connection.query(sql,(err, result, )  => {
-        if(err) {
-            console.log(err);
+    connection.query(sql, (err, result,) => {
+        if (err) {
             response.end();
         }
         response.contentType('application/json');
@@ -63,7 +59,6 @@ router.get("/updateUser", (request, response) => {
     });
 
 });
-
 
 
 /**
@@ -73,14 +68,11 @@ router.get("/updateUser", (request, response) => {
 router.get("/getOneUser", (request, response) => {
 
     var userId = request.session.userId;
-    console.log(request.session.userId);
-
 
     let sql = "SELECT name, surname, e_mail, password, semester,course FROM user where id = " + userId + ";";
 
-    connection.query(sql,(err, result, )  => {
-        if(err) {
-            console.log(err);
+    connection.query(sql, (err, result,) => {
+        if (err) {
             response.end();
         }
         response.contentType('application/json');
@@ -88,7 +80,6 @@ router.get("/getOneUser", (request, response) => {
         return result;
     });
 });
-
 
 /**
  * This get Method gives higher authorized users the HTML otherwise redirecting
@@ -108,7 +99,7 @@ router.get("/token", (request, response) => {
 router.get("/showUsers", (request, response) => {
     if (request.session.userAuthorization === "lecturer") {
         response.sendFile(path.path + '/view/html/lecturerView.html');
-    } else if(request.session.userAuthorization === "admin") {
+    } else if (request.session.userAuthorization === "admin") {
         response.sendFile(path.path + '/view/html/adminView.html');
     } else {
         response.redirect("/userInfo");
@@ -158,7 +149,7 @@ router.get("/userInfo", (request, response) => {
 });
 
 router.get("/admin", (request, response) => {
-    if(request.session.userAuthorization === "admin") {
+    if (request.session.userAuthorization === "admin") {
         response.sendFile(path.path + '/view/html/adminView.html');
     } else {
         response.redirect("/userInfo");
@@ -167,7 +158,7 @@ router.get("/admin", (request, response) => {
 
 router.get("/lecturerView", (request, response) => {
 
-        response.sendFile(path.path + '/view/html/lecturerView.html');
+    response.sendFile(path.path + '/view/html/lecturerView.html');
 });
 
 router.get("/addUser", (request, response) => {
@@ -179,7 +170,7 @@ router.get("/addUser", (request, response) => {
 router.get("/showUsers", (request, response) => {
     if (request.session.userAuthorization === "lecturer") {
         response.sendFile(path.path + '/view/html/lecturerView.html');
-    } else if(request.session.userAuthorization === "admin") {
+    } else if (request.session.userAuthorization === "admin") {
         response.sendFile(path.path + '/view/html/adminView.html');
     } else {
         response.redirect("/profil");
@@ -187,4 +178,3 @@ router.get("/showUsers", (request, response) => {
 });
 
 module.exports = router;
-

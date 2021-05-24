@@ -1,11 +1,4 @@
-//const session = require('express-session');
-//const userId = request.session.userId;
-//const moduleId = request.session.moduleId;     
-
-
-//var moduleDirectory = connection.query("select groupID from groups where module.userID = " + userId + " and group.moduleID = " + moduleId + ";");
-
-var uploadFolder = __basedir + '/uploads/'; // +'/' + moduleDirectory + '/';
+var uploadFolder = __basedir + '/uploads/';
 const fs = require('fs');
 
 exports.uploadFile = (req, res) => {
@@ -20,5 +13,5 @@ exports.listAllFiles = (req, res) => {
 
 exports.downloadFile = (req, res) => {
 	var filename = req.params.filename;
-	res.download(uploadFolder + filename); 
+	res.download(uploadFolder + filename);
 }

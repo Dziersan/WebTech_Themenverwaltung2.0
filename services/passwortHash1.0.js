@@ -1,4 +1,3 @@
-
 /**
  * Version 1.0
  * 23.07.2020
@@ -12,8 +11,6 @@ const router = express.Router();
 const Promise = require("promise");
 
 
-
-
 router.post("/hashPassword", (request, response) => {
 
     let password = request.body.password;
@@ -22,7 +19,7 @@ router.post("/hashPassword", (request, response) => {
 
     function genSalt(password) {
         return new Promise((resolve, reject) => {
-            bcrypt.genSalt(10, function(err, salt) {
+            bcrypt.genSalt(10, function (err, salt) {
                 if (err) {
                     reject(err);
                 } else {
@@ -41,7 +38,7 @@ router.post("/hashPassword", (request, response) => {
      */
     function genHash(salt, password) {
         return new Promise((resolve, reject) => {
-            bcrypt.hash(password, salt, function(err, hash) {
+            bcrypt.hash(password, salt, function (err, hash) {
                 if (err) {
                     reject(err);
                 } else {
@@ -56,27 +53,21 @@ router.post("/hashPassword", (request, response) => {
     }
 
     genSalt(password)
-        .then(function(result) {
-                return genHash(result.salt, result.password);
-            })
-            .then(function(result) {
-                console.log("store hash in user profile :", result);
-                stored_hash = result.hash;
-            })
-            .catch(function(err) {
-                console.log(err);
-            });
+        .then(function (result) {
+            return genHash(result.salt, result.password);
+        })
+        .then(function (result) {
+            stored_hash = result.hash;
+        })
+        .catch(function (err) {
+        });
 
 
-    setTimeout(() => "hi",5000);
-    console.log(stored_hash);
+    setTimeout(() => "hi", 5000);
     response.contentType('application/json');
     response.json(stored_hash);
     response.end();
 
-
 });
 
-
 module.exports = router;
-

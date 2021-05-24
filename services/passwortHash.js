@@ -6,7 +6,6 @@
  *  @class to hash a given string and compares it afterwards
  */
 
-
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
@@ -15,16 +14,15 @@ const saltRounds = 10;
  * This method hashes an given input string and adds an salt for proper security.
  * @param input to be hashed.
  */
-function hashPassword(input){
+function hashPassword(input) {
     bcrypt.genSalt(saltRounds, function (err, salt) {
         if (err) {
             throw err
         } else {
-            bcrypt.hash(input, salt, function(err, hash) {
+            bcrypt.hash(input, salt, function (err, hash) {
                 if (err) {
                     throw err
                 } else {
-                    console.log(hash);
                     return hash;
                 }
             })
@@ -43,10 +41,8 @@ function compareHashedPassword(input, hash) {
         if (err) {
             throw err
         } else if (!isMatch) {
-            console.log("Password doesn't match!")
             return false;
         } else {
-            console.log("Password matches!");
             return true;
         }
     });

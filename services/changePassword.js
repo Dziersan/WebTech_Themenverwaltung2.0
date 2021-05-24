@@ -20,11 +20,11 @@ class UserToUpdate {
         this.password = password;
     }
 
-    getUserToUpdate(){
+    getUserToUpdate() {
         let email = getUrlParameter("email");
-        let token    = getUrlParameter("opt");
-        let password  =  document.getElementById("password").value;
-        return new UserToUpdate( email, token, password);
+        let token = getUrlParameter("opt");
+        let password = document.getElementById("password").value;
+        return new UserToUpdate(email, token, password);
     }
 }
 
@@ -40,13 +40,9 @@ async function sendData() {
         body: JSON.stringify(user)
     };
 
-
     fetch("/updatePassword", options)
         .then(response => response.json())
-        .then(data => {
-            console.log(data)
-        })
- }
+}
 
 
 

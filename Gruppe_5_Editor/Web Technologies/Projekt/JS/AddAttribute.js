@@ -1,6 +1,3 @@
-/**
- *
- */
 function closeSpecs() {
     window.close();
 }

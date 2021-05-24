@@ -5,7 +5,6 @@
  * @class Client side from login
  */
 
-
 /**
  * @method
  * Gets information from input fields, creates an object and POST it to /login
@@ -23,7 +22,7 @@ function login() {
 
     var checkBox = document.getElementById("saveLogin");
 
-    if (checkBox.checked === true){
+    if (checkBox.checked === true) {
         var checked = true;
     } else {
         var checked = false;
@@ -45,7 +44,7 @@ function login() {
         .then(response => response.json())
         .then(data => {
 
-            if (data.login === "success"){
+            if (data.login === "success") {
                 window.location.replace("/home");
             } else {
                 alert(data.register);
