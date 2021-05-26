@@ -1,9 +1,9 @@
 const express = require("express");
 const session = require("express-session");
 const bodyParser = require("body-parser");
+const app = express()
 const fs = require('fs');
 const config = JSON.parse(fs.readFileSync("datenbankenConfig.json"));
-const app = express();
 
 // https://youtu.be/OH6Z0dJ_Huk?t=1466
 
@@ -34,12 +34,13 @@ const {
 app.use(express.static(__dirname + '/projekt'));
 app.use(express.static(__dirname + '/css'));
 app.use(express.static('/js'));
+
 app.use(express.json({limit: "1mb"}));
 app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-app.get("/RequirementsEditGer", (require, response) => {
+app.get("/RequirementsEditGer", (request, response) => {
     response.sendFile('//Projekt//HTML//MainPage.html', {root: __dirname})
 });
 

@@ -1,7 +1,7 @@
 function openOsca() {
     window.open("https://osca.hs-osnabrueck.de/NavPages/portal.aspx", "OSCA");
 }
-
+function createTableGroup5(){}
 function openMail() {
     window.open("https://my.hs-osnabrueck.de/owa/#path=/mail", "E-Mail");
 }

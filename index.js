@@ -10,6 +10,7 @@ const session = require("express-session");
 const bodyParser = require("body-parser");
 const app = express();
 configDatabase = require("./config/datenbankConfig.json");
+//const connection = require("./services/getDatabaseConnection.js");
 
 
 var lifeTime = 1000 * 60 * 60 * 24;// 24 hour
@@ -176,6 +177,9 @@ app.get("/adminView", redirectLogin, router);
 app.get("/impressum", router);
 app.get("/userInfo", redirectLogin, router);
 app.get("/presentation", router);
+
+app.get("/RequirementsEditGer", redirectLogin, router);
+
 //Get without HTML|| email
 app.get("/cookie", (request, response) => {
     response.json(request.session);
@@ -193,6 +197,96 @@ app.get("/favicon.ico", (request, response) => {
     response.writeHead(204, {'Content-Type': 'image/x-icon'});
     response.end();
 });
+
+
+
+app.get("/loadtable", (request, response) => {
+
+    connection.query("SELECT * FROM ANFORDERUNGEN", function (err, result, data) {
+        if (err)
+            throw err;
+        else {
+            response.send(result);
+        }
+    });
+});
+
+app.post("/createTable", (request, response) => {
+
+    if (request.method === "OPTIONS") {
+        response.set('Access-Control-Allow-Origin', '*');
+        response.set('Access-Control-Allow-Headers', 'Content-Type');
+        response.status(204).send('');
+    }
+
+    connection.query("CREATE TABLE IF NOT EXISTS " + request.body.tablename + "requirement "
+        + "(ID VARCHAR(50), "
+        + "Name VARCHAR(50), "
+        + "Shortdesc LONGTEXT)",
+        function (err) {
+            if (err)
+                throw err;
+        });
+    response.end();
+});
+
+app.post("/saveReqData", (request, response) => {
+
+    if (request.method === "OPTIONS") {
+        response.set('Access-Control-Allow-Origin', '*');
+        response.set('Access-Control-Allow-Headers', 'Content-Type');
+        response.status(204).send('');
+    }
+
+    connection.query("INSERT INTO Anforderungen(id,name,shortdesc,starttime,endtime) VALUES("
+        + '"' + request.body.id + '",'
+        + '"' + request.body.name + '",'
+        + '"' + request.body.shortdesc + '",'
+        + '"' + request.body.startdate + '",'
+        + '"' + request.body.enddate + '")',
+        function (err) {
+            if (err)
+                throw err;
+        });
+    response.end();
+});
+
+app.post("/delReqData", (request, response) => {
+    if (request.method === "OPTIONS") {
+        response.set('Access-Control-Allow-Origin', '*');
+        response.set('Access-Control-Allow-Headers', 'Content-Type');
+        response.status(204).send('');
+    }
+
+    connection.query("DELETE" + " FROM " + "Anforderungen " + "WHERE("
+        + 'id="' + request.body.id + '")',
+        function (err) {
+            if (err)
+                throw err;
+        });
+    response.end();
+});
+
+app.post("/editReq", (request, response) => {
+
+    if (request.method === "OPTIONS") {
+        response.set('Access-Control-Allow-Origin', '*');
+        response.set('Access-Control-Allow-Headers', 'Content-Type');
+        response.status(204).send('');
+    }
+
+    connection.query("SELECT * FROM ANFORDERUNGEN WHERE("
+        + 'id="' + request.body.editID + '")',
+        function (err) {
+            if (err)
+                throw err;
+        });
+    response.end();
+});
+
+
+
+
 /**
  * @method
  * POST Methods
@@ -216,11 +310,11 @@ routerToken = require("./services/routesToken.js");
 app.get("/getToken", routerToken);
 app.use(routerToken);
 
-//Gruppe 5 Editor
-routerEdit = require("./Gruppe_5_Editor/Web Technologies/Projekt/routes/routesGetPostEditor.js");
+/*//Gruppe 5 Editor
+routerEdit = require("./services/routesGetPostEditor.js");*/
 
-app.get("/requirements", redirectLogin, routerEdit);
-app.use(routerEdit);
+/*app.get("/requirements", redirectLogin, routerEdit);
+app.use(routerEdit);*/
 
 app.post("/enableCookie", (request, response) => {
     request.session.enabledCookies = true;
@@ -247,10 +341,12 @@ app.post("/index.html", redirectLogin, (request, response, next) => {
     next();
 });
 
+
 const server = app.listen(PORT, () => console.log(
     "listening on: " +
     `http://localhost:${PORT}`
 ));
+
 
 module.exports = {
     server: server,

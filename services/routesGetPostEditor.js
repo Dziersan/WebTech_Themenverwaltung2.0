@@ -1,15 +1,15 @@
-const express = require("express");
+/*const express = require("express");
 const router = express.Router();
-const connection = require('../../../../services/getDatabaseConnection.js');
+const connection = require('./getDatabaseConnection.js');*/
 
-const redirect = require("../../../../index");
+const redirect = require("../index");
 const app = express();
 
-const path = require("../../../../config/pathConfig.json");
+/*const path = require("../config/pathConfig.json");*/
 
-router.get("/requirements", (request, response) => {
-  response.sendFile(path.path+'/Gruppe_5_Editor/Web Technologies/Projekt/HTML/MainPage.html');
-});
+/*router.get("/RequirementsEditGer", (request, response) => {
+    response.sendFile(path.path + "/view/html/MainPage.html");
+});*/
 
 router.post("/createTable", (request, response) => {
 
