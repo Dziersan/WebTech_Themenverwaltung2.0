@@ -10,7 +10,7 @@ const session = require("express-session");
 const bodyParser = require("body-parser");
 const app = express();
 configDatabase = require("./config/datenbankConfig.json");
-//const connection = require("./services/getDatabaseConnection.js");
+const connection = require("./services/getDatabaseConnection.js");
 
 
 var lifeTime = 1000 * 60 * 60 * 24;// 24 hour

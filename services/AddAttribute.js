@@ -1,6 +1,8 @@
+/*
 function closeSpecs() {
     window.close();
 }
+*/
 
 /**
  *

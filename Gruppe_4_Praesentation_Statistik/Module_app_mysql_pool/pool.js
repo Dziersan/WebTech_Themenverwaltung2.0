@@ -4,7 +4,7 @@ var pool  = con.createPool({
     connectionLimit : 10,
     host            : 'localhost',
     user: "root",
-    password: "root",
+    password: "1234",
     database: "webtech"
 });
 

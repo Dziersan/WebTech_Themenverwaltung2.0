@@ -6,6 +6,7 @@ const cors = require('cors');
 const {response} = require("express");
 const PORT = process.env.PORT || 5000;
 const app = express();
+//const connection = require("C:\Users\Julia\IdeaProjects\WebTech_Themenverwaltung2.0\services\getDatabaseConnection.js");
 dotenv.config();
 
 app.use(cors());

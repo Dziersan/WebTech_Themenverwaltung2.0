@@ -1,5 +1,5 @@
 module.exports = (app, router, upload) => {
-    const fileWorker = require('../controllers/file.controller.js');
+    const fileWorker = require('C:\\Users\\Julia\\IdeaProjects\\WebTech_Themenverwaltung2.0\\Gruppe_3_Bereitstellung_Abgabe\\app\\controllers\\file.controller.js');
 
     var path = __basedir + '/views/';
 
