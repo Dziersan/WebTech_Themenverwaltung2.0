@@ -3,11 +3,12 @@
  */
 
 //Modulimport
-var app = require('../app');
-var con = require('../mysql');
+
+const app = require('../Module_app_mysql_pool/app');
+
 const express = require('express');
 const G4_0700 = express.Router();
-
+var connection = require('../Module_app_mysql_pool/mysql');
 //Definition der Arrays
 modul_id = [];
 modul_bezeichnung = [];
@@ -32,8 +33,8 @@ getValuesFromDb();
  */
 function getValuesFromDb() {
     //alle Attribute aus Relation modul abfragen
-    var sql = "SELECT * FROM module /* da muss noch ne Abfrage für den speziellen USER hinzugefügt werden */";
-    con.query(sql, function (err, result) {
+/*    var sql = "SELECT * FROM module /!* da muss noch ne Abfrage für den speziellen USER hinzugefügt werden *!/";
+    connection.query(sql, function (err, result) {
 
         if(err) throw err;
         //alle Attribute durchlaufen und in result laden
@@ -41,14 +42,14 @@ function getValuesFromDb() {
             modul_id[i] = result[i].module_id;
             modul_bezeichnung[i] = result[i].description;
         }
-    });
+    });*/
 }
 
 /**
  * G4-0900 aufrufen
  */
 
-G4_0700.get('/G4-0900', function (request, response) {
+G4_0700.get("G4-0900", function (request, response) {
     console.log("G4-0900 wurde geladen");
     response.render("G4-0900.ejs", {
         benutzername: "Test",

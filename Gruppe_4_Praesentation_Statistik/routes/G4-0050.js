@@ -5,8 +5,8 @@
 
 
 //Modulimport
-var app = require('../app');
-var con = require('../mysql');
+var app = require('../Module_app_mysql_pool/app');
+var con = require('../Module_app_mysql_pool/mysql');
 
 const express = require('express');
 const G4_0050 = express.Router();
@@ -18,7 +18,7 @@ modul_bezeichnung = [];
 /**
  * JS auf ejs laden und aufrufen
  */
-app.get('/G4-0050', function (request, result) {
+app.get("C:\Users\Julia\IdeaProjects\WebTech_Themenverwaltung2.0\Gruppe_4_Praesentation_Statistik\routes\G4-0050.js", function (request, result) {
     result.render("G4-0050.ejs");
 });
 
