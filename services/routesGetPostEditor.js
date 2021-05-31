@@ -41,7 +41,7 @@ router.post("/saveReqData", (request, response) => {
     response.status(204).send('');
   }
 
-  connection.query("INSERT INTO Anforderungen(id,name,shortdesc,starttime,endtime) VALUES("
+  connection.query("INSERT INTO requirements (id,name,short_desc,start_time,end_time) VALUES("
       + '"' + request.body.id + '",'
       + '"' + request.body.name + '",'
       + '"' + request.body.shortdesc + '",'
@@ -64,7 +64,7 @@ router.post("/delReqData", (request, response) => {
     response.status(204).send('');
   }
 
-  connection.query("DELETE" + " FROM " + "Anforderungen " + "WHERE("
+  connection.query("DELETE FROM requirements WHERE("
       + 'id="' + request.body.id + '")',
       function (err) {
         if (err)
@@ -78,7 +78,7 @@ router.post("/delReqData", (request, response) => {
 
 router.post("/loadtable", (request, response) => {
 
-  connection.query("SELECT * FROM ANFORDERUNGEN", function (err, result, fields) {
+  connection.query("SELECT * FROM requirements ", function (err, result, fields) {
     if (err)
       throw err;
     else {

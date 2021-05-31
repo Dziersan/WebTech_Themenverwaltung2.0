@@ -50,7 +50,7 @@ app.get("/", (request, response) => {
 
 app.get("/loadtable", (request, response) => {
 
-    connection.query("SELECT * FROM ANFORDERUNGEN", function (err, result, data) {
+    connection.query("SELECT * FROM requirements ", function (err, result, data) {
         if (err)
             throw err;
         else {
@@ -86,7 +86,7 @@ app.post("/saveReqData", (request, response) => {
         response.status(204).send('');
     }
 
-    connection.query("INSERT INTO Anforderungen(id,name,shortdesc,starttime,endtime) VALUES("
+    connection.query("INSERT INTO requirements (id,name,short_desc,start_time,end_time) VALUES("
         + '"' + request.body.id + '",'
         + '"' + request.body.name + '",'
         + '"' + request.body.shortdesc + '",'
@@ -106,7 +106,7 @@ app.post("/delReqData", (request, response) => {
         response.status(204).send('');
     }
 
-    connection.query("DELETE" + " FROM " + "Anforderungen " + "WHERE("
+    connection.query("DELETE FROM requirements WHERE("
         + 'id="' + request.body.id + '")',
         function (err) {
             if (err)
@@ -123,7 +123,7 @@ app.post("/editReq", (request, response) => {
         response.status(204).send('');
     }
 
-    connection.query("SELECT * FROM ANFORDERUNGEN WHERE("
+    connection.query("SELECT * FROM requirements  WHERE("
         + 'id="' + request.body.editID + '")',
         function (err) {
             if (err)

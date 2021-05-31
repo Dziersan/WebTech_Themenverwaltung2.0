@@ -97,6 +97,29 @@ CREATE TABLE module(
     participants_number INT
 );
 
+DROP TABLE IF EXISTS notification;
+CREATE TABLE notification(
+    id   int auto_increment primary key,
+    group_name varchar(255),
+    description varchar(255)
+);
+
+DROP TABLE IF EXISTS softwarepool;
+CREATE TABLE softwarepool(
+    id int auto_increment primary key,
+    software_name varchar(255),
+    software_description varchar(255),
+    software_link varchar(255)
+);
+
+DROP TABLE IF EXISTS requirements;
+CREATE TABLE requirements(
+    id int auto_increment primary key,
+    name varchar(255),
+    short_desc varchar(255),
+    start_time time,
+    end_time time
+);
 /* unused for now
 
 DROP TABLE IF EXISTS STUDENT_MODUL;

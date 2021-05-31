@@ -7,7 +7,7 @@ const deleteRouter = express.Router();
 
 deleteRouter.delete('/delete/:id', (req, res) => {
     const {id} = req.params;
-    let sql = 'DELETE FROM softwarepool WHERE ID = ?';
+    let sql = 'DELETE FROM softwarepool WHERE id = ?';
 
     connection.query(sql, id, (err, result) => {
         if (err) throw err;
@@ -17,7 +17,7 @@ deleteRouter.delete('/delete/:id', (req, res) => {
 
 deleteRouter.delete('/deleteNotification/:id', (req, res) => {
     const {id} = req.params;
-    let sql = 'DELETE FROM notification WHERE ID = ?';
+    let sql = 'DELETE FROM notification WHERE id = ?';
 
     connection.query(sql, id, (err, result) => {
         if (err) throw err;
