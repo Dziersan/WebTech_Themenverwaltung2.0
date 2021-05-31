@@ -114,7 +114,7 @@ CREATE TABLE softwarepool(
 
 DROP TABLE IF EXISTS requirements;
 CREATE TABLE requirements(
-    id int auto_increment primary key,
+    id int primary key,
     name varchar(255),
     short_desc varchar(255),
     start_time time,
