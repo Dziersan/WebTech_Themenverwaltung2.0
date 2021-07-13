@@ -1,15 +1,5 @@
-/*const express = require("express");
-const router = express.Router();
-const connection = require('./getDatabaseConnection.js');*/
-
 const redirect = require("../index");
 const app = express();
-
-/*const path = require("../config/pathConfig.json");*/
-
-/*router.get("/RequirementsEditGer", (request, response) => {
-    response.sendFile(path.path + "/view/html/MainPage.html");
-});*/
 
 router.post("/createTable", (request, response) => {
 
@@ -26,9 +16,6 @@ router.post("/createTable", (request, response) => {
       function (err) {
         if (err)
           throw err;
-        else {
-          console.log("Table created");
-        }
       });
   response.end();
 });
@@ -50,9 +37,6 @@ router.post("/saveReqData", (request, response) => {
       function (err) {
         if (err)
           throw err;
-        else {
-          console.log("Requirement created");
-        }
       });
   response.end();
 });
@@ -69,9 +53,6 @@ router.post("/delReqData", (request, response) => {
       function (err) {
         if (err)
           throw err;
-        else {
-          console.log("Requirement deleted");
-        }
       });
   response.end();
 });
@@ -81,11 +62,7 @@ router.post("/loadtable", (request, response) => {
   connection.query("SELECT * FROM requirements ", function (err, result, fields) {
     if (err)
       throw err;
-    else {
-      console.log(result);
-    }
   })
-    loadTable();
 });
 
 module.exports = router;

@@ -1,5 +1,4 @@
 const app = require('../Module_app_mysql_pool/app');
-
 const router = require('../routes/G4-0050');
 app.use(router);
 
@@ -15,11 +14,15 @@ app.use(router3);
 const router4 = require('../routes/G4-0700');
 app.use(router4);
 
+const router7 = require('../routes/G4-0300');
+
+
 const router5 = require('../routes/G4-0800');
 app.use(router5);
 
 //const router6 = require('../routes/G4-0900');
 //app.use(router6);
+
 
 const router7 = require('../routes/G4-0300');
 app.use(router7);

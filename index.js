@@ -210,7 +210,6 @@ app.get("/loadtable", (request, response) => {
     });
 });
 
-
 app.post("/createTable", (request, response) => {
 
     if (request.method === "OPTIONS") {
@@ -341,19 +340,20 @@ app.post("/index.html", redirectLogin, (request, response, next) => {
     next();
 });
 
-
-
-
-
 const server = app.listen(PORT, () => console.log(
     "listening on: " +
     `http://localhost:${PORT}`
 ));
 
-
-
-
 module.exports = router;
+
+router.post("/loadtable", (request, response) => {
+
+    connection.query("SELECT * FROM requirements ", function (err, result, fields) {
+        if (err)
+            throw err;
+    })
+});
 
 module.exports = {
     server: server,
