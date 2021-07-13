@@ -119,6 +119,7 @@ CREATE TABLE requirements(
     short_desc varchar(255),
     start_time date,
     end_time   date
+
 );
 /* unused for now
 

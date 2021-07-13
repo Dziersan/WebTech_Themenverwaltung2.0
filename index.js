@@ -347,6 +347,7 @@ const server = app.listen(PORT, () => console.log(
     `http://localhost:${PORT}`
 ));
 
+
 router.post("/loadtable", (request, response) => {
 
     connection.query("SELECT * FROM requirements ", function (err, result, fields) {

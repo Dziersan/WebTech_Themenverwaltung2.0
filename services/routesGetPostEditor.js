@@ -1,7 +1,5 @@
-
 const redirect = require("../index");
 const app = express();
-
 
 router.post("/createTable", (request, response) => {
 
@@ -68,3 +66,4 @@ router.post("/loadtable", (request, response) => {
 });
 
 module.exports = router;
+
