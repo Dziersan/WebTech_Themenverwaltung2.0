@@ -85,6 +85,7 @@ router.post("/loadtable", (request, response) => {
       console.log(result);
     }
   })
+    loadTable();
 });
 
 module.exports = router;

@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var router = express.Router();
-var upload = require('./app/config/multer.config.js');
+var upload = require('./app/config/multerConfig.js');
 
 global.__basedir = __dirname;
 

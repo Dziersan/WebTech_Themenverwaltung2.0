@@ -30,6 +30,14 @@ router.get("/register", (request, response) => {
     response.sendFile(path.path + "/view/html/register.html");
 });
 
+router.get("/admin", (request, response) => {
+    response.sendFile(path.path + "/view/html/admin.html");
+});
+
+router.get("/stud", (request, response) => {
+    response.sendFile(path.path + "/view/html/stud.html");
+});
+
 /**
  *  This method provides a json object with all registerd users.
  */

@@ -12,7 +12,6 @@ const app = express();
 configDatabase = require("./config/datenbankConfig.json");
 const connection = require("./services/getDatabaseConnection.js");
 
-
 var lifeTime = 1000 * 60 * 60 * 24;// 24 hour
 var lifeTimeLong = 1000 * 60 * 60 * 24 * 365 * 10;  //1 Year
 var tokenLifeTime = 60 * 24 * 366;// 10 + 1 day year
@@ -177,14 +176,14 @@ app.get("/adminView", redirectLogin, router);
 app.get("/impressum", router);
 app.get("/userInfo", redirectLogin, router);
 app.get("/presentation", router);
-
+app.get("/admin", router);
+app.get("/stud", router);
 app.get("/RequirementsEditGer", redirectLogin, router);
 
 //Get without HTML|| email
 app.get("/cookie", (request, response) => {
     response.json(request.session);
 });
-
 
 //-------------------------------------------
 //Hier muss noch die routesGet angepasst werden
@@ -210,6 +209,7 @@ app.get("/loadtable", (request, response) => {
         }
     });
 });
+
 
 app.post("/createTable", (request, response) => {
 
@@ -342,11 +342,18 @@ app.post("/index.html", redirectLogin, (request, response, next) => {
 });
 
 
+
+
+
 const server = app.listen(PORT, () => console.log(
     "listening on: " +
     `http://localhost:${PORT}`
 ));
 
+
+
+
+module.exports = router;
 
 module.exports = {
     server: server,
