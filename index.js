@@ -348,6 +348,15 @@ const server = app.listen(PORT, () => console.log(
 ));
 
 
+router.post("/loadtable", (request, response) => {
+
+    connection.query("SELECT * FROM requirements ", function (err, result, fields) {
+        if (err)
+            throw err;
+    })
+});
+
+
 module.exports = {
     server: server,
     session: session,
