@@ -66,4 +66,3 @@ router.post("/loadtable", (request, response) => {
 });
 
 module.exports = router;
-

@@ -5,6 +5,8 @@ const dotenv = require('dotenv');
 
 const getRouter = express.Router();
 
+
+
 getRouter.get('/getSFTWPOOLData', (req, res) => {
     let sql = 'SELECT * FROM softwarepool';
 
@@ -29,5 +31,6 @@ getRouter.get('/getNotificationData', (req, res) => {
         res.json(result);
     })
 })
+
 
 module.exports = getRouter;

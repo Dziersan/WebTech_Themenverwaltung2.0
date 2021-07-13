@@ -114,12 +114,11 @@ CREATE TABLE softwarepool(
 
 DROP TABLE IF EXISTS requirements;
 CREATE TABLE requirements(
-    id         varchar(10) primary key,
-    name       varchar(255),
+    id varchar(10) primary key,
+    name varchar(255),
     short_desc varchar(255),
     start_time date,
-    end_time   date
-
+    end_time date
 );
 /* unused for now
 

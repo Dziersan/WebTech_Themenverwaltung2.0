@@ -13,6 +13,7 @@ function dropdownTheButton() {
 function doEnglish() {
 
     document.getElementById("pro").innerText = "Project";
+    document.getElementById("mem").innerText = "Group members";
     document.getElementById("sp").innerText = "Languages";
     document.getElementById("ger").innerText = "German";
     document.getElementById("eng").innerText = "English";
@@ -55,6 +56,7 @@ function doEnglish() {
 function doGerman() {
 
     document.getElementById("pro").innerText = "Projekt";
+    document.getElementById("mem").innerText = "Gruppenmitglieder";
     document.getElementById("sp").innerText = "Sprachen";
     document.getElementById("ger").innerText = "Deutsch";
     document.getElementById("eng").innerText = "Englisch";
