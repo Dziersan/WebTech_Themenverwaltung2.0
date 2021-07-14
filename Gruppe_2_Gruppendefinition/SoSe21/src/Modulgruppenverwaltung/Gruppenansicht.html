@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Gruppenansicht</title>
+    <link rel="stylesheet" href="../style/navigationBar.css" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../style/Gruppenansicht.css" type="text/css">
+    <script src="../scripts/calender.js"></script>
+</head>
+
+<body onload="getStudentsIntoTable()">
+<div id="UserMenu_All_Header">
+    <div id="All_Header_left" class="All_Header_Boxes" style="float: left; margin-right: 5px">
+        <a href="https://osca.hs-osnabrueck.de/">
+            <div class="outer-wrapper" style="float:left">
+                <div class="frame" style="height: 52px">
+                    <img id="oscaImagelogo" class="oscaLogo">
+                </div>
+            </div>
+        </a>
+        <div class="dropdown">
+            <form action="/myModules">
+                <button class="header_button">Modulverwaltung</button>
+            </form>
+            <div class="dropdown-content">
+                <a href="">Placeholder01</a> <!-- Hier sollen alle gewählte Module im DropDown angezeigt werden. -->
+                <a href="">Placeholder02</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <form action="/myGroups">
+                <button class="header_button">Meine Gruppe</button>
+            </form>
+            <div class="dropdown-content">
+                <a href="/joinGroup">Gruppe beitreten</a>
+                <a href="/requirementsdefinition">Anforderungsdefinition</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <form action="/presentation">
+                <button class="header_button">Präsentation</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="All_Header_right" class="All_Header_Boxes" style="float: right">
+
+        <div class="frame" style="float: left;">
+            <a href="https://my.hs-osnabrueck.de/owa/">
+                <div class="outer-wrapper" style="float:left">
+                    <div class="frame" style="height: 52px">
+                        <i id="mailIcon" class="far fa-envelope fa-lg" style="font-size: 25px"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="frame" style="float: left;">
+            <a href="https://netcase.hs-osnabrueck.de">
+                <div class="outer-wrapper" style="float:left">
+                    <div class="frame" style="height: 52px">
+                        <i id="netcaseIcon" class="fas fa-briefcase fa-lg" style="font-size: 25px"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="dropdown">
+            <form action="/showUsers">
+                <button class="header_button">Benutzer</button>
+            </form>
+        </div>
+        <div class="dropdown">
+            <form action="/logout" method="post">
+                <button class="header_button" type="submit">Logout</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="pageContent">
+    
+    <div class="grid-header"> <!-- Überschriftenzeile -->
+        <h1>Gravelshipping++</h1>
+    </div>
+    <div id="student-group" class="group-view">  <!-- Tabelle mit allen Modulteilnehmern -->
+        <table>
+            <thead>
+                <th class="participant-nummer">Matrikel-Nr.</th>
+                <th class="participant-name">Name</th>
+                <th class="participant-email">E-Mail</th>
+            </thead>
+            <tbody id="tableStudentGroup"> <!-- filled by javascripts sql query-->
+
+            </tbody>
+        </table>
+    </div>
+    
+    <div script="Gruppenansicht.js" class="calender-frame">  <!-- Kalender -->
+        <div class="calender" id="main">
+            <div class="jumbotron">
+              <h1 class="text-center"><a id="left" href="#"><i class="fa fa-chevron-left"> </i></a><span>&nbsp;</span><span id="month"> </span><span>&nbsp;</span><span id="year"> </span><span>&nbsp;</span><a id="right" href="#"><i class="fa fa-chevron-right"> </i></a></h1>
+            </div>
+            <div class="row">
+              <div class="col-sm-10 col-sm-offset-1">
+                <table class="calender_table" id="cal"></table>
+              </div>
+            </div>
+        </div>
+        <div class="calender-notifications">
+            Hier werden die Termine am ausgewählten Tag stehen.
+        </div>
+    </div>
+
+    <div class="upload-section" style="border: 1px solid black">    <!-- Dateiupload-Sektion -->
+        <form class="upload-box" method="post" action="">
+            <input class="box__file" type="file" name="" id="file">
+            <br><button class="box__button" type="submit">Upload</button>
+        </form>
+    </div>
+
+    <div class="fileexpl" style="border: 1px solid black">    <!-- Dateiupload-Sektion -->
+        Hier werden alle hochgeladenen Dateien für das Modul stehen.
+    </div>
+
+</div>
+<script src="../scripts/Gruppenansicht.js"></script>
+</body>
+</html>

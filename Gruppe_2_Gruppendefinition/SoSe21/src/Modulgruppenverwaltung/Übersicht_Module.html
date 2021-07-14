@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modulgruppenverwaltung</title>
+    <link rel="stylesheet" href="../style/navigationBar.css" type="text/css">
+    <link rel="stylesheet" href="../style/navigationBar2.css" type="text/css">
+    <!-- <link rel="stylesheet" href="../style.css" type="text/css"> -->
+    <link rel="stylesheet" href="../style/Übersicht_Module.css" type="text/css">
+    <!-- <link rel="stylesheet" href="../style/tableFormatting.css" type="text/css"> -->
+    <script src="../scripts/Übersicht_Module.js"></script>
+    <title>Modulgruppenübersicht</title>
+</head>
+
+<body onload="getModulesIntoTable()">
+<div id="UserMenu_All_Header">
+    <div id="All_Header_left" class="All_Header_Boxes" style="float: left; margin-right: 5px">
+        <a href="https://osca.hs-osnabrueck.de/">
+            <div class="outer-wrapper" style="float:left">
+                <div class="frame" style="height: 52px">
+                    <img id="oscaImagelogo" class="oscaLogo">
+                </div>
+            </div>
+        </a>
+
+        <div class="dropdown">
+            <form action="/myModules">
+                <button class="header_button">Modulverwaltung</button>
+            </form>
+            <div class="dropdown-content">
+                <a href="">Placeholder01</a> <!-- Hier sollen alle gewählte Module im DropDown angezeigt werden. -->
+                <a href="">Placeholder02</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <form action="/myGroups">
+                <button class="header_button">Meine Gruppe</button>
+            </form>
+            <div class="dropdown-content">
+                <a href="/joinGroup">Gruppe beitreten</a>
+                <a href="/requirementsdefinition">Anforderungsdefinition</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <form action="/presentation">
+                <button class="header_button">Präsentation</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="All_Header_right" class="All_Header_Boxes" style="float: right">
+
+        <div class="frame" style="float: left;">
+            <a href="https://my.hs-osnabrueck.de/owa/">
+                <div class="outer-wrapper" style="float:left">
+                    <div class="frame" style="height: 52px">
+                        <i id="mailIcon" class="far fa-envelope fa-lg" style="font-size: 25px"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="frame" style="float: left;">
+            <a href="https://netcase.hs-osnabrueck.de">
+                <div class="outer-wrapper" style="float:left">
+                    <div class="frame" style="height: 52px">
+                        <i id="netcaseIcon" class="fas fa-briefcase fa-lg" style="font-size: 25px"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="dropdown">
+            <form action="/showUsers">
+                <button class="header_button">Benutzer</button>
+            </form>
+        </div>
+        <div class="dropdown">
+            <form action="/logout" method="post">
+                <button class="header_button" type="submit">Logout</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="pageContent">
+    
+    <div class="grid-header"> <!-- Überschriftenzeile -->
+        <h1>Modulübersicht</h1>
+    </div>
+    <div class="participant-view">  <!-- Tabelle mit allen Modulteilnehmern -->
+        <table>
+            <thead>
+            <tr>
+                <th class="participant-name">Modulname</th>
+                <th class="participant-dozent">Dozent</th>
+                <th class="participant-semester">Semester</th>
+                <th class="participant-prüfungsform">Prüfungsform</th>
+                <th class="participant-beitritt">Beitritt</th>
+            </tr>
+            </thead>
+            <tbody id="ModulList">
+            </tbody>
+        </table>
+    </div>
+    <div class="grid-footer">
+        <button class="box__button" type="button" onclick="filteredModules()">Meine Module</button>
+        <button class="box__button" type="button" onclick="getModulesIntoTable()">Alle Module</button>
+    </div>
+</div>
+
+</body>
+</html>

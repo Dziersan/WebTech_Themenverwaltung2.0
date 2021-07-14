@@ -1,0 +1,37 @@
+  .calender {
+    width: 100%;
+    margin: 0px;
+  }
+  
+  .calender_table table {
+    width: max-content;
+    height: max-content;
+  }
+  .calender_table th {
+    text-align: center;
+  }
+  .calender_table td {
+    width: max-content;
+    height: max-content;
+    text-align: center;
+    line-height: 100% !important;
+    font-size: 1.5em;
+  }
+  .calender_table td,
+  #year {
+    font-family: monospace;
+  }
+  .hover {
+    background: #eee;
+    cursor: pointer;
+  }
+  #about {
+    font-size: 5em !important;
+    position: absolute;
+    top: -35px;
+    right: 15px;
+  }
+  #about a {
+    text-decoration: none;
+  }
+  

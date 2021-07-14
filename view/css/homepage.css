@@ -1,0 +1,214 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: OpenSans, arial, "sans-serif";
+    font-size: 17px;
+}
+
+@media screen and (max-width: 1919px) {
+
+    div.box1 {
+        position: center;
+        border: 0;
+        background: #e8f0fe;
+        /*left: 20%;*/
+        /*top: 50%;*/
+        margin: 20px auto;
+        /*text-align: block;*/
+        border: 60px solid #e8f0fe;
+        /*width: 50%;*/
+        font-size: 24px;
+        color: #000000;
+        border-radius: 15px;
+        transition: 0.25s;
+
+    }
+
+
+    .top-area {
+        position: relative;
+        left: 0px;
+        top: 0%;
+        margin: 0px;
+        padding: 1% 1%;
+        font-size: 16px;
+        font-family: OpenSans, arial, "sans-serif";
+        color: #000000;
+        /*background-color: #E8F0FE;*/
+        background: #e8f0fe;
+        background: hsla(218, 92%, 95%, 0.7);
+        border-radius: 15px;
+    }
+
+    div.box2 {
+        position: center;
+        border: 0;
+        background: #e8f0fe;
+        /*left: 50%;
+        top: 60%;*/
+        margin: 20px auto;
+        /*text-align: block;*/
+        border: 60px solid #e8f0fe;
+        /*width: 40%;*/
+        font-size: 24px;
+        color: #000000;
+        border-radius: 15px;
+        transition: 0.25s;
+    }
+}
+
+@media screen and (min-width: 1920px) {
+
+/*    img {
+
+        margin-left: 8%;
+        margin-right: auto;
+        border-radius: 8px;
+        background-image: url('../images/priscilla-du-preez-XkKCui44iM0-unsplash.jpg');
+    }*/
+
+    div.box1 {
+        position: center;
+        border: 0;
+        background: #e8f0fe;
+        left: 50%;
+        top: 50px;
+        margin: 20px auto;
+        /*text-align: block;*/
+        border: 60px solid #e8f0fe;
+        width: 40%;
+        font-size: 24px;
+        color: #000000;
+        border-radius: 15px;
+        transition: 0.25s;
+    }
+
+    .top-area {
+        position: relative;
+        left: 0px;
+        top: 0px;
+        margin: 0px;
+        padding: 1% 1%;
+        font-size: 16px;
+        font-family: OpenSans, arial, "sans-serif";
+        color: #000000;
+        /*background-color: #E8F0FE;*/
+        background: #e8f0fe;
+        background: hsla(218, 92%, 95%, 0.7);
+        border-radius: 15px;
+    }
+}
+
+section {
+    padding: 3em;
+    height: 110vh;
+    position: center;
+    box-sizing: border-box;
+    background-image: url("../images/priscilla-du-preez-XkKCui44iM0-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+
+
+img:nth-of-type(1) {
+    /*size: 100%;*/
+    width: 48%;
+    right: 30%;
+    top: 10%;
+}
+
+img:nth-of-type(2) {
+    /*size: 20%;*/
+    width: 15%;
+    right: 40%;
+    top: 5%;
+    margin-top: 15%;
+}
+
+
+.logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.box {
+    display: block;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+div.box2 {
+    position: center;
+    border: 0;
+    background: #e8f0fe;
+    left: 50%;
+    top: 60%;
+    margin: 20px auto;
+    /*text-align: block;*/
+    border: 60px solid #e8f0fe;
+    width: 40%;
+    font-size: 24px;
+    color: #000000;
+    border-radius: 15px;
+    transition: 0.25s;
+}
+
+.footer {
+    position: static;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #e8f0fe;
+    color: #000000;
+    text-align: center;
+}
+
+.button {
+    display: inline-block;
+    /*position: relative;*/
+    border-radius: 4px;
+    background-color: #3498db;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 16px;
+    padding: 15px;
+    width: 40%;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.button span {
+    cursor: pointer;
+    display: inline-block;
+    position: center;
+    transition: 0.5s;
+}
+
+.button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.button:hover span {
+    padding-right: 25px;
+}
+
+.button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
