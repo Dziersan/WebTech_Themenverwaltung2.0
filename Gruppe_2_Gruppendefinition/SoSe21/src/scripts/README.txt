@@ -1,8 +1,6 @@
-Run Xampp Webserver
-
 Specify Port in serverConnection.js
 
-Run routingConfig.js
+Run index.js
 
 Allow CORS (Cross Domain via Browser Extension)
 

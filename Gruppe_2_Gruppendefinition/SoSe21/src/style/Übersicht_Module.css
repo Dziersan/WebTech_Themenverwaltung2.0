@@ -42,7 +42,7 @@ a
         "header header header header"
         /*"t-button t-button t-button t-button-right"*/
         "p-table p-table p-table p-table"
-        "footer footer footer footer"
+        "footer footer footer right-footer"
 }
 
 .grid-header
@@ -52,6 +52,12 @@ a
 
 .grid-footer {
     grid-area: footer;
+}
+
+.grid-right-footer
+{
+    grid-area: right-footer;
+    text-align: right;
 }
 
 .grid-t-button {

@@ -4,15 +4,12 @@
     <meta charset="UTF-8">
     <title>Modulgruppenverwaltung</title>
     <link rel="stylesheet" href="../style/navigationBar.css" type="text/css">
-    <link rel="stylesheet" href="../style/navigationBar2.css" type="text/css">
-    <!-- <link rel="stylesheet" href="../style.css" type="text/css"> -->
     <link rel="stylesheet" href="../style/Übersicht_Module.css" type="text/css">
-    <!-- <link rel="stylesheet" href="../style/tableFormatting.css" type="text/css"> -->
     <script src="../scripts/Übersicht_Module.js"></script>
     <title>Modulgruppenübersicht</title>
 </head>
 
-<body onload="getModulesIntoTable()">
+<body>
 <div id="UserMenu_All_Header">
     <div id="All_Header_left" class="All_Header_Boxes" style="float: left; margin-right: 5px">
         <a href="https://osca.hs-osnabrueck.de/">
@@ -104,8 +101,11 @@
         </table>
     </div>
     <div class="grid-footer">
-        <button class="box__button" type="button" onclick="filteredModules()">Meine Module</button>
-        <button class="box__button" type="button" onclick="getModulesIntoTable()">Alle Module</button>
+        <button class="box__button" type="button" onclick="buttonFilteredModules()">Meine Module</button>
+        <button class="box__button" type="button" onclick="buttonAllModules()">Alle Module</button>
+    </div>
+    <div class="grid-right-footer">
+        <a href="/newModule" onclick="window.open(this.href, 'Modul Bearbeiten', 'width=600,height=600'); return false"><input type="button" value="Module hinzufügen"></a>
     </div>
 </div>
 

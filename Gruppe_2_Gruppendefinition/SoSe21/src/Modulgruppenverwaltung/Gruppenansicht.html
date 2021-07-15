@@ -6,10 +6,11 @@
     <link rel="stylesheet" href="../style/navigationBar.css" type="text/css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../style/Gruppenansicht.css" type="text/css">
+    <script src="../scripts/Gruppenansicht.js"></script>
     <script src="../scripts/calender.js"></script>
 </head>
 
-<body onload="getStudentsIntoTable()">
+<body>
 <div id="UserMenu_All_Header">
     <div id="All_Header_left" class="All_Header_Boxes" style="float: left; margin-right: 5px">
         <a href="https://osca.hs-osnabrueck.de/">
@@ -114,8 +115,8 @@
     </div>
 
     <div class="upload-section" style="border: 1px solid black">    <!-- Dateiupload-Sektion -->
-        <form class="upload-box" method="post" action="">
-            <input class="box__file" type="file" name="" id="file">
+        <form class="upload-box" method="post" action="/upload" enctype="multipart/form-data">
+            <input class="box__file" type="file" name="abgaben" id="file">
             <br><button class="box__button" type="submit">Upload</button>
         </form>
     </div>
@@ -125,6 +126,5 @@
     </div>
 
 </div>
-<script src="../scripts/Gruppenansicht.js"></script>
 </body>
 </html>

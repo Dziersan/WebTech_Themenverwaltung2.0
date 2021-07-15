@@ -17,7 +17,7 @@ INSERT INTO User(User_ID, HS_ID, Token, Vorname, Nachname, E_Mail, Password, Ver
 ('Dirk16', 'DEF', '51231','Dirk', 'Hanekamp', 'dirk.hanekamp@hs-osnabrueck.de', 'maurice13', true, 'Student', 'ABC', '4', 'Wirtschaftsinformatik', 'Student'),
 ('Albert19', 'EFG', '231412', 'Albert', 'i9', 'albert.i9@hs-osnabrueck.de', 'maurice13', true, 'Dozent', 'ABC', null, 'Wirtschaftsinformatik', 'Dozent');
 
-INSERT INTO Modul(Modul_ID, Beschreibung, Teilnehmer_Max, Semester, Pruefungsform) VALUES 
+INSERT INTO Modul(Modul_ID, Modulname, Teilnehmer_Max, Semester, Pruefungsform) VALUES 
 (001, "Modellierung und Simulation", 25, "3", 'Klausur1' ), 
 (002, "Datenbanken", 25, "3", 'Klausur1'), 
 (003, "Statistik", 25, "3", 'Mündl. Prüfung'), 
@@ -29,7 +29,7 @@ INSERT INTO Modul(Modul_ID, Beschreibung, Teilnehmer_Max, Semester, Pruefungsfor
 (009, "Kosten- und Leistungsrechnung", 25, "2",'Klausur1'), 
 (010, "Informationsmanagement", 25, "2",'Klausur1');
 
-INSERT INTO Groups(Group_ID, Beschreibung, Teilnehmer_Max, Abgabedatum, Active) VALUES
+INSERT INTO Groups(Group_ID, Gruppenname, Teilnehmer_Max, Abgabedatum, Active) VALUES
 (001, "Gravelshipping++", 5, "2021-07-20", false),
 (002, "SEP", 7, "2021-07-20", true),
 (003, "Datenbanken", 5, "2021-07-20", false),

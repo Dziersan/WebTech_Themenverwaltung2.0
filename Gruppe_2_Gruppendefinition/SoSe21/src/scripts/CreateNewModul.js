@@ -1,14 +1,12 @@
-function insertDozent()
-{
-    let xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function ()
-    {
-        if (this.readyState == 4 && this.status == 200)
+function loadInsertDozent (){
+    fetch('/insertDozent')
+        .then (response =>
         {
-            document.getElementById("Dozenten").innerHTML = this.responseText
-        }
-    }
-    xhttp.open("GET", "http://127.0.0.1:1337/insertDozent", true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send();
+            console.log(response);
+            return response.text();
+        }).then (text =>
+    {
+        document.getElementById("Dozenten").innerHTML = text;
+    })
 }
+loadInsertDozent();

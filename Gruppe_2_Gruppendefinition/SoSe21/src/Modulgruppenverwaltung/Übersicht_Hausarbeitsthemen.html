@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Modulgruppenverwaltung</title>
-    <link rel="stylesheet" href="../style/navigationBar2.css" type="text/css">
+    <link rel="stylesheet" href="../style/navigationBar.css" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <!-- <link rel="stylesheet" href="../style.css" type="text/css"> -->
-    <link rel="stylesheet" href="../style/Gruppenansicht.css" type="text/css">
+    <link rel="stylesheet" href="../style/Übersicht_Gruppen.css" type="text/css">
     <!-- <link rel="stylesheet" href="../style/tableFormatting.css" type="text/css"> -->
     <title>Modulgruppenübersicht</title>
     
 </head>
 
-<body onload="getMyGroupsIntoTable()">
+<body >
 <div id="UserMenu_All_Header">
     <div id="All_Header_left" class="All_Header_Boxes" style="float: left; margin-right: 5px">
         <a href="https://osca.hs-osnabrueck.de/">
@@ -27,7 +28,7 @@
                 <button class="header_button">Modulverwaltung</button>
             </form>
             <div class="dropdown-content">
-                <a href="/modulverwaltung">Placeholder01</a> <!-- Hier sollen alle gewählte Module im DropDown angezeigt werden. -->
+                <a href="">Placeholder01</a> <!-- Hier sollen alle gewählte Module im DropDown angezeigt werden. -->
                 <a href="">Placeholder02</a>
             </div>
         </div>
@@ -87,23 +88,23 @@
     <div class="grid-header"> <!-- Überschriftenzeile -->
         <h1>Gruppenübersicht</h1>
     </div>
+
             <script>
-                // Gruppenansicht Tabelle füllen.
-                function getMyGroupsIntoTable()
-                {
-                    let xhttp = new XMLHttpRequest();7
-                    xhttp.onreadystatechange = function()
+                    fetch('/getMyGroupsIntoTable')
+                    .then (response =>
                     {
-                        if (this.readyState == 4 && this.status == 200)
-                        {
-                            document.getElementById("tableStudentGroup").innerHTML = this.responseText;
-                        }
+                        console.log(response);
+                        return response.text();
+                    }).then (text =>
+                    {
+                        document.getElementById("tableStudentGroup").innerHTML = text;
+                    })
+                    function myClick(){
+                        console.log("test");
+                        return response.text();
                     }
-                    xhttp.open("GET", "http://127.0.0.1:1337/getMyGroupsIntoTable", true);
-                    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                    xhttp.send();
-                }
             </script>
+
             <div id="student-group" class="group-view">  <!-- Tabelle mit allen Modulteilnehmern -->
                 <table>
                     <thead>

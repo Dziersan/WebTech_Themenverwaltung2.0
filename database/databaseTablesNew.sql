@@ -45,7 +45,7 @@ DROP TABLE IF EXISTS Modul;
 CREATE TABLE Modul
 (
     Modul_ID INTEGER AUTO_INCREMENT PRIMARY KEY,
-    Beschreibung VARCHAR(255),
+    Modulname VARCHAR(255),
     Teilnehmer_Max INTEGER,
     Semester CHAR(10), /* Damit ist das Jahr gemeint z.B. SoSe 20/21 */
     Pruefungsform ENUM('Klausur1', 'Klausur2', 'Mündl. Prüfung', 'Hausarbeit')
@@ -55,7 +55,7 @@ DROP TABLE IF EXISTS Groups;
 CREATE TABLE Groups
 (
     Group_ID INTEGER AUTO_INCREMENT PRIMARY KEY,
-    Beschreibung VARCHAR(255),
+    Gruppenname VARCHAR(255),
     Teilnehmer_Max INTEGER,
     Abgabedatum DATETIME,
     Active BOOLEAN

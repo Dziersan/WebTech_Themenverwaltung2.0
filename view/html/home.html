@@ -21,18 +21,25 @@
         </a>
 
         <div class="dropdown" style="margin-left: 5px">
-            <form action="/myGroups">
-                <button class="header_button">Meine Gruppen</button>
+            <form action="/myModules">
+                <button class="header_button">Module</button>
             </form>
-            <div class="dropdown-content">
-                <a href="/joinGroup">Gruppe beitreten</a>
-                <a href="/requirementsdefinition">Anforderungsdefinition</a>
+            <div id="ModulesDropdown" class="dropdown-content">
+                <!-- to be filled by script -->
+
             </div>
         </div>
 
-        <form action="/presentation">
-            <button class="header_button">Präsentation</button>
-        </form>
+        <div class="dropdown" style="margin-left: 5px">
+            <form action="/myGroups">
+                <button class="header_button">Gruppen</button>
+            </form>
+            <div id="GroupsDropdown" class="dropdown-content">
+                <!-- to be filled by script -->
+
+            </div>
+        </div>
+
     </div>
 
     <div id="All_Header_right" class="All_Header_Boxes" style="float: right">

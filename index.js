@@ -9,6 +9,10 @@ const express = require("express");
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const app = express();
+const multer = require('multer');
+const uuid = require('uuid').v4;
+const connection = require('../WebTech_Themenverwaltung2.0/Gruppe_2_Gruppendefinition/SoSe21/src/scripts/databaseConnection.js');
+const { ConsoleReporter } = require("jasmine");
 configDatabase = require("./config/datenbankConfig.json");
 
 
@@ -189,11 +193,21 @@ app.get("/cookie", (request, response) => {
 //-------------------------------------------
 //Hier muss noch die routesGet angepasst werden
 //-------------------------------------------
+
+app.get("/upload", routerGrp2);
+app.get("/getStudentsIntoTable", router);
+app.get("/joinGroup", router);
+app.get("/requirementsdefinition", router);
+
+// Routes Gruppe 2
 app.get("/myGroups", routerGrp2);
 app.get("/modulverwaltung", routerGrp2);
 app.get("/hausarbeitsthemen",routerGrp2);
-app.get("/joinGroup", router);
-app.get("/requirementsdefinition", router);
+app.get("/getModulesIntoTable", routerGrp2);
+app.get("/filteredModules", routerGrp2);
+app.get("/insertDozent", routerGrp2);
+app.get("/newModule", routerGrp2);
+app.get("/getMyGroupsIntoTable",routerGrp2);
 
 app.get("/favicon.ico", (request, response) => {
     response.writeHead(204, {'Content-Type': 'image/x-icon'});
@@ -252,6 +266,74 @@ app.post("/index.html", redirectLogin, (request, response, next) => {
     }
     next();
 });
+
+function getStudentData (request, response, next)
+{
+    let userID = request.session.userId;
+    console.log(userID);
+    let query = "SELECT * FROM User ORDER BY 'Nachname'";
+    connection.query(query, function(err, result, fields)
+    {
+        if (err) response.send("Es konnten keine Daten abgerufen werden.");
+        if (result != null)
+        {
+            var resultString = "";
+            for (var i = 0; i < result.length; i++)
+            {
+                resultString += "<tr><td>" + result[i].User_ID + "</td>" + "<td>" + result[i].Vorname + " " + result[i].Nachname + "</td>" + "<td>" + result[i].E_Mail + "</td></tr>";
+            }
+            response.send(resultString);
+        }
+    });
+}
+
+app.get("/getStudentsIntoTable", getStudentData);
+
+function fillMyModules (request, response, next)
+{
+    let userID = request.session.userId;
+    let query = `SELECT Modulname FROM modul INNER JOIN user_modul ON modul.Modul_ID = user_modul.Modul_ID INNER JOIN user ON user_modul.User_ID = user.User_ID WHERE user.User_ID = '${userID}' ;`
+    connection.query(query, function(err, result, fields)
+    {
+        if (err) response.send(Error);
+        if (result != null)
+        {
+            var resultString = "";
+            for (var i = 0; i < result.length; i++)
+            {
+                resultString += '<a href="">' + result[i].Modulname + '</a>';
+            }
+            response.send(resultString);
+        } 
+        else response.send("Keine Module vorhanden.");
+    });
+}
+
+function fillMyGroups (request, response, next)
+{
+    let userID = request.session.userId;
+    let query = `SELECT Gruppenname FROM groups INNER JOIN user_group ON groups.Group_ID = user_group.Group_ID INNER JOIN user ON user_group.User_ID = user.User_ID WHERE user.User_ID = '${userID}';`
+    connection.query(query, function(err, result, fields)
+    {
+        if (err) response.send(Error);
+        if (result != null)
+        {
+            var resultString = "";
+            for (var i = 0; i < result.length; i++)
+            {
+                resultString += '<a href="">' + result[i].Gruppenname + '</a>';
+            }
+            response.send(resultString);
+        }
+        else response.send("Keine Gruppen vorhanden.");
+    });
+}
+
+app.get("/fillMyModules", fillMyModules);
+
+app.get("/fillMyGroups", fillMyGroups);
+
+
 
 const server = app.listen(PORT, () => console.log(
     "listening on: " +

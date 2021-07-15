@@ -1,35 +1,27 @@
 /* ------------------- Ab hier beginnt der Finale Teil ------------------- */
 
-// Gruppenansicht Tabelle füllen.
-function getModulesIntoTable()
+function buttonFilteredModules()
 {
-    let xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function()
-    {
-        if (this.readyState == 4 && this.status == 200)
+    fetch('/filteredModules')
+        .then (response =>
         {
-            document.getElementById("ModulList").innerHTML = this.responseText;
-        }
-    }
-    xhttp.open("GET", "http://127.0.0.1:1337/getModulesIntoTable", true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send();
-}
-
-
-function filteredModules()
-{
-    let xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function ()
+            console.log(response);
+            return response.text();
+        }).then (text =>
     {
-            if (this.readyState == 4 && this.status == 200)
-            {
-            document.getElementById("ModulList").innerHTML = this.responseText
-        }
-    }
-    xhttp.open("GET", "http://127.0.0.1:1337/filteredModules", true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send();
-
+        document.getElementById("ModulList").innerHTML = text;
+    })
 }
-
+function buttonAllModules()
+{
+    fetch('/getModulesIntoTable')
+        .then (response =>
+        {
+            console.log(response);
+            return response.text();
+        }).then (text =>
+    {
+        document.getElementById("ModulList").innerHTML = text;
+    })
+}
+buttonAllModules();
