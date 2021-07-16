@@ -1,3 +1,5 @@
+
+
 fetch('/getStudentsIntoTable')
     .then (response => 
     {
@@ -7,4 +9,5 @@ fetch('/getStudentsIntoTable')
     {
         document.getElementById("tableStudentGroup").innerHTML = text; 
     })
+
 

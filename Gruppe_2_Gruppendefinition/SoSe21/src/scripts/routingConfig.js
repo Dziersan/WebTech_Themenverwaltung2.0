@@ -18,6 +18,13 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
+// Static Files
+
+app.use('/style', express.static('./Gruppe_2_Gruppendefinition/SoSe21/src/style'));
+app.use('/scripts', express.static('./Gruppe_2_Gruppendefinition/SoSe21/src/scripts'));
+app.use('/Modul', express.static('./Gruppe_2_Gruppendefinition/SoSe21/src/Modulgruppenverwaltung'));
+app.use('/Gruppe', express.static('./Gruppe_2_Gruppendefinition/SoSe21/src/Modulgruppenverwaltung'));
+
 function getRoutes()
 {
     return app;
@@ -30,7 +37,7 @@ function getRoutes()
 function getStudentData (request, response, next)
 {
     let userID = request.session.userId;
-    console.log(userID);
+    //console.log(userID);
     let query = "SELECT * FROM User ORDER BY 'Nachname'";
     connection.query(query, function(err, result, fields)
     {
@@ -41,7 +48,6 @@ function getStudentData (request, response, next)
             for (var i = 0; i < result.length; i++)
             {
                 resultString += "<tr><td>" + result[i].User_ID + "</td>" + "<td>" + result[i].Vorname + " " + result[i].Nachname + "</td>" + "<td>" + result[i].E_Mail + "</td></tr>";
-                console.log(resultString);
             }
             response.send(resultString);
         }
@@ -268,9 +274,30 @@ app.get("/newModule", (request, response) => {
 //          General Routes
 //-------------------------------------------
 
-app.get("/mygroups", (request, response) => {
-    console.log("Send Gruppenansicht.html");
-    response.sendFile(path.path + '/Gruppe_2_Gruppendefinition/SoSe21/src/Modulgruppenverwaltung/Gruppenansicht.html');
+app.get("/Gruppe", (request, response) => {
+    var options = {
+        headers: {
+            'x-timestamp': Date.now(),
+            'x-sent': true,
+            'name': request.query,
+        }
+      };
+    response.sendFile(path.path + '/Gruppe_2_Gruppendefinition/SoSe21/src/Modulgruppenverwaltung/Gruppenansicht.html', options);
+});
+
+app.get("/Modul", (request, response) => {
+    var options = {
+        headers: {
+            'x-timestamp': Date.now(),
+            'x-sent': true,
+            'name': request.query,
+        }
+      };
+    response.sendFile(path.path + '/Gruppe_2_Gruppendefinition/SoSe21/src/Modulgruppenverwaltung/Modulansicht.html', options);
+});
+
+app.get("/testingSomething", (request, response) => {
+    response.send(request.query);
 });
 
 app.get("/modulverwaltung", (request, response) => {

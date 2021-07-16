@@ -51,6 +51,8 @@ INSERT INTO User_Modul(User_ID, Modul_ID, Rolle) VALUES
 
 INSERT INTO User_Group(User_ID, Group_ID) VALUES
 ('murre97', 001),
+('murre97', 002),
+('murre97', 003),
 ('Staraptoah', 004),
 ('Dirk16', 005),
 ('Albert19', 002);
