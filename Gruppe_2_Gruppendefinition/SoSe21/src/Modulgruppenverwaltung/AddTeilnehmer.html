@@ -2,14 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Modulgruppenverwaltung</title>
+    <title>Modulteilnehmer hinzufügen</title>
     <link rel="stylesheet" href="../style/navigationBar.css" type="text/css">
-    <link rel="stylesheet" href="../style/Übersicht_Module.css" type="text/css">
-    <script src="../scripts/Übersicht_Module.js"></script>
-    <title>Modulgruppenübersicht</title>
+    <link rel="stylesheet" href="../style/addTeilnehmer.css" type="text/css">
 </head>
-
 <body>
+
 <div id="UserMenu_All_Header">
     <div id="All_Header_left" class="All_Header_Boxes" style="float: left; margin-right: 5px">
         <a href="https://osca.hs-osnabrueck.de/">
@@ -20,26 +18,31 @@
             </div>
         </a>
 
-        <div class="dropdown" style="margin-left: 5px">
+        <div class="dropdown">
             <form action="/myModules">
                 <button class="header_button">Modulverwaltung</button>
             </form>
-            <div id="ModulesDropdown" class="dropdown-content">
-                <!-- to be filled by script -->
-
+            <div class="dropdown-content">
+                <a href="">Placeholder01</a> <!-- Hier sollen alle gewählte Module im DropDown angezeigt werden. -->
+                <a href="">Placeholder02</a>
             </div>
         </div>
 
-        <div class="dropdown" style="margin-left: 5px">
+        <div class="dropdown">
             <form action="/myGroups">
-                <button class="header_button">Meine Gruppen</button>
+                <button class="header_button">Meine Gruppe</button>
             </form>
-            <div id="GroupsDropdown" class="dropdown-content">
-                <!-- to be filled by script -->
-
+            <div class="dropdown-content">
+                <a href="/joinGroup">Gruppe beitreten</a>
+                <a href="/requirementsdefinition">Anforderungsdefinition</a>
             </div>
         </div>
 
+        <div class="dropdown">
+            <form action="/presentation">
+                <button class="header_button">Präsentation</button>
+            </form>
+        </div>
     </div>
 
     <div id="All_Header_right" class="All_Header_Boxes" style="float: right">
@@ -69,40 +72,67 @@
         </div>
         <div class="dropdown">
             <form action="/logout" method="post">
-                <button class="header_button">Logout</button>
+                <button class="header_button" type="submit">Logout</button>
             </form>
         </div>
     </div>
 </div>
 
 <div class="pageContent">
-    
-    <div class="grid-header"> <!-- Überschriftenzeile -->
-        <h1>Modulübersicht</h1>
+
+    <div class="grid-header">
+        <h1>Teilnehmer hinzufügen</h1>
     </div>
-    <div class="participant-view">  <!-- Tabelle mit allen Modulteilnehmern -->
+
+    <div class="grid-search-table participant-view">  <!-- Tabelle mit allen Studenten -->
         <table>
+
             <thead>
-            <tr>
-                <th class="participant-name">Modulname</th>
-                <th class="participant-dozent">Dozent</th>
-                <th class="participant-semester">Semester</th>
-                <th class="participant-prüfungsform">Prüfungsform</th>
-                <th class="participant-beitritt">Beitritt</th>
-            </tr>
+                <tr>
+                    <th>Name</th>
+                    <th>Matrikelnummer</th>
+                    <th>Studiengang</th>
+                    <th>Teilnehmer hinzufügen</th>
+                </tr>
             </thead>
-            <tbody id="ModulList">
+
+            <tbody id="searchtable">
             </tbody>
+
         </table>
     </div>
-    <div class="grid-footer">
-        <button class="box__button" type="button" onclick="buttonFilteredModules()">Meine Module</button>
-        <button class="box__button" type="button" onclick="buttonAllModules()">Alle Module</button>
+
+    <div class="grid-finish">
+        <h1>Modulteilnehmer:</h1>
     </div>
-    <div class="grid-right-footer">
-        <a href="/newModule" onclick="window.open(this.href, 'Modul Bearbeiten', 'width=600,height=600'); return false"><input type="button" value="Module hinzufügen"></a>
+
+    <div class="grid-table">
+        <div class="grid-table participant-view">  <!-- Tabelle mit allen Studenten -->
+            <table>
+
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Matrikelnummer</th>
+                    <th>Studiengang</th>
+                    <th>Teilnehmer löschen</th>
+                </tr>
+                </thead>
+
+                <tbody id="finishtable">
+                </tbody>
+
+            </table>
+        </div>
     </div>
+
+    <div class="grid-button">
+        <button> Bestätigen</button>
+    </div>
+
 </div>
 
+
+<script src="../scripts/Modulansicht.js"></script>
 </body>
 </html>

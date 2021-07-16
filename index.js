@@ -208,6 +208,13 @@ app.get("/filteredModules", routerGrp2);
 app.get("/insertDozent", routerGrp2);
 app.get("/newModule", routerGrp2);
 app.get("/getMyGroupsIntoTable",routerGrp2);
+app.post("/upload", routerGrp2);
+app.get("/modulAnsicht", routerGrp2);
+app.get("/editTeilnehmer", routerGrp2);
+app.get("/modulAnsichtHeader", routerGrp2);
+app.get("/modulAnsichtStudentsTable", routerGrp2);
+app.get("/modulAnsichtGroupsTable", routerGrp2);
+app.get("/modulAnsichtAddTeilnehmer", routerGrp2);
 
 app.get("/favicon.ico", (request, response) => {
     response.writeHead(204, {'Content-Type': 'image/x-icon'});
