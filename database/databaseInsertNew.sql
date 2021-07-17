@@ -53,8 +53,16 @@ INSERT INTO User_Group(User_ID, Group_ID) VALUES
 ('murre97', 001),
 ('murre97', 002),
 ('murre97', 003),
+('murre97', 004),
+('murre97', 005),
+('Staraptoah', 001),
+('Staraptoah', 002),
+('Staraptoah', 003),
 ('Staraptoah', 004),
-('Dirk16', 005),
+('Dirk16', 001),
+('Dirk16', 002),
+('Dirk16', 003),
+('Albert19', 001);
 ('Albert19', 002);
 
 INSERT INTO Modul_Group(Modul_ID, Group_ID) VALUES

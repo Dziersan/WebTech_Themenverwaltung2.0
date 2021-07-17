@@ -290,7 +290,7 @@ function fillMyModules (request, response, next)
             var resultString = "";
             for (var i = 0; i < result.length; i++)
             {
-                resultString += '<a href="/Modul' /* + result[i].Modulname + */ + '">' + result[i].Modulname + '</a>';
+                resultString += '<a href="/Modul?modul=' + result[i].Modulname  + '">' + result[i].Modulname + '</a>';
             }
             response.send(resultString);
         } 
@@ -310,7 +310,7 @@ function fillMyGroups (request, response, next)
             var resultString = "";
             for (var i = 0; i < result.length; i++)
             {
-                resultString += '<a href="/Gruppe'/* + result[i].Gruppenname + */ + '">' + result[i].Gruppenname + '</a>';
+                resultString += '<a href="/Gruppe?grp=' + result[i].Gruppenname + '">' + result[i].Gruppenname + '</a>';
             }
             response.send(resultString);
         }

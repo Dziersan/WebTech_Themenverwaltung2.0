@@ -3,6 +3,7 @@ const session = require('express-session');
 const app = express();
 const connection = require('../scripts/databaseConnection.js');
 const path = require("../../../../config/pathConfig.json");
+const url = require('url');
 
 // Uploading Files
 const multer = require('multer');
@@ -32,7 +33,10 @@ app.post("/upload", upload.single('uploadAbgaben'), (request, response) => {
 });
 
 app.get("/getStudentsIntoTable", (request, response, next) => {
-    let groupName = 'Gravelshipping++';
+    let groupName = request.query.grp;
+    //let fullUrl = request.headers.referer; //Alter versuch
+    //let groupName = fullUrl.substr(30);
+    //let groupName = "Gravelshipping++"
     let abfrage = `SELECT * FROM user INNER JOIN user_group on user.User_ID = user_group.User_ID INNER JOIN groups on groups.Group_ID = user_group.Group_ID WHERE groups.Gruppenname = '${groupName}' ORDER BY user.Nachname`;
     connection.query(abfrage, function(err, result, fields)
     {
@@ -44,10 +48,13 @@ app.get("/getStudentsIntoTable", (request, response, next) => {
             {
                 resultString += "<tr><td>" + result[i].User_ID + "</td>" + "<td>" + result[i].Vorname + " " + result[i].Nachname + "</td>" + "<td>" + result[i].E_Mail + "</td></tr>";
             }
-            console.log(resultString);
             response.send(resultString);
         }
     });
+});
+
+app.get("/Modul", (request, response) => {
+
 });
 
 //-------------------------------------------

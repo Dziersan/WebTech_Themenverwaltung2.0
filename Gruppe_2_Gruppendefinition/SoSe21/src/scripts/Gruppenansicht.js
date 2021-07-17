@@ -1,12 +1,17 @@
-fetch('/getStudentsIntoTable')
+fetch('/getStudentsIntoTable' + window.location.search)
     .then (response => 
     {
-        console.log(response);
         return response.text();
     }).then (text =>
     {
         document.getElementById("tableStudentGroup").innerHTML = text; 
     })
+
+const urlParams = new URLSearchParams(window.location.search);
+const grpName = urlParams.get('grp');
+grpName.toString();
+console.log(grpName);
+document.getElementById("title").innerHTML = "test";  
 
 
 /* TODO: 
