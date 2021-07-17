@@ -18,13 +18,6 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-// Static Files
-
-app.use('/style', express.static('./Gruppe_2_Gruppendefinition/SoSe21/src/style'));
-app.use('/scripts', express.static('./Gruppe_2_Gruppendefinition/SoSe21/src/scripts'));
-app.use('/Modul', express.static('./Gruppe_2_Gruppendefinition/SoSe21/src/Modulgruppenverwaltung'));
-app.use('/Gruppe', express.static('./Gruppe_2_Gruppendefinition/SoSe21/src/Modulgruppenverwaltung'));
-
 function getRoutes()
 {
     return app;
@@ -34,12 +27,14 @@ function getRoutes()
 //          Gruppenansicht Routes
 //-------------------------------------------
 
-function getStudentData (request, response, next)
-{
-    let userID = request.session.userId;
-    //console.log(userID);
-    let query = "SELECT * FROM User ORDER BY 'Nachname'";
-    connection.query(query, function(err, result, fields)
+app.post("/upload", upload.single('uploadAbgaben'), (request, response) => {
+    return response.json({status: 'OK'});
+});
+
+app.get("/getStudentsIntoTable", (request, response, next) => {
+    let groupName = 'Gravelshipping++';
+    let abfrage = `SELECT * FROM user INNER JOIN user_group on user.User_ID = user_group.User_ID INNER JOIN groups on groups.Group_ID = user_group.Group_ID WHERE groups.Gruppenname = '${groupName}' ORDER BY user.Nachname`;
+    connection.query(abfrage, function(err, result, fields)
     {
         if (err) response.send("Es konnten keine Daten abgerufen werden.");
         if (result != null)
@@ -49,17 +44,11 @@ function getStudentData (request, response, next)
             {
                 resultString += "<tr><td>" + result[i].User_ID + "</td>" + "<td>" + result[i].Vorname + " " + result[i].Nachname + "</td>" + "<td>" + result[i].E_Mail + "</td></tr>";
             }
+            console.log(resultString);
             response.send(resultString);
         }
     });
-}
-
-app.post("/upload", upload.single('uploadAbgaben'), (request, response) => {
-    //console.log("Upload");
-    return response.json({status: 'OK'});
 });
-
-app.get("/getStudentsIntoTable", getStudentData);
 
 //-------------------------------------------
 //          Übersicht Gruppen Routes
@@ -67,10 +56,10 @@ app.get("/getStudentsIntoTable", getStudentData);
 
 function getMyGroups(request, response, next) {
     let UserID = request.session.userId;
-    let query = `SELECT  grou.Beschreibung as Beschreibung ,grou.Teilnehmer_Max,DATE_FORMAT(Abgabedatum, "%a %d/%m/%Y")as Abgabedatum ,
+    let query = `SELECT  grou.Gruppenname as Gruppenname ,grou.Teilnehmer_Max,DATE_FORMAT(Abgabedatum, "%a %d/%m/%Y")as Abgabedatum ,
                 (SELECT  Count(user_group.User_ID) as Teilnehmer FROM groups gro
                 INNER JOIN user_group ON gro.group_id = user_group.group_id
-                WHERE gro.Beschreibung = grou.Beschreibung) as Teilnehmer,
+                WHERE gro.Gruppenname = grou.Gruppenname) as Teilnehmer,
                 (Select Vorname as Vorname_Dozent From user where user.User_ID =
                 (SELECT  um.User_ID FROM groups gr
                 INNER JOIN user_group ON gr.group_id = user_group.group_id
@@ -100,7 +89,7 @@ function getMyGroups(request, response, next) {
         if (result != null) {
             var resultSring="";
             for (var i = 0; i < result.length; i++) {
-                resultSring += "<tr><td><a  onclick='myClick'>"  + result[i].Beschreibung + "</a></td>" + "<td>" + result[i].Vorname + " " + result[i].Nachname + "</td>" + "<td>" + result[i].Teilnehmer + "</td>" + "<td>" + result[i].Teilnehmer_Max + "</td>" + "<td>" + result[i].Abgabedatum + "</td></tr>";
+                resultSring += "<tr><td><a  onclick='myClick'>"  + result[i].Gruppenname + "</a></td>" + "<td>" + result[i].Vorname + " " + result[i].Nachname + "</td>" + "<td>" + result[i].Teilnehmer + "</td>" + "<td>" + result[i].Teilnehmer_Max + "</td>" + "<td>" + result[i].Abgabedatum + "</td></tr>";
             }
             response.send(resultSring);
         }
@@ -275,29 +264,11 @@ app.get("/newModule", (request, response) => {
 //-------------------------------------------
 
 app.get("/Gruppe", (request, response) => {
-    var options = {
-        headers: {
-            'x-timestamp': Date.now(),
-            'x-sent': true,
-            'name': request.query,
-        }
-      };
-    response.sendFile(path.path + '/Gruppe_2_Gruppendefinition/SoSe21/src/Modulgruppenverwaltung/Gruppenansicht.html', options);
+    response.sendFile(path.path + '/Gruppe_2_Gruppendefinition/SoSe21/src/Modulgruppenverwaltung/Gruppenansicht.html');
 });
 
 app.get("/Modul", (request, response) => {
-    var options = {
-        headers: {
-            'x-timestamp': Date.now(),
-            'x-sent': true,
-            'name': request.query,
-        }
-      };
-    response.sendFile(path.path + '/Gruppe_2_Gruppendefinition/SoSe21/src/Modulgruppenverwaltung/Modulansicht.html', options);
-});
-
-app.get("/testingSomething", (request, response) => {
-    response.send(request.query);
+    response.sendFile(path.path + '/Gruppe_2_Gruppendefinition/SoSe21/src/Modulgruppenverwaltung/Modulansicht.html');
 });
 
 app.get("/modulverwaltung", (request, response) => {

@@ -290,7 +290,7 @@ function fillMyModules (request, response, next)
             var resultString = "";
             for (var i = 0; i < result.length; i++)
             {
-                resultString += '<a href="/Modul/?' + result[i].Modulname + '">' + result[i].Modulname + '</a>';
+                resultString += '<a href="/Modul' /* + result[i].Modulname + */ + '">' + result[i].Modulname + '</a>';
             }
             response.send(resultString);
         } 
@@ -310,7 +310,7 @@ function fillMyGroups (request, response, next)
             var resultString = "";
             for (var i = 0; i < result.length; i++)
             {
-                resultString += '<a href="/Gruppe/?' + result[i].Gruppenname + '">' + result[i].Gruppenname + '</a>';
+                resultString += '<a href="/Gruppe'/* + result[i].Gruppenname + */ + '">' + result[i].Gruppenname + '</a>';
             }
             response.send(resultString);
         }
@@ -321,8 +321,6 @@ function fillMyGroups (request, response, next)
 app.get("/fillMyModules", fillMyModules);
 
 app.get("/fillMyGroups", fillMyGroups);
-
-
 
 const server = app.listen(PORT, () => console.log(
     "listening on: " +
