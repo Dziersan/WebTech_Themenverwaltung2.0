@@ -47,6 +47,8 @@ app.use('/HTML', express.static('./Gruppe_5_Editor/Web Technologies/Projekt/HTML
 
 app.use('/style', express.static('./Gruppe_2_Gruppendefinition/SoSe21/src/style'));
 app.use('/scripts', express.static('./Gruppe_2_Gruppendefinition/SoSe21/src/scripts'));
+app.use('/Modul', express.static('./Gruppe_2_Gruppendefinition/SoSe21/src/Modulgruppenverwaltung'));
+app.use('/Gruppe', express.static('./Gruppe_2_Gruppendefinition/SoSe21/src/Modulgruppenverwaltung'));
 
 //Limit sizes of json files of the server accepts
 app.use(express.json({limit: "10kb"}));
@@ -195,11 +197,13 @@ app.get("/cookie", (request, response) => {
 //-------------------------------------------
 
 app.get("/upload", routerGrp2);
-app.get("/getStudentsIntoTable", router);
+app.get("/getStudentsIntoTable", routerGrp2);
 app.get("/joinGroup", router);
 app.get("/requirementsdefinition", router);
 
 // Routes Gruppe 2
+app.get("/Gruppe", routerGrp2);
+app.get("/Modul", routerGrp2);
 app.get("/myGroups", routerGrp2);
 app.get("/modulverwaltung", routerGrp2);
 app.get("/hausarbeitsthemen",routerGrp2);
@@ -208,6 +212,13 @@ app.get("/filteredModules", routerGrp2);
 app.get("/insertDozent", routerGrp2);
 app.get("/newModule", routerGrp2);
 app.get("/getMyGroupsIntoTable",routerGrp2);
+app.post("/upload", routerGrp2);
+app.get("/modulAnsicht", routerGrp2);
+app.get("/editTeilnehmer", routerGrp2);
+app.get("/modulAnsichtHeader", routerGrp2);
+app.get("/modulAnsichtStudentsTable", routerGrp2);
+app.get("/modulAnsichtGroupsTable", routerGrp2);
+app.get("/modulAnsichtAddTeilnehmer", routerGrp2);
 
 app.get("/favicon.ico", (request, response) => {
     response.writeHead(204, {'Content-Type': 'image/x-icon'});
@@ -267,28 +278,6 @@ app.post("/index.html", redirectLogin, (request, response, next) => {
     next();
 });
 
-function getStudentData (request, response, next)
-{
-    let userID = request.session.userId;
-    console.log(userID);
-    let query = "SELECT * FROM User ORDER BY 'Nachname'";
-    connection.query(query, function(err, result, fields)
-    {
-        if (err) response.send("Es konnten keine Daten abgerufen werden.");
-        if (result != null)
-        {
-            var resultString = "";
-            for (var i = 0; i < result.length; i++)
-            {
-                resultString += "<tr><td>" + result[i].User_ID + "</td>" + "<td>" + result[i].Vorname + " " + result[i].Nachname + "</td>" + "<td>" + result[i].E_Mail + "</td></tr>";
-            }
-            response.send(resultString);
-        }
-    });
-}
-
-app.get("/getStudentsIntoTable", getStudentData);
-
 function fillMyModules (request, response, next)
 {
     let userID = request.session.userId;
@@ -301,7 +290,7 @@ function fillMyModules (request, response, next)
             var resultString = "";
             for (var i = 0; i < result.length; i++)
             {
-                resultString += '<a href="">' + result[i].Modulname + '</a>';
+                resultString += '<a href="/Modul' /* + result[i].Modulname + */ + '">' + result[i].Modulname + '</a>';
             }
             response.send(resultString);
         } 
@@ -321,7 +310,7 @@ function fillMyGroups (request, response, next)
             var resultString = "";
             for (var i = 0; i < result.length; i++)
             {
-                resultString += '<a href="">' + result[i].Gruppenname + '</a>';
+                resultString += '<a href="/Gruppe'/* + result[i].Gruppenname + */ + '">' + result[i].Gruppenname + '</a>';
             }
             response.send(resultString);
         }
@@ -332,8 +321,6 @@ function fillMyGroups (request, response, next)
 app.get("/fillMyModules", fillMyModules);
 
 app.get("/fillMyGroups", fillMyGroups);
-
-
 
 const server = app.listen(PORT, () => console.log(
     "listening on: " +

@@ -107,7 +107,6 @@ a
     height: 100%;
 }
 
-/* https://stackoverflow.com/questions/37579377/table-with-display-block-properties-i-would-like-to-create-the-row-widths-to-1#comment62646396_37579377 Tabellen-Design - Problem: Tabelle soll in ihrer Höhe limitiert werden, allerdings trotzdem Width 100% akzeptieren. */
 .participant-view table
 {
     display: block;

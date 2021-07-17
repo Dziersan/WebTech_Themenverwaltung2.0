@@ -1,11 +1,22 @@
 const express = require('express');
 const session = require('express-session');
-const multer = require('multer');
-const uuid = require('uuid').v4;
 const app = express();
 const connection = require('../scripts/databaseConnection.js');
 const path = require("../../../../config/pathConfig.json");
-const upload = multer({ dest: 'uploads/' });
+
+// Uploading Files
+const multer = require('multer');
+const uuid = require('uuid').v4;
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads');
+    },
+    filename: (req, file, cb) => {
+        const { originalname } = file;
+        cb(null, originalname);
+    }
+});
+const upload = multer({ storage: storage });
 
 function getRoutes()
 {
@@ -16,12 +27,14 @@ function getRoutes()
 //          Gruppenansicht Routes
 //-------------------------------------------
 
-function getStudentData (request, response, next)
-{
-    let userID = request.session.userId;
-    console.log(userID);
-    let query = "SELECT * FROM User ORDER BY 'Nachname'";
-    connection.query(query, function(err, result, fields)
+app.post("/upload", upload.single('uploadAbgaben'), (request, response) => {
+    return response.json({status: 'OK'});
+});
+
+app.get("/getStudentsIntoTable", (request, response, next) => {
+    let groupName = 'Gravelshipping++';
+    let abfrage = `SELECT * FROM user INNER JOIN user_group on user.User_ID = user_group.User_ID INNER JOIN groups on groups.Group_ID = user_group.Group_ID WHERE groups.Gruppenname = '${groupName}' ORDER BY user.Nachname`;
+    connection.query(abfrage, function(err, result, fields)
     {
         if (err) response.send("Es konnten keine Daten abgerufen werden.");
         if (result != null)
@@ -30,19 +43,12 @@ function getStudentData (request, response, next)
             for (var i = 0; i < result.length; i++)
             {
                 resultString += "<tr><td>" + result[i].User_ID + "</td>" + "<td>" + result[i].Vorname + " " + result[i].Nachname + "</td>" + "<td>" + result[i].E_Mail + "</td></tr>";
-                console.log(resultString);
             }
+            console.log(resultString);
             response.send(resultString);
         }
     });
-}
-
-app.post("/upload", upload.single('abgabe'), (request, response) => {
-    console.log("Upload");
-    return response.json({status: 'OK'});
 });
-
-app.get("/getStudentsIntoTable", getStudentData);
 
 //-------------------------------------------
 //          Übersicht Gruppen Routes
@@ -50,10 +56,10 @@ app.get("/getStudentsIntoTable", getStudentData);
 
 function getMyGroups(request, response, next) {
     let UserID = request.session.userId;
-    let query = `SELECT  grou.Beschreibung as Beschreibung ,grou.Teilnehmer_Max,DATE_FORMAT(Abgabedatum, "%a %d/%m/%Y")as Abgabedatum ,
+    let query = `SELECT  grou.Gruppenname as Gruppenname ,grou.Teilnehmer_Max,DATE_FORMAT(Abgabedatum, "%a %d/%m/%Y")as Abgabedatum ,
                 (SELECT  Count(user_group.User_ID) as Teilnehmer FROM groups gro
                 INNER JOIN user_group ON gro.group_id = user_group.group_id
-                WHERE gro.Beschreibung = grou.Beschreibung) as Teilnehmer,
+                WHERE gro.Gruppenname = grou.Gruppenname) as Teilnehmer,
                 (Select Vorname as Vorname_Dozent From user where user.User_ID =
                 (SELECT  um.User_ID FROM groups gr
                 INNER JOIN user_group ON gr.group_id = user_group.group_id
@@ -83,7 +89,7 @@ function getMyGroups(request, response, next) {
         if (result != null) {
             var resultSring="";
             for (var i = 0; i < result.length; i++) {
-                resultSring += "<tr><td><a  onclick='myClick'>"  + result[i].Beschreibung + "</a></td>" + "<td>" + result[i].Vorname + " " + result[i].Nachname + "</td>" + "<td>" + result[i].Teilnehmer + "</td>" + "<td>" + result[i].Teilnehmer_Max + "</td>" + "<td>" + result[i].Abgabedatum + "</td></tr>";
+                resultSring += "<tr><td><a  onclick='myClick'>"  + result[i].Gruppenname + "</a></td>" + "<td>" + result[i].Vorname + " " + result[i].Nachname + "</td>" + "<td>" + result[i].Teilnehmer + "</td>" + "<td>" + result[i].Teilnehmer_Max + "</td>" + "<td>" + result[i].Abgabedatum + "</td></tr>";
             }
             response.send(resultSring);
         }
@@ -96,7 +102,86 @@ app.get("/getMyGroupsIntoTable", getMyGroups);
 //          Modulansicht Routes
 //-------------------------------------------
 
-// Missing
+function modulAnsichtStudentsTable(request, response, next) {
+    let modulID= "Muss DIR MIR NOCH SCHICKEN"
+    let query = `SELECT Nachname, Vorname, HS_ID, Studiengang from user u
+                 INNER JOIN user_modul um on u.User_ID = um.User_ID
+                 where Modul_ID ='1' and Rolle = 'Teilnehmer'` ;
+    connection.query(query, function(err, result, fields)
+    {
+        if (result != null) {
+            var resultSring="";
+            for (var i = 0; i < result.length; i++) {
+                resultSring += "<tr><td>" + result[i].Vorname + " " + result[i].Nachname + "</td><td>" + result[i].HS_ID + "</td><td>" + result[i].Studiengang + "</td></tr>";
+            }
+            response.send(resultSring);
+        }
+    });
+}
+
+function modulAnsichtGroupsTable(request, response, next) {
+    let modulID = "MUSS DIRK MIR NOCH SCHICKEN";
+    let query = `SELECT Beschreibung, Teilnehmer_Max,
+                        (SELECT Nachname from user u
+                                                  INNER JOIN user_modul um on u.User_ID = um.User_ID
+                         WHERE Rolle = 'Lehrbeauftragter' AND Modul_ID = '1') as Nachname,
+                        (SELECT Vorname from user u
+                                                 INNER JOIN user_modul um on u.User_ID = um.User_ID
+                         WHERE Rolle = 'Lehrbeauftragter' AND Modul_ID = '1') as Vorname,
+                        (SELECT  Count(user_group.User_ID) FROM groups gro
+                                                                    INNER JOIN user_group ON gro.group_id = user_group.group_id
+                         WHERE gro.Beschreibung = gr.Beschreibung) as Teilnehmeranzahl
+                 from groups as gr
+                          INNER JOIN modul_group mg on gr.Group_ID = mg.Group_ID
+                 WHERE mg.Modul_ID ='1'` ;
+    connection.query(query, function(err, result, fields)
+    {
+        if (result != null) {
+            var resultSring="";
+            for (var i = 0; i < result.length; i++) {
+                resultSring += "<tr><td>" + result[i].Beschreibung + "</td><td>" + result[i].Vorname + " " + result[i].Nachname + "</td><td>" + result[i].Teilnehmeranzahl + "</td><td>" + result[i].Teilnehmer_Max + "</td><td><button type='button' class='' id='" + result[i].Beschreibung + "'>Beitreten</button></td></tr>";
+            }
+            response.send(resultSring);
+        }
+    });
+}
+
+function modulAnsichtHeader(request, response, next) {
+    let modulID = "MUSS DIRK MIR NOCH SCHICKEN";
+    let query = `SELECT Beschreibung from modul
+                 WHERE Modul_ID = '1'` ;
+    connection.query(query, function(err, result, fields)
+    {
+        if (result != null) {
+            var resultSring="";
+
+            resultSring += "<tr><td> Modulansicht: " + result[0].User_ID + "</td></tr>";
+
+            response.send(resultSring);
+        }
+    });
+}
+
+function modulAnsichtAddTeilnehmer(request, response, next) {
+    let userID = request.session.userId;
+    let query = `SELECT Vorname, User_ID, Nachname, HS_ID, Studiengang from user
+                 where Position = 'Student'` ;
+    connection.query(query, function(err, result, fields)
+    {
+        if (result != null) {
+            var resultSring="";
+            for (var i = 0; i < result.length; i++) {
+                resultSring += "<tr><td>" + result[i].Vorname +  " " + result[i].Nachname + "</td><td>" + result[i].HS_ID + "</td><td>" + result[i].Studiengang + "</td><td><button type='button' class='' id='Btn" + result[i].User_ID + "'>Hinzufügen</button></td></tr>";
+            }
+            response.send(resultSring);
+        }
+    });
+}
+
+app.get("/modulAnsichtAddTeilnehmer", modulAnsichtAddTeilnehmer);
+app.get("/modulAnsichtHeader", modulAnsichtHeader);
+app.get("/modulAnsichtGroupsTable", modulAnsichtGroupsTable);
+app.get("/modulAnsichtStudentsTable", modulAnsichtStudentsTable);
 
 //-------------------------------------------
 //          Übersicht Module Routes
@@ -178,9 +263,12 @@ app.get("/newModule", (request, response) => {
 //          General Routes
 //-------------------------------------------
 
-app.get("/mygroups", (request, response) => {
-    console.log("Send Gruppenansicht.html");
+app.get("/Gruppe", (request, response) => {
     response.sendFile(path.path + '/Gruppe_2_Gruppendefinition/SoSe21/src/Modulgruppenverwaltung/Gruppenansicht.html');
+});
+
+app.get("/Modul", (request, response) => {
+    response.sendFile(path.path + '/Gruppe_2_Gruppendefinition/SoSe21/src/Modulgruppenverwaltung/Modulansicht.html');
 });
 
 app.get("/modulverwaltung", (request, response) => {
@@ -189,6 +277,14 @@ app.get("/modulverwaltung", (request, response) => {
 
 app.get("/hausarbeitsthemen", (request, response) => {
     response.sendFile(path.path + '/Gruppe_2_Gruppendefinition/SoSe21/src/Modulgruppenverwaltung/Übersicht_Hausarbeitsthemen.html');
+});
+
+app.get("/modulAnsicht", (request, response) => {
+    response.sendFile(path.path + '/Gruppe_2_Gruppendefinition/SoSe21/src/Modulgruppenverwaltung/Modulansicht.html');
+});
+
+app.get("/editTeilnehmer", (request, response) => {
+    response.sendFile(path.path + '/Gruppe_2_Gruppendefinition/SoSe21/src/Modulgruppenverwaltung/addTeilnehmer.html');
 });
 
 module.exports = getRoutes();

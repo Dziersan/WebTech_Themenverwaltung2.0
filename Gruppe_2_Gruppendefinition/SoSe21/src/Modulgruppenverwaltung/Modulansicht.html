@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Modulgruppenverwaltung</title>
-    <link rel="stylesheet" href="../../../../view/css/navigationBar.css" type="text/css">
+    <link rel="stylesheet" href="../style/navigationBar.css" type="text/css">
     <!-- <link rel="stylesheet" href="../style.css" type="text/css"> -->
     <link rel="stylesheet" href="../style/Modulansicht.css" type="text/css">
     <!-- <link rel="stylesheet" href="../style/tableFormatting.css" type="text/css"> -->
+    <script src="../../../../services/dynamicData.js" type="text/javascript" language="Javascript"></script>
     <title>Modulgruppenübersicht</title>
 </head>
 
@@ -21,31 +22,26 @@
             </div>
         </a>
 
-        <div class="dropdown">
-            <form action="/myModules">
+        <div class="dropdown" style="margin-left: 5px">
+            <form action="/modulverwaltung">
                 <button class="header_button">Modulverwaltung</button>
             </form>
-            <div class="dropdown-content">
-                <a href="">Placeholder01</a> <!-- Hier sollen alle gewählte Module im DropDown angezeigt werden. -->
-                <a href="">Placeholder02</a>
+            <div id="ModulesDropdown" class="dropdown-content">
+                <!-- to be filled by script -->
+
             </div>
         </div>
 
-        <div class="dropdown">
-            <form action="/myGroups">
-                <button class="header_button">Meine Gruppe</button>
+        <div class="dropdown" style="margin-left: 5px">
+            <form action="/hausarbeitsthemen">
+                <button class="header_button">Meine Gruppen</button>
             </form>
-            <div class="dropdown-content">
-                <a href="/joinGroup">Gruppe beitreten</a>
-                <a href="/requirementsdefinition">Anforderungsdefinition</a>
+            <div id="GroupsDropdown" class="dropdown-content">
+                <!-- to be filled by script -->
+
             </div>
         </div>
 
-        <div class="dropdown">
-            <form action="/presentation">
-                <button class="header_button">Präsentation</button>
-            </form>
-        </div>
     </div>
 
     <div id="All_Header_right" class="All_Header_Boxes" style="float: right">
@@ -75,7 +71,7 @@
         </div>
         <div class="dropdown">
             <form action="/logout" method="post">
-                <button class="header_button" type="submit">Logout</button>
+                <button class="header_button">Logout</button>
             </form>
         </div>
     </div>
@@ -84,7 +80,7 @@
 <div class="pageContent">
     
     <div class="grid-header"> <!-- Überschriftenzeile -->
-        <h1>Modulansicht: ModSim</h1>
+        <h1 id="modulAnsichtHeader"></h1>
     </div>
 
     <div class ="grid-topic"> <!-- Topic 1-->
@@ -109,7 +105,9 @@
     </div>
 
    <div class ="grid-button"> <!-- Buttons 1-->
-       <button>Teilnehmer hinzufügen</button>
+       <form action="/editTeilnehmer">
+           <button>Teilnehmer bearbeiten</button>
+       </form>
    </div>
 
     <div class ="grid-b-topic"> <!-- Topic 2-->

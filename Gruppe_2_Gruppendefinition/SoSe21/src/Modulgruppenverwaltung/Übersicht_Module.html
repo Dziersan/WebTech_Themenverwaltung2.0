@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../style/navigationBar.css" type="text/css">
     <link rel="stylesheet" href="../style/Übersicht_Module.css" type="text/css">
     <script src="../scripts/Übersicht_Module.js"></script>
+    <script src="../../../../services/dynamicData.js" type="text/javascript" language="Javascript"></script>
     <title>Modulgruppenübersicht</title>
 </head>
 
@@ -20,31 +21,26 @@
             </div>
         </a>
 
-        <div class="dropdown">
-            <form action="/myModules">
+        <div class="dropdown" style="margin-left: 5px">
+            <form action="/modulverwaltung">
                 <button class="header_button">Modulverwaltung</button>
             </form>
-            <div class="dropdown-content">
-                <a href="">Placeholder01</a> <!-- Hier sollen alle gewählte Module im DropDown angezeigt werden. -->
-                <a href="">Placeholder02</a>
+            <div id="ModulesDropdown" class="dropdown-content">
+                <!-- to be filled by script -->
+
             </div>
         </div>
 
-        <div class="dropdown">
-            <form action="/myGroups">
-                <button class="header_button">Meine Gruppe</button>
+        <div class="dropdown" style="margin-left: 5px">
+            <form action="/hausarbeitsthemen">
+                <button class="header_button">Meine Gruppen</button>
             </form>
-            <div class="dropdown-content">
-                <a href="/joinGroup">Gruppe beitreten</a>
-                <a href="/requirementsdefinition">Anforderungsdefinition</a>
+            <div id="GroupsDropdown" class="dropdown-content">
+                <!-- to be filled by script -->
+
             </div>
         </div>
 
-        <div class="dropdown">
-            <form action="/presentation">
-                <button class="header_button">Präsentation</button>
-            </form>
-        </div>
     </div>
 
     <div id="All_Header_right" class="All_Header_Boxes" style="float: right">
@@ -74,7 +70,7 @@
         </div>
         <div class="dropdown">
             <form action="/logout" method="post">
-                <button class="header_button" type="submit">Logout</button>
+                <button class="header_button">Logout</button>
             </form>
         </div>
     </div>

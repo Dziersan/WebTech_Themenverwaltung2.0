@@ -1,36 +1,48 @@
-//Funktionen ausführen beim Laden der Seite Modulansicht
-window.onload = () => {
-    gruppenAnsichtStudentsTable()
-    gruppenAnsichtGroupsTable()
+fetch('/modulAnsichtHeader')
+    .then (response =>
+    {
+        console.log(response);
+        return response.text();
+    }).then (text =>
+{
+    document.getElementById("modulAnsichtHeader").innerHTML = text;
+})
+
+fetch('/modulAnsichtStudentsTable')
+    .then (response =>
+    {
+        console.log(response);
+        return response.text();
+    }).then (text =>
+{
+    document.getElementById("tableStudentModul").innerHTML = text;
+})
+
+fetch('/modulAnsichtGroupsTable')
+    .then (response =>
+    {
+        console.log(response);
+        return response.text();
+    }).then (text =>
+{
+    document.getElementById("tableDataHausarbeit").innerHTML = text;
+})
+
+fetch('/modulAnsichtAddTeilnehmer')
+    .then (response =>
+    {
+        console.log(response);
+        return response.text();
+    }).then (text =>
+{
+    document.getElementById("searchtable").innerHTML = text;
+})
+
+if (document.getElementById("editTeilnehmer") != null) {
+    document.getElementById("editTeilnehmer").addEventListener("click", editTeilnehmer);
 }
 
-// Modulansicht Tabelle füllen.
-function gruppenAnsichtStudentsTable()
+function addTeilnehmer()
 {
-    let xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function()
-    {
-        if (this.readyState == 4 && this.status == 200)
-        {
-            document.getElementById("tableStudentModul").innerHTML = this.responseText;
-        }
-    }
-    xhttp.open("GET", "http://127.0.0.1:1337/gruppenAnsichtStudentsTable", true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send();
-}
-
-function gruppenAnsichtGroupsTable()
-{
-    let xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function()
-    {
-        if (this.readyState == 4 && this.status == 200)
-        {
-            document.getElementById("tableDataHausarbeit").innerHTML = this.responseText;
-        }
-    }
-    xhttp.open("GET", "http://127.0.0.1:1337/gruppenAnsichtGroupsTable", true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send();
+    let button = document.getElementById("BtnStaraptoah")
 }
