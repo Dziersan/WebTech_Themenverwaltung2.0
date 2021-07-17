@@ -11,14 +11,19 @@ const urlParams = new URLSearchParams(window.location.search);
 const grpName = urlParams.get('grp');
 grpName.toString();
 console.log(grpName);
-document.getElementById("title").innerHTML = "test";  
+document.getElementById("title").innerHTML = grpName;  
 
 
 /* TODO: 
 
-1. Versuchen den Gruppennamen über den Header zu übergeben
+Gruppe Gravelshipping++ übergibt das "++" nicht über window.location.search
+--> Workaround: Man könnte bei der Erstellung der Gruppen Sonderzeichen verbieten.
 
-2. Gruppenname direkt über ein Template "Response.render" setzen..
-Dann auf dieses Feld zugreifen, wenn der Tabelleninhalt geladen werden soll.
+Abklären, ob wir für die Adminview eine extra HTML Seite definieren oder die Elemente dynamisch eingeblendet werden sollen.
+--> Adminview erstellen
+
+Calender CSS fertigstellen
+
+Termine abrufen und anzeigen lassen
 
 */
