@@ -179,6 +179,9 @@ app.get("/presentation", router);
 app.get("/admin", router);
 app.get("/stud", router);
 app.get("/RequirementsEditGer", redirectLogin, router);
+app.get("/GanttHome", redirectLogin, router);
+app.get("/newmilestone", router);
+app.get("/getMilestones", redirectLogin, router);
 
 //Get without HTML|| email
 app.get("/cookie", (request, response) => {
@@ -283,9 +286,6 @@ app.post("/editReq", (request, response) => {
     response.end();
 });
 
-
-
-
 /**
  * @method
  * POST Methods
@@ -301,6 +301,9 @@ app.use(routerChangePassword);
 
 routerLogin = require('./api/routesLogin.js');
 app.use(routerLogin);
+
+routerMilestone = require('./services/routesMilestone.js');
+app.use(routerMilestone);
 
 routerRegister = require('./api/routesRegister.js');
 app.use(routerRegister);

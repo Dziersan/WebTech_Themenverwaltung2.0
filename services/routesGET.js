@@ -14,6 +14,10 @@ router.get("/RequirementsEditGer", (request, response) => {
     response.sendFile(path.path + "/view/html/MainPage.html");
 });
 
+router.get("/GanttHome", (request, response) => {
+    response.sendFile(path.path + "/view/html/GanttHome.html");
+});
+
 router.get("/RequirementsEditGer", (request, response) => {
     response.sendFile(path.path + "/view/html/login.html");
 });
@@ -42,6 +46,23 @@ router.get("/stud", (request, response) => {
  *  This method provides a json object with all registerd users.
  */
 
+router.get('/getMilestones', (request, response) => {
+    sql = "SELECT milestone_id AS milestoneID, description, status, successor," +
+        "start, end, duration " +
+        "FROM MILESTONES;";
+
+    connection.query(sql, (err, result) => {
+        if (err) {
+            console.log(err);
+            response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+            console.log('Verbindung zur Datenbank fehlgeschlagen (getAllMilestones');
+            return;
+        }
+        console.log(result);
+        response.json(result);
+    });
+});
+
 router.get("/getUser", (request, response) => {
 
     let sql = "SELECT id, name, surname, e_mail, password, course, authorization, verified FROM USER;";
@@ -60,7 +81,7 @@ router.get("/getUser", (request, response) => {
 /**
  * This method allows the user and admin to change their personal data.
  */
-router.get("/updateUser", (request, response) => {
+ router.get("/updateUser", (request, response) => {
 
     let sql = "SELECT id, name, surname, e_mail, password, course, authorization FROM USER;";
 
@@ -137,6 +158,10 @@ router.get("/successfullregistration", (request, response) => {
 
 router.get("/changepassword", (request, response) => {
     response.sendFile(path.path + '/view/html/changePassword.html');
+});
+
+router.get("/newmilestone", (request, response) => {
+    response.sendFile(path.path + '/view/html/MilestonesNewMilestone.html');
 });
 
 router.get("/confirmation", (request, response) => {

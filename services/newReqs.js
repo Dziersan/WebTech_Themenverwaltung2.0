@@ -1,5 +1,6 @@
 function checkdouble() {
 
+
     let idprefield2 = document.getElementById("idpre").value;
     let idfield2 = document.getElementById("id").value;
 

@@ -1,0 +1,604 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: "Lucida Sans", sans-serif;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+[class*="col-"] {
+    float: left;
+    padding-top: 15px;
+    border-bottom-style: dashed;
+    border-color: blueviolet;
+}
+
+#container {
+    width: 1500px;
+    height: 1000px;
+    margin: 0;
+    padding: 0;
+}
+
+/* Smartphone View */
+[class*="col-"] {
+    width: 100%;
+}
+
+/* Desktop PC View */
+@media only screen and (min-width: 768px) {
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%; height: 100; max-width: 300px;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+}
+
+/*CHARTS*/
+
+.chart {
+    display: grid;
+    border: 2px solid #000;
+    position: relative;
+    overflow: hidden;
+}
+
+.chart-row {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    background-color: #DCDCDC;
+}
+
+.chart-row:nth-child(odd) {
+    background-color: #e8f0fe;
+}
+
+.chart-period {
+    color: #fff;
+    background-color: #708090 !important;
+    border-bottom: 2px solid #000;
+    grid-template-columns: 50px repeat(12, 1fr);
+}
+
+.chart-lines {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+    grid-template-columns: 50px repeat(12, 1fr);
+}
+
+.chart-period > span {
+    text-align: center;
+    font-size: 13px;
+    align-self: center;
+    font-weight: bold;
+    padding: 15px 0;
+}
+
+.chart-lines > span {
+    display: block;
+    border-right: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.chart-row-item {
+    background-color: #808080;
+    border: 1px solid #000;
+    border-top: 0;
+    border-left: 0;
+    padding: 20px 0;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.chart-row-bars {
+    list-style: none;
+    display: grid;
+    padding: 15px 0;
+    margin: 0;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 10px 0;
+    border-bottom: 1px solid #000;
+}
+
+
+
+
+/*LISTE*/
+
+li2 {
+    font-weight: 450;
+    text-align: left;
+    font-size: 15px;
+    min-height: 15px;
+    background-color: #708090;
+    padding: 5px 15px;
+    color: #fff;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+ul .chart-li-one {
+    grid-column: 1/2;
+    background-color: #588BAE;
+}
+
+ul .chart-li-two-a {
+    grid-column: 2/2;
+    background-color: #0080FF;
+}
+
+ul .chart-li-two-b {
+    grid-column: 2/4;
+    background-color: #4682B4;
+}
+
+ul .chart-li-three {
+    grid-column: 3/5;
+    background-color: #57A0D3;
+}
+
+ul .chart-li-four {
+    grid-column: 3/9;
+    background-color: #0E4D92;
+}
+
+ul .chart-li-five {
+    grid-column: 7/10;
+    background-color: #4F97A3;
+}
+
+ul .chart-li-six {
+    grid-column: 10/12;
+    background-color: #73C2FB;
+}
+
+ul .chart-li-seven {
+    grid-column: 12/12;
+    background-color: #0080FF;
+}
+
+
+
+/*!* The Close Button *!*/
+/*.newMilestoneClose, .editTimeClose, .newTimeClose, .editMilestoneClose {*/
+/*    color: #aaaaaa;*/
+/*    float: right;*/
+/*    font-size: 28px;*/
+/*    font-weight: bold;*/
+/*}*/
+
+/*.newMilestoneClose:hover, .editTimeClose:hover, .newTimeClose:hover, editMilestoneClose:hover*/
+/*.newMilestoneClose:focus, .editTimeClose:focus, .newTimeClose:focus, editMilestoneClose:focus {*/
+/*    color: #000;*/
+/*    text-decoration: none;*/
+/*    cursor: pointer;*/
+/*}*/
+
+
+
+
+/* >>Sidenav Design<< */
+menu {
+    padding: 0;
+    margin: 0;
+    max-width: 55px;
+}
+
+.menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    padding-top: 0px;
+    padding-bottom: 100%;
+    background-color: #e5e5e5;
+    padding-bottom: 50vh;
+}
+
+.menu li h3 {
+    padding: 0;
+}
+
+.menu li a {
+    display: block;
+    color: #000;
+    margin-top: 0;
+    padding: 8px;
+    margin-bottom: 0px;
+    text-decoration: none;
+}
+
+.menu li h2 {
+    margin: 0;
+}
+
+.menu li a.active {
+    background-color: #06abf7;
+    color: white;
+}
+
+.menu li a:hover:not(.active) {
+    background-color: #06abf7;
+    color: #fff;
+    cursor: pointer;
+}
+
+.menu iframe {
+    padding: 0;
+    margin: 0;
+    border-style: none;
+}
+
+
+
+/* >>Grid Design Hauptfenster<< */
+.grid-container {
+    display: grid;
+    grid-template-columns: 45% 45%;
+    grid-gap: 30px;
+    margin: 12px;
+    margin-top: 0;
+    background-color: #fff;
+    padding: 0px;
+}
+
+.grid-container > div {
+    background-color: #e5e5e5;
+    text-align: left;
+    padding: 20px;
+    font-size: medium;
+}
+
+.grid-container ul {
+    list-style-type: none;
+    max-height: 130px;
+    overflow: auto;
+    margin: 5px;
+    padding: 10px;
+    text-align: left;
+    background-color: #fff;
+}
+
+.grid-container table {
+    border-collapse: collapse;
+}
+
+.grid-container tr:hover td {
+    background-color: #1E90FFFF;
+    color: #fff;
+    cursor: default;
+}
+
+
+.grid-container tr:nth-child(even) {background: #e5e5e5}
+.grid-container tr:nth-child(odd) {background: #fff}
+
+.grid-container input[type="radio"] {
+    cursor: pointer;
+}
+
+.grid-container radio {
+    cursor: pointer;
+}
+
+.selectedTablerow {
+    background-color: #1E90FFFF;
+    color: #000000;
+}
+
+/* >>Edit Button Design<< */
+.editbtn {
+    background-color: #FFF;
+    border: 1px solid #06abf7;
+    border-radius: 3px;
+    color: #06abf7;
+    font-size: large;
+    margin-top: 15px;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 4px;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.editbtn:hover {
+    background-color:  #06abf7;
+    color:#FFF;
+}
+
+.deletebtn {
+    background-color: darkred;
+    border: none;
+    color: #fff;
+    font-size: large;
+    margin-top: 15px;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 4px;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.deleteInGridbtn {
+    background-color: darkred;
+    border: none;
+    color: #fff;
+    font-size: small;
+    margin-top: 1px;
+    padding: 1px 2px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 4px;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+
+button {
+    cursor: pointer;
+}
+
+.closeBtn {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.closeBtn:hover, .closeBtn:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+/* Modal Content */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    /* padding-top: 100px;  Location of the box */
+    padding: 10px;
+    width: 67.5%; /* Full width */
+    height: 55%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    align-self: center;
+    background-color: #000; /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #e5e5e5;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #444;
+    width: 80%;
+}
+
+.modal input[type=number] {
+    width: 50px;
+}
+
+.modal tr:hover td {
+    background-color: inherit;
+    color: inherit;
+    cursor: default;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+/* STOPWATCH */
+#stopwatch {
+    display: flex;
+    flex-wrap: nowrap;
+    max-width: 640px;
+}
+
+#stopwatch-time {
+    width: 100%;
+    padding: 20px 0;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    background: #e5e5e5;
+    color: #000;
+}
+
+#stopwatch-save, #stopwatch-go {
+    box-sizing: border-box;
+    width: 50%;
+    cursor: pointer;
+    padding: 20px 0;
+    border: 0;
+    color: #FFF;
+    font-size: 20px;
+}
+
+#stopwatch-save {
+    background-color: #06abf7;
+}
+
+#stopwatch-go {
+    background-color: #20a308;
+}
+/* ------------------------------------------------------------------------------------------------------------------ */
+/* STATISTICS */
+
+
+@supports (display:grid) {
+
+    @media (max-width: 1349px) {
+        .statistics-grid-left {
+            display: none;
+        }
+    }
+
+    @media (min-width: 1350px) {
+
+        .statistics-graph {
+            font-weight: normal;
+            margin-bottom: 3em;
+        }
+
+        .statistics-graph tbody th {
+            text-align: right;
+        }
+
+        .statistics-graph {
+            display: block;
+            width: 100%;
+            height: 400px;
+        }
+
+        .statistics-graph thead {
+            display: none;
+        }
+
+        /* Graph */
+        .statistics-graph tbody {
+            position: relative;
+            display: grid;
+            grid-template-columns:repeat(auto-fit, minmax(2em, 1fr));
+            column-gap: 2.5%;
+            align-items: end;
+            height: 20em;
+            margin: 3em 1em 1em 2em;
+            padding: 0 1em;
+            border-bottom: 2px solid #000;
+            border-left: 2px solid #000;
+            background: repeating-linear-gradient(
+                    180deg,
+                    #000 0,
+                    #000 1px,
+                    transparent 1px,
+                    transparent 20%
+            );
+        }
+        .statistics-graph tbody:before,
+        .statistics-graph tbody:after {
+            position: absolute;
+            left: -3.2em;
+            width: 2.8em;
+            text-align: right;
+            font-weight: bold;
+        }
+
+        /* Y-axes-texts */
+        .statistics-graph tbody:before {
+            content: "100 Std.";
+            top: -1em;
+        }
+        .statistics-graph tbody:after {
+            content: "0 Std.";
+            bottom: -1em;
+        }
+
+        /* Bars */
+        .statistics-graph td {
+            width: 100%;
+            height: 100%;
+            background: #06abf7;
+            border-radius: .3em .3em 0 0;
+        }
+        .statistics-graph th,
+        .statistics-graph td {
+            display: block;
+            text-align: center;
+        }
+        .statistics-graph tr {
+            position: relative;
+        }
+
+        /* Bar alignment including labeling) */
+        .statistics-graph tbody th {
+            position: absolute;
+            top: -3em;
+            left: 0;
+            width: 100%;
+            font-weight: normal;
+            text-align: center;
+            white-space: nowrap;
+            transform: rotate(-25deg);
+        }
+
+        /* Bar-opacity while hovering */
+        .statistics-graph tr:hover td {
+            opacity: .75;
+        }
+
+        /* Text inside bar while hovering */
+        .statistics-graph td span {
+            font-weight: bold;
+            overflow: hidden;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 0;
+            margin: -1em 0 0;
+            opacity: 0;
+            transition: opacity .5s;
+            color: #FFF;
+        }
+
+        /* Text alignment inside bar while hovering */
+        .toggleStatisticsGraph:checked + table td span,
+        .statistics-graph tr:hover td span {
+            width: 4em;
+            margin-left: -2em;
+            opacity: 1;
+        }
+    }
+}
+
+/*Table - Total project time*/
+.statistics-table caption {
+    font-weight: bold;
+    font-size: 26px;
+    margin: .5em;
+    margin-top: -1.5em;
+}
+
+.statistics-table table, .statistics-table td, .statistics-table th {
+    border: 1.5px solid black;
+    text-align: left;
+}
+
+table.statistics-table{
+    border-collapse: collapse;
+    width: 80%;
+    margin: 10%;
+}
+
+.statistics-table .leftColumn {
+    width: 10%;
+    text-align: center;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+/* STATISTICS PDF*/
+.milestone-statistics-pdf{
+    margin: 4%;
+}
+
+html2canvas {
+    width: 1500px !important;
+    height: 600px !important;
+}

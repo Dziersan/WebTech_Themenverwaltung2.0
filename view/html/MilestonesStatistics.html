@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Milestones Statistics</title>
+    <script src="./javascript/MSScriptTest.js" defer></script>
+    <link type="text/css" rel="stylesheet" href="./css/MSnavigationBar.css">
+    <link type="text/css" rel="stylesheet" href="./css/MShomepage.css">
+    <link rel="stylesheet" type="text/css" href="./css/MSstylesheet.css">
+</head>
+<body>
+
+<div id="UserMenu_All_Header">
+    <div id="All_Header_left" class="All_Header_Boxes" style="float: left; margin-right: 5px">
+        <a href="https://osca.hs-osnabrueck.de/">
+            <div class="outer-wrapper" style="float:left">
+                <div class="frame" style="height: 52px">
+                    <img id="oscaImagelogo" class="oscaLogo">
+                </div>
+            </div>
+        </a>
+
+        <div class="dropdown" style="margin-left: 5px">
+            <form action="/myGroups">
+                <button class="header_button">Meine Gruppe</button>
+            </form>
+            <div class="dropdown-content">
+                <a href="/joinGroup">Gruppe beitreten</a>
+                <a href="/requirementsdefinition">Anforderungsdefinition</a>
+            </div>
+        </div>
+
+        <div class="dropdown" style="margin-left: 5px">
+            <form action="/GanttHome">
+                <button class="header_button" onclick="loadTable()" >Meilensteinplanung</button>
+            </form>
+        </div>
+
+        <div class="dropdown" style="margin-left: 5px">
+            <form action="/RequirementsEditGer">
+                <button class="header_button" onclick="loadTable()" >Group 5</button>
+            </form>
+        </div>
+
+        <button class="header_button">Präsentation</button>
+
+    </div>
+
+
+    <div id="All_Header_right" class="All_Header_Boxes" style="float: right">
+
+        <div class="frame" style="float: left;">
+            <a href="https://my.hs-osnabrueck.de/owa/">
+                <div class="outer-wrapper" style="float:left">
+                    <div class="frame" style="height: 52px">
+                        <i id="mailIcon" class="far fa-envelope fa-lg" style="font-size: 25px"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="frame" style="float: left;">
+            <a href="https://netcase.hs-osnabrueck.de">
+                <div class="outer-wrapper" style="float:left">
+                    <div class="frame" style="height: 52px">
+                        <i id="netcaseIcon" class="fas fa-briefcase fa-lg" style="font-size: 25px"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="dropdown">
+            <form action="/showUsers">
+                <button class="header_button">Benutzer</button>
+            </form>
+        </div>
+        <div class="dropdown">
+            <form action="/logout" method="post">
+                <button class="header_button">Logout</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Navigationbar Left -->
+<div class="row">
+    <div class="col-3 menu">
+        <div class="menu">
+            <iframe name="Uebersicht" src="MSUebersicht.html" frameborder="0" width="100%" height="1000"></iframe>
+        </div>
+    </div>
+    <div class="col-9">
+        <div class="grid-container">
+
+            <div class="statistics-grid-left">
+                <h1 align="center">Zeitaufwand Gesamt</h1>
+                <table class="statistics-graph">
+                    <tbody>
+                    <tr style="height:16.5%">
+                        <th scope="row">T1</th>
+                        <td><span>16,5 Std.</span></td>
+                    </tr>
+                    <tr style="height:20%">
+                        <th scope="row">T2</th>
+                        <td><span>20 Std.</span></td>
+                    </tr>
+                    <tr style="height:17%">
+                        <th scope="row">T3</th>
+                        <td><span>17 Std.</span></td>
+                    </tr>
+                    <tr style="height:18%">
+                        <th scope="row">T4</th>
+                        <td><span>18 Std.</span></td>
+                    </tr>
+                    <tr style="height:19%">
+                        <th scope="row">T5</th>
+                        <td><span>19 Std.</span></td>
+                    </tr>
+                    <tr style="height:18.5%">
+                        <th scope="row">T6</th>
+                        <td><span>18,5 Std.</span></td>
+                    </tr>
+                    <tr style="height:18.5%">
+                        <th scope="row">T6</th>
+                        <td><span>18,5 Std.</span></td>
+                    </tr>
+                    <tr style="height:18.5%">
+                        <th scope="row">T6</th>
+                        <td><span>18,5 Std.</span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>                <table class="statistics-table">
+                <caption>Zeitaufwand Gesamt</caption>
+                <tbody>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Stundenaufwand</th>
+                </tr>
+                <tr>
+                    <td class="leftColumn">T1</td>
+                    <td>Max Mustermann</td>
+                    <td>16,5 Std.</td>
+                </tr>
+                <tr>
+                    <td class="leftColumn">T2</td>
+                    <td>Max Musterfrau</td>
+                    <td>20 Std.</td>
+                </tr>
+                <tr>
+                    <td class="leftColumn">T3</td>
+                    <td>Max Muster</td>
+                    <td>17 Std.</td>
+                </tr>
+                <tr>
+                    <td class="leftColumn">T4</td>
+                    <td>Max Mann</td>
+                    <td>18 Std.</td>
+                </tr>
+                <tr>
+                    <td class="leftColumn">T5</td>
+                    <td>Max Frau</td>
+                    <td>19 Std.</td>
+                </tr>
+                <tr>
+                    <td class="leftColumn">T6</td>
+                    <td>Max Maxax</td>
+                    <td>18,5 Std.</td>
+                </tr>
+                </tbody>
+            </table>
+                <a href="MilestoneStatisticsPDF.html" target="_blank"><button style="float: right" class="editbtn">Als PDF-Datei drucken</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

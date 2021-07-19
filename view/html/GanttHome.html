@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Milestones Home</title>
+    <script src="./javascript/MSScriptTest.js" defer></script>
+    <link type="text/css" rel="stylesheet" href="./css/MSnavigationBar.css">
+    <link type="text/css" rel="stylesheet" href="./css/MShomepage.css">
+    <link rel="stylesheet" type="text/css" href="./css/MSstylesheet.css">
+    <script src="https://cdn.anychart.com/releases/8.6.0/js/anychart-core.min.js"></script>
+    <script src ="https://cdn.anychart.com/releases/8.6.0/js/anychart-gantt.min.js"></script>
+    <script src ="./javascript/getMilestones.js"></script>
+</head>
+<body onload="">
+
+<div id="UserMenu_All_Header">
+    <div id="All_Header_left" class="All_Header_Boxes" style="float: left; margin-right: 5px">
+        <a href="https://osca.hs-osnabrueck.de/">
+            <div class="outer-wrapper" style="float:left">
+                <div class="frame" style="height: 52px">
+                    <img id="oscaImagelogo" class="oscaLogo">
+                </div>
+            </div>
+        </a>
+
+        <div class="dropdown" style="margin-left: 5px">
+            <form action="/myGroups">
+                <button class="header_button">Meine Gruppe</button>
+            </form>
+            <div class="dropdown-content">
+                <a href="/joinGroup">Gruppe beitreten</a>
+                <a href="/requirementsdefinition">Anforderungsdefinition</a>
+            </div>
+        </div>
+
+        <div class="dropdown" style="margin-left: 5px">
+            <form action="/GanttHome">
+                <button class="header_button" onclick="" >Meilensteinplanung</button>
+            </form>
+        </div>
+
+        <div class="dropdown" style="margin-left: 5px">
+            <form action="/RequirementsEditGer">
+                <button class="header_button" onclick="loadTable()" >Group 5</button>
+            </form>
+        </div>
+
+        <button class="header_button">Präsentation</button>
+
+    </div>
+
+
+    <div id="All_Header_right" class="All_Header_Boxes" style="float: right">
+
+        <div class="frame" style="float: left;">
+            <a href="https://my.hs-osnabrueck.de/owa/">
+                <div class="outer-wrapper" style="float:left">
+                    <div class="frame" style="height: 52px">
+                        <i id="mailIcon" class="far fa-envelope fa-lg" style="font-size: 25px"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="frame" style="float: left;">
+            <a href="https://netcase.hs-osnabrueck.de">
+                <div class="outer-wrapper" style="float:left">
+                    <div class="frame" style="height: 52px">
+                        <i id="netcaseIcon" class="fas fa-briefcase fa-lg" style="font-size: 25px"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="dropdown">
+            <form action="/showUsers">
+                <button class="header_button">Benutzer</button>
+            </form>
+        </div>
+        <div class="dropdown">
+            <form action="/logout" method="post">
+                <button class="header_button">Logout</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Navigationbar Left -->
+<div class="row">
+    <div class="col-3 menu">
+        <div class="menu">
+            <iframe name="Uebersicht" src="MSUebersicht.html" frameborder="0" width="100%" height="1000"></iframe>
+        </div>
+    </div>
+    <div class="col-3">
+        <div id="container">
+
+            <script>
+
+                var tasknames = [];
+                var startDates = [];
+                var endDates = [];
+
+                function newMilestone(name, startDate, endDate) {
+                    tasknames.push(name);
+                    startDates.push(startDate);
+                    endDates.push(endDate);
+                }
+
+                function deleteMilestone(name){
+                    var index = tasknames.indexOf(name);
+
+                    tasknames.splice(index, 1);
+                    startDates.splice(index, 1);
+                    endDates.splice(index, 1);
+
+                }
+
+                newMilestone("Planning", '2021-09-26', '2021- 10-26');
+                newMilestone("Elfenbein", '2021-10-26', '2021- 12-16');
+                newMilestone("Kühe treten", '2022-01-12', '2022- 03-20');
+                newMilestone("Vandalismus", '2022-02-02', '2022- 05-16');
+                anychart.onDocumentReady(function () {
+                    // create data
+                    var data = [];
+
+                    deleteMilestone("Vandalismus");
+
+                    for(var i = 0; i < tasknames.length; i++){
+
+                        var test = data.push({
+
+
+                            name: tasknames[i],
+                            actualStart: new Date(startDates[i]),
+                            actualEnd: new Date(endDates[i]),
+
+                        },);
+                    }
+
+
+
+
+                    console.log(data);
+
+                    // create a data tree
+                    var treeData = anychart.data.tree(data, "as-tree");
+
+                    // create a chart
+                    var chart = anychart.ganttProject();
+
+                    // set the row height
+                    chart.defaultRowHeight(35);
+
+
+                    chart.getTimeline().elements().labels(false);
+
+                    // configure tooltips of the timeline
+                    chart.getTimeline().tooltip().useHtml(true);
+                    chart.getTimeline().tooltip().format(
+
+                        "{%actualStart}{dateTimeFormat:dd MMM} - " +
+                        "{%actualEnd}{dateTimeFormat:dd MMM}"
+
+                    );
+                    // set the data
+                    chart.data(treeData);
+                    // configure the scale
+                    chart.getTimeline().scale().maximum(Date.UTC(2022, 06, 30));
+                    // set the container id
+                    chart.container("container");
+                    // initiate drawing the chart
+                    chart.draw();
+                    // fit elements to the width of the timeline
+                    chart.fitAll();
+                });
+            </script>
+    </div>
+
+
+
+    </div>
+
+</div>
+
+</body>
+</html>

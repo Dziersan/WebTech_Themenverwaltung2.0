@@ -1,6 +1,19 @@
-DROP SCHEMA IF EXISTS Webtech;
-CREATE SCHEMA Webtech;
+/* DROP SCHEMA IF EXISTS Webtech;
+CREATE SCHEMA Webtech; */
 USE Webtech;
+
+DROP TABLE IF EXISTS requirements;
+CREATE TABLE requirements
+(
+    id INTEGER PRIMARY KEY,
+    name VARCHAR (255) NULL,
+    shortdesc VARCHAR (255),
+    starttime DATE NULL,
+    endtime DATE NULL
+);
+
+
+
 
 DROP TABLE IF EXISTS topic;
 CREATE TABLE topic

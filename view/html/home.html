@@ -30,14 +30,22 @@
             </div>
         </div>
 
-        <form action="/presentation">
-            <button class="header_button">Präsentation</button>
-        </form>
+        <div class="dropdown" style="margin-left: 5px">
+            <form action="/GanttHome">
+                <button class="header_button" onclick="loadTable()" >Meilensteinplanung</button>
+            </form>
+        </div>
 
-        <form action="/RequirementsEditGer">
-            <button class="header_button" onclick="loadTable()" >Group 5</button>
-        </form>
+        <div class="dropdown" style="margin-left: 5px">
+            <form action="/RequirementsEditGer">
+                <button class="header_button" onclick="loadTable()" >Group 5</button>
+            </form>
+        </div>
+
+        <button class="header_button">Präsentation</button>
+
     </div>
+
 
     <div id="All_Header_right" class="All_Header_Boxes" style="float: right">
 

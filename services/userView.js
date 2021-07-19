@@ -86,7 +86,7 @@ function deleteMyUserMessage() {
 }
 
 class UserToUpdate {
-    constructor(name, surname, email, password, course, id) {
+    constructor(name, surname, email, password, course, semester, id) {
         this.name = name;
         this.surname = surname;
         this.email = email;
