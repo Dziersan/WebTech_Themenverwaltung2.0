@@ -13,6 +13,13 @@ grpName.toString();
 console.log(grpName);
 document.getElementById("title").innerHTML = grpName;  
 
+document.getElementById("addGroupMembers").addEventListener("click", function()
+{
+    var newWindowContent = document.getElementById('chooseMembers').innerHTML;
+    var newWindow = window.open("", "", "width=500, height=400, backround-color=black");
+    newWindow.document.write(newWindowContent);
+    console.log("Window should Popup");
+});
 
 /* TODO: 
 
@@ -24,6 +31,6 @@ Abklären, ob wir für die Adminview eine extra HTML Seite definieren oder die E
 
 Calender CSS fertigstellen
 
-Termine abrufen und anzeigen lassen
+Termine abrufen und anzeigen lassen.
 
 */

@@ -271,7 +271,17 @@ app.get("/newModule", (request, response) => {
 //-------------------------------------------
 
 app.get("/Gruppe", (request, response) => {
-    response.sendFile(path.path + '/Gruppe_2_Gruppendefinition/SoSe21/src/Modulgruppenverwaltung/Gruppenansicht.html');
+    if (request.session.userAuthorization == 'Student')
+    { 
+        console.log("Student");
+        response.sendFile(path.path + '/Gruppe_2_Gruppendefinition/SoSe21/src/Modulgruppenverwaltung/Gruppenansicht.html');
+    }
+    else if (request.session.userAuthorization == 'Dozent')
+    {
+        console.log("Dozent");
+        response.sendFile(path.path + '/Gruppe_2_Gruppendefinition/SoSe21/src/Modulgruppenverwaltung/Gruppenansicht_admin.html');
+    }
+    
 });
 
 app.get("/Modul", (request, response) => {
