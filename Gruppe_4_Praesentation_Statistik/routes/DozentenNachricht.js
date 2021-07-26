@@ -1,8 +1,8 @@
-var app = require('../app');
-var con = require('../mysql');
+var app = require('../Module_app_mysql_pool/app');
+var con = require('../Module_app_mysql_pool/mysql');
 
-/*const express = require('express');
-const Message = express.Router();*/
+const express = require('express');
+const Message = express.Router();
 
 id=[];
 groupID =[];
@@ -20,7 +20,7 @@ con.query("Select * from messages",function (result,err)
 
     for (var i= 0; i<result.length;i++)
     {
-        id[i] = result[i].message_id;
+        id[i] = result[i].messageId;
         nachricht[i] = result[i].message;
         datum[i] = result[i].date;
         anfrageArt[i] = result[i].type;

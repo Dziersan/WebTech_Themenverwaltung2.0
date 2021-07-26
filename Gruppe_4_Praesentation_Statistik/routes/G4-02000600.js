@@ -20,7 +20,7 @@ getValuesfromDb();
 
 
 
-G4_02000600.get('C:\\Users\\Julia\\IdeaProjects\\WebTech_Themenverwaltung2.0\\Gruppe_4_Praesentation_Statistik\\public\\javascripts\\G4-0200js.js', function (request, result) {
+G4_02000600.get('../public/javascripts/G4-0200js.js', function (request, result) {
 
     //Für den Zugriff auf die Seite für Admin und Dozent sonst redirect zu G4-0200fs
     //  if (request.session.userAuthorization === "lecturer"

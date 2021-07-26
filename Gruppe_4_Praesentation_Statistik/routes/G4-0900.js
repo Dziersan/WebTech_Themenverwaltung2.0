@@ -12,7 +12,7 @@ const G4_0900 = express.Router();
 
 
 
-app.get('/G4-0900', function (request, response) {
+app.get('G4-0900', function (request, response) {
     console.log("G4-0900 wurde geladen");
     response.render("G4-0900.ejs", {
         benutzername: "Test",

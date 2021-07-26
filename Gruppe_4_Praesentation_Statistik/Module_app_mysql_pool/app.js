@@ -1,7 +1,8 @@
-var express = require('express');
+/*var express = require('express');*/
 var path = require('path');
 const bodyParser = require('body-parser');
-
+const express = require('express');
+const router = express.Router()
 
 var app = express();
 
@@ -18,4 +19,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({extended: false}));
 
 
-module.exports = app;
+
+router.get("/login", function(req, res) {
+    res.render("C:/Users/Julia/IdeaProjects/WebTech_Themenverwaltung2.0/Gruppe_4_Praesentation_Statistik/Views/G4-0050.ejs");
+});
+
+
+module.exports = router;

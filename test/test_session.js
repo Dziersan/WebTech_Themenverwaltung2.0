@@ -203,7 +203,7 @@ app.post("/register", redirectHome, (request, response) => {
                             })
 
                     } else {
-                        console.log("Token10 is expired");
+                        console.log("Token_client is expired");
                         responsetext = false;
                     }
                 }

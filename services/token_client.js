@@ -7,7 +7,7 @@
 
 const tokenMaxLife = 5256000; //10 Years
 
-class Token10 {
+class Token_client {
     constructor(start, end, token, time) {
         this.start = start;
         this.time = time;
@@ -42,7 +42,7 @@ function createToken() {
     end = end.toISOString().slice(0, 19).replace('T', ' ');
 
 
-    token = new Token10(start, end, genToken, time);
+    token = new Token_client(start, end, genToken, time);
 
     postCreateToken(token);
 }
@@ -55,7 +55,7 @@ function deleteToken() {
 
     let tokenDelete = document.getElementById("deleteToken").value;
 
-    token = new Token10(0, 0, tokenDelete, 0);
+    token = new Token_client(0, 0, tokenDelete, 0);
 
     const options = {
         method: "POST",
@@ -89,11 +89,11 @@ function createTokenCalender() {
     var testDate1 = new Date(endCalender);
     var time = diffMinutes(testDate, testDate1)
 
-    let token = new Token10(startCalender, endCalender, genToken, time);
+    let token = new Token_client(startCalender, endCalender, genToken, time);
 
     if (startCalender === ""
         || endCalender === "") {
-        alert("Token10 konnte nicht erstellt werden");
+        alert("Token_client konnte nicht erstellt werden");
     } else {
         postCreateToken(token);
     }

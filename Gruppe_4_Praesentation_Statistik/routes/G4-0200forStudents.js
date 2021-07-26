@@ -13,7 +13,7 @@ const G4_0200fs = express.Router();
  * Arrays für die Speicherung der SQL-Abfragen
  */
 
-reihenfolge =[];
+reihenfolgen =[];
 gruppe=[];
 thema=[];
 mitglieder=[];
@@ -40,9 +40,11 @@ G4_0200fs.get('/G4-0200fS', function (request, result) {
         modulname: modul,
         modulthema: anlass,
         datum: tag,
-        raum1: raum,
+        raum: raum,
 
     });
+
+
 
 });
 
@@ -66,7 +68,7 @@ function getValuesfromDb() {
 
 
         for (var i = 0; i < result.length; i++) {
-            reihenfolge[i] = result[i].group_order;
+            reihenfolgen[i] = result[i].group_order;
             gruppe[i] = result[i].group_number;
             thema[i] = result[i].topic;
             mitglieder[i] = result[i].number_members;

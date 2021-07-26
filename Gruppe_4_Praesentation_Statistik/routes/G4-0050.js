@@ -11,14 +11,13 @@ var con = require('../Module_app_mysql_pool/mysql');
 const express = require('express');
 const G4_0050 = express.Router();
 
-//Definition der Arrays
 modulid = [];
 modul_bezeichnung = [];
 
 /**
  * JS auf ejs laden und aufrufen
  */
-app.get("C:\Users\Julia\IdeaProjects\WebTech_Themenverwaltung2.0\Gruppe_4_Praesentation_Statistik\routes\G4-0050.js", function (request, result) {
+app.get('/G4-0050', function (request, result) {
     result.render("G4-0050.ejs");
 });
 
@@ -51,7 +50,7 @@ function getValuesfromDb0050() {
         //durchläuft alle Zeilen und gibt diese Werte an result weiter
         for (var i = 0; i < result.length; i++) {
 
-            modulid[i] = result[i].module_id;
+            modulid[i] = result[i].modul_id;
         }
     });
     //modul_bezeichnung
@@ -60,7 +59,7 @@ function getValuesfromDb0050() {
         if (err) throw err;
         for (var i = 0; i < result.length; i++) {
 
-            modul_bezeichnung[i] = result[i].description;
+            modul_bezeichnung[i] = result[i].beschreibung;
         }
     });
 }

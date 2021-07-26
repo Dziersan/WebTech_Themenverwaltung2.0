@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () =>{
     getDataStudent()
 });
 
@@ -10,16 +10,16 @@ async function getDataStudent() {
 
 }
 
-function loadHTMLStudent(data) {
+function loadHTMLStudent(data){
     const tbody = document.getElementById('student-table');
     let tbodyHTML = "";
 
-    if (data.length === 0) {
+    if(data.length === 0){
         tbody.innerHTML = "<tr><td class='no-dat' colspan='5'> No Data</td></tr>"
         return;
     }
 
-    for (item of data) {
+    for(item of data) {
         tbodyHTML += "<tr>";
         tbodyHTML += `<td>${item.SOFTWARENAME}</td>`;
         tbodyHTML += `<td>${item.SOFTWARE_BESCHREIBUNG}</td>`;
@@ -31,7 +31,7 @@ function loadHTMLStudent(data) {
 
 document.getElementById('anfrage-btn').addEventListener('click', insertAnfrage);
 
-async function insertAnfrage() {
+async function insertAnfrage(){
     const name = document.getElementById('gruppen-name').value;
     const anfrageText = document.getElementById('anfrage').value;
     let anfrage = {

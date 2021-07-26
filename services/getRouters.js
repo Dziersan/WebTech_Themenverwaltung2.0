@@ -10,6 +10,8 @@ const router = express.Router();
 //const connection = require('../services/getDatabaseConnection.js');
 const path = require("../config/pathConfig.json");
 const connection = require('./getDatabaseConnection.js');
+
+
 router.get("/RequirementsEditGer", (request, response) => {
     response.sendFile(path.path + "/view/html/MainPage.html");
 });
@@ -31,7 +33,7 @@ router.get("/register", (request, response) => {
 });
 
 router.get("/admin", (request, response) => {
-    response.sendFile(path.path + "/view/html/admin.html");
+    response.sendFile(path.path + "/view/html/admin_G3.html");
 });
 
 router.get("/stud", (request, response) => {
@@ -267,5 +269,48 @@ router.post("/loadtable", (request, response) => {
         }
     })
 });
+
+router.get('/getSFTWPOOLData', (req, res) => {
+    let sql = 'SELECT * FROM softwarepool';
+
+    connection.query(sql, (err, result) => {
+        if (err) {
+            res.end();
+            return;
+        }
+        res.json(result);
+    })
+})
+
+
+router.get('/getNotificationData', (req, res) => {
+    let sql = 'SELECT * FROM notification';
+
+    connection.query(sql, (err, result) => {
+        if (err) {
+            res.end();
+            return;
+        }
+        res.json(result);
+    })
+})
+
+/*router.get("/admin_G3", (request, response) => {
+
+    response.sendFile(path.path + "/view/html/admin_G3.html");
+
+});
+
+router.get("/stud_G3", (request, response) => {
+
+    response.sendFile(path.path + "/view/html/student_G3.html");
+
+});
+
+router.get("/upload_G3", (request, response) => {
+
+    response.sendFile(path.path + "/view/html/upload_G3.html");
+
+});*/
 
 module.exports = router;

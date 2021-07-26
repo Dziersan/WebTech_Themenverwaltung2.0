@@ -1,4 +1,4 @@
-$(document).ready(() => {
+$(document).ready( () => {
     $("#btnSubmit").click((event) => {
         //stop submit the form, we will post it manually.
         event.preventDefault();

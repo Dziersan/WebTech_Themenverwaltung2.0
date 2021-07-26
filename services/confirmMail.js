@@ -1,32 +1,46 @@
-/** changePassord
- *
+/** confirmMailNode
  *  Version 1
  *  Modification date: 22.07.2020
  *  Author: Sven Petersen
- *  @class to generate a object for password changing
+ *  @class
  */
+const express = require('express');
+const connection = require('./getDatabaseConnection.js');
+const redirect = require("./routesRedirect");
+const app = express();
+const router = express.Router();
 
-import {getUrlParameter} from "./getUrlParameter";
+/**
+ * @method
+ * This router handles the verification of user http request.
+ */
+router.post("/verify", (request, response) => {
 
-class UserToVerify {
+    let token = request.body.token;
+    let e_mail = request.body.email;
 
-    constructor(email, token) {
-        this.email = email;
-        this.token = token;
+    if (token === undefined || token === null
+        || e_mail === undefined || e_mail === null) {
+        response.redirect("/login");
     }
+    response.redirect("/login");
+});
+
+/**
+ * @method
+ * This method changes the status of mail verified to true.
+ * @param e_mail to determine entry in database
+ * @param token to determine entry in database
+ * @returns {Promise<void>}
+ */
+async function updateUser(e_mail, token) {
+    let sql = "UPDATE USER SET verified = 1 WHERE confirm_token = '" + token +
+        "' AND e_mail = '" + e_mail + "';";
+
+    connection.query(sql, function (err) {
+        if (err) throw err;
+    });
+    return true;
 }
 
-async function sendUserDataToConfirm() {
-    let email = getUrlParameter('email');
-    let token = getUrlParameter('opt');
-
-    const user = new UserToVerify(email, token);
-    const options = {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(user)
-    };
-
-    fetch('/verify', options)
-        .then(response => response.json())
-}
+module.exports = router;

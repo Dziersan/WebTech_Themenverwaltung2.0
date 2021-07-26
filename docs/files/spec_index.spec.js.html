@@ -310,7 +310,7 @@ describe(&quot;Index Tests: &quot;, function() {
             });
         });
 
-        it(&#x27;Failed to Login because Token10 doesnt exists&#x27;, function (done) {
+        it(&#x27;Failed to Login because Token_client doesnt exists&#x27;, function (done) {
             token = &quot;FalscherToken&quot;;
             email = &quot;Email.Test@hs-osnabrueck.de&quot;;
 
@@ -347,7 +347,7 @@ describe(&quot;Index Tests: &quot;, function() {
             });
         });
 
-        it(&#x27;Failed to Login because Token10 is expired&#x27;, function (done) {
+        it(&#x27;Failed to Login because Token_client is expired&#x27;, function (done) {
             token = &quot;c3ehla&quot;;
             email = &quot;Email.Test@hs-osnabrueck.de&quot;;
             var jsonRegisterBodyUser = {
@@ -364,7 +364,7 @@ describe(&quot;Index Tests: &quot;, function() {
             });
         });
 
-        it(&#x27;Failed to Login because Token10 is expired&#x27;, function (done) {
+        it(&#x27;Failed to Login because Token_client is expired&#x27;, function (done) {
             token = &quot;9bllcx&quot;;
             email = &quot;Email.Test@web.de&quot;;
             var jsonRegisterBodyUser = {
