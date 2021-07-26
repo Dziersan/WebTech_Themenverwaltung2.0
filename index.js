@@ -190,9 +190,9 @@ app.get("/presentation", router);
 app.get("/admin", router);
 app.get("/stud", router);
 app.get("/RequirementsEditGer", redirectLogin, router);
-app.get("/upload_G3", router);
-app.get("/admin_G3",  router);
-app.get("/student_G3",  router);
+app.get("/upload_G3",router);
+app.get("/admin_G3", router);
+app.get("/student_G3" ,router);
 
 /*
 router2 = require("./services/file.router")(app, router_G3, upload);
@@ -204,7 +204,6 @@ app.get('/student_G3', router2);
 */
 
 
-app.get
 //Get without HTML|| email
 app.get("/cookie", (request, response) => {
     response.json(request.session);

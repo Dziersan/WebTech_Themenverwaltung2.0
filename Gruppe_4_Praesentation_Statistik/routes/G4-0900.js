@@ -1,19 +1,15 @@
-
-
 /**
  * G4-0900 / Anfrage Dozenten für Hilfe und/oder Terminänderung
  */
 
 //Modulimport
-var app = require('../Module_app_mysql_pool/app');
-var con = require('../Module_app_mysql_pool/mysql');
+let con = require('../Module_app_mysql_pool/mysql');
 const express = require('express');
 const G4_0900 = express.Router();
 
 
-
-app.get('G4-0900', function (request, response) {
-    console.log("G4-0900 wurde geladen");
+G4_0900.get('/G4-0100', async function (request, response) {
+    let data = await getPresentation();
     response.render("G4-0900.ejs", {
         benutzername: "Test",
         Gruppennummer: "2",
@@ -26,8 +22,8 @@ app.get('G4-0900', function (request, response) {
  */
 // CALL OF the form sendMessage
 
-app.post('/sendMessage', function (request, result) {
-    var sql = "INSERT INTO messages(message, date, type) VALUES('"+
+G4_0900.post('/sendMessage', function (request, result) {
+    var sql = "INSERT INTO messages(message,date,type) VALUES("+
         request.body.message + "','" + request.body.date + "','"
         + request.body.dateRequestQuestion + "');";
     con.query(sql, function (err) {

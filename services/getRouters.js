@@ -13,7 +13,7 @@ const connection = require('./getDatabaseConnection.js');
 
 
 router.get("/RequirementsEditGer", (request, response) => {
-    response.sendFile(path.path + "/view/html/MainPage.html");
+    response.sendFile(path.path + "/view/html/mainPage.html");
 });
 
 router.get("/RequirementsEditGer", (request, response) => {
@@ -33,15 +33,21 @@ router.get("/register", (request, response) => {
 });
 
 router.get("/admin_G3", (request, response) => {
-    response.sendFile(path.path + "/view/html/admin_G3.html");
+        response.sendFile(path.path + "/view/html/admin_G3.html");
+
 });
+
 
 router.get("/student_G3", (request, response) => {
-    response.sendFile(path.path + "/view/html/student_G3.html");
+
+        response.sendFile(path.path + "/view/html/student_G3.html");
+
 });
 
+
 router.get("/upload_G3", (request, response) => {
-    response.sendFile(path.path + "/view/html/upload_G3.html");
+        response.sendFile(path.path + "/view/html/upload_G3.html");
+
 });
 
 

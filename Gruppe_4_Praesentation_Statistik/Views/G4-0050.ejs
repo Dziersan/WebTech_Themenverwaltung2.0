@@ -70,13 +70,13 @@
         </tr>
         </thead>
         <tbody>
-        <% for (var i = 0; i < modul_bezeichnung.length; i++) { %>
+        <% for (var i = 0; i < module.length; i++) { %>
         <tr>
             <!--Beim Absenden werden die Daten gespeichert und G4-0100 geladen-->
             <td onclick="document.getElementById('modul').value=this.innerText; setTimeout(() => {
                             document.getElementById('sendModul').submit()
-                            }, 10);"><a href =""><%=modul_bezeichnung[i] %> </a> </td>
-            <td><%=modulid[i] %></td>
+                            }, 10);"><a href =""><%=module[i].description %> </a> </td>
+            <td><%=module[i].module_id %></td>
         </tr>
         <% }%>
         <input type="text" name="testmodul" id="modul">

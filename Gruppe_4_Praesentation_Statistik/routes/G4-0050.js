@@ -2,65 +2,52 @@
  * G4-0050 / Lehrkräfte können Agenda für Module erstellen
  */
 
-
-
 //Modulimport
-var app = require('../Module_app_mysql_pool/app');
 var con = require('../Module_app_mysql_pool/mysql');
 
 const express = require('express');
 const G4_0050 = express.Router();
 
-modulid = [];
-modul_bezeichnung = [];
 
 /**
  * JS auf ejs laden und aufrufen
  */
-app.get('/G4-0050', function (request, result) {
-    result.render("G4-0050.ejs");
+G4_0050.get('/G4-0050', async function (request, result) {
+    let m = await getModuleG40500();
+    result.render("G4-0050.ejs", {
+        module: m
+    });
 });
 
-getConnection();
 
 /**
  * Verbindung zur Datenbank herstellen
  */
-function getConnection() {
-    con.connect(function (err) {
-
-        if (err) throw err;
-
-
-
-        getValuesfromDb0050();
-
-    });
-}
-
 // Werte der Datenbank die wichtig für G4-0050 sind
+
+
 /**
  * SQL-Abfragen für G4-0050
  */
-function getValuesfromDb0050() {
-
-    var sql = "SELECT module_id FROM module";
-    con.query(sql, function (err, result) {
-        if (err) throw err;
-        //durchläuft alle Zeilen und gibt diese Werte an result weiter
-        for (var i = 0; i < result.length; i++) {
-
-            modulid[i] = result[i].modul_id;
-        }
-    });
-    //modul_bezeichnung
-    var sql1 = "SELECT description FROM module";
-    con.query(sql1, function (err, result) {
-        if (err) throw err;
-        for (var i = 0; i < result.length; i++) {
-
-            modul_bezeichnung[i] = result[i].beschreibung;
-        }
-    });
+async function getModuleG40500() {
+    let m = [];
+    let result = await LoadDataG40500();
+    for (let i = 0; i< result.length;i++) {
+        m.push( { module_id:result[i].module_id, description: result[i].description } );
+    }
+    return m;
 }
+
+
+LoadDataG40500 = () =>{
+    return new Promise((resolve, reject)=>{
+        con.query("SELECT module_id, description FROM module",  (error, results)=>{
+            if(error){
+                return reject(error);
+            }
+            return resolve(results);
+        });
+    });
+};
+
 module.exports = G4_0050;
