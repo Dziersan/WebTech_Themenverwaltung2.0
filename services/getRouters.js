@@ -10,8 +10,10 @@ const router = express.Router();
 //const connection = require('../services/getDatabaseConnection.js');
 const path = require("../config/pathConfig.json");
 const connection = require('./getDatabaseConnection.js');
+
+
 router.get("/RequirementsEditGer", (request, response) => {
-    response.sendFile(path.path + "/view/html/MainPage.html");
+    response.sendFile(path.path + "/view/html/mainPage.html");
 });
 
 router.get("/RequirementsEditGer", (request, response) => {
@@ -30,13 +32,24 @@ router.get("/register", (request, response) => {
     response.sendFile(path.path + "/view/html/register.html");
 });
 
-router.get("/admin", (request, response) => {
-    response.sendFile(path.path + "/view/html/admin.html");
+router.get("/admin_G3", (request, response) => {
+        response.sendFile(path.path + "/view/html/admin_G3.html");
+
 });
 
-router.get("/stud", (request, response) => {
-    response.sendFile(path.path + "/view/html/stud.html");
+
+router.get("/student_G3", (request, response) => {
+
+        response.sendFile(path.path + "/view/html/student_G3.html");
+
 });
+
+
+router.get("/upload_G3", (request, response) => {
+        response.sendFile(path.path + "/view/html/upload_G3.html");
+
+});
+
 
 /**
  *  This method provides a json object with all registerd users.
@@ -267,5 +280,32 @@ router.post("/loadtable", (request, response) => {
         }
     })
 });
+
+router.get('/getSFTWPOOLData', (req, res) => {
+    let sql = 'SELECT * FROM softwarepool';
+
+    connection.query(sql, (err, result) => {
+        if (err) {
+            res.end();
+            return;
+        }
+        res.json(result);
+    })
+})
+
+
+router.get('/getNotificationData', (req, res) => {
+    let sql = 'SELECT * FROM notification';
+
+    connection.query(sql, (err, result) => {
+        if (err) {
+            res.end();
+            return;
+        }
+        res.json(result);
+    })
+})
+
+
 
 module.exports = router;

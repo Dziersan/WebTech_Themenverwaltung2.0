@@ -258,9 +258,9 @@ app.use((request, respond, next) =&gt; {
 
 /**
  * @method
- * GET Methods from routesGET.js
+ * GET Methods from getRouters.js
  */
-router = require(&quot;./Gruppe_1_Registrierung/public/routes/routesGET.js&quot;);
+router = require(&quot;./Gruppe_1_Registrierung/public/routes/getRouters.js&quot;);
 
 app.get(&quot;/&quot;, router);
 app.get(&quot;/login&quot;,redirectHome,redirectCookie, router);
@@ -302,13 +302,13 @@ app.get(&quot;/favicon.ico&quot;, (request, response) =&gt; {
  * @method
  * POST Methods
  */
-routerConfirmation = require(&#x27;./Gruppe_1_Registrierung/public/routes/register/confirmMail1.0.js&#x27;);
+routerConfirmation = require(&#x27;./Gruppe_1_Registrierung/public/routes/register/confirmMail.js&#x27;);
 app.use(routerConfirmation);
 
 routerPassword = require(&#x27;./Gruppe_1_Registrierung/public/routes/resetPassword/sendMailToChangePassword.js&#x27;);
 app.use(routerPassword);
 
-routerChangePassword = require(&#x27;./Gruppe_1_Registrierung/public/routes/resetPassword/changePassword1.0.js&#x27;);
+routerChangePassword = require(&#x27;./Gruppe_1_Registrierung/public/routes/resetPassword/changePassword.js&#x27;);
 app.use(routerChangePassword);
 
 routerLogin = require(&#x27;./Gruppe_1_Registrierung/public/routes/login/routesLogin.js&#x27;);

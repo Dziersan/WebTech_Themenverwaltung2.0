@@ -1,100 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Upload MultipartFile</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Upload MultipartFile</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" href="C://Users/Julia/IdeaProjects/WebTech_Themenverwaltung2.0/view/css/navigationBar.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="/static/js/postrequest.js"></script>
-	<script src="/static/js/getrequest.js"></script>
+<script src="/static/js/postrequest.js"></script>
+	<script src="/static/js/getrequest.js"></script>-->
+
 </head>
- 
+
 <body>
-<div id="UserMenu_All_Header">
-	<div id="All_Header_left" class="All_Header_Boxes" style="float: left; margin-right: 5px">
-		<a href="https://osca.hs-osnabrueck.de/">
-			<div class="outer-wrapper" style="float:left">
-				<div class="frame" style="height: 52px">
-					<img id="oscaImagelogo" class="oscaLogo">
-				</div>
-			</div>
-		</a>
-
-		<div class="dropdown" style="margin-left: 5px">
-			<form action="/myGroups">
-				<button class="header_button">Meine Gruppe</button>
-			</form>
-			<div class="dropdown-content">
-				<a href="/joinGroup">Gruppe beitreten</a>
-				<a href="/requirementsdefinition">Anforderungsdefinition</a>
+<div class="container">
+	<h3>Meine Dateien</h3>
+	<form class="form-horizontal" method="POST" enctype="multipart/form-data" id="fileUploadForm">
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="uploadfile">Upload File:</label>
+			<div class="col-sm-5">
+				<input type="file" class="form-control" id="uploadfile" placeholder="Upload File"  name="uploadfile" multiple></input>
 			</div>
 		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-5">
+				<button type="submit" class="btn btn-default" id="btnSubmit">Upload</button>
+				<button type="submit" class="btn btn-default" id="btnGetFiles" onclick="">Files</button>
 
-		<form action="/presentation">
-			<button class="header_button">Präsentation</button>
-		</form>
-
-		<form action="/RequirementsEditGer">
-			<button class="header_button">Group 5</button>
-		</form>
-	</div>
-
-	<div id="All_Header_right" class="All_Header_Boxes" style="float: right">
-
-		<div class="frame" style="float: left;">
-			<a href="https://my.hs-osnabrueck.de/owa/">
-				<div class="outer-wrapper" style="float:left">
-					<div class="frame" style="height: 52px">
-						<i id="mailIcon" class="far fa-envelope fa-lg" style="font-size: 25px"></i>
-					</div>
-				</div>
-			</a>
+			</div>
 		</div>
-		<div class="frame" style="float: left;">
-			<a href="https://netcase.hs-osnabrueck.de">
-				<div class="outer-wrapper" style="float:left">
-					<div class="frame" style="height: 52px">
-						<i id="netcaseIcon" class="fas fa-briefcase fa-lg" style="font-size: 25px"></i>
-					</div>
-				</div>
-			</a>
-		</div>
-		<div class="dropdown">
-			<form action="/showUsers">
-				<button class="header_button">Benutzer</button>
-			</form>
-		</div>
-		<div class="dropdown">
-			<form action="/logout" method="post">
-				<button class="header_button">Logout</button>
-			</form>
-		</div>
+	</form>
+	<hr/>
+	<div class="col-sm-offset-2" id="listFiles">
 	</div>
 </div>
-
-	<div class="container">
-		<h3>Meine Dateien</h3>
-		<form class="form-horizontal" method="POST" enctype="multipart/form-data" id="fileUploadForm">
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="uploadfile">Upload File:</label>
-				<div class="col-sm-5">
-					<input type="file" class="form-control" id="uploadfile" placeholder="Upload File"  name="uploadfile" multiple></input>
-				</div>
-			</div>
-			<div class="form-group"> 
-			    <div class="col-sm-offset-2 col-sm-5">
-			      <button type="submit" class="btn btn-default" id="btnSubmit">Upload</button>
-				  <button type="submit" class="btn btn-default" id="btnGetFiles" onclick="">Files</button>
-	
-			    </div>
-			</div>
-		</form>
-		<hr/>
-		<div class="col-sm-offset-2" id="listFiles">
-		</div>
-	</div>
 </body>
 </html>

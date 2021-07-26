@@ -70,7 +70,7 @@
     <thead>
     <tr>
         <th>&nbsp</th>
-        <th>Reihenfolge</th>
+        <th>Reihenfolgen</th>
         <th>Gruppe</th>
         <th>Thema</th>
         <th>Anzahl der Gruppenteilnehmer</th>
@@ -82,21 +82,29 @@
     </thead>
     <tbody>
     <!-- Hier werden die einzelnen Tabellenzeilen geladen, die Anzahl der Zeilen ist abhängig von den Einträgen der Datenbank-->
-    <% for (var i = 0; i < reihenfolge.length;i++) { %>
+
+    <% for (var i = 0; i < agenda.length;i++) { %>
         <tr>
             <td>&nbsp;</td>
-            <td><%= reihenfolge[i] %></td>
-            <td><%= gruppe[i] %></td>
-            <td><%= thema[i] %></td>
-            <td><%= mitglieder[i] %></td>
-            <td><%= startzeit[i] %></td>
-            <td><%= dauer[i] %></td>
-            <td><%= ende[i] %></td>
-            <td><%= raum %></td>
+            <td><%= agenda[i].group_order  %></td>
+            <td><%= agrend[i].group_number %></td>
+            <td><%= agenda[i].topic %></td>
+            <td><%= agenda[i].number_members %></td>
+            <td><%= agenda[i].start_presentation %></td>
+            <td><%= agenda[i].duration_presentation %></td>
+            <td><%= agenda[i].end_presentaton %></td>
+
         </tr>
-    </tbody>
     <% } %>
+<!--        <% for (var i = 0; i < presentation.length;i++) { %>
+            <tr>
+                <td>&nbsp;</td>
+                <td><%= presentation[i].room %></td>
+            </tr>
+    <% } %>-->
+    </tbody>
+
 </table>
-</form>
+
 </body>
 </html>
