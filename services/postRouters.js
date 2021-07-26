@@ -4,7 +4,7 @@ const mysql = require('mysql');
 const dotenv = require('dotenv');
 
 const postRouter = express.Router();
-const connection = require("./services/getDatabaseConnection.js");
+const connection = require("../services/getDatabaseConnection.js");
 // new entries for the softwarepool
 postRouter.post('/insert', (req, res) => {
     let sql = 'INSERT INTO softwarepool(software_name, software_description, software_link) VALUES (?,?,?)';

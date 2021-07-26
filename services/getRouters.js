@@ -32,13 +32,18 @@ router.get("/register", (request, response) => {
     response.sendFile(path.path + "/view/html/register.html");
 });
 
-router.get("/admin", (request, response) => {
+router.get("/admin_G3", (request, response) => {
     response.sendFile(path.path + "/view/html/admin_G3.html");
 });
 
-router.get("/stud", (request, response) => {
-    response.sendFile(path.path + "/view/html/stud.html");
+router.get("/student_G3", (request, response) => {
+    response.sendFile(path.path + "/view/html/student_G3.html");
 });
+
+router.get("/upload_G3", (request, response) => {
+    response.sendFile(path.path + "/view/html/upload_G3.html");
+});
+
 
 /**
  *  This method provides a json object with all registerd users.
@@ -295,22 +300,6 @@ router.get('/getNotificationData', (req, res) => {
     })
 })
 
-/*router.get("/admin_G3", (request, response) => {
 
-    response.sendFile(path.path + "/view/html/admin_G3.html");
-
-});
-
-router.get("/stud_G3", (request, response) => {
-
-    response.sendFile(path.path + "/view/html/student_G3.html");
-
-});
-
-router.get("/upload_G3", (request, response) => {
-
-    response.sendFile(path.path + "/view/html/upload_G3.html");
-
-});*/
 
 module.exports = router;

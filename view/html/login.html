@@ -3,9 +3,11 @@
 <head>
     <meta charset="utf-8">
     <title>َLogin Hausarbeitenverwaltung</title>
-    <link href="./css/style.css" rel="stylesheet" type="text/css">
-    <link type="text/css" rel="stylesheet" href="../css/navigationBar.css">
+    <link href="../css/homepage.css" rel="stylesheet" type="text/css">
+    <link href="../css/style.css" rel="stylesheet" type="text/css">
+
     <script src="./javascript/login.js" type="text/javascript" language="JavaScript" ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!--    <style>-->
 <!--        .alert {-->
 <!--            padding: 20px;-->
@@ -37,14 +39,18 @@
 <!--    </style>-->
 
 </head>
-<body>
-<br>
-<a href="/" >
-    <img alt="hslogo" class="logo" src="../../images/hsos-logo-neu.png">
-</a>
+<body class="index_all">
 
-<br> <br><br><br>
-<div id="example1">
+<div id="UserMenu_All_Header_Index">
+    <div id="All_Header_left" class="All_Header_Boxes" >
+        <a href="https://osca.hs-osnabrueck.de/">
+            <img id="oscaImagelogo" class="oscaLogo" src="../../images/hsos-logo-neu.png">
+        </a>
+    </div>
+</div>
+
+<br>
+<div id="login_box">
     <br>
 
     <form action="index.html" class="box" method="post">
@@ -95,6 +101,10 @@
 
 
 </body>
+
+<footer>
+    <div class ="footer"></div>
+</footer>
 <script>
 var close = document.getElementsByClassName("closebtn");
 var i;
@@ -106,5 +116,11 @@ div.style.opacity = "0";
 setTimeout(function(){ div.style.display = "none"; }, 600);
 }
 }
+</script>
+
+<script>
+    $(function(){
+        $(".footer").load("footer.html");
+    });
 </script>
 </html>

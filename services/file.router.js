@@ -8,17 +8,6 @@ module.exports = (app, router, upload) => {
         next();
     });
 
-    app.get("/upload_G3", (req, res) => {
-        res.sendFile(path + "/view/html/upload_G3.html");
-    });
-    app.get("/admin_G3", (req, res) => {
-        res.sendFile( path+ "/view/html/admin_G3.html");
-    });
-
-    app.get("/student_G3", (req, res) => {
-        res.sendFile( path+ "/view/html/student_G3.html");
-    });
-
     app.post('/api/files/upload', upload.array("uploadfile"), fileWorker.uploadFile);
 
     app.get('/api/files/getall', fileWorker.listAllFiles);

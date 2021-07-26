@@ -1,43 +1,21 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const dotenv = require('dotenv');
+const mysql = require('mysql');
 const cors = require('cors');
+const { response } = require("express");
+const PORT = process.env.PORT || 5000;
 const app = express();
 dotenv.config();
-const router = express.Router()
+
 app.use(cors());
+
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
-app.use(express.static('public'));
+app.use(express.urlencoded({extended: true}));
 
-const connection = require("../services/getDatabaseConnection")//("../getDatabaseConnection");
+app.use(express.static('public'))
 
-
-/*const lifeTime = 1000 * 60 * 60 * 24;// 24 hour
-const lifeTimeLong = 1000 * 60 * 60 * 24 * 365 * 10;  //1 Year
-const tokenLifeTime = 60 * 24 * 366;// 10 + 1 day year
-
-const {
-    PORT = 3000,
-    sessionLifetime = lifeTime,
-    sessionName = "sid",
-    secretSession = "test"
-} = process.env;
-
-app.use(session({
-    name: sessionName,
-    resave: false,
-    saveUninitialized: false,
-    secret: secretSession,
-    cookie: {
-        maxAge: sessionLifetime,
-        sameSite: true,
-        secure: false    //in development in production :true
-    }
-}));
-connection.connect((err) =>{
-    if(err) throw err
-    console.log(connection.state);
-})*/
+const connection = require("../services/getDatabaseConnection")
 
 app.get('/getSFTWPOOLData', (req, res) =>{
     let sql = 'SELECT * FROM softwarepool';
@@ -67,7 +45,7 @@ app.get('/getNotificationData', (req, res) =>{
 })
 
 app.post('/insert', (req, res) =>{
-    let sql = 'INSERT INTO softwarepool(software_name, software_description, software_link) VALUES (?,?,?)';
+    let sql = 'INSERT INTO softwarepool(SOFTWARENAME, SOFTWARE_BESCHREIBUNG, SOFTWARELINK) VALUES (?,?,?)';
 
     connection.query(sql,[req.body.SoftwareName, req.body.Beschreibung, req.body.Link],(err, result) =>{
         if(err) throw err;

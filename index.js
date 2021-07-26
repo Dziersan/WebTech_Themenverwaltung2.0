@@ -13,7 +13,7 @@ const router_G3 = express.Router();
 configDatabase = require("./config/datenbankConfig.json");
 const connection = require("./services/getDatabaseConnection.js");
 const upload = require("./services/multerConfig");
-//const fileWorker = require('services/file.controller.js');
+const fileWorker = require('./services/file.controller.js');
 
 
 
@@ -56,7 +56,7 @@ app.use(bodyParser.urlencoded({
 }))
 
 app.use(express.static('resources'));
-
+require("./services/file.router")(app, router_G3, upload);
 
 /**
  * @method
@@ -190,11 +190,14 @@ app.get("/presentation", router);
 app.get("/admin", router);
 app.get("/stud", router);
 app.get("/RequirementsEditGer", redirectLogin, router);
+app.get("/upload_G3", router);
+app.get("/admin_G3",  router);
+app.get("/student_G3",  router);
 
 /*
 router2 = require("./services/file.router")(app, router_G3, upload);
-app.get("/api/files/upload", router2);
-app.get("/api/files/getall", router2);
+/!*app.get("/api/files/upload", router2);
+app.get("/api/files/getall", router2);*!/
 app.get('/upload_G3', router2);
 app.get('/admin_G3', router2);
 app.get('/student_G3', router2);
@@ -305,7 +308,7 @@ app.post("/editReq", (request, response) => {
     response.end();
 });
 
-/*app.post('/api/files/upload', upload.array("uploadfile"), fileWorker.uploadFile);*/
+app.post('/api/files/upload', upload.array("uploadfile"), fileWorker.uploadFile);
 
 
 
@@ -331,6 +334,9 @@ app.use(routerRegister);
 routerToken = require("./services/routesToken.js");
 app.get("/getToken", routerToken);
 app.use(routerToken);
+
+insertRout = require('./services/postRouters.js');
+app.use(insertRout);
 
 /*//Gruppe 5 Editor
 routerEdit = require("./services/routesGetPostEditor.js");*/
