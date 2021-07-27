@@ -60,7 +60,8 @@ function renderHTML(data) {
         deleteButton.setAttribute('width', '70px');
         var buttonAttributes = document.createElement('button');
         buttonAttributes.innerText = "Löschen";
-        radioInput3.setAttribute('class', 'deleteInGridbtn');
+        buttonAttributes.setAttribute('class', 'deleteInGridbtn');
+        buttonAttributes.setAttribute('style', 'float:right');
 
         node.appendChild(anchor);
 

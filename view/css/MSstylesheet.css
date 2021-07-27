@@ -15,8 +15,7 @@ html {
 [class*="col-"] {
     float: left;
     padding-top: 15px;
-    border-bottom-style: dashed;
-    border-color: blueviolet;
+
 }
 
 #container {
@@ -35,13 +34,13 @@ html {
 @media only screen and (min-width: 768px) {
     .col-1 {width: 8.33%;}
     .col-2 {width: 16.66%;}
-    .col-3 {width: 25%; height: 100; max-width: 300px;}
+    .col-3 {width: 25%; max-width: 300px;}  /*Menue*/
     .col-4 {width: 33.33%;}
     .col-5 {width: 41.66%;}
     .col-6 {width: 50%;}
     .col-7 {width: 58.33%;}
     .col-8 {width: 66.66%;}
-    .col-9 {width: 75%;}
+    .col-9 {width: 75%;}                    /*Grid*/
     .col-10 {width: 83.33%;}
     .col-11 {width: 91.66%;}
     .col-12 {width: 100%;}
@@ -204,11 +203,8 @@ menu {
 .menu ul {
     list-style-type: none;
     margin: 0;
-    padding: 0;
-    padding-top: 0px;
-    padding-bottom: 100%;
     background-color: #e5e5e5;
-    padding-bottom: 50vh;
+    padding: 0 0 50vh;
 }
 
 .menu li h3 {
@@ -220,7 +216,7 @@ menu {
     color: #000;
     margin-top: 0;
     padding: 8px;
-    margin-bottom: 0px;
+    margin-bottom: 0;
     text-decoration: none;
 }
 
@@ -239,23 +235,32 @@ menu {
     cursor: pointer;
 }
 
-.menu iframe {
-    padding: 0;
-    margin: 0;
-    border-style: none;
-}
-
-
-
-/* >>Grid Design Hauptfenster<< */
+/*Desktop View*/
 .grid-container {
     display: grid;
     grid-template-columns: 45% 45%;
     grid-gap: 30px;
-    margin: 12px;
-    margin-top: 0;
+    margin: 0 12px 12px;
     background-color: #fff;
-    padding: 0px;
+    padding: 0;
+}
+
+/*Tablet View*/
+@media(max-width:1350px){
+    .grid-container {
+        grid-template-columns: 95%;
+    }
+}
+
+/*Smartphone View*/
+@media (max-width: 768px){
+    .menu {
+        height: fit-content;
+        padding: 0;
+    }
+    iframe {
+        height: fit-content;
+    }
 }
 
 .grid-container > div {
@@ -297,6 +302,10 @@ menu {
     cursor: pointer;
 }
 
+.grid-container ul {
+    min-height: 100px;
+}
+
 .selectedTablerow {
     background-color: #1E90FFFF;
     color: #000000;
@@ -306,7 +315,6 @@ menu {
 .editbtn {
     background-color: #FFF;
     border: 1px solid #06abf7;
-    border-radius: 3px;
     color: #06abf7;
     font-size: large;
     margin-top: 15px;
@@ -370,20 +378,19 @@ button {
 }
 
 
-
 /* Modal Content */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    /* padding-top: 100px;  Location of the box */
+    border:#555555 2px solid;
+    display: none;
+    position: fixed;
+    z-index: 1;
     padding: 10px;
-    width: 67.5%; /* Full width */
-    height: 55%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
+    width: 67.5%;
+    height: 55%;
+    overflow: auto;
     align-self: center;
-    background-color: #000; /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    background-color: #000;
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
@@ -445,13 +452,13 @@ button {
 
 @supports (display:grid) {
 
-    @media (max-width: 1349px) {
+    @media (max-width: 799px) {
         .statistics-grid-left {
             display: none;
         }
     }
 
-    @media (min-width: 1350px) {
+    @media (min-width: 800px) {
 
         .statistics-graph {
             font-weight: normal;
@@ -572,8 +579,7 @@ button {
 .statistics-table caption {
     font-weight: bold;
     font-size: 26px;
-    margin: .5em;
-    margin-top: -1.5em;
+    margin: -1.5em .5em .5em;
 }
 
 .statistics-table table, .statistics-table td, .statistics-table th {

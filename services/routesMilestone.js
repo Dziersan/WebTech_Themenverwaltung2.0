@@ -175,7 +175,7 @@ router.post('/createNewSubmilestone', (request, response) => {
 router.get('/getSubmilestones', (request, response) => {
     sql = "SELECT submilestone_id AS submilestoneID, description, status " +
         "FROM SUBMILESTONES " +
-        "WHERE milestone_id = 13;";
+        "WHERE milestone_id = 5;";
 
     con.query(sql, (err, result) => {
         if (err) {
