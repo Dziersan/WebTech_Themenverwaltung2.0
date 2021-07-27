@@ -5,13 +5,19 @@
     <title>Milestones Home</title>
 
     <script src="./javascript/MSScriptTest.js" defer></script>
+    <script src="./javascript/MSnewTime.js" defer></script>
+    <script src="./javascript/MSnewSubmilestone.js" defer></script>
+    <script src="./javascript/MSgetSubmilestones.js" defer></script>
 
     <link type="text/css" rel="stylesheet" href="./css/MSnavigationBar.css">
     <link type="text/css" rel="stylesheet" href="./css/MShomepage.css">
     <link rel="stylesheet" type="text/css" href="./css/MSstylesheet.css">
+    <link type="text/css" rel="stylesheet" href="../css/MSnavigationBar.css">
+    <link type="text/css" rel="stylesheet" href="../css/MShomepage.css">
+    <link rel="stylesheet" type="text/css" href="../css/MSstylesheet.css">
 
 </head>
-<body>
+<body onload="getSubmilestones()">
 
 <div id="UserMenu_All_Header">
     <div id="All_Header_left" class="All_Header_Boxes" style="float: left; margin-right: 5px">
@@ -96,83 +102,83 @@
         <div class="grid-container">
             <div class="todo-table">
                 <h1>Unterpunkte</h1>
-                <ul>
-                    <table width="100%">
-                        <tr align="center">
-                            <th></th><th>&#10006</th><th>&#9998</th><th>&#10004</th>
-                        </tr>
-                        <tr>
-                            <td>Unterpunkt 1</td>
-                            <td align="center"><input type="radio" id="undone" name="progress1" value="nothing"></td>
-                            <td align="center"><input type="radio" id="work" name="progress1" value="work"></td>
-                            <td align="center"><input type="radio" id="done" name="progress1" value="done"></td>
-                            <td width="70px" align="center"><button id="deleteToDoBtn" class="deleteInGridbtn">Löschen</button></td>
-                        </tr>
-                    </table>
-                </ul>
-                <button id="newToDoBtn" style="float: right" class="editbtn">Unterpunkt hinzufügen</button>
-            </div>
-            <div>
-                <h1>Teilnehmer</h1>
-                <ul>
-                    <table width="100%">
-                        <tr>
-                            <td>Teilnehmer 1</td>
-                            <td><button id="deleteMemberBtn" style="float: right" class="deleteInGridbtn">Löschen</button></td>
-                        </tr>
-                        <tr>
-                            <td>Teilnehmer 2</td>
-                            <td><button id="deleteMemberBtn" style="float: right" class="deleteInGridbtn">Löschen</button></td>
-                        </tr>
-                        <tr>
-                            <td>Teilnehmer 3</td>
-                            <td><button id="deleteMemberBtn" style="float: right" class="deleteInGridbtn">Löschen</button></td>
-                        </tr>
-                    </table>
-
-                </ul>
-                <button id="newMemberBtn" style="float: right" class="editbtn">Teilnehmer hinzufügen</button>
-            </div>
-
-
-
-            <div>
-                <h1>Arbeitszeitplan</h1>
-                <ul>
-                    <table style="width: 100%" id="timeTable">
-                        <tbody>
-                            <tr>
-                                <td>01.02.2021</td>
-                                <td>02:52:36</td>
-                                <td>Teilnehmer 1</td>
+                <ul id="submilestoneList">
+                   <!-- <table width="100%" id="submilestoneTable"> -->
+                        <!--    <tr align="center">
+                                <th></th><th>&#10006</th><th>&#9998</th><th>&#10004</th>
                             </tr>
-                            <tr>
-                                <td>01.02.2021</td>
-                                <td>01:48:47</td>
-                                <td>Teilnehmer 2</td>
-                            </tr>
-                            <tr>
-                                <td>06.02.2021</td>
-                                <td>00:03:86</td>
-                                <td>Teilnehmer 1</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </ul>
-                <button id="editTimeBtn" style="float: right" class="editbtn">Auswahl bearbeiten</button>
-            </div>
+                                  <tr>
+                                      <td>Unterpunkt 1</td>
+                                      <td align="center"><input type="radio" id="undone" name="progress1" value="1"></td>
+                                      <td align="center"><input type="radio" id="work" name="progress1" value="2"></td>
+                                      <td align="center"><input type="radio" id="done" name="progress1" value="3"></td>
+                                      <td width="70px" align="center"><button id="deleteToDoBtn" class="deleteInGridbtn">Löschen</button></td>
+                                  </tr> -->
+                              </table>
+                          </ul>
+                          <button id="newToDoBtn" style="float: right" class="editbtn" >Unterpunkt hinzufügen</button>
+                      </div>
+                      <div>
+                          <h1>Teilnehmer</h1>
+                          <ul>
+                              <table width="100%">
+                                  <tr>
+                                      <td>Teilnehmer 1</td>
+                                      <td><button id="deleteMemberBtn" style="float: right" class="deleteInGridbtn">Löschen</button></td>
+                                  </tr>
+                                  <tr>
+                                      <td>Teilnehmer 2</td>
+                                      <td><button id="deleteMemberBtn" style="float: right" class="deleteInGridbtn">Löschen</button></td>
+                                  </tr>
+                                  <tr>
+                                      <td>Teilnehmer 3</td>
+                                      <td><button id="deleteMemberBtn" style="float: right" class="deleteInGridbtn">Löschen</button></td>
+                                  </tr>
+                              </table>
+
+                          </ul>
+                          <button id="newMemberBtn" style="float: right" class="editbtn">Teilnehmer hinzufügen</button>
+                      </div>
 
 
-            <div>
-                <h1>Zeiterfassung</h1>
-                <ul>
-                    <li>
-                        <div id="stopwatch">
-                            <!-- CURRENT TIME -->
-                            <div id="stopwatch-time">00:00:00</div>
+
+                      <div>
+                          <h1>Arbeitszeitplan</h1>
+                          <ul>
+                              <table style="width: 100%" id="timeTable">
+                                  <tbody>
+                                      <tr>
+                                          <td>01.02.2021</td>
+                                          <td>02:52:36</td>
+                                          <td>Teilnehmer 1</td>
+                                      </tr>
+                                      <tr>
+                                          <td>01.02.2021</td>
+                                          <td>01:48:47</td>
+                                          <td>Teilnehmer 2</td>
+                                      </tr>
+                                      <tr>
+                                          <td>06.02.2021</td>
+                                          <td>00:03:86</td>
+                                          <td>Teilnehmer 1</td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                          </ul>
+                          <button id="editTimeBtn" style="float: right" class="editbtn">Auswahl bearbeiten</button>
+                      </div>
+
+
+                      <div>
+                          <h1>Zeiterfassung</h1>
+                          <ul>
+                              <li>
+                                  <div id="stopwatch">
+                                      <!-- CURRENT TIME -->
+                            <div id="stopwatch-time" value="15">00:00:00</div>
                             <!-- CONTROLS -->
                             <input type="button" value="Start" id="stopwatch-go" disabled/>
-                            <input type="button" value="Save" id="stopwatch-save" disabled/>
+                            <input type="button" value="Save" id="stopwatch-save" onclick="addTime()" disabled/>
                         </div>
                     </li>
                 </ul>
@@ -190,11 +196,14 @@
                 <!-- Modal content -->
                 <div class="modal-content">
                     <Span class="closeBtn" id="newToDoClose">&times;</Span>
-                    <h1>Teilnehmer hinzufügen</h1>
+                    <h1>Unterpunkt hinzufügen</h1>
                     <table style="width: 100%">
                         <tr>
                             <td><label for="newToDo">Unterpunkt</label></td>
-                            <td><input type="text" id="newToDo" name="newToDo"> </td>
+                            <td><input type="text" id="newToDo" name="newToDo" ></td>
+                        </tr>
+                        <tr>
+                            <td><button id="addSubmilestoneBtn" style="float: Right" class="deletebtn" onclick="addSubmilestone()">Speichern</button></td>
                         </tr>
                     </table>
                 </div>
@@ -218,8 +227,8 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><button id="deleteMilestoneBtn" style="float: right" class="deletebtn">Löschen</button></td>
-                            <td><button id="editTimeBtn" style="float: right" class="editbtn">Speichern</button></td>
+                            <td><button id="deleteTimeBtn" style="float: Right" class="deletebtn">Löschen</button></td>
+                            <td><button id="editTimeBtn" style="float: Right" class="editbtn">Speichern</button></td>
                         </tr>
                     </table>
 
@@ -328,8 +337,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><button id="deleteMilestoneBtn" style="float: right" class="deletebtn">Löschen</button></td>
-                            <td><button id="newTimeBtn" style="float: right" class="editbtn">Speichern</button></td>
+                            <td><button id="newTimeBtn" style="float: right" class="editbtn" onclick="addTimeManually()">Speichern</button></td>
                         </tr>
                     </table>
                 </div>

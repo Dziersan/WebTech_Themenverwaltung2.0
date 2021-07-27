@@ -17,6 +17,7 @@ const express = require("express");
 const router = express();
 
 const con = require("./getDatabaseConnection");
+const round = require("./MSround");
 
 /**
  * route for getting all milestones out of database
@@ -25,6 +26,8 @@ const con = require("./getDatabaseConnection");
  *
  * @param response - sending the result within a JSON file to client
  */
+
+/* Milestone */
 
 router.get('/getMilestones', (request, response) => {
     sql = "SELECT milestone_id AS milestoneID, description, status, successor," +
@@ -42,8 +45,6 @@ router.get('/getMilestones', (request, response) => {
         response.json(result);
     });
 });
-
-
 
 /**
  * route for creating a new milestone
@@ -70,12 +71,121 @@ router.post('/createMilestone', (request, response) => {
         if (err) {
             console.log(err);
             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
-            console.log('Verbindung zur Datenbank fehlgeschlagen (getAllMilestones');
+            console.log('Verbindung zur Datenbank fehlgeschlagen (createMilestoe)');
             response.end();
         }
 
         response.json({"Message": "Erfolg"});
         return result
+    });
+});
+
+/* Time */
+
+router.post('/createNewTime', (request, response) => {
+
+    var hours = round(parseInt(request.body.usedTime) / 3600);
+
+    if (hours == 0) {
+
+        hours = 0.1;
+
+    }
+
+    /* var date = new Date(null);
+    date.setSeconds(4250);
+    var result = date.toISOString().substr(11, 8);
+    console.log(result); */
+
+    sql = "INSERT INTO timeaccount_history (timeaccount_id, used_time, used_time_to_iso) " +
+        "VALUES " +
+        "(1, '" + hours + "', SEC_TO_TIME(" + request.body.usedTime + "));";
+
+    con.query(sql, (err, result) => {
+
+        if (err) {
+            console.log(err);
+            response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+            console.log('Verbindung zur Datenbank fehlgeschlagen (createNewTime)');
+        }
+
+        response.json({"Message": "Erfolg"});
+        return result
+    });
+});
+
+router.post('/createNewTimeManually', (request, response) => {
+
+    console.log(request.body);
+
+    var seconds = (parseFloat(request.body.hours) * 3600) + (parseFloat(request.body.minutes) * 60);
+
+    console.log(seconds);
+
+    var hours = round(seconds / 3600);
+
+    console.log(hours);
+
+    if (hours == 0) {
+
+        hours = 0.1;
+
+    }
+
+    sql = "INSERT INTO timeaccount_history (timeaccount_id, used_time, used_time_to_iso) " +
+        "VALUES " +
+        "(1, '" + hours + "', SEC_TO_TIME(" + seconds + "));";
+
+    con.query(sql, (err, result) => {
+
+        if (err) {
+            console.log(err);
+            response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+            console.log('Verbindung zur Datenbank fehlgeschlagen (createNewTime)');
+        }
+
+        response.json({"Message": "Erfolg"});
+        return result
+    });
+});
+
+/* Submilestone */
+
+router.post('/createNewSubmilestone', (request, response) => {
+
+    console.log(request.body);
+
+    sql = "INSERT INTO submilestones (milestone_id, description) " +
+        "VALUES " +
+        "(16, '" + request.body.description + "');";
+
+    con.query(sql, (err, result) => {
+
+        if (err) {
+            console.log(err);
+            response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+            console.log('Verbindung zur Datenbank fehlgeschlagen (createNewTime)');
+        }
+
+        response.json({"Message": "Erfolg"});
+        return result
+    });
+});
+
+router.get('/getSubmilestones', (request, response) => {
+    sql = "SELECT submilestone_id AS submilestoneID, description, status " +
+        "FROM SUBMILESTONES " +
+        "WHERE milestone_id = 13;";
+
+    con.query(sql, (err, result) => {
+        if (err) {
+            console.log(err);
+            response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+            console.log('Verbindung zur Datenbank fehlgeschlagen (getAllMilestones');
+            return;
+        }
+
+        response.json(result);
     });
 });
 
