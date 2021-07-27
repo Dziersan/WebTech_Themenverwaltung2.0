@@ -1,51 +1,88 @@
-/** changePassord
- *
+/** changePassword
  *  Version 1
  *  Modification date: 22.07.2020
  *  Author: Sven Petersen
- *  @class to generate a object for password changing
+ *  @class to change the password of a user stores it in the database.
  */
 
-import {getUrlParameter} from "./getUrlParameter";
-
-/**
- * This class creates an object from the user data which is entered and return its.
- */
-class UserToUpdate {
-
-    constructor(email, token, password) {
-
-        this.email = email;
-        this.token = token;
-        this.password = password;
-    }
-
-    getUserToUpdate() {
-        let email = getUrlParameter("email");
-        let token = getUrlParameter("opt");
-        let password = document.getElementById("password").value;
-        return new UserToUpdate(email, token, password);
-    }
-}
+const express = require('express');
+const {getTextForgotPassword, getMailOptions, sendMail} = require('../api/nodeMailer.js');
+const {checkInputForSQLInject} = require('../test/sql_InjectionTester.js');
+const connection = require('./getDatabaseConnection.js');
+const redirect = require("./routesRedirect");
 
 /**
  * @method
- * This method send data which is entered by the user to change the password.
+ * This router updates the password of an user.
  */
-async function sendData() {
-    var user = new UserToUpdate().getUserToUpdate();
-    const options = {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(user)
-    };
+router.post("/updatePassword", (request, response) => {
 
-    fetch("/updatePassword", options)
-        .then(response => response.json())
-}
+    let email = request.body.email;
+    let tokenReset = request.body.token;
+    let password = request.body.password;
 
+    if (email === undefined || email === null ||
+        tokenReset === null || tokenReset === undefined) {
+        response.redirect("/login");
 
+    } else if (checkToken(tokenReset) === false) {
+        response.redirect("/login");
+    } else {
 
+        let sql = `UPDATE USER
+                   SET password = '${password}'
+                   WHERE e_mail = '${email}';`;
 
+        connection.query(sql, function (err, result) {
+            if (err) throw err;
+        });
+        response.redirect("/login");
+    }
+});
 
+/**
+ * @method
+ * This method checks if a given token is valid or not otherwise it returns false
+ */
+async function checkToken(token) {
+    if (token === "" || token === null || token === undefined) {
+        redirect("/login");
+    } else {
+        let sql = `SELECT e_mail, used
+                   FROM PW_FORGOT_TOKEN
+                   WHERE current_timestamp < end
+                     AND current_timestamp
+                       >
+                   start AND token ='${token}';`;
 
+        connection.query(sql, function (err, result) {
+            if (err)
+                throw err;
+
+            if (result.length !== 0) {
+                let email = result[0].e_mail;
+                let used = result[0].used;
+
+                if (used === 0) {
+                    let changeUsed = `UPDATE PW_FORGOT_TOKEN
+                                      SET used = 1
+                                      WHERE e_mail = '${email}';`;
+
+                    connection.query(changeUsed, function (err, result) {
+                        if (err) throw err;
+
+                        if (result.length !== 0) {
+                            return true;
+                        }
+                    });
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        });
+    }
+};
+
+module.exports = router;

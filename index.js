@@ -9,12 +9,20 @@ const express = require("express");
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const app = express();
+const router_G3 = express.Router();
 configDatabase = require("./config/datenbankConfig.json");
 const connection = require("./services/getDatabaseConnection.js");
+const upload = require("./services/multerConfig");
+const fileWorker = require('./services/file.controller.js');
 
+
+
+global.__basedir = __dirname;
 var lifeTime = 1000 * 60 * 60 * 24;// 24 hour
 var lifeTimeLong = 1000 * 60 * 60 * 24 * 365 * 10;  //1 Year
 var tokenLifeTime = 60 * 24 * 366;// 10 + 1 day year
+
+
 
 var {
     PORT = 3000,
@@ -46,6 +54,9 @@ app.use(express.json({limit: "10kb"}));
 app.use(bodyParser.urlencoded({
     extended: true
 }))
+
+app.use(express.static('resources'));
+require("./services/file.router")(app, router_G3, upload);
 
 /**
  * @method
@@ -179,9 +190,20 @@ app.get("/presentation", router);
 app.get("/admin", router);
 app.get("/stud", router);
 app.get("/RequirementsEditGer", redirectLogin, router);
+app.get("/upload_G3",router);
+app.get("/admin_G3", router);
+app.get("/student_G3" ,router);
 app.get("/GanttHome", redirectLogin, router);
 app.get("/newmilestone", router);
 app.get("/getMilestones", redirectLogin, router);
+/*
+router2 = require("./services/file.router")(app, router_G3, upload);
+/!*app.get("/api/files/upload", router2);
+app.get("/api/files/getall", router2);*!/
+app.get('/upload_G3', router2);
+app.get('/admin_G3', router2);
+app.get('/student_G3', router2);
+*/
 
 //Get without HTML|| email
 app.get("/cookie", (request, response) => {
@@ -286,17 +308,21 @@ app.post("/editReq", (request, response) => {
     response.end();
 });
 
+app.post('/api/files/upload', upload.array("uploadfile"), fileWorker.uploadFile);
+
+
+
 /**
  * @method
  * POST Methods
  */
-routerConfirmation = require('./services/confirmMail1.0.js');
+routerConfirmation = require('./services/confirmMail.js');
 app.use(routerConfirmation);
 
 routerPassword = require('./services/sendMailToChangePassword.js');
 app.use(routerPassword);
 
-routerChangePassword = require('./services/changePassword1.0.js');
+routerChangePassword = require('./services/changePassword.js');
 app.use(routerChangePassword);
 
 routerLogin = require('./api/routesLogin.js');
@@ -311,6 +337,9 @@ app.use(routerRegister);
 routerToken = require("./services/routesToken.js");
 app.get("/getToken", routerToken);
 app.use(routerToken);
+
+insertRout = require('./services/postRouters.js');
+app.use(insertRout);
 
 /*//Gruppe 5 Editor
 routerEdit = require("./services/routesGetPostEditor.js");*/

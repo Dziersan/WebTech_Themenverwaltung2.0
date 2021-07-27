@@ -91,7 +91,7 @@
     </div>
 </div>
 
-<h1><%= Modulname %></h1>
+
 <!--Formular zum Abfrage der Gruppenreihenfolge-->
 <form method="post" action="http://127.0.0.1:8080/Reihenfolge" id="FormReihenfolge">
     <table id="sortableTable" class="tablesorter" rules="rows" style="border-spacing: 32px 16px">
@@ -106,12 +106,12 @@
         </thead>
         <tbody>
         <!--Thema, Tag und Raum der Präsentation aus Datenbank abfragen und anzeigen-->
-        <% for (var i = 0; i < anlass.length;i++) { %>
+        <% for (var i = 0; i < module.length;i++) { %>
             <tr>
-                <td> <%= anlass[i] %></td>
-                <td> <%= datum[i] %></td>
-                <td> <%= raum[i] %></td>
-                <td> <%= pid[i] %></td>
+                <td> <%= module[i].occasion %></td>
+                <td> <%= module[i].date %></td>
+                <td> <%= module[i].room %></td>
+                <td> <%= module[i].topic_id %></td>
                 <!--FormReihenfolge wird beim Anklicken ausgeführt-->
                 <td style="color: -webkit-link; text-decoration: underline; cursor: pointer"
                     onclick="document.getElementById('text').value = (document.getElementById('thema<%= i %>').innerText);

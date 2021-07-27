@@ -87,9 +87,9 @@ router.post("/deleteToken", (request, response) => {
                                 if (err)
                                     throw err;
                             }
-                        response.json({token: "Token10 gelöscht!"});
+                        response.json({token: "Token_client gelöscht!"});
                     } else {
-                        response.json({token: "Token10 nicht gefunden."});
+                        response.json({token: "Token_client nicht gefunden."});
                     }
                 }
             })
