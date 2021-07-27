@@ -2,17 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>G4-0100</title>
-    <link rel="stylesheet" href="/stylesheets/G4-0100.css">
-    <script src="/routes/G4-0100.js"></script>
+    <title>G4-0200</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/G4-0200.css">
     <link rel="stylesheet" href="/stylesheets/navigationBar.css" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <link rel="stylesheet" href="stylesheets/G4-0100.css">
-    <script src="/public/G4-0100.js"></script>
-    <link rel="stylesheet" href="/stylesheets/navigationBar.css" type="text/css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
 </head>
 <body>
 <div id="UserMenu_All_Header"> <div id="All_Header_left" class="All_Header_Boxes" style="float: left; margin-right: 5px"> <a href="https://osca.hs-osnabrueck.de/"> <div class="outer-wrapper" style="float:left"> <div class="frame" style="height: 52px"> <img id="oscaImagelogo" class="oscaLogo"> </div> </div> </a>
@@ -65,26 +60,42 @@
     </div>
 </div>
 
+
+<!-- Anzeige des Moduls, Themas, Datum und Raum der Präsentation. Wird aus der Datenbank entnommen-->
+
 <table rules="rows">
     <thead>
     <tr>
-        <th>Anlass</th>
-        <th>Datum</th>
+        <th>&nbsp</th>
+        <th>Reihenfolgen</th>
+        <th>Gruppe</th>
+        <th>Thema</th>
+        <th>Anzahl der Gruppenteilnehmer</th>
+        <th>geplante Zeit</th>
+        <th>geplante Dauer</th>
+        <th>geplantes Ende</th>
         <th>Raum</th>
-        <th>Gruppenreihenfolge</th>
-        <th><a href="G4-0300">Präsentationstermin erstellen</a></th>
     </tr>
     </thead>
     <tbody>
-    <!--Anlass, Datum und Raum der Präsentationen aus Datenbank abfragen und anzeigen-->
-    <% for (var i = 0; i < presentations.length; i++) { %>
-    <tr>
-        <td><%=presentations[i].occasion%></td>
-        <td><%=presentations[i].date%></td>
-        <td><%=presentations[i].room%></td>
-        <td><a href="G4-0200.html">Gruppenreihenfolge erstellen</a> </td>
-    </tr>
-    <% }%>
+    <!-- Hier werden die einzelnen Tabellenzeilen geladen, die Anzahl der Zeilen ist abhängig von den Einträgen der Datenbank-->
+
+    <% for (var i = 0; i < module.length; i++) { %>
+        <tr>
+            <td>&nbsp;</td>
+            <td><%= module[i].group_order  %></td>
+            <td><%= module[i].group_number %></td>
+            <td><%= module[i].topic %></td>
+            <td><%= module[i].number_members %></td>
+            <td><%= module[i].start_presentation %></td>
+            <td><%= module[i].duration_presentation %></td>
+            <td><%= module[i].end_presentation %></td>
+        </tr>
+        <h1>Modul: <%= module[1].module %></h1>
+        <h2>Anlass: <%= module[1].occasion %></h2>
+        <h2>Datum: <%= module[1].date %></h2>
+        <h2>Raum: <%= module[1].room %></h2>
+    <% } %>
 
     </tbody>
 </table>
