@@ -8,6 +8,7 @@
     <script src="./javascript/MSnewTime.js" defer></script>
     <script src="./javascript/MSnewSubmilestone.js" defer></script>
     <script src="./javascript/MSgetSubmilestones.js" defer></script>
+    <script src="./javascript/MSgetTimeHistory.js" defer></script>
 
     <link type="text/css" rel="stylesheet" href="./css/MSnavigationBar.css">
     <link type="text/css" rel="stylesheet" href="./css/MShomepage.css">
@@ -17,7 +18,7 @@
     <link rel="stylesheet" type="text/css" href="../css/MSstylesheet.css">
 
 </head>
-<body onload="getSubmilestones()">
+<body onload="getSubmilestones(), getTime()">
 
 <div id="UserMenu_All_Header">
     <div id="All_Header_left" class="All_Header_Boxes" style="float: left; margin-right: 5px">
@@ -146,23 +147,7 @@
                           <h1>Arbeitszeitplan</h1>
                           <ul>
                               <table style="width: 100%" id="timeTable">
-                                  <tbody>
-                                      <tr>
-                                          <td>01.02.2021</td>
-                                          <td>02:52:36</td>
-                                          <td>Teilnehmer 1</td>
-                                      </tr>
-                                      <tr>
-                                          <td>01.02.2021</td>
-                                          <td>01:48:47</td>
-                                          <td>Teilnehmer 2</td>
-                                      </tr>
-                                      <tr>
-                                          <td>06.02.2021</td>
-                                          <td>00:03:86</td>
-                                          <td>Teilnehmer 1</td>
-                                      </tr>
-                                  </tbody>
+
                               </table>
                           </ul>
                           <button id="editTimeBtn" style="float: right" class="editbtn">Auswahl bearbeiten</button>

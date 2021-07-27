@@ -149,6 +149,32 @@ router.post('/createNewTimeManually', (request, response) => {
     });
 });
 
+router.get('/getTimeHistory', (request, response) => {
+
+    console.log(request.body);
+
+    sql = "SELECT DATE_FORMAT(timestamp, '%d.%m.%Y') AS date, timeaccount_history.timeaccount_id " +
+          "AS timeaccountID, used_time_to_iso AS detailTime, used_time AS usedTimeInHours, " +
+          "name, surname " +
+          "FROM timeaccount_history " +
+          "   JOIN timeaccount ON timeaccount_history.timeaccount_id = timeaccount.timeaccount_id " +
+          "   JOIN user ON timeaccount.user_id = user.id " +
+          "WHERE timeaccount.topic_id = 1 AND used_time_to_iso IS NOT NULL;";
+
+
+    con.query(sql, (err, result) => {
+
+        if (err) {
+            console.log(err);
+            response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+            console.log('Verbindung zur Datenbank fehlgeschlagen (createNewTime)');
+            return;
+        }
+
+        response.json(result);
+    });
+});
+
 /* Submilestone */
 
 router.post('/createNewSubmilestone', (request, response) => {
@@ -196,7 +222,7 @@ router.get('/getStatisticTimes', (request, response) => {
         "FROM user " +
         "JOIN timeaccount ON user.id = timeaccount.user_id " +
         "JOIN timeaccount_history ON timeaccount.timeaccount_id = timeaccount_history.timeaccount_id " +
-        "WHERE timeaccount.topic_id = 3 GROUP BY name, surname;"
+        "WHERE timeaccount.topic_id = 1 GROUP BY name, surname;"
 
     con.query(sql, (err, result) => {
         if (err) {

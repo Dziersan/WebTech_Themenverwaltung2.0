@@ -22,6 +22,7 @@ function renderHTML(data) {
     var table = document.createElement("table")
     table.setAttribute('width', "100%")
     table.setAttribute('id', 'submilestoneTable')
+    var pictures = document.createElement("tr")
     document.getElementById("submilestoneList").appendChild(table);
 
     for (i = 0 ; i < data.length ; i++) {

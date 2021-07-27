@@ -72,21 +72,23 @@ function renderHTMLStatisticsChart(data) {
         var value = parseInt(i) + 1;
 
         var node = document.createElement("tr");
-        node.setAttribute('style', "height: "+ data[i].sumTime + " %");
+        node.setAttribute('style', "height: " + data[i].sumTime + "%");
 
         var anchor5 = document.createElement("th");
         anchor5.setAttribute('scope', "row");
         anchor5.innerText = "T" + value;
 
         var anchor6 = document.createElement("td");
+        anchor6.setAttribute('id', 'test')
+
         var anchor7 = document.createElement("span");
-        anchor7.innerText = data[i].sumTime + " Std.";
+        anchor7.innerText = data[i].sumTime + "Std.";
 
         node.appendChild(anchor5);
         node.appendChild(anchor6);
-        node.appendChild(anchor7);
+        anchor6.appendChild(anchor7);
 
-        document.getElementById("statisticsChartBody").appendChild(node);
+        document.getElementById("chartBody").appendChild(node);
     }
 
 }
