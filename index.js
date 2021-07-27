@@ -200,7 +200,7 @@ app.get("/favicon.ico", (request, response) => {
 
 
 app.get("/loadtable", (request, response) => {
-
+    console.log("Test Console Log2")
     connection.query("SELECT * FROM requirements ", function (err, result, data) {
         if (err)
             throw err;
@@ -263,6 +263,7 @@ app.post("/delReqData", (request, response) => {
             if (err)
                 throw err;
         });
+    console.log("Daten werden gelöscht")
     response.end();
 });
 
@@ -362,3 +363,4 @@ module.exports = {
     redirectHome: redirectHome,
     session: session
 };
+
