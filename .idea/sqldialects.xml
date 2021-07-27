@@ -3,6 +3,13 @@
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/database/databaseSeeder.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/database/databaseTables.sql" dialect="MySQL" />
-    <file url="file://$PROJECT_DIR$/milestoneDatabase/sql/inserts/insertUser.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/milestoneDatabase/sql/inserts/insertMIlestone.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/milestoneDatabase/sql/inserts/insertModule.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/milestoneDatabase/sql/inserts/insertStatus.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/milestoneDatabase/sql/inserts/insertSubmilestone.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/milestoneDatabase/sql/inserts/insertTopic.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/milestoneDatabase/sql/inserts/insertUser.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/milestoneDatabase/sql/queries/statistics.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/milestoneDatabase/sql/tables.sql" dialect="MySQL" />
   </component>
 </project>
