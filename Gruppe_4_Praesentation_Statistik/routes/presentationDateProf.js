@@ -1,30 +1,14 @@
-/**
- * G4-0100 / Eine Übersicht für die Lehrkräfte in welchen Modulen ein Präsentationstermin bevorsteht
- */
-
-
-//Modulimport
 let con = require('../Module_app_mysql_pool/mysql');
 const express = require('express');
-const G4_0100 = express.Router();
+const presentationDateProf = express.Router();
 
-//Definition der Arrays
-
-/**
- * JS auf ejs laden und aufrufen
- */
-
-G4_0100.get('/G4-0100', async function  (request, result) {
-
+presentationDateProf.get('/presentationDateProf', async function  (request, result) {
 
     let data = await getPresentation();
-    result.render("G4-0100.ejs", {
+    result.render("presentationDateProf.ejs", {
         presentations: data
     });
 });
-
-
-
 
 async function getPresentation() {
 
@@ -50,4 +34,4 @@ LoadData = () =>{
     });
 };
 
-module.exports = G4_0100;
+module.exports = presentationDateProf;
