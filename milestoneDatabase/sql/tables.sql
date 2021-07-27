@@ -210,7 +210,8 @@ CREATE TABLE timeaccount_history (
     timeaccount_history_id INTEGER AUTO_INCREMENT PRIMARY KEY,
     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     timeaccount_id INTEGER NULL,
-    used_time INTEGER NOT NULL,
+    used_time FLOAT NOT NULL,
+    used_time_to_iso TIME NOT NULL,
 
     CONSTRAINT timeaccount_history_timeaccount_fk
         FOREIGN KEY (timeaccount_id) REFERENCES timeaccount (timeaccount_id)

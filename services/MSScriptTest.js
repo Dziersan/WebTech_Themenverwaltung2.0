@@ -150,6 +150,8 @@ var stopwatch = {
         if (mins<10) { mins = "0" + mins; }
         if (secs<10) { secs = "0" + secs; }
         stopwatch.etime.innerHTML = hours + ":" + mins + ":" + secs;
+
+        document.getElementById("stopwatch-time").setAttribute('value', stopwatch.now)
     },
 
     start : function () {
