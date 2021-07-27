@@ -138,7 +138,7 @@ function createTokenCalender() {
 
     if (startCalender === ""
         || endCalender === "") {
-        alert("Token10 konnte nicht erstellt werden");
+        alert("Token_client konnte nicht erstellt werden");
     } else {
         postCreateToken(token);
     }
@@ -209,7 +209,7 @@ function diffMinutes(dt2, dt1) {
 
 function deleteMessage() {
 
-    if (confirm("ACHTUNG!\nSie sind dabei einen Token10 zu löschen")) {
+    if (confirm("ACHTUNG!\nSie sind dabei einen Token_client zu löschen")) {
         clearToken();
         location.reload();
     } else {

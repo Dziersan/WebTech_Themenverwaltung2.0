@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="../css/navigationBar.css" type="text/css">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script language="javascript" type="text/javascript" src="./javascript/userView.js" src=""></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
 </head>
 <body>
+<div class ="navbar"></div>
 
-
-<div id="UserMenu_All_Header">
+<!--<div id="UserMenu_All_Header">
 
     <div id="All_Header_left" class="All_Header_Boxes" style="float: left; margin-right: 5px">
         <a href="https://osca.hs-osnabrueck.de/">
@@ -62,7 +62,7 @@
 
         <button class="header_button">Logout</button>
     </div>
-</div>
+</div>-->
 
 <form class="box" action="">
     <div class="box1">
@@ -89,4 +89,20 @@
     </div>
 </form>
 </body>
+<footer>
+    <div class ="footer"></div>
+</footer>
+
 </html>
+
+<script>
+    $(function(){
+        $(".navbar").load("navbar.html");
+    });
+</script>
+
+<script>
+    $(function(){
+        $(".footer").load("footer.html");
+    });
+</script>

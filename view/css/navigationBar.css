@@ -10,15 +10,16 @@ html {
     letter-spacing: .6px !important;
 }
 
+
 body {
+    margin: 0;
+    padding: 0;
     font-family: OpenSans, arial, "sans-serif";
-    font-size: 16px;
-    letter-spacing: .6px;
-    color: #555555;
-    text-decoration: none;
+    background: #fbfcff;
 }
 
 #UserMenu_All_Header {
+
     font-size: 17px;
     letter-spacing: .6px;
     -webkit-text-size-adjust: none;
@@ -29,6 +30,10 @@ body {
     background-color: #e5e5e5;
     height: 60px;
     margin-bottom: 52px;
+    width: 100%;
+    left: 0;
+    position: -webkit-sticky;
+
 }
 
 .header_button {
@@ -91,16 +96,17 @@ body {
 }
 
 .frame {
-    width: auto;
+
     height: 100%;
     vertical-align: middle;
     text-align: center;
     display: table-cell;
     margin: 0em 5px 0em 5px;
+    /*width: 100%;*/
 }
 
 #oscaImagelogo {
-    content: url("osca3-white.png");
+    /*content: url("osca3-white.png");*/
     max-height: 65px ;
     display: block;
     margin: 0 auto;
@@ -126,15 +132,27 @@ body {
     color: #1c9dd9;
 }
 
-footer {
-    background-color: #e8f0fe;
-    height: 40px;
-    position: fixed;
-    padding: 10px;
-    bottom: 0;
-    left: 0;
-    right: 0;
+#UserMenu_All_Header.active, .header_button:hover {
+    background-color: #666;
+    color: white;
 }
+
+@media screen and (max-width: 580px) {
+    #UserMenu_All_Header {
+        padding: 20px 10px !important;
+    }
+    #UserMenu_All_Header a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+
+    #UserMenu_All_Header button
+    #All_Header_right {
+        float: none;
+    }
+}
+
 
 
 

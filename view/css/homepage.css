@@ -10,22 +10,22 @@ body {
 
 @media screen and (max-width: 1919px) {
 
-    div.box1 {
+/*    div.box1 {
         position: center;
         border: 0;
         background: #e8f0fe;
-        /*left: 20%;*/
-        /*top: 50%;*/
+        left: 20%;
+        top: 50%;
         margin: 20px auto;
-        /*text-align: block;*/
+        !*text-align: block;*!
         border: 60px solid #e8f0fe;
-        /*width: 50%;*/
+        width: 50%;
         font-size: 24px;
         color: #000000;
         border-radius: 15px;
         transition: 0.25s;
 
-    }
+    }*/
 
 
     .top-area {
@@ -37,27 +37,27 @@ body {
         font-size: 16px;
         font-family: OpenSans, arial, "sans-serif";
         color: #000000;
-        /*background-color: #E8F0FE;*/
+        background-color: #E8F0FE;
         background: #e8f0fe;
         background: hsla(218, 92%, 95%, 0.7);
         border-radius: 15px;
     }
 
-    div.box2 {
+/*    div.box2 {
         position: center;
         border: 0;
         background: #e8f0fe;
-        /*left: 50%;
-        top: 60%;*/
+        !*left: 50%;
+        top: 60%;*!
         margin: 20px auto;
-        /*text-align: block;*/
+        !*text-align: block;*!
         border: 60px solid #e8f0fe;
-        /*width: 40%;*/
+        !*width: 40%;*!
         font-size: 24px;
         color: #000000;
         border-radius: 15px;
         transition: 0.25s;
-    }
+    }*/
 }
 
 @media screen and (min-width: 1920px) {
@@ -79,7 +79,7 @@ body {
         margin: 20px auto;
         /*text-align: block;*/
         border: 60px solid #e8f0fe;
-        width: 40%;
+        width: 60%;
         font-size: 24px;
         color: #000000;
         border-radius: 15px;
@@ -107,9 +107,9 @@ section {
     height: 110vh;
     position: center;
     box-sizing: border-box;
-    background-image: url("../images/priscilla-du-preez-XkKCui44iM0-unsplash.jpg");
+/*    background-image: url("../images/priscilla-du-preez-XkKCui44iM0-unsplash.jpg");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover;*/
     height: 100vh;
 }
 
@@ -146,21 +146,21 @@ img:nth-of-type(2) {
 }
 
 
-div.box2 {
+/*div.box2 {
     position: center;
     border: 0;
     background: #e8f0fe;
     left: 50%;
     top: 60%;
     margin: 20px auto;
-    /*text-align: block;*/
+    !*text-align: block;*!
     border: 60px solid #e8f0fe;
     width: 40%;
     font-size: 24px;
     color: #000000;
     border-radius: 15px;
     transition: 0.25s;
-}
+}*/
 
 .footer {
     position: static;
@@ -211,4 +211,54 @@ div.box2 {
 .button:hover span:after {
     opacity: 1;
     right: 0;
+}
+
+.details {
+    position: fixed;
+    right: 1em;
+    top: 1em;
+    background-color: #F1F3F4;
+    border: 0.1em solid #3983ab;
+    border-radius: 0 8px 8px;
+    padding: 1em 1em .2em;
+    width: 35em;
+    max-height: 30em;
+    //overflow: auto;
+    display: block;
+    opacity: 0;
+    z-index: -10;
+}
+
+.details h3 {
+    margin-top: 0;
+}
+
+.details:target {
+    opacity: 1;
+    z-index: 10;
+}
+
+.close {
+    width: 0;
+    heigh: 0;
+    border: 0;
+    text-shadow: none;
+    color: transparent;
+}
+
+.close:after {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    content: "X";
+    color: white;
+    background: #c32e04;
+    font: bold 1em/150% Georgia, Times, serif;
+    border: 0.1em solid #3983ab;
+    border-radius: 0 8px 8px;
+    display: block;
+    text-align: center;
+    width: 1.5em;
+    height: 1.5em;
+    padding: 0.2em 0 0 0em;
 }

@@ -77,11 +77,11 @@
     </thead>
     <tbody>
     <!--Anlass, Datum und Raum der Präsentationen aus Datenbank abfragen und anzeigen-->
-    <% for (var i = 0; i < anlass.length; i++) { %>
+    <% for (var i = 0; i < presentations.length; i++) { %>
     <tr>
-        <td><%=anlass[i]%></td>
-        <td><%=datum[i]%></td>
-        <td><%=raum[i]%></td>
+        <td><%=presentations[i].occasion%></td>
+        <td><%=presentations[i].date%></td>
+        <td><%=presentations[i].room%></td>
         <td><a href="G4-0200.html">Gruppenreihenfolge erstellen</a> </td>
     </tr>
     <% }%>

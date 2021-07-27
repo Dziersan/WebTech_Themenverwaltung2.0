@@ -9,12 +9,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script language="javascript" type="text/javascript" src="../javascript/userView.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 </head>
 
 <body>
-
+<div class ="navbar"></div>
+<!--
 <div id="UserMenu_All_Header">
     <div id="All_Header_left" class="All_Header_Boxes" style="float: left; margin-right: 5px">
         <a href="https://osca.hs-osnabrueck.de/">
@@ -72,6 +73,7 @@
         </div>
     </div>
 </div>
+-->
 
 
 <div class="container">
@@ -164,6 +166,16 @@
     </form>
     <hr><br>
     <div>
+        <h3>Passwort ändern</h3>
+        <div>Hier können Sie ihr Passwort ändern</div>
+         <br>
+        <a href="/changepassword">
+        <button type="button" class="btn btn-outline-primary">Passowort ändern</button>
+        </a>
+    </div>
+    <br><hr><br>
+
+    <div>
         <h3>E-Mail Benachrichtigung</h3>
         <div>Hier können Sie entscheiden zu welchen Ereignis Sie eine E-Mail erhalten wollen
         </div>
@@ -200,9 +212,19 @@
 <br><br>
 </body>
 <footer>
-    <div style="text-align: center">© 2020 Copyright:
-        <a href="/Impressum"> zum Impressum geht es hier lang</a>
-    </div>
+    <div class ="footer"></div>
 </footer>
 
 </html>
+
+<script>
+    $(function(){
+        $(".navbar").load("navbar.html");
+    });
+</script>
+
+<script>
+    $(function(){
+        $(".footer").load("footer.html");
+    });
+</script>

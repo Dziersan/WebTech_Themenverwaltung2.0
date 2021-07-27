@@ -28,7 +28,7 @@ G4_0300.post('/generatePresentation', function (request) {
     var sqlInsert1;
 
 
-    sqlInsert1 = "INSERT INTO presentation (date, day_start, day_end, room, occasion) VALUES ('" + request.body.date + "', '" + request.body.start + "', '" + request.body.end + "', '" + request.body.room + "', '" + request.body.anlass + "');";
+    sqlInsert1 = "INSERT INTO G4_PRAESENTATION (datum, tagstart, tagende, raum, anlass) VALUES ('" + request.body.date + "', '" + request.body.start + "', '" + request.body.end + "', '" + request.body.room + "', '" + request.body.anlass + "');";
 
     con.query(sqlInsert1, function (err) {
         if (err) throw err
@@ -45,7 +45,7 @@ G4_0300.post('/submit', function (request) {
     var sqlInsert2 = [];
 
 // Holen der Präsi ID um genau einer Präsentation zuzuordnen
-    sqlpid = "SELECT id FROM presentation WHERE date = '" + request.body.dateAgenda + "';";
+    sqlpid = "SELECT pid FROM G4_PRAESENTATION WHERE datum = '" + request.body.dateAgenda + "';";
     con.query(sqlpid, function (err, result) {
         if (err) throw err;
         for (var i = 0; i < result.length; i++) {
@@ -56,7 +56,7 @@ G4_0300.post('/submit', function (request) {
     setTimeout(() => {
         for (var i = 0; i < test.length; i++) {
             //Insert in Datenbank
-            sqlInsert2[i] = "INSERT INTO AGENDA(group_number, presentation_id, date, topic, number_members, start_presentation, duration_presentation, end_presentation) VALUES("
+            sqlInsert2[i] = "INSERT INTO AGENDA(gruppennummer, pid, datum,  thema,anzahl_mitglieder,start_vortrag,dauer_vortrag, ende_vortrag) VALUES("
                 + test[i].groupNumber + ", '" + pid[0] + "', '" + request.body.dateAgenda + "', '" + test[i].theme + "'," + test[i].number + ",'"
                 + test[i].startTime + "','" + test[i].duration + "', '" + test[i].endTime + "');";
 

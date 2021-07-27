@@ -5,5 +5,8 @@
             <module fileurl="file://$PROJECT_DIR$/webtechprojekt.iml"
                     filepath="$PROJECT_DIR$/webtechprojekt.iml"/>
         </modules>
+        <modules>
+            <module fileurl="file://$PROJE$CT_DIR/NodeJS-Express-Multer-MultipartFile-Ajax-JQuery-Bootstrap_1.iml" filepath="$PROJECT_DIR$/NodeJS-Express-Multer-MultipartFile-Ajax-JQuery-Bootstrap_1.iml" />
+        </modules>
     </component>
 </project>
