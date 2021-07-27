@@ -97,22 +97,28 @@
             <th>geplantes Ende</th>
             <th>Raum</th>
         </tr>
+
         </thead>
         <tbody>
         <!-- Hier werden die einzelnen Tabellenzeilen geladen, die Anzahl der Zeilen ist abhängig von den Einträgen der Datenbank-->
-        <% for (var i = 0; i < reihenfolge.length;i++) {let id = ("id_" + i); %>
+        <% for (var i = 0; i < data.length;i++) %>
         <tr>
             <td>&nbsp;</td>
-            <td id="<%= id %>"><%= reihenfolge[i] %></td>
-            <td><%= gruppe[i] %></td>
-            <td name="thema"><%= thema[i] %></td>
-            <td><%= mitglieder[i] %></td>
-            <td><%= startzeit[i] %></td>
-            <td><%= dauer[i] %></td>
-            <td><%= ende[i] %></td>
-            <td><%= raum[0] %></td>
+
+            <td><%= data[i].group_order %></td>
+            <td name="thema"><%= data[i].topic %></td>
+            <td><%= data[i].group_number %></td>
+            <td><%= data[i].start_presentation %></td>
+            <td><%= data[i].duration_presentation %></td>
+            <td><%= data[i].end_presentation %></td>
+
         </tr>
+        <h1>Modul: <%= data[1].module %></h1>
+        <h2>Anlass: <%= data[1].occasion %></h2>
+        <h2>Datum: <%= data[1].date %></h2>
+        <h2>Raum: <%= data[1].room %></h2>
         <% } %>
+
         </tbody>
 
     </table>

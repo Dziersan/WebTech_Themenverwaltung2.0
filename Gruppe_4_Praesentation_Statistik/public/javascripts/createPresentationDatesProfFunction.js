@@ -101,6 +101,7 @@ function getGroups() {
  */
 function setPresentationDay()
 {
+    console.log("hallo");
     document.getElementById("starting").value = document.getElementById("enterStartTime").value;
     document.getElementById("dateAgenda").value = document.getElementById("enterDate").value;
     document.getElementById("date").value = document.getElementById("enterDate").value;
@@ -108,5 +109,5 @@ function setPresentationDay()
     document.getElementById("end").value = document.getElementById("enterDayEnd").value;
     document.getElementById("room").value = document.getElementById("enterRoom").value;
     document.getElementById("anlass").value = document.getElementById("enterAnlass").value;
-
+    console.log("ende");
 }
