@@ -12,7 +12,7 @@
     <link type="text/css" rel="stylesheet" href="../css/MShomepage.css">
     <link rel="stylesheet" type="text/css" href="../css/MSstylesheet.css">
 </head>
-<body onload="getStatisticTimes()">
+<body onload="getStatisticTimes(), getStatisticTimesChart()">
 
 <div id="UserMenu_All_Header">
     <div id="All_Header_left" class="All_Header_Boxes" style="float: left; margin-right: 5px">
@@ -96,39 +96,11 @@
 
             <div class="statistics-grid-left">
                 <h1 align="center">Zeitaufwand Gesamt</h1>
-                <table class="statistics-graph">
+                <table class="statistics-graph" id="statisticsChartBody">
                     <tbody>
                     <tr style="height:16.5%">
                         <th scope="row">T1</th>
-                        <td><span>16,5 Std.</span></td>
-                    </tr>
-                    <tr style="height:20%">
-                        <th scope="row">T2</th>
-                        <td><span>20 Std.</span></td>
-                    </tr>
-                    <tr style="height:17%">
-                        <th scope="row">T3</th>
-                        <td><span>17 Std.</span></td>
-                    </tr>
-                    <tr style="height:18%">
-                        <th scope="row">T4</th>
-                        <td><span>18 Std.</span></td>
-                    </tr>
-                    <tr style="height:19%">
-                        <th scope="row">T5</th>
-                        <td><span>19 Std.</span></td>
-                    </tr>
-                    <tr style="height:18.5%">
-                        <th scope="row">T6</th>
-                        <td><span>18,5 Std.</span></td>
-                    </tr>
-                    <tr style="height:18.5%">
-                        <th scope="row">T6</th>
-                        <td><span>18,5 Std.</span></td>
-                    </tr>
-                    <tr style="height:18.5%">
-                        <th scope="row">T6</th>
-                        <td><span>18,5 Std.</span></td>
+                        <td><span>16.5 Std.</span></td>
                     </tr>
                     </tbody>
                 </table>

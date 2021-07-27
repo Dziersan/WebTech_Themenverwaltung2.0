@@ -196,7 +196,7 @@ router.get('/getStatisticTimes', (request, response) => {
         "FROM user " +
         "JOIN timeaccount ON user.id = timeaccount.user_id " +
         "JOIN timeaccount_history ON timeaccount.timeaccount_id = timeaccount_history.timeaccount_id " +
-        "WHERE timeaccount.topic_id = 1 GROUP BY name, surname;"
+        "WHERE timeaccount.topic_id = 3 GROUP BY name, surname;"
 
     con.query(sql, (err, result) => {
         if (err) {
