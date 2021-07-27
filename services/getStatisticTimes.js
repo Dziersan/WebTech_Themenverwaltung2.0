@@ -72,15 +72,13 @@ function renderHTMLStatisticsChart(data) {
         var value = parseInt(i) + 1;
 
         var node = document.createElement("tr");
-        node.setAttribute('style', "height: " + data[i].sumTime + "%");
+        node.setAttribute('style', "height: " + (data[i].sumTime/4) + "%");
 
         var anchor5 = document.createElement("th");
         anchor5.setAttribute('scope', "row");
         anchor5.innerText = "T" + value;
 
         var anchor6 = document.createElement("td");
-        anchor6.setAttribute('id', 'test')
-
         var anchor7 = document.createElement("span");
         anchor7.innerText = data[i].sumTime + "Std.";
 

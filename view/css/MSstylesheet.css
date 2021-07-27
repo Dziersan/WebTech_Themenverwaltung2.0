@@ -503,7 +503,7 @@ button {
 
         /* Y-axes-texts */
         .statistics-graph tbody:before {
-            content: "100 Std.";
+            content: "400 Std.";
             top: -1em;
         }
         .statistics-graph tbody:after {
