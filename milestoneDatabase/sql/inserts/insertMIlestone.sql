@@ -2,12 +2,12 @@ USE Webtech;
 
 INSERT INTO MILESTONES (topic_id, description, status, start, end)
 VALUES
-    (1, 'Datenbankschema erstellen', 3, CURRENT_DATE, '2021-7-30'),
-    (1, 'Datenbanktabellen mit Datensätzen füllen', 3, CURRENT_DATE, '2021-6-02'),
-    (1, 'Datenbankabfragen erstellen', 2, CURRENT_DATE, '2021-6-10'),
-    (1, 'Datentransfer zwischen Datenbank und Server', 2, CURRENT_DATE, '2021-6-17'),
-    (1, 'Code-Style umsetzen', 2, CURRENT_DATE, '2021-7-01'),
-    (2, 'SWOT-Analyse erstellen', 2, CURRENT_DATE, '2021-7-30');
+    (3, 'Datenbankschema erstellen', 3, CURRENT_DATE, '2021-7-30'),
+    (3, 'Datenbanktabellen mit Datensätzen füllen', 3, CURRENT_DATE, '2021-6-02'),
+    (3, 'Datenbankabfragen erstellen', 2, CURRENT_DATE, '2021-6-10'),
+    (3, 'Datentransfer zwischen Datenbank und Server', 2, CURRENT_DATE, '2021-6-17'),
+    (3, 'Code-Style umsetzen', 2, CURRENT_DATE, '2021-7-01'),
+    (4, 'SWOT-Analyse erstellen', 2, CURRENT_DATE, '2021-7-30');
 
 /* successor setzen */
 

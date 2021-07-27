@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Milestones Statistics</title>
     <script src="./javascript/MSScriptTest.js" defer></script>
+    <script src="./javascript/getStatisticTimes.js"></script>
     <link type="text/css" rel="stylesheet" href="./css/MSnavigationBar.css">
     <link type="text/css" rel="stylesheet" href="./css/MShomepage.css">
     <link rel="stylesheet" type="text/css" href="./css/MSstylesheet.css">
@@ -11,7 +12,7 @@
     <link type="text/css" rel="stylesheet" href="../css/MShomepage.css">
     <link rel="stylesheet" type="text/css" href="../css/MSstylesheet.css">
 </head>
-<body>
+<body onload="getStatisticTimes">
 
 <div id="UserMenu_All_Header">
     <div id="All_Header_left" class="All_Header_Boxes" style="float: left; margin-right: 5px">
@@ -35,13 +36,13 @@
 
         <div class="dropdown" style="margin-left: 5px">
             <form action="/GanttHome">
-                <button class="header_button" onclick="loadTable()" >Meilensteinplanung</button>
+                <button class="header_button" onclick="loadTable()">Meilensteinplanung</button>
             </form>
         </div>
 
         <div class="dropdown" style="margin-left: 5px">
             <form action="/RequirementsEditGer">
-                <button class="header_button" onclick="loadTable()" >Group 5</button>
+                <button class="header_button" onclick="loadTable()">Group 5</button>
             </form>
         </div>
 
@@ -132,47 +133,30 @@
                     </tbody>
                 </table>
             </div>
-            <div>                <table class="statistics-table">
-                <caption>Zeitaufwand Gesamt</caption>
-                <tbody>
-                <tr>
-                    <th></th>
-                    <th>Name</th>
-                    <th>Stundenaufwand</th>
-                </tr>
-                <tr>
-                    <td class="leftColumn">T1</td>
-                    <td>Max Mustermann</td>
-                    <td>16,5 Std.</td>
-                </tr>
-                <tr>
-                    <td class="leftColumn">T2</td>
-                    <td>Max Musterfrau</td>
-                    <td>20 Std.</td>
-                </tr>
-                <tr>
-                    <td class="leftColumn">T3</td>
-                    <td>Max Muster</td>
-                    <td>17 Std.</td>
-                </tr>
-                <tr>
-                    <td class="leftColumn">T4</td>
-                    <td>Max Mann</td>
-                    <td>18 Std.</td>
-                </tr>
-                <tr>
-                    <td class="leftColumn">T5</td>
-                    <td>Max Frau</td>
-                    <td>19 Std.</td>
-                </tr>
-                <tr>
-                    <td class="leftColumn">T6</td>
-                    <td>Max Maxax</td>
-                    <td>18,5 Std.</td>
-                </tr>
-                </tbody>
-            </table>
-                <a href="MilestoneStatisticsPDF.html" target="_blank"><button style="float: right" class="editbtn">Als PDF-Datei drucken</button></a>
+            <div>
+                <table class="statistics-table">
+                    <caption>Zeitaufwand Gesamt</caption>
+                    <tr>
+                        <th></th>
+                        <th>Name</th>
+                        <th>Stundenaufwand</th>
+                    </tr>
+                    <tbody id="statisticsTableBody">
+
+                    <!--
+                    <tr>
+                         <td class="leftColumn">T2</td>
+                         <td>Max Musterfrau</td>
+                         <td>20 Std.</td>
+                    </tr>
+                    -->
+                    </tbody>
+                </table>
+
+
+                <a href="MilestoneStatisticsPDF.html" target="_blank">
+                    <button style="float: right" class="editbtn">Als PDF-Datei drucken</button>
+                </a>
             </div>
         </div>
     </div>
