@@ -189,6 +189,28 @@ router.get('/getSubmilestones', (request, response) => {
     });
 });
 
+/* Statistics */
+
+router.get('/getStatisticTimes', (request, response) => {
+    sql = "SELECT name, surname, SUM(used_time) AS sumTime " +
+        "FROM user " +
+        "JOIN timeaccount ON user.id = timeaccount.user_id " +
+        "JOIN timeaccount_history ON timeaccount.timeaccount_id = timeaccount_history.timeaccount_id " +
+        "WHERE timeaccount.topic_id = 1 GROUP BY name, surname;"
+
+    con.query(sql, (err, result) => {
+        if (err) {
+            console.log(err);
+            response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+            console.log('Verbindung zur Datenbank fehlgeschlagen (getAllMilestones');
+            return;
+        }
+
+        response.json(result);
+        console.log(result);
+    });
+});
+
 module.exports = router;
 
 

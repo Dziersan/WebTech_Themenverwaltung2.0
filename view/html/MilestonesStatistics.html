@@ -12,7 +12,7 @@
     <link type="text/css" rel="stylesheet" href="../css/MShomepage.css">
     <link rel="stylesheet" type="text/css" href="../css/MSstylesheet.css">
 </head>
-<body onload="getStatisticTimes">
+<body onload="getStatisticTimes()">
 
 <div id="UserMenu_All_Header">
     <div id="All_Header_left" class="All_Header_Boxes" style="float: left; margin-right: 5px">
@@ -134,23 +134,15 @@
                 </table>
             </div>
             <div>
-                <table class="statistics-table">
+
+                <table class="statistics-table" id="statisticsTableBody">
                     <caption>Zeitaufwand Gesamt</caption>
                     <tr>
-                        <th></th>
+                        <th>T</th>
                         <th>Name</th>
                         <th>Stundenaufwand</th>
                     </tr>
-                    <tbody id="statisticsTableBody">
 
-                    <!--
-                    <tr>
-                         <td class="leftColumn">T2</td>
-                         <td>Max Musterfrau</td>
-                         <td>20 Std.</td>
-                    </tr>
-                    -->
-                    </tbody>
                 </table>
 
 

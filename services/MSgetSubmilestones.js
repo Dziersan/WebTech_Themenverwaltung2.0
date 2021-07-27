@@ -36,7 +36,7 @@ function renderHTML(data) {
         var radioInput1 = document.createElement('input');
         radioInput1.setAttribute('type', 'radio');
         radioInput1.setAttribute('id', 'undone');
-        radioInput1.setAttribute('name', 'progress' );
+        radioInput1.setAttribute('name', i);
         radioInput1.setAttribute('value', '1');
 
         var radioButton2 = document.createElement("td");
@@ -44,7 +44,7 @@ function renderHTML(data) {
         var radioInput2 = document.createElement('input');
         radioInput2.setAttribute('type', 'radio');
         radioInput2.setAttribute('id', 'work');
-        radioInput1.setAttribute('name', 'progress');
+        radioInput2.setAttribute('name',i);
         radioInput2.setAttribute('value', '2');
 
         var radioButton3 = document.createElement("td");
@@ -52,7 +52,7 @@ function renderHTML(data) {
         var radioInput3 = document.createElement('input');
         radioInput3.setAttribute('type', 'radio');
         radioInput3.setAttribute('id', 'done');
-        radioInput1.setAttribute('name', 'progress');
+        radioInput3.setAttribute('name', i);
         radioInput3.setAttribute('value', '3');
 
         var deleteButton = document.createElement("td");
@@ -60,7 +60,8 @@ function renderHTML(data) {
         deleteButton.setAttribute('width', '70px');
         var buttonAttributes = document.createElement('button');
         buttonAttributes.innerText = "Löschen";
-        radioInput3.setAttribute('class', 'deleteInGridbtn');
+        buttonAttributes.setAttribute('class', 'deleteInGridbtn');
+        buttonAttributes.setAttribute ('style', 'float: Right');
 
         node.appendChild(anchor);
 

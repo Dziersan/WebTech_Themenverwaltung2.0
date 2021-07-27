@@ -25,12 +25,12 @@ const con = require("./getDatabaseConnection");
  * @param response - sending the result within a JSON file to client
  */
 
-router.get('/getStatisticTimes', (request, response) => {
+/* router.get('/getStatisticTimes', (request, response) => {
     sql = "SELECT name, surname, SUM(used_time) AS sumTime" +
         "FROM user" +
         "JOIN timeaccount ON user.id = timeaccount.user_id" +
         "JOIN timeaccount_history ON timeaccount.timeaccount_id = timeaccount_history.timeaccount_id" +
-        "WHERE timeaccount.topic_id = 3 GROUP BY name, surname;"
+        "WHERE timeaccount.topic_id = 1 GROUP BY name, surname;"
 
     con.query(sql, (err, result) => {
         if (err) {
@@ -41,8 +41,9 @@ router.get('/getStatisticTimes', (request, response) => {
         }
 
         response.json(result);
+        console.log(result);
     });
-});
+}); */
 
 
 

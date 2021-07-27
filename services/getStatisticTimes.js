@@ -19,6 +19,40 @@ function getStatisticTimes() {
 
 function renderHTMLStatistics(data) {
 
+    for (i = 0; i < data.length; i++) {
+
+        var value = parseInt(i) + 1;
+
+        var node = document.createElement("tr");
+
+        var anchor = document.createElement("td");
+        anchor.innerText = "T" + value;
+
+
+        var anchor2 = document.createElement("td");
+
+        anchor2.innerText = data[i].surname + " " + data[i].name;
+
+        var anchor3 = document.createElement("td");
+
+        anchor3.innerText = data[i].sumTime;
+
+        node.appendChild(anchor);
+        node.appendChild(anchor2);
+        node.appendChild(anchor3);
+
+        document.getElementById("statisticsTableBody").appendChild(node);
+
+    }
+
+}
+
+/*function renderHTMLStatistics(data) {
+
+
+
+
+
     var table = document.getElementById('statisticsTableBody')
     for (i = 0; i < data.length; i++) {
 
@@ -29,21 +63,8 @@ function renderHTMLStatistics(data) {
 					  </tr>`
         table.innerHTML += row
 
-    }
-
-}//;
+    } */
 
 
-//function renderHTMLStatistics3(data) {
-//   for (var i = 1; i < data.length; i++) {
-//        var tr = document.createElement('tr');
-//
-//        var td1 = document.createElement('td');
-//        td1.innerText = data[i].surname + data[i].name;
-        //var td2 = document.createElement('td');
-        //td2.innerText = data[i].sumTime;
-//        document.getElementById("testStatistik");
-//    }
 
-    /* Beispiel in services/adminView.js Zeile 35 bis 66*/
-//}
+
