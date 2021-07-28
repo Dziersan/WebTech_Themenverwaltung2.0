@@ -14,10 +14,12 @@ configDatabase = require("./config/datenbankConfig.json");
 const connection = require("./services/getDatabaseConnection.js");
 const upload = require("./services/multerConfig");
 const fileWorker = require('./services/file.controller.js');
-
+const path = require('path')
 
 
 global.__basedir = __dirname;
+console.log('start')
+console.log(global.__basedir )
 var lifeTime = 1000 * 60 * 60 * 24;// 24 hour
 var lifeTimeLong = 1000 * 60 * 60 * 24 * 365 * 10;  //1 Year
 var tokenLifeTime = 60 * 24 * 366;// 10 + 1 day year
@@ -30,6 +32,9 @@ var {
     sessionName = "sid",
     secretSession = "test"
 } = process.env;
+
+/*app.set('views', path.join(__dirname, 'views'));*/
+app.set('view engine', 'ejs');
 
 /**
  * @method
@@ -337,6 +342,33 @@ app.use(routerToken);
 
 insertRout = require('./services/postRouters.js');
 app.use(insertRout);
+
+ routerModuleOver = require('./services/moduleOverview');
+app.use(routerModuleOver);
+
+routerprensentationDataP = require('./services/presentationDateProf');
+app.use(routerprensentationDataP);
+
+routerGroupOrder = require('./services/groupOrder');
+app.use(routerGroupOrder);
+
+routerLiveTrackingP = require('./services/liveTrackingProf');
+app.use(routerLiveTrackingP);
+
+routerPresenDateOverview = require('./services/presentationDateOverview');
+app.use(routerPresenDateOverview);
+
+routerPresentationOverview = require('./services/presentationOverview');
+app.use(routerPresentationOverview);
+
+routerInquiryDozent = require('./services/inquiryDozent');
+app.use(routerInquiryDozent);
+
+routerCreatePresenDateP = require('./services/createPresentationDatesProf');
+app.use(routerCreatePresenDateP);
+
+routerDozentMessage = require('./services/dozentmessage');
+app.use(routerDozentMessage);
 
 /*//Gruppe 5 Editor
 routerEdit = require("./services/routesGetPostEditor.js");*/

@@ -1,54 +1,73 @@
-/** passwortHash
- *
- *  Version 1
- *  Modification date: 22.07.2020
- *  Author: Sven Petersen
- *  @class to hash a given string and compares it afterwards
+/**
+ * Version 1.0
+ * 23.07.2020
+ * AUTHOR: Sven Petersen
+ * claas wont work because it takes to long to calculate the hash but it actually prints
  */
 
+const express = require('express');
 const bcrypt = require('bcrypt');
-const saltRounds = 10;
+const router = express.Router();
+const Promise = require("promise");
 
-/**
- * @method
- * This method hashes an given input string and adds an salt for proper security.
- * @param input to be hashed.
- */
-function hashPassword(input) {
-    bcrypt.genSalt(saltRounds, function (err, salt) {
-        if (err) {
-            throw err
-        } else {
-            bcrypt.hash(input, salt, function (err, hash) {
+
+router.post("/hashPassword", (request, response) => {
+
+    let password = request.body.password;
+    let stored_hash = "";
+
+
+    function genSalt(password) {
+        return new Promise((resolve, reject) => {
+            bcrypt.genSalt(10, function (err, salt) {
                 if (err) {
-                    throw err
+                    reject(err);
                 } else {
-                    return hash;
+                    resolve({
+                        salt: salt,
+                        password: password
+                    });
                 }
-            })
-        }
-    });
-};
+            });
+        });
+    }
 
-/**
- * @method
- * This method compares an given input string with an hashed + salt generated password.
- * @param input string from user to compare with hash
- * @param hash string from database to check for.
- */
-function compareHashedPassword(input, hash) {
-    bcrypt.compare(input, hash, function (err, isMatch) {
-        if (err) {
-            throw err
-        } else if (!isMatch) {
-            return false;
-        } else {
-            return true;
-        }
-    });
-};
+    /**
+     * This method hashes an given input string and adds salt for proper security.
+     * @param input to be hashed.
+     */
+    function genHash(salt, password) {
+        return new Promise((resolve, reject) => {
+            bcrypt.hash(password, salt, function (err, hash) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve({
+                        salt: salt,
+                        password: password,
+                        hash: hash
+                    });
+                }
+            });
+        });
+    }
 
-module.exports = {
-    hashPassword,
-    compareHashedPassword
-};
+    genSalt(password)
+        .then(function (result) {
+            return genHash(result.salt, result.password);
+        })
+        .then(function (result) {
+            stored_hash = result.hash;
+        })
+        .catch(function (err) {
+        });
+
+
+    setTimeout(() => "hi", 5000);
+    response.contentType('application/json');
+    response.json(stored_hash);
+    response.end();
+
+});
+
+module.exports = router;

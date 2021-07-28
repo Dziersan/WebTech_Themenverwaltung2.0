@@ -34,7 +34,7 @@ function loadTable() {
 
     fetch('/loadtable', options)
         .then(response => {return response.json()})
-        .then(data =>{  test123(data)
+        .then(data =>{  getLoadTable(data)
         })
 
     console.log("Test Console Log")
@@ -46,14 +46,7 @@ loadTable();
 
 // Test ab hier
 
-function test123(data) {
-    console.log(data[0].id.slice(1))
-    console.log(data[0].id.charAt(0))
-    console.log(data)
-    console.log(data[0].start_time.substring(0,10))
-
-
-//Function 2 ab hier
+function getLoadTable(data) {
 
     var rowCounter = 0;
     for (i = 0; i < data.length; i++) {

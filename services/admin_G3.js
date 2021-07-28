@@ -22,10 +22,10 @@ async function insertData() {
     const name = document.getElementById('sftwname').value;
     const beschreibung = document.getElementById('sftwbeschreibung').value;
     const link = document.getElementById('sftwlink').value;
-    let software = {
-        SoftwareName: name,
-        Beschreibung: beschreibung,
-        Link: link
+    let softwarepool = {
+        software_name: name,
+        software_description: beschreibung,
+        software_link: link
     }
 
     const options = {
@@ -33,7 +33,7 @@ async function insertData() {
         headers: {
             'Content-Type': "application/json"
         },
-        body: JSON.stringify(software)
+        body: JSON.stringify(softwarepool)
     };
 
     const response = await fetch('/insert', options);
@@ -52,11 +52,11 @@ function loadHTML(data) {
 
     for (item of data) {
         tbodyHTML += "<tr>";
-        tbodyHTML += `<td>${item.ID}</td>`
-        tbodyHTML += `<td>${item.SOFTWARENAME}</td>`;
-        tbodyHTML += `<td>${item.SOFTWARE_BESCHREIBUNG}</td>`;
-        tbodyHTML += `<td>${item.SOFTWARELINK}</td>`;
-        tbodyHTML += `<td><button class="delete-row-btn" data-id=${item.ID}>Delete</td>`;
+        tbodyHTML += `<td>${item.id}</td>`
+        tbodyHTML += `<td>${item.software_name}</td>`;
+        tbodyHTML += `<td>${item.software_description}</td>`;
+        tbodyHTML += `<td>${item.software_link}</td>`;
+        tbodyHTML += `<td><button class="delete-row-btn" data-id=${item.id}>Delete</td>`;
         tbodyHTML += "</tr>";
     }
 
@@ -75,10 +75,10 @@ function loadNotification(data) {
 
     for (item of data) {
         tbodyHTML += "<tr>";
-        tbodyHTML += `<td>${item.ID}</td>`
-        tbodyHTML += `<td>${item.GROUP_NAME}</td>`;
-        tbodyHTML += `<td>${item.BESCHREIBUNGS_TEXT}</td>`;
-        tbodyHTML += `<td><button class="delete-row-btn" data-id=${item.ID}>Erledigt</td>`;
+        tbodyHTML += `<td>${item.id}</td>`
+        tbodyHTML += `<td>${item.software_name}</td>`;
+        tbodyHTML += `<td>${item.software_description}</td>`;
+        tbodyHTML += `<td><button class="delete-row-btn" data-id=${item.id}>Erledigt</td>`;
         tbodyHTML += "</tr>";
     }
 

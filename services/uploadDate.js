@@ -1,23 +1,18 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const dotenv = require('dotenv');
-const mysql = require('mysql');
 const cors = require('cors');
-const { response } = require("express");
-const PORT = process.env.PORT || 5000;
-const app = express();
-dotenv.config();
+const uploadData = express.Router();
 
-app.use(cors());
+uploadData.use(cors());
 
-app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+uploadData.use(express.json());
+uploadData.use(express.urlencoded({extended: true}));
 
-app.use(express.static('public'))
+uploadData.use(express.static('public'))
 
 const connection = require("../services/getDatabaseConnection")
 
-app.get('/getSFTWPOOLData', (req, res) =>{
+uploadData.get('/getSFTWPOOLData', (req, res) =>{
     let sql = 'SELECT * FROM softwarepool';
 
     connection.query(sql, (err, result) =>{
@@ -31,7 +26,7 @@ app.get('/getSFTWPOOLData', (req, res) =>{
 })
 
 
-app.get('/getNotificationData', (req, res) =>{
+uploadData.get('/getNotificationData', (req, res) =>{
     let sql = 'SELECT * FROM notification';
 
     connection.query(sql, (err, result) =>{
@@ -44,8 +39,8 @@ app.get('/getNotificationData', (req, res) =>{
     })
 })
 
-app.post('/insert', (req, res) =>{
-    let sql = 'INSERT INTO softwarepool(SOFTWARENAME, SOFTWARE_BESCHREIBUNG, SOFTWARELINK) VALUES (?,?,?)';
+uploadData.post('/insert', (req, res) =>{
+    let sql = 'INSERT INTO softwarepool(software_name, software_description, software_link) VALUES (?,?,?)';
 
     connection.query(sql,[req.body.SoftwareName, req.body.Beschreibung, req.body.Link],(err, result) =>{
         if(err) throw err;
@@ -53,8 +48,8 @@ app.post('/insert', (req, res) =>{
     })
 })
 
-app.post('/insertNotification', (req, res) =>{
-    let sql = 'INSERT INTO notification(GROUP_NAME, BESCHREIBUNGS_TEXT) VALUES (?,?)';
+uploadData.post('/insertNotification', (req, res) =>{
+    let sql = 'INSERT INTO notification(GROUP_NAME, description) VALUES (?,?)';
 
     connection.query(sql,[req.body.SoftwareName, req.body.Anfrage],(err, result) =>{
         if(err) throw err;
@@ -62,7 +57,7 @@ app.post('/insertNotification', (req, res) =>{
     })
 })
 
-app.delete('/delete/:id', (req, res) =>{
+uploadData.delete('/delete/:id', (req, res) =>{
     const { id } = req.params;
     let sql = 'DELETE FROM softwarepool WHERE ID = ?';
 
@@ -73,7 +68,7 @@ app.delete('/delete/:id', (req, res) =>{
 
 });
 
-app.delete('/deleteNotification/:id', (req, res) =>{
+uploadData.delete('/deleteNotification/:id', (req, res) =>{
     const { id } = req.params;
     let sql = 'DELETE FROM notification WHERE ID = ?';
 
@@ -84,4 +79,3 @@ app.delete('/deleteNotification/:id', (req, res) =>{
 
 });
 
-module.exports = app;

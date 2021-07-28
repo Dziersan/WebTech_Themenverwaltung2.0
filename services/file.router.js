@@ -1,7 +1,7 @@
 module.exports = (app, router, upload) => {
     const fileWorker = require('./file.controller.js');
 
-    var path = __basedir ;
+    let path = global.__basedir  ;
     const express = require('express');
 
     router.use((req, res, next) => {
@@ -15,6 +15,7 @@ module.exports = (app, router, upload) => {
     app.get('/api/files/:filename', fileWorker.downloadFile);
 
     //app.use('/upload_G3', router);
+
 
     app.use('/404', (req, res) => {
         res.sendFile(path + "/view/html/404.html");

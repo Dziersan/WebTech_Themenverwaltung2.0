@@ -9,7 +9,7 @@ const connection = require("../services/getDatabaseConnection.js");
 postRouter.post('/insert', (req, res) => {
     let sql = 'INSERT INTO softwarepool(software_name, software_description, software_link) VALUES (?,?,?)';
 
-    connection.query(sql, [req.body.SoftwareName, req.body.Beschreibung, req.body.Link], (err, result) => {
+    connection.query(sql, [req.body.software_name, req.body.software_description, req.body.software_link], (err, result) => {
         if (err) throw err;
     })
 })
