@@ -499,6 +499,7 @@ button {
                     transparent 20%
             );
         }
+
         .statistics-graph tbody:before,
         .statistics-graph tbody:after {
             position: absolute;
@@ -534,7 +535,7 @@ button {
             position: relative;
         }
 
-        /* Bar alignment including labeling) */
+        /* Bar alignment including labeling */
         .statistics-graph tbody th {
             position: absolute;
             top: -3em;

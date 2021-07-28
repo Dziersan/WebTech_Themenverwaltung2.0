@@ -159,7 +159,7 @@ router.get('/getTimeHistory', (request, response) => {
           "FROM timeaccount_history " +
           "   JOIN timeaccount ON timeaccount_history.timeaccount_id = timeaccount.timeaccount_id " +
           "   JOIN user ON timeaccount.user_id = user.id " +
-          "WHERE timeaccount.topic_id = 1 AND used_time_to_iso IS NOT NULL;";
+          "WHERE timeaccount.topic_id = 3 AND used_time_to_iso IS NOT NULL;";
 
 
     con.query(sql, (err, result) => {
@@ -183,7 +183,7 @@ router.post('/createNewSubmilestone', (request, response) => {
 
     sql = "INSERT INTO submilestones (milestone_id, description) " +
         "VALUES " +
-        "(16, '" + request.body.description + "');";
+        "(19, '" + request.body.description + "');";
 
     con.query(sql, (err, result) => {
 
@@ -201,7 +201,7 @@ router.post('/createNewSubmilestone', (request, response) => {
 router.get('/getSubmilestones', (request, response) => {
     sql = "SELECT submilestone_id AS submilestoneID, description, status " +
         "FROM SUBMILESTONES " +
-        "WHERE milestone_id = 5;";
+        "WHERE milestone_id = 19;";
 
     con.query(sql, (err, result) => {
         if (err) {
