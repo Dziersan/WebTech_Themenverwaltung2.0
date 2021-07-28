@@ -9,6 +9,8 @@
     <script src="./javascript/MSnewSubmilestone.js" defer></script>
     <script src="./javascript/MSgetSubmilestones.js" defer></script>
     <script src="./javascript/MSgetTimeHistory.js" defer></script>
+    <script src="./javascript/MSgetParticipants.js" defer></script>
+
 
     <link type="text/css" rel="stylesheet" href="./css/MSnavigationBar.css">
     <link type="text/css" rel="stylesheet" href="./css/MShomepage.css">
@@ -18,7 +20,7 @@
     <link rel="stylesheet" type="text/css" href="../css/MSstylesheet.css">
 
 </head>
-<body onload="getSubmilestones(), getTime()">
+<body onload="getTime(),getSubmilestones(),getParticipants()"> <!-- getSubmilestones() -->
 
 <div id="UserMenu_All_Header">
     <div id="All_Header_left" class="All_Header_Boxes" style="float: left; margin-right: 5px">
@@ -94,7 +96,7 @@
 <div class="row">
     <div class="col-3 menu">
         <div class="menu">
-            <iframe name="Uebersicht" src="MSUebersicht.html" frameborder="0" width="100%" height="1000" ></iframe>
+            <iframe name="Uebersicht" src="MSUebersicht.html" frameborder="0" width="100%" height="1000"></iframe>
         </div>
     </div>
 
@@ -104,37 +106,15 @@
             <div class="todo-table">
                 <h1>Unterpunkte</h1>
                 <ul id="submilestoneList">
-                   <!-- <table width="100%" id="submilestoneTable"> -->
-                        <!--    <tr align="center">
-                                <th></th><th>&#10006</th><th>&#9998</th><th>&#10004</th>
-                            </tr>
-                                  <tr>
-                                      <td>Unterpunkt 1</td>
-                                      <td align="center"><input type="radio" id="undone" name="progress1" value="1"></td>
-                                      <td align="center"><input type="radio" id="work" name="progress1" value="2"></td>
-                                      <td align="center"><input type="radio" id="done" name="progress1" value="3"></td>
-                                      <td width="70px" align="center"><button id="deleteToDoBtn" class="deleteInGridbtn">Löschen</button></td>
-                                  </tr> -->
-<!--                              </table>-->
+
                           </ul>
                           <button id="newToDoBtn" style="float: right" class="editbtn" >Unterpunkt hinzufügen</button>
                       </div>
                       <div>
                           <h1>Teilnehmer</h1>
                           <ul>
-                              <table width="100%">
-                                  <tr>
-                                      <td>Teilnehmer 1</td>
-                                      <td><button id="deleteMemberBtn" style="float: right" class="deleteInGridbtn">Löschen</button></td>
-                                  </tr>
-                                  <tr>
-                                      <td>Teilnehmer 2</td>
-                                      <td><button id="deleteMemberBtn" style="float: right" class="deleteInGridbtn">Löschen</button></td>
-                                  </tr>
-                                  <tr>
-                                      <td>Teilnehmer 3</td>
-                                      <td><button id="deleteMemberBtn" style="float: right" class="deleteInGridbtn">Löschen</button></td>
-                                  </tr>
+                              <table width="100%" id="participantsTable">
+
                               </table>
 
                           </ul>
@@ -217,44 +197,47 @@
                 </div>
             </div>
 
-<!--            <div id="newMilestoneModal" class="modal">-->
-<!--                &lt;!&ndash; Modal content &ndash;&gt;-->
-<!--                <div class="modal-content">-->
-<!--                    <Span class="closeBtn" id="newMilestoneClose">&times;</Span>-->
-<!--                    <h1>Neuer Meilenstein</h1>-->
-<!--                    <table style="width: 100%">-->
-<!--                        <tr>-->
-<!--                        <td><label for="mname">Name: </label></td>-->
-<!--                        <td><input type="text" id="mname" name="mname"> </td>-->
-<!--                        </tr>-->
-<!--                        <tr>-->
-<!--                            <td><label for="mpre">Vorgänger: </label></td>-->
-<!--                            <td>-->
-<!--                                <select id="mpre" name="mpre">-->
-<!--                                    <option value="Kein Vorgänger">Kein Vorgänger</option>-->
-<!--                                    <option value="Vorgänger 1">Platzhalter 1</option>-->
-<!--                                    <option value="Vorgänger 2">Platzhalter 2</option>-->
-<!--                                    <option value="Vorgänger X">Platzhalter 3</option>-->
-<!--                                </select>-->
-<!--                            </td>-->
-<!--                        </tr>-->
-<!--                        <tr>-->
-<!--                            <td><label for="mstart">Start: </label></td>-->
-<!--                            <td><input type="date" id="mstart" name="mstart"></td>-->
-<!--                        </tr>-->
-<!--                        <tr>-->
-<!--                        <td>-->
-<!--                            <label for="mtime">Zeitaufwand (Tage): </label></td>-->
-<!--                            <td><input type="number" id="mtime" name="mtime"></td>-->
-<!--                        </tr>-->
-<!--                        <tr>-->
-<!--                            <td><label for="mdeadline">Deadline: </label></td>-->
-<!--                            <td><input type="date" id="mdeadline" name="mdeadline"></td>-->
-<!--                        </tr>-->
-<!--                    </table>-->
-<!--                    <button id="newMilestoneBtn" style="float: right" class="editbtn">Speichern</button>-->
-<!--                </div>-->
-<!--            </div>-->
+            <div id="newMilestoneModal" class="modal">
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <Span class="closeBtn" id="newMilestoneClose">&times;</Span>
+                    <h1>Neuer Meilenstein</h1>
+                    <table style="width: 100%">
+                        <tr>
+                        <td><label for="mname">Name: </label></td>
+                        <td><input type="text" id="mname" name="mname"> </td>
+                        </tr>
+                        <tr>
+                            <td><label for="mpre">Vorgänger: </label></td>
+                            <td>
+                                <select id="mpre" name="mpre">
+                                    <option value="Kein Vorgänger">Kein Vorgänger</option>
+                                    <option value="Vorgänger 1">Platzhalter 1</option>
+                                    <option value="Vorgänger 2">Platzhalter 2</option>
+                                    <option value="Vorgänger X">Platzhalter 3</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="mstart">Start: </label></td>
+                            <td><input type="date" id="mstart" name="mstart"></td>
+                        </tr>
+                        <tr>
+                        <td>
+                            <label for="mtime">Zeitaufwand (Tage): </label></td>
+                            <td><input type="number" id="mtime" name="mtime"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="mdeadline">Deadline: </label></td>
+                            <td><input type="date" id="mdeadline" name="mdeadline"></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><button id="newMilestoneBtn" style="float: right" class="editbtn">Speichern</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
 
             <div id="editMilestoneModal" class="modal">
                 <!-- Modal content -->
@@ -280,11 +263,6 @@
                         <tr>
                             <td><label for="mstart">Start: </label></td>
                             <td><input type="date" id="mstart" name="mstart"></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="mtime">Zeitaufwand (Tage): </label></td>
-                            <td><input type="number" id="mtime" name="mtime"></td>
                         </tr>
                         <tr>
                             <td><label for="mdeadline">Deadline: </label></td>

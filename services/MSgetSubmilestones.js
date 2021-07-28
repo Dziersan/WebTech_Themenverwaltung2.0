@@ -1,13 +1,27 @@
-function getSubmilestones() {
+function getSubmilestones(id) {
 
-    fetch('/getSubmilestones')
+    const object = {'mileStoneId': 13};
+    console.log(id);
+    console.log(object);
+    console.log("hallo");
+
+    var options = {
+
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(object)
+
+    };
+
+    fetch('/getSubmilestones2', options)
+
         .then(response => {
 
             return response.json();
 
         }).then(responseData => {
-        renderHTML(responseData)
-        console.log(responseData)
+        renderSubMilestones(responseData)
+      //  console.log(responseData)
     })
 };
 
@@ -17,7 +31,7 @@ function getSubmilestones() {
  * @param data
  */
 
-function renderHTML(data) {
+function renderSubMilestones(data) {
 
     var table = document.createElement("table")
     table.setAttribute('width', "100%")
@@ -85,3 +99,4 @@ function renderHTML(data) {
     /* Beispiel in services/adminView.js Zeile 35 bis 66*/
 
 }
+

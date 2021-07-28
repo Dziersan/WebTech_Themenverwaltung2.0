@@ -30,9 +30,13 @@ const round = require("./MSround");
 /* Milestone */
 
 router.get('/getMilestones', (request, response) => {
+
+    var userId = request.session.userId;
+
     sql = "SELECT milestone_id AS milestoneID, description, status, successor," +
         "start, end, duration " +
-        "FROM MILESTONES;";
+        "FROM MILESTONES " +
+        "WHERE topic_id = (SELECT topic_id FROM topic_status WHERE user_id = " + userId + ");";
 
     con.query(sql, (err, result) => {
         if (err) {
@@ -59,9 +63,11 @@ router.post('/createMilestone', (request, response) => {
 
     console.log(request.body);
 
+    var userId = request.session.userId;
+
     sql = "INSERT INTO MILESTONES (topic_id, description, status, predecessor, start, end) " +
         "VALUES " +
-        "('" + request.body.topicID + "', '" + request.body.description + "', '"
+        "((SELECT topic_id FROM topic_status WHERE user_id = " + userId +"), '" + request.body.description + "', '"
         + request.body.status + "', " + request.body.predecessor + ", '" + request.body.start +"', '"
         + request.body.end +"');";
 
@@ -91,15 +97,12 @@ router.post('/createNewTime', (request, response) => {
         hours = 0.1;
 
     }
+     var userID = request.session.userId;
 
-    /* var date = new Date(null);
-    date.setSeconds(4250);
-    var result = date.toISOString().substr(11, 8);
-    console.log(result); */
-
-    sql = "INSERT INTO timeaccount_history (timeaccount_id, used_time, used_time_to_iso) " +
+    sql= "INSERT INTO timeaccount_history (timeaccount_id, used_time, used_time_to_iso) " +
         "VALUES " +
-        "(1, '" + hours + "', SEC_TO_TIME(" + request.body.usedTime + "));";
+        "((SELECT timeaccount_id FROM timeaccount WHERE user_id = " + userID + " AND topic_id = " + topic +"), " +
+        "'" + hours + "', SEC_TO_TIME(" + request.body.usedTime + "));";
 
     con.query(sql, (err, result) => {
 
@@ -151,7 +154,7 @@ router.post('/createNewTimeManually', (request, response) => {
 
 router.get('/getTimeHistory', (request, response) => {
 
-    console.log(request.body);
+    var userID = request.session.userId;
 
     sql = "SELECT DATE_FORMAT(timestamp, '%d.%m.%Y') AS date, timeaccount_history.timeaccount_id " +
           "AS timeaccountID, used_time_to_iso AS detailTime, used_time AS usedTimeInHours, " +
@@ -159,7 +162,7 @@ router.get('/getTimeHistory', (request, response) => {
           "FROM timeaccount_history " +
           "   JOIN timeaccount ON timeaccount_history.timeaccount_id = timeaccount.timeaccount_id " +
           "   JOIN user ON timeaccount.user_id = user.id " +
-          "WHERE timeaccount.topic_id = 3 AND used_time_to_iso IS NOT NULL;";
+          "WHERE timeaccount.topic_id = (SELECT topic_id FROM topic_status WHERE user_id = " + userID + ") AND used_time_to_iso IS NOT NULL;";
 
 
     con.query(sql, (err, result) => {
@@ -183,7 +186,7 @@ router.post('/createNewSubmilestone', (request, response) => {
 
     sql = "INSERT INTO submilestones (milestone_id, description) " +
         "VALUES " +
-        "(19, '" + request.body.description + "');";
+        "(16, '" + request.body.description + "');";
 
     con.query(sql, (err, result) => {
 
@@ -199,9 +202,11 @@ router.post('/createNewSubmilestone', (request, response) => {
 });
 
 router.get('/getSubmilestones', (request, response) => {
+
+    console.log("route submilestones");
     sql = "SELECT submilestone_id AS submilestoneID, description, status " +
         "FROM SUBMILESTONES " +
-        "WHERE milestone_id = 19;";
+        "WHERE milestone_id = " + request.body.mileStoneId +";";
 
     con.query(sql, (err, result) => {
         if (err) {
@@ -215,14 +220,42 @@ router.get('/getSubmilestones', (request, response) => {
     });
 });
 
+router.post('/getSubmilestones2', (request, response) => {
+
+    console.log("route submilestones");
+    sql = "SELECT submilestone_id AS submilestoneID, description, status " +
+        "FROM SUBMILESTONES " +
+        "WHERE milestone_id = " + request.body.mileStoneId +";";
+
+    con.query(sql, (err, result) => {
+        if (err) {
+            console.log(err);
+            response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+            console.log('Verbindung zur Datenbank fehlgeschlagen (getAllMilestones');
+            return;
+        }
+
+        console.log(result);
+
+        console.log(request.body.mileStoneId);
+        console.log(request.body);
+
+        response.json(result);
+        return (result);
+    });
+});
+
 /* Statistics */
 
 router.get('/getStatisticTimes', (request, response) => {
+
+    var userID = request.session.userId;
+
     sql = "SELECT name, surname, SUM(used_time) AS sumTime " +
         "FROM user " +
         "JOIN timeaccount ON user.id = timeaccount.user_id " +
         "JOIN timeaccount_history ON timeaccount.timeaccount_id = timeaccount_history.timeaccount_id " +
-        "WHERE timeaccount.topic_id = 3 GROUP BY name, surname;"
+        "WHERE timeaccount.topic_id = (SELECT topic_id FROM topic_status WHERE user_id = " + userID + ") GROUP BY name, surname;";
 
     con.query(sql, (err, result) => {
         if (err) {
@@ -236,6 +269,79 @@ router.get('/getStatisticTimes', (request, response) => {
         console.log(result);
     });
 });
+
+router.get('/getTopic', (request, response) => {
+    sql = "SELECT id, project_description AS description " +
+        "FROM topic; ";
+
+
+    con.query(sql, (err, result) => {
+        if (err) {
+            console.log(err);
+            response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+            console.log('Verbindung zur Datenbank fehlgeschlagen (getAllMilestones');
+            return;
+        }
+
+        response.json(result);
+        console.log(result);
+    });
+});
+
+router.post('/setTopicId', (request, response) => {
+
+    var userID = request.session.userId;
+
+    sql= "UPDATE topic_status " +
+        "SET " +
+        "topic_id = " + request.body.topicId2 + " " +
+        "WHERE user_id = " + userID +";";
+
+    con.query(sql, (err, result) => {
+
+        if (err) {
+            console.log(err);
+            response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+            console.log('Verbindung zur Datenbank fehlgeschlagen (createNewTime)');
+        }
+
+        response.json({"Message": "Erfolg"});
+        return result
+    });
+
+    console.log(request.body.topicId2);
+    console.log(request.body);
+
+    request.session["topicID"] = request.body.topicId2;
+
+    console.log(request.session.topicID);
+
+});
+
+router.get('/getParticipants', (request, response) => {
+
+    var userID = request.session.userId;
+
+    sql = "SELECT surname, name " +
+        "FROM user " +
+        "JOIN participant_group ON user.id = participant_group.user_id " +
+        "WHERE participant_group.topic_id = (SELECT topic_id FROM topic_status " +
+        "WHERE user_id = " + userID + ");";
+
+    con.query(sql, (err, result) => {
+        if (err) {
+            console.log(err);
+            response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+            console.log('Verbindung zur Datenbank fehlgeschlagen (getAllMilestones');
+            return;
+        }
+
+        response.json(result);
+        console.log(result);
+    });
+});
+
+
 
 module.exports = router;
 

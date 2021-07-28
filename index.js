@@ -167,7 +167,7 @@ app.use((request, respond, next) => {
  * @method
  * GET Methods from routesGET.js
  */
-router = require("./services/routesGET.js");
+router = require("./services/getRouters.js");
 
 app.get("/", router);
 app.get("/login", redirectHome, redirectCookie, router);
@@ -194,6 +194,7 @@ app.get("/upload_G3",router);
 app.get("/admin_G3", router);
 app.get("/student_G3" ,router);
 app.get("/GanttHome", redirectLogin, router);
+app.get("/MilestonesSubpage1", redirectLogin, router);
 app.get("/newmilestone", router);
 app.get("/getMilestones", redirectLogin, router);
 /*

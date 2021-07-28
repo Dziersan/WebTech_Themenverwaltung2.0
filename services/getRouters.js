@@ -20,6 +20,10 @@ router.get("/GanttHome", (request, response) => {
     response.sendFile(path.path + "/view/html/GanttHome.html");
 });
 
+router.get("/MilestonesSubpage1", (request, response) => {
+    response.sendFile(path.path + "/view/html/MilestonesSubpage1.html");
+});
+
 router.get("/RequirementsEditGer", (request, response) => {
     response.sendFile(path.path + "/view/html/login.html");
 });
@@ -58,23 +62,6 @@ router.get("/upload_G3", (request, response) => {
 /**
  *  This method provides a json object with all registerd users.
  */
-
-router.get('/getMilestones', (request, response) => {
-    sql = "SELECT milestone_id AS milestoneID, description, status, successor," +
-        "start, end, duration " +
-        "FROM MILESTONES;";
-
-    connection.query(sql, (err, result) => {
-        if (err) {
-            console.log(err);
-            response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
-            console.log('Verbindung zur Datenbank fehlgeschlagen (getAllMilestones');
-            return;
-        }
-        console.log(result);
-        response.json(result);
-    });
-});
 
 router.get("/getUser", (request, response) => {
 

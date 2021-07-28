@@ -270,6 +270,13 @@ CREATE TABLE softwarepool(
     software_link varchar(255)
 );
 
+DROP TABLE IF EXISTS topic_status;
+CREATE TABLE topic_status(
+    user_id int NOT NULL,
+    topic_id int NOT NULL
+
+);
+
 
 
 

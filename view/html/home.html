@@ -3,17 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <!--<link type="text/css" rel="stylesheet" href="../css/navigationBar.css">-->
+    <link type="text/css" rel="stylesheet" href="./css/navigationBar.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
     <script type="text/javascript" language="JavaScript" src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="./javascript/home.js" type="text/javascript" language="JavaScript" ></script>
-    <link href="../css/style.css" rel="stylesheet" type="text/css">
-
-
+    <script src="./javascript/MSgetTopic.js" type="text/javascript" language="JavaScript" ></script>
+    <script src="./javascript/getTopicId.js" type="text/javascript" language="JavaScript" ></script>
 </head>
-
-<body>
+<body onload="getTopic()">
 
 <div id="UserMenu_All_Header">
     <div id="All_Header_left" class="All_Header_Boxes" style="float: left; margin-right: 5px">
@@ -37,24 +34,28 @@
 
         <div class="dropdown" style="margin-left: 5px">
             <form action="/GanttHome">
-                <button class="header_button" onclick="loadTable()" >Meilensteinplanung</button>
+                <button class="header_button">Meilensteinplanung</button>
+            </form>
+            <div class="dropdown-content" id="topic">
+
+            </div>
+        </div>
+
+        <div class="dropdown" style="margin-left: 5px">
+            <form action="/presentation">
+                <button class="header_button">Präsentation</button>
+            </form>
+
+        </div>
+
+        <div class="dropdown" style="margin-left: 5px">
+            <form action="/RequirementsEditGer">
+                <button class="header_button" onclick="loadTable()" >Group 5</button>
             </form>
         </div>
 
-        <form action="/presentation">
-            <button class="header_button">Präsentation</button>
-        </form>
-
-        <form action="/RequirementsEditGer">
-            <button class="header_button" onclick="loadTable()" >Group 5</button>
-        </form>
     </div>
 
-    <div class="dropdown" style="margin-left: 5px">
-        <form action="/GanttHome">
-            <button class="header_button" onclick="loadTable()" >Meilensteinplanung</button>
-        </form>
-    </div>
 
     <div id="All_Header_right" class="All_Header_Boxes" style="float: right">
 
@@ -95,30 +96,20 @@
 </form>
 
 <br>
-<!--<div>
-    <a href="/token">Token_client</a>
+<div>
+    <a href="/token">Token10</a>
 </div>
 <div>
     <a href="/showUsers">Benutzer</a>
-</div>-->
+</div>
 
 
 </body>
 <footer>
-    <div class ="footer"></div>
+    <div style="text-align: center">© 2020 Copyright:
+        <a href="/Impressum"> zum Impressum geht es hier lang</a>
+    </div>
 </footer>
-
 </html>
 
-<script>
-    $(function(){
-        $(".navbar").load("navbar.html");
-    });
-</script>
-
-<script>
-    $(function(){
-        $(".footer").load("footer.html");
-    });
-</script>
 
