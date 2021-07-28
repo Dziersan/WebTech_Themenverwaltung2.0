@@ -5,7 +5,6 @@
     "test": "jasmine"
   },
   "dependencies": {
-    "Q": "^1.0.0",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "cjs": "0.0.11",
@@ -29,11 +28,12 @@
     "node": "^16.1.0",
     "nodemailer": "^6.6.1",
     "q": "^1.5.1",
+    "Q": "^1.0.0",
     "request": "^2.88.2",
     "session": "^0.1.0"
   },
   "devDependencies": {
-    "express-toastr": "^2.0.2",
+    "express-toastr": "^1.1.0",
     "popups": "^1.1.3"
   }
 }

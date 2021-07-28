@@ -100,7 +100,7 @@ body {
 }
 
 #oscaImagelogo {
-    content: url("osca3-white.png");
+    content: url("/images/osca3-white.png");
     max-height: 65px ;
     display: block;
     margin: 0 auto;
@@ -111,6 +111,7 @@ body {
 }
 
 #netcaseIcon {
+    content: url("/images/");
     color: #555555;
 }
 
@@ -120,6 +121,7 @@ body {
 
 #mailIcon {
     color: #555555;
+
 }
 
 #mailIcon:hover {

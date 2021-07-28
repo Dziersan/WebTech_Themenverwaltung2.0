@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Milestone Statistics PDF</title>
     <script src="./javascript/MShtml2pdf.min.js" defer></script>
+    <script src="./javascript/getStatisticTimes.js"></script>
     <link rel="stylesheet" type="text/css" href="./css/MSstylesheet.css">
     <link rel="stylesheet" type="text/css" href="../css/MSstylesheet.css">
 
@@ -21,85 +22,21 @@
     </script>
 
 </head>
-<body>
+<body onload="getStatisticTimes(), getStatisticTimesChart()">
 <button onclick="generatePDF()" class="editbtn">PDF-Datei drucken</button>
 <div id="statisticsToPdf">
     <div class="milestone-statistics-pdf">
-        <table class="statistics-table">
+        <table class="statistics-table" id="statisticsTableBody">
             <caption>Zeitaufwand Gesamt</caption>
-            <tbody>
             <tr>
-                <th></th>
+                <th>T</th>
                 <th>Name</th>
                 <th>Stundenaufwand</th>
             </tr>
-            <tr>
-                <td class="leftColumn">T1</td>
-                <td>Max Mustermann</td>
-                <td>16,5 Std.</td>
-            </tr>
-            <tr>
-                <td class="leftColumn">T2</td>
-                <td>Max Musterfrau</td>
-                <td>20 Std.</td>
-            </tr>
-            <tr>
-                <td class="leftColumn">T3</td>
-                <td>Max Muster</td>
-                <td>17 Std.</td>
-            </tr>
-            <tr>
-                <td class="leftColumn">T4</td>
-                <td>Max Mann</td>
-                <td>18 Std.</td>
-            </tr>
-            <tr>
-                <td class="leftColumn">T5</td>
-                <td>Max Frau</td>
-                <td>19 Std.</td>
-            </tr>
-            <tr>
-                <td class="leftColumn">T6</td>
-                <td>Max Maxax</td>
-                <td>18,5 Std.</td>
-            </tr>
-            </tbody>
         </table>
         <br>
-        <table class="statistics-graph">
-            <tbody>
-            <tr style="height:16.5%">
-                <th scope="row">T1</th>
-                <td><span>16,5 Std.</span></td>
-            </tr>
-            <tr style="height:20%">
-                <th scope="row">T2</th>
-                <td><span>20 Std.</span></td>
-            </tr>
-            <tr style="height:17%">
-                <th scope="row">T3</th>
-                <td><span>17 Std.</span></td>
-            </tr>
-            <tr style="height:18%">
-                <th scope="row">T4</th>
-                <td><span>18 Std.</span></td>
-            </tr>
-            <tr style="height:19%">
-                <th scope="row">T5</th>
-                <td><span>19 Std.</span></td>
-            </tr>
-            <tr style="height:18.5%">
-                <th scope="row">T6</th>
-                <td><span>18,5 Std.</span></td>
-            </tr>
-            <tr style="height:18.5%">
-                <th scope="row">T6</th>
-                <td><span>18,5 Std.</span></td>
-            </tr>
-            <tr style="height:18.5%">
-                <th scope="row">T6</th>
-                <td><span>18,5 Std.</span></td>
-            </tr>
+        <table class="statistics-graph" id="statisticsChartBody">
+            <tbody id="chartBody">
             </tbody>
         </table>
     </div>
