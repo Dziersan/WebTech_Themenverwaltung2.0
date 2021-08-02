@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Gruppenansicht_ADMIN VIEW</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" language="JavaScript" src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="../style/groupView.css" type="text/css">
+    <link rel="stylesheet" href="../style/style.css" type="text/css">
+</head>
+
+<body>
+<div class ="navbar"></div>
+
+<div class="pageContent grid_admin">
+    <div class="grid-header">
+        <h1 id="captionGroupName"> <!-- filled by sql query--> </h1>
+    </div>
+    <div class="grid-p-table table-view table-size" style="margin-bottom: 1em;">  <!-- Tabelle mit allen Modulteilnehmern -->
+        <table >
+            <thead>
+                <th class="participant-nummer">Matrikel-Nr.</th>
+                <th class="participant-name">Name</th>
+                <th class="participant-email">E-Mail</th>
+            </thead>
+            <tbody id="tableGroupMembers"> 
+                <!-- filled by sql query-->
+            </tbody>
+        </table>
+    </div>
+
+    <div style="grid-area: left-buttons; float: left; margin-top: -1em;">
+        <button id="showAddTeilnehmerPopupBtn" class="button blue">Teilnehmer hinzufügen</button>
+        <button id="showDeleteTeilnehmerPopupBtn" class="button red">Teilnehmer löschen</button>
+    </div>
+
+    <div script="Gruppenansicht.js" class="calender-frame">  <!-- Kalender -->
+        <div class="calender" id="main">
+            <div class="jumbotron">
+              <h1 class="text-center"></a><span>&nbsp;</span><span id="month"> </span><span>&nbsp;</span><span id="year"> </span><span>&nbsp;</span></a></h1>
+            </div>
+            <div class="row">
+              <div class="col-sm-10 col-sm-offset-1">
+                <table class="calender_table" id="cal">
+
+                </table>
+              </div>
+            </div>
+        </div>
+        <div class="calender-notifications" >
+            <ul id="calenderEntries">
+                <!-- filled by sql query-->
+            </ul>
+        </div>
+        <button id="terminErstellenBtn">Termin erstellen</button>
+    </div>
+
+    <form class="upload-section" method="post" action="/groupView/upload" enctype="multipart/form-data">
+        <div class="upload-box" style="border: 1px solid black" style="align-content: center;">    <!-- Dateiupload-Sektion -->
+            <input class="box__file" type="file" name="uploadAbgaben" id="file">
+            <button class="button blue" type="submit" style="margin-top: 2%; ;">Upload</button>
+        </div>
+    </form>
+</div>
+
+<!------------------------------------------->
+<!--   PopUp Kalendereintrag hinzufügen    -->   
+<!------------------------------------------->
+<div id="popupCalender-boxID" class="popup-box">
+    <div class="popupCalender-content">
+        <span id="closePopupKalender" class="close">&times;</span>
+        <h1>Termin erstellen</h1>
+        <form action="/groupView/calenderView/createAppointment" method="POST">
+            <label> Beschreibung: </label><br>
+            <input type="text" placeholder="Beschreibung eintragen" name="Beschreibung" required><br><br>
+            <label> Datum: </label><br>
+            <input type="date" placeholder="Datum eintragen" name="Datum" required><br><br>
+            <label> Uhrzeit: </label><br>
+            <input type="time" placeholder="Uhrzeit eintragen" name="Zeit" required><br><br>
+            <input type="hidden" id="pageUrlField" name="PageUrl" required>
+            <script>
+                var url = window.location.search;
+                url = url.replace("?grpID=", '');
+                document.getElementById("pageUrlField").value = url;
+            </script>
+            <button id="createAppointmentBtn" type="submit" style="width: 65%; margin-top: 6%;">Termin erstellen</button>
+        </form>
+    </div>
+</div>
+
+<!------------------------------------------->
+<!--      PopUp Teilnehmer hinzufügen      -->   
+<!------------------------------------------->
+<div id="popupModulTeilnehmer-boxID" class="popup-box">
+    <div class="popupModulTeilnehmer-content">
+        <span id="closePopupTeilnehmer" class="close">&times;</span>
+        <div class="pageContent2">
+            <div>
+                <h1>Alle Studenten</h1>
+            </div>
+            <br>
+            <div class="popupTeilnehmerTable">  <!-- Tabelle mit allen Studenten -->
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Matrikelnummer</th>
+                        <th>Studiengang</th>
+                        <th>Aktion</th>
+                    </tr>
+                    </thead>
+                    <tbody id="editMembersTable">
+                    </tbody>
+                 </table>
+             </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<footer>
+    <div class ="footer"></div>
+</footer>
+</html>
+
+<script>
+    $(function(){
+        $(".navbar").load("navbar.html");
+    });
+</script>
+
+<script>
+    $(function(){
+        $(".footer").load("footer.html");
+    });
+</script>
+<script src="../scripts/groupView.js"></script>

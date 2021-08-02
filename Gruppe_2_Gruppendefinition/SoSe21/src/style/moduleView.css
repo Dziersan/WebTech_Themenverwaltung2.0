@@ -1,0 +1,154 @@
+.grid-header h1
+{
+    font-weight: lighter;
+}
+
+.grid-topic h1
+{
+    font-weight: lighter;
+}
+
+.grid-b-topic h1
+{
+    font-weight: lighter;
+}
+
+.grid-admin
+{
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 4% 5% 27% 1% 5% 27% 1%;
+    grid-template-areas:
+        "header header header header"
+        "topic topic topic topic"
+        "p-table p-table p-table p-table"
+        "button button button button"
+        "b-topic b-topic b-topic b-topic"
+        "b-table b-table b-table b-table"
+        "c-button c-button c-button c-button"
+}
+
+.grid
+{
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 4% 6% 27% 8% 25%;
+    grid-template-areas:
+        "header header header header"
+        "topic topic topic topic"
+        "p-table p-table p-table p-table"
+        "b-topic b-topic b-topic b-topic"
+        "b-table b-table b-table b-table"
+}
+
+.grid-header
+{
+    grid-area: header;
+    min-height: min-content;
+}
+
+.grid-topic
+{
+    grid-area: topic;
+}
+
+.grid-table
+{
+    grid-area: p-table;
+}
+
+.grid-b-table
+{
+    grid-area: b-table;
+}
+
+.grid-b-topic
+{
+    grid-area: b-topic;
+}
+
+.grid-button
+{
+    grid-area: button;
+}
+
+.grid-c-button
+{
+    grid-area: c-button;
+}
+
+.table-size table
+{
+    height: 250px;
+}
+
+.popupModuleParticipant-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.popupGroupAdd-content
+{
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    width: 70%;
+    height: 50%;
+    text-align: center;
+}
+
+.popupGroup-content
+{
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 25%;
+    height: 50%;
+    text-align: center;
+}
+
+.popupGroup-content label
+{
+    margin-top: 0%;
+    font-weight: bold;
+}
+
+.popupGroup-content input
+{
+    margin-top: 2%;
+    margin-bottom: 4%;
+    width: 65%;
+    text-align: center;
+    font-size: 18px;
+}
+
+#addNewGroupBtnID
+{
+    width: 100%;
+    background-color: var(--hsos-blue);
+    border: none;
+    color: white;
+    font-weight: bold;
+    padding: 6px 32px;
+    text-align: center;
+    font-size: 18px;
+    margin: 4px 2px;
+    opacity: 1;
+    transition: 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.popupAutomaticDistribution-content 
+{
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
