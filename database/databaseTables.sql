@@ -26,6 +26,8 @@ CREATE TABLE presentation
         foreign key (topic_id) references topic (id)
 );
 
+
+
 DROP TABLE IF EXISTS agenda ;
 CREATE TABLE agenda (
     id int auto_increment primary key,
@@ -90,13 +92,13 @@ create table messages
     type  varchar(50)  null
 );
 
-DROP TABLE IF EXISTS module;
+/* DROP TABLE IF EXISTS module;
 CREATE TABLE module(
     module_id INT auto_increment primary key,
     description VARCHAR (255),
     participants_number INT
 );
-
+*/
 DROP TABLE IF EXISTS notification;
 CREATE TABLE notification(
     id   int auto_increment primary key,
@@ -132,3 +134,111 @@ CREATE TABLE STUDENT_MODUL(
 
 
 
+
+
+DROP SCHEMA IF EXISTS Webtech;
+CREATE SCHEMA Webtech;
+USE WEBTECH;
+
+DROP TABLE IF EXISTS Pw_forgot_token;
+CREATE TABLE Pw_forgot_token(
+                                ID INTEGER AUTO_INCREMENT PRIMARY KEY,
+                                E_Mail VARCHAR(255),
+                                Start DATETIME,
+                                End DATETIME,
+                                Token VARCHAR(255),
+                                Used BOOLEAN
+);
+
+DROP TABLE IF EXISTS Token;
+CREATE TABLE Token
+(
+    ID INTEGER AUTO_INCREMENT PRIMARY KEY,
+    Start DATETIME,
+    Time INTEGER,
+    End DATETIME,
+    Gentoken VARCHAR(255),
+    User INTEGER
+);
+
+DROP TABLE IF EXISTS User;
+CREATE TABLE User
+(
+    ID INTEGER AUTO_INCREMENT PRIMARY KEY,
+    User_ID VARCHAR(10) UNIQUE, /* Selbst gewählte Identifkationskennung */
+    HS_ID VARCHAR(20),
+    Token VARCHAR(255),
+    Name VARCHAR(255),
+    Surname VARCHAR(255),
+    E_Mail VARCHAR(255),
+    Password VARCHAR(255),
+    Verified BOOLEAN,
+    Authorization VARCHAR(255),
+    Confirm_Token VARCHAR(255),
+    Semester CHAR(2),
+    Course VARCHAR(255),
+    Position ENUM('Student', 'HS-Mitarbeiter', 'Dozent') /* Student, HS-Mitarbeiter, Dozent, Dekan */
+);
+
+DROP TABLE IF EXISTS Modul;
+CREATE TABLE Modul
+(
+    Modul_ID INTEGER AUTO_INCREMENT PRIMARY KEY,
+    Modulname VARCHAR(255),
+    Teilnehmer_Max INTEGER,
+    Semester CHAR(10), /* Damit ist das Jahr gemeint z.B. SoSe 20/21 */
+    Pruefungsform ENUM('Klausur1', 'Klausur2', 'Mündl. Prüfung', 'Hausarbeit')
+);
+
+DROP TABLE IF EXISTS Groups;
+CREATE TABLE Groups
+(
+    Group_ID INTEGER AUTO_INCREMENT PRIMARY KEY,
+    Modul_ID INTEGER,
+    Gruppenname VARCHAR(255),
+    Teilnehmer_Max INTEGER,
+    Abgabedatum DATETIME,
+    Active BOOLEAN,
+    Beitritt BOOLEAN
+);
+
+DROP TABLE IF EXISTS User_Modul;
+CREATE TABLE User_Modul
+(
+    User_ID INTEGER,
+    Modul_ID INTEGER,
+    Rolle ENUM('Teilnehmer', 'Dozent', 'Verwalter'),
+    PRIMARY KEY(User_ID, Modul_ID)
+);
+
+DROP TABLE IF EXISTS User_Group; /* group = hausarbeit */
+CREATE TABLE User_Group
+(
+    User_ID INTEGER,
+    Group_ID INTEGER,
+    Rolle ENUM('Teilnehmer', 'Dozent', 'Verwalter'),
+    PRIMARY KEY(User_ID, Group_ID)
+);
+
+
+DROP TABLE IF EXISTS Termine; /* group = hausarbeit */
+CREATE TABLE Termine
+(
+    Termin_ID INTEGER AUTO_INCREMENT PRIMARY KEY,
+    Group_ID INTEGER,
+    Beschreibung VARCHAR(255),
+    Datum DATE,
+    Zeit TIME,
+    Erinnerung BOOLEAN,
+    Ort VARCHAR(255),
+    Ersteller_ID INTEGER
+);
+
+DROP TABLE IF EXISTS InviteCodes;
+CREATE TABLE InviteCodes
+(
+    ID INTEGER AUTO_INCREMENT PRIMARY KEY,
+    inviteCode VARCHAR(20),
+    Modul_ID INTEGER,
+    Enddate DATETIME
+);
