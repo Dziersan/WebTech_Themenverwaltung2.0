@@ -5,7 +5,7 @@
 var con = require('../Module_app_mysql_pool/mysql');
 
 const express = require('express');
-const G4_0800 = express.Router();
+const presentationOverview = express.Router();
 
 /*//Definition der Arrays
 anlass = [];
@@ -16,8 +16,8 @@ pid = [];*/
 /**
  * JS auf ejs laden auf aufrufen
  */
-/*G4_0800.get('/G4-0800',function (request,result) {
-    result.render('G4-0800.ejs',
+/*presentationOverview.get('/G4-0800',function (request,result) {
+    result.render('presentationOverview.ejs',
         {
             benutzername : "Test",
             Modulname : "WEB-TECH",
@@ -25,9 +25,9 @@ pid = [];*/
         });
 });*/
 
-G4_0800.get('/G4-0800', async function (request, result) {
-    let m = await getModuleG40800();
-    result.render("G4-0800.ejs", {
+presentationOverview.get('/presentationOverview', async function (request, result) {
+    let m = await getPresentationOverview();
+    result.render("presentationOverview.ejs", {
         module: m
     });
 });
@@ -37,9 +37,9 @@ G4_0800.get('/G4-0800', async function (request, result) {
  * JS auf ejs laden und an /reihenfolge schicken
  */
 
-G4_0800.post('/Reihenfolge', function (request,result) {
+presentationOverview.post('/Reihenfolge', function (request,result) {
     var sqlStatement= "SELECT "
-    result.render("G4-0800.ejs", {
+    result.render("presentationOverview.ejs", {
         benutzername : "Test",
         Modulname : "WEB-TECHNEU",
         date :date,
@@ -53,16 +53,16 @@ G4_0800.post('/Reihenfolge', function (request,result) {
  * SQL-Abfragen für die jeweiligen Spalten
  */
 
-async function getModuleG40800() {
+async function getPresentationOverview() {
     let m = [];
-    let result = await LoadDataG40800();
+    let result = await loadPresentationOverview();
     for (let i = 0; i< result.length;i++) {
         m.push( { occasion:result[i].occasion,date:result[i].date, room:result[i].room, topic_id: result[i].topic_id} );
     }
     return m;
 }
 
-LoadDataG40800 = () =>{
+loadPresentationOverview = () =>{
     return new Promise((resolve, reject)=>{
         con.query("SELECT occasion,date,room,topic_id FROM presentation",  (error, results)=>{
             if(error){
@@ -73,7 +73,7 @@ LoadDataG40800 = () =>{
     });
 };
 
-module.exports = G4_0800;
+module.exports = presentationOverview;
 
 
 /*
@@ -91,4 +91,4 @@ function getValuesFromDb() {
 */
 
 /*
-module.exports = G4_0800;*/
+module.exports = presentationOverview;*/

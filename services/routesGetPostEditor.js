@@ -1,6 +1,7 @@
 const redirect = require("../index");
 const app = express();
 
+
 router.post("/createTable", (request, response) => {
 
   if (request.method === "OPTIONS") {
@@ -57,11 +58,14 @@ router.post("/delReqData", (request, response) => {
   response.end();
 });
 
-router.post("/loadtable", (request, response) => {
-
+router.get("/loadtable", (request, response) => {
+  console.log("Test Console Log3")
   connection.query("SELECT * FROM requirements ", function (err, result, fields) {
     if (err)
       throw err;
+    else {
+      console.log(result);
+    }
   })
 });
 

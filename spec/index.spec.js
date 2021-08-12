@@ -7,10 +7,11 @@
 
 var Request = require("request");
 const serverURL = "http://localhost:3000";
-const Register = require("..\\Gruppe_1_Registrierung\\public\\routes\\register\\routesRegister.js");
+//const Register = require("..\\Gruppe_1_Registrierung\\public\\routes\\register\\routesRegister.js");
+//const Register = require("..\\services\\register.js");
+const Register = require('../services/register');
 describe("Register Tests: ", function() {
     it("tests email if ..@hs-osnabrueck.de ", function() {
-
         expect(Register.validateEmail("dominik.dziersan@hs-osnabrueck.de")).toBe(true);
 
     });

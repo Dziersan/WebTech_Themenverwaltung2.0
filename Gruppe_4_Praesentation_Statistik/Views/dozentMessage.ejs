@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/stylesheets/navigationBar.css" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="Gruppe_4_Praesentation_Statistik/routes/dozentmessage.js"></script>
 </head>
 <body>
 <table>
@@ -17,14 +18,15 @@
         <th>Datum</th>
         <th>Art der Anfrage</th>
     </tr>
-    <% for (var i = 0; i < reihenfolge.length;i++) {let id = ("id_" + i);} %>
+    <% for (var i = 0; i < messageD.length; i++) { %>
     <tr>
-        <td><%= id[i]%></td>
-        <td><%= groupID[i] %></td>
-        <td><%= nachricht[i] %></td>
-        <td><%= datum[i] %></td>
-        <td><%= anfrageArt %></td>
+        <td><%= messageD[i].message_id%></td>
+        <td><%= messageD[i].group_id %></td>
+        <td><%= messageD[i].message %></td>
+        <td><%= messageD[i].date %></td>
+        <td><%= messageD[i].type %></td>
     </tr>
+    <% }%>
 </table>
 </body>
 </html>

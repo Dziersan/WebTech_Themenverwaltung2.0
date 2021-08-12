@@ -1,24 +1,13 @@
-/**
- * G4-0700 / Übersicht der Module mit Präsentationen für die Studierenden
- */
-
 var con = require('../Module_app_mysql_pool/mysql');
-
 const express = require('express');
-const G4_0700 = express.Router();
-
-//Definition der Arrays
-modul_id = [];
-modul_bezeichnung = [];
-
-
+const presentationDateOverview = express.Router();
 /**
  * JS auf ejs laden und aufrufen
  */
 
-G4_0700.get('/G4-0700', async function (request, result) {
-    let m = await getModuleG40700();
-    result.render("G4-0700.ejs", {
+presentationDateOverview.get('/presentationDateOverview', async function (request, result) {
+    let m = await getPresentationDateOverview();
+    result.render("presentationDateOverview.ejs", {
         module:m
     });
 });
@@ -26,9 +15,9 @@ G4_0700.get('/G4-0700', async function (request, result) {
 /**
  * Verbindung zur Datenbank herstellen
  */
-async function  getModuleG40700(){
+async function  getPresentationDateOverview(){
     let m = [];
-    let result = await LoadDataG40700();
+    let result = await loadPresentationDateOverview();
     for (let i = 0; i< result.length;i++) {
         m.push( { module_id:result[i].module_id, description: result[i].description } );
     }
@@ -39,7 +28,7 @@ async function  getModuleG40700(){
 /**
  * SQL-Abfragen für die jeweiligen Spalten
  */
-LoadDataG40700 = () =>{
+loadPresentationDateOverview = () =>{
     return new Promise((resolve, reject)=>{
         con.query("SELECT module_id, description FROM module",  (error, results)=>{
             if(error){
@@ -50,7 +39,7 @@ LoadDataG40700 = () =>{
     });
 };
 
-module.exports = G4_0700;
+module.exports = presentationDateOverview;
 
 
 
@@ -75,9 +64,9 @@ async function getValuesFromDb() {
  * G4-0900 aufrufen
  *!/
 
-G4_0700.get('/G4-0900', function (request, response) {
+presentationDateOverview.get('/G4-0900', function (request, response) {
     console.log("G4-0900 wurde geladen");
-    response.render("G4-0900.ejs", {
+    response.render("inquiryDozent.ejs", {
         benutzername: "Test",
         Gruppennummer: "2",
     });
@@ -86,4 +75,4 @@ G4_0700.get('/G4-0900', function (request, response) {
 
 
 
-module.exports = G4_0700;*/
+module.exports = presentationDateOverview;*/

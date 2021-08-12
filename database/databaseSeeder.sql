@@ -28,6 +28,20 @@ VALUES (
     'Wirtschaftsinformatik'
 );
 
+INSERT INTO USER( token, name, surname, e_mail, password, verified, authorization, confirm_token, semester, course)
+VALUES (
+           'FalscherToken',
+           'Dominik',
+           'Dziersan',
+           'dominik.dziersan@hs-osnabrueck.de',
+           'Test123E',
+           true,
+           'admin',
+           'test',
+           '2',
+           'Wirtschaftsinformatik'
+       );
+
 
 INSERT INTO TOKEN (start, time, end, gentoken, user)
 VALUES (

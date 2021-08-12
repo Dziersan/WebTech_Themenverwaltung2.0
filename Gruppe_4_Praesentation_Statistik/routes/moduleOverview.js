@@ -1,20 +1,15 @@
-/**
- * G4-0050 / Lehrkräfte können Agenda für Module erstellen
- */
-
-//Modulimport
-var con = require('../Module_app_mysql_pool/mysql');
+let con = require('../Module_app_mysql_pool/mysql');
 
 const express = require('express');
-const G4_0050 = express.Router();
+const moduleOverview = express.Router();
 
 
 /**
  * JS auf ejs laden und aufrufen
  */
-G4_0050.get('/G4-0050', async function (request, result) {
-    let m = await getModuleG40500();
-    result.render("G4-0050.ejs", {
+moduleOverview.get('/moduleOverview', async function (request, result) {
+    let m = await getModuleOverview();
+    result.render("moduleOverview.ejs", {
         module: m
     });
 });
@@ -29,9 +24,9 @@ G4_0050.get('/G4-0050', async function (request, result) {
 /**
  * SQL-Abfragen für G4-0050
  */
-async function getModuleG40500() {
+async function getModuleOverview() {
     let m = [];
-    let result = await LoadDataG40500();
+    let result = await loadModuleOverview();
     for (let i = 0; i< result.length;i++) {
         m.push( { module_id:result[i].module_id, description: result[i].description } );
     }
@@ -39,7 +34,7 @@ async function getModuleG40500() {
 }
 
 
-LoadDataG40500 = () =>{
+loadModuleOverview = () =>{
     return new Promise((resolve, reject)=>{
         con.query("SELECT module_id, description FROM module",  (error, results)=>{
             if(error){
@@ -50,4 +45,4 @@ LoadDataG40500 = () =>{
     });
 };
 
-module.exports = G4_0050;
+module.exports = moduleOverview;
