@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modulgruppenverwaltung</title>
+    <link rel="stylesheet" href="../style/moduleOverview.css" type="text/css">
+    <link rel="stylesheet" href="../style/style.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" language="JavaScript" src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <title>Modulgruppenübersicht</title>
+</head>
+
+<body>
+<div class ="navbar"></div>
+
+<div class="grid pageContent">
+    <div class="grid-header"> <!-- Überschriftenzeile -->
+        <h1>Modulübersicht</h1>
+    </div>
+    <div class="grid-p-table table-view table-size">  <!-- Tabelle mit allen Modulteilnehmern -->
+        <table>
+            <thead style="position: sticky">
+            <tr>
+                <th class="participant-name">Modulname</th>
+                <th class="participant-dozent">Dozent</th>
+                <th class="participant-semester">Semester</th>
+                <th class="participant-prüfungsform">Prüfungsform</th>
+            </tr>
+            </thead>
+            <tbody id="ModulList">
+            </tbody>
+        </table>
+    </div>
+    <div class="grid-footer">
+    </div>
+    <div class="grid-right-footer">
+        <button id="BtnNewModul" class="button blue">Modul hinzufügen</button>
+        <button id="BtnDeleteModul" class="button red">Modul löschen</button>
+    </div>
+</div>
+
+<!------------------------------------------->
+<!--     PopUp Neues Modul erstellen       -->
+<!------------------------------------------->
+
+<div id="createModul" class="popup-box">
+    <div class="newModul-content">
+        <span class="close" id="closeNewModul">&times;</span>
+        <form action="/moduleOverview/createModulView/insertModul" method="post">
+            <h1>Neues Modul erstellen:</h1>
+                <div class="table-view table-size">
+                    <br><br>
+                    <label for="modulName">Modulname: </label><br>
+                    <input type="text" placeholder="Modulname eintragen" id="modulName" name="modulName"><br><br>
+                    <label for="Rolle">Rolle auswählen: </label><br>
+                    <select name="Rolle" id="Rolle" disabled>
+                        <option value="Dozent">Dozent</option>
+                    </select>
+                    <br><br>
+                    <label for="Semester">Semester: </label><br>
+                    <input type="number" id="Semester" name="Semester" min="1">
+                    <br><br>
+                    <label for="Pruefungsform">Prüfungsform:</label><br>
+                    <select name="Pruefungsform" id="Pruefungsform">
+                        <option value="Klausur1">Einstündige Klausur</option>
+                        <option value="Klausur2">Zweistündige Klausur</option>
+                        <option value="Mündl. Prüfung">Mündliche Prüfung</option>
+                        <option value="Hausarbeit">Hausarbeit</option>
+                    </select>
+                    <br><br>
+                     <label for="MaxTeilnehmer">Max. Teilnehmerzahl:</label><br>
+                     <input type="number" id="MaxTeilnehmer" name="MaxTeilnehmer" min="0"><br><br>
+                     <input type="submit" value="Bestätigen" id="addModuleBtnID" style="width: 65%; margin-top: 6%;">
+                 </div>
+         </form>
+     </div>
+ </div>
+
+<!------------------------------------------->
+<!--          Popup Modul Löschen          -->
+<!------------------------------------------->
+
+<div id="deleteModul" class="popup-box">
+    <div class="deleteModul-content">
+        <span class="close" id="closeDeleteModul">&times;</span>
+        <div class="table-view table-size">  <!-- Tabelle mit allen Modulteilnehmern -->
+           <div style="text-align: center;"><h1>Module</h1></div>
+            <table>
+                <thead>
+                <tr>
+                    <th class="participant-name">ModulID:</th>
+                    <th class="participant-name">Modulname</th>
+                    <th class="participant-name">Löschen</th>
+                </tr>
+                </thead>
+                <tbody id="deleteList">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+<footer>
+    <div class ="footer"></div>
+</footer>
+</html>
+<script src="../scripts/moduleOverview.js"></script>
+<script>
+    $(function(){
+        $(".navbar").load("navbar.html");
+    });
+</script>
+
+<script>
+    $(function(){
+        $(".footer").load("footer.html");
+    });
+</script>

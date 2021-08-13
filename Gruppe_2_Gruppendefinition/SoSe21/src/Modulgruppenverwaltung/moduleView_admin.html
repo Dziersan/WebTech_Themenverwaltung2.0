@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modulansicht</title>
+    <link rel="stylesheet" href="../style/moduleView.css" type="text/css">
+    <link rel="stylesheet" href="../style/style.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" language="JavaScript" src="https://kit.fontawesome.com/a076d05399.js"></script>
+</head>
+
+<body>
+<div class ="navbar"></div>
+
+<div class="pageContent grid-admin">
+    
+    <div class="grid-header"> <!-- Überschriftenzeile -->
+        <h1 id="moduleViewHeader"></h1>
+    </div>
+
+    <div class ="grid-topic"> <!-- Topic 1-->
+        <h2>Modulteilnehmer</h2>
+    </div>
+
+    <div class="grid-table table-view table-size">  <!-- Tabelle mit allen Modulteilnehmern -->
+        <table>
+
+            <thead>
+                <tr>
+                    <th class="participant-name">Name</th>
+                    <th class="participant-email">Matrikelnummer</th>
+                    <th class="participant-telefon">Studiengang</th>
+                </tr>
+            </thead>
+
+            <tbody id="moduleParticipants">
+            </tbody>
+
+        </table>
+    </div>
+
+   <div class ="grid-button"> <!-- Buttons 1-->
+       <div class="grid-right-footer">
+           <button id="openPopupAddModuleParticipantBtnID" class="button blue">Teilnehmer hinzufügen</button>
+           <button id="openPopupDeleteModuleParticipantBtnID" class="button red">Teilnehmer löschen</button>
+           <button id="btnCreateInviteCode" class="button blue">Invite Code erstellen</button>
+           <input id="inviteCodeLabel" onclick="copyInviteCodeToClipboard()" hidden readonly></input>
+           <label id="copyToClipboardInfo" hidden>Copied to Clipboard!</label>
+       </div>
+   </div>
+
+    <div class ="grid-b-topic"> <!-- Topic 2-->
+        <h2>Hausarbeitsthemen</h2>
+    </div>
+
+    <div class="grid-b-table table-view table-size"> <!-- Tabelle mit Hausarbeitsthemen -->
+        <table>
+
+            <thead>
+            <tr>
+                <th class="participant-name">Thema</th>
+                <th>Teilnehmer</th>
+                <th>Max. Teilnehmer</th>
+                <th>Beitritt</th>
+                <th>Status</th>
+                <th>Löschen</th>
+
+            </tr>
+            </thead>
+
+            <tbody id="moduleGroups">
+            </tbody>
+
+        </table>
+    </div>
+
+    <div class="grid-c-button">
+        <button id="openPopupAddModuleGroupBtnID" class="button blue"> Hausarbeitsthema hinzufügen</button>
+        <button id= 'showAutomaticDistributionWindowBtn' class="button blue"> Automatische Themenverteilung</button>
+    </div>
+</div>
+
+
+<!--Popup Teilnehmer hinzufügen-->
+
+<div id="popupAddModuleParticipant-boxID" class="popup-box">
+    <div class="popupModuleParticipant-content">
+        <span id="closePopupAddModuleParticipant" class="close">&times;</span>
+        <div class="pageContent">
+            <div>
+                <h1 id="popupAddModuleParticipantsHeader"></h1>
+            </div>
+                <p>
+                    <label>
+                        <input id="searchValueID" name="searchValue" type="search" required placeholder="Student finden">
+                        <select id="searchTypeID" name="dropdownSelect" id="dropdownSelect" required>
+                            <option value="nachname">Nachname</option>
+                            <option value="HS_ID">Matrikelnummer</option>
+                        </select>
+                    </label>
+                    <button id="findStudentsBtn">suchen</button>
+                </p>
+            <div class="table-view table-size">  <!-- Tabelle mit allen Studenten -->
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Matrikelnummer</th>
+                        <th>Studiengang</th>
+                        <th>Aktion</th>
+                    </tr>
+                    </thead>
+                    <tbody id="userLookupTable">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Popoup Delete Teilnehmer-->
+<div id="popupDeleteModuleParticipant-boxID" class="popup-box">
+    <div class="popupModuleParticipant-content">
+        <span id="closePopupDeleteModuleParticipant" class="close">&times;</span>
+        <div class="pageContent">
+            <div>
+                <h1 id="popupDeleteModuleParticipantsHeader"></h1>
+                <h2> Teilnehmer Löschen</h2>
+            </div>
+
+            <div class="table-view table-size">  <!-- Tabelle mit allen Studenten -->
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Matrikelnummer</th>
+                        <th>Studiengang</th>
+                        <th>Aktion</th>
+                    </tr>
+                    </thead>
+                    <tbody id="deleteParticipantsViewModuleParticipants">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Popup addNewGroup-->
+<div id="popupAddModuleGroup-boxID" class="popup-box">
+    <div class="popupGroup-content">
+        <span id="closePopupAddModuleGroup" class="close">&times;</span>
+        <h1>Neue Gruppe erstellen:</h1>
+            <form action="/moduleView/insertGroupsView/insertGroups" method="post">
+                <div class="table-view table-size">
+                    <br><br>
+                    <label for="modulName">Gruppenname: </label><br>
+                    <input type="text" placeholder="Gruppenname eintragen" id="modulName" name="modulName" required><br><br>
+                    <label for="MaxTeilnehmer">Max. Teilnehmerzahl:</label><br>
+                    <input type="number" placeholder="Teilnehmeranzahl eintragen" id="MaxTeilnehmer" name="MaxTeilnehmer" min="0" required><br><br>
+                    <label for="Abgabedatum">Abgabedatum: </label><br>
+                    <input type="date" id="Abgabedatum" name="Abgabedatum" max="2200-12-31" required>
+                    <br><br>
+                    <input type="submit" value="Bestätigen" id="addNewGroupBtnID" style="width: 65%; margin-top: 6%;">
+                    <input type="hidden" id="ModulIDÜbergabe" name="ModulIDÜbergabe" required>
+                    <script>
+                        var url = window.location.search;
+                        url = url.replace("?modulID=", '');
+                        document.getElementById("ModulIDÜbergabe").value = url;
+                    </script>
+                </div>
+            </form>
+    </div>
+</div>
+
+<!--Popup Teilnehmer automatisch auf Gruppen verteilen-->
+
+<div id="popupAutomaticDistribution-boxID" class="popup-box">
+    <div class="popupAutomaticDistribution-content">
+        <span id="closeAutoDistribution" class="close">&times;</span>
+            <form action="/moduleView/groupDistributionView/autoRollGroups" method="POST" id="frmTest">
+                <div class="table-view table-size">  <!-- Tabelle mit allen Studenten des Moduls -->
+                    <h2>Teilnehmer auswählen</h2>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Auswahl</th>
+                            <th>Name</th>
+                            <th>Matrikelnummer</th>
+                            <th>Studiengang</th>
+                        </tr>
+                        </thead>
+                        <tbody id="autoDistribUserTable">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-view table-size">  <!-- Tabelle mit allen Gruppen des Moduls -->
+                    <h2>Gruppe auswählen</h2>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Auswahl</th>
+                            <th>Thema</th>
+                            <th>Teilnehmer</th>
+                            <th>Max. Teilnehmer</th>
+                        </tr>
+                        </thead>
+                        <tbody id="autoDistribGroupsTable">
+                        </tbody>
+                    </table>
+                </div>
+            <input type="hidden" id="pageUrlField" name="PageUrl" required>
+            <script>
+                var url = window.location.search;
+                url = url.replace("?modulID=", '');
+                document.getElementById("pageUrlField").value = url;
+            </script>
+            <button id="automaticGroupDistributionBtn" type="submit">Automatisch verteilen</button>
+            </form>
+    </div>
+</div>
+
+</div>
+
+
+</body>
+<footer>
+    <div class ="footer"></div>
+</footer>
+</html>
+<script src="../scripts/moduleView.js"></script>
+<script>
+    $(function(){
+        $(".navbar").load("navbar.html");
+    });
+</script>
+
+<script>
+    $(function(){
+        $(".footer").load("footer.html");
+    });
+</script>
+
+<script>
+    jQuery(document).ready(function()
+    {
+        jQuery("#frmTest").submit(function()
+        {
+            if (jQuery('input:checkbox').filter(':checked').length < 1)
+            {
+                alert("Es muss mindestens eine Gruppe und ein User ausgewählt sein.");
+                return false;
+            }
+        });
+    });
+</script>

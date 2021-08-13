@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modulgruppenverwaltung</title>
+    <link rel="stylesheet" href="../style/groupOverview.css" type="text/css">
+    <link rel="stylesheet" href="../style/style.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" language="JavaScript" src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <title>Modulgruppenübersicht</title>
+    
+</head>
+
+<body >
+<div class ="navbar"></div>
+
+<div class="grid pageContent">
+
+    <div class="grid-header"> <!-- Überschriftenzeile -->
+        <h1>Gruppenübersicht</h1>
+    </div>
+
+            <script>
+                    fetch('/groupOverview/getMyGroupsIntoTable')
+                    .then (response =>
+                    {
+                        console.log(response);
+                        return response.text();
+                    }).then (text =>
+                    {
+                        document.getElementById("tableGroupOverview").innerHTML = text;
+                    })
+            </script>
+
+            <div id="student-group" class="grid-p-table table-view table-size">  <!-- Tabelle mit allen Modulteilnehmern -->
+                <table>
+                    <thead>
+                    <th class="participant-name">Thema</th>
+                    <th class="participant-dozent">Verantwortlicher</th>
+                    <th class="participant-semester">Teilnehmer</th>
+                    <th class="participant-prüfungsform">Max. Teilnehmer</th>
+                    <th class="participant-beitritt">Abgabedatum</th>
+                    </thead>
+                    <tbody id="tableGroupOverview">
+
+                    </tbody>
+                </table>
+    </div>
+</div>
+
+</body>
+<footer>
+    <div class ="footer"></div>
+</footer>
+</html>
+
+<script>
+    $(function(){
+        $(".navbar").load("navbar.html");
+    });
+</script>
+
+<script>
+    $(function(){
+        $(".footer").load("footer.html");
+    });
+</script>

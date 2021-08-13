@@ -1,0 +1,33 @@
+.grid-header h1
+{
+    font-weight: lighter;
+}
+
+.grid
+{
+    display: grid;
+    height: 90%;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 10% 68% 22%;
+    grid-template-areas:
+        "header header header header"
+        "p-table p-table p-table p-table"
+        "u-field u-field fileexpl fileexpl"
+}
+
+.grid-header
+{
+    grid-area: header;
+    min-height:min-content;
+}
+
+.grid-p-table
+{
+    grid-area: p-table;
+}
+
+.table-size table
+{
+    height: 100%;
+}
+
