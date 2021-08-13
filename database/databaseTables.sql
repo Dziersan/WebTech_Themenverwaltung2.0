@@ -1,15 +1,6 @@
-/* DROP SCHEMA IF EXISTS Webtech;
-CREATE SCHEMA Webtech; */
+DROP SCHEMA IF EXISTS Webtech;
+CREATE SCHEMA Webtech;
 USE Webtech;
-
-/* DROP TABLE IF EXISTS requirements;
-CREATE TABLE requirements (
-    id INTEGER PRIMARY KEY,
-    name VARCHAR (255) NULL,
-    shortdesc VARCHAR (255),
-    starttime DATE NULL,
-    endtime DATE NULL
-); */
 
 DROP TABLE IF EXISTS requirements;
 CREATE TABLE requirements (
@@ -295,30 +286,6 @@ CREATE TABLE get_milestone_id (
     description VARCHAR(255)
 );
 
-
-
-
-
-
-
-
-/* unused for now
-
-DROP TABLE IF EXISTS STUDENT_MODUL;
-CREATE TABLE STUDENT_MODUL(
-    matrikel_nr varchar(6),
-    modul_id int
-);
-
-*/
-
-
-
-
-
-DROP SCHEMA IF EXISTS Webtech;
-CREATE SCHEMA Webtech;
-USE WEBTECH;
 
 DROP TABLE IF EXISTS Pw_forgot_token;
 CREATE TABLE Pw_forgot_token(
