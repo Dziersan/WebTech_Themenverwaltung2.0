@@ -1,9 +1,3 @@
-/*
-function closeSpecs() {
-    window.close();
-}
-*/
-
 /**
  *
  * @param evt

@@ -13,20 +13,6 @@ inquiryDozent.get('/inquiryDozent',  function (request, response) {
     });
 });
 
-/*
-LoadData = () =>{
-    return new Promise((request, result)=>{
-        con.query("INSERT INTO messages(message,date,type) VALUES("+
-            request.body.message + "','" + request.body.date + "','"
-            + request.body.dateRequestQuestion + "');",  (error, results)=>{
-            if(error){
-                return reject(error);
-            }
-            return resolve(results);
-        });
-    });
-};
-*/
 
 /**
  * Werte aus dem Formular in die Relation Nachrichten einfügen

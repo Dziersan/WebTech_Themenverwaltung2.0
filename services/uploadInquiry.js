@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
     getDataStudent()
 });
@@ -29,25 +30,43 @@ function loadHTMLStudent(data) {
     tbody.innerHTML = tbodyHTML;
 }
 
-document.getElementById('anfrage-btn').addEventListener('click', insertAnfrage);
+var anfrage_btn= document.getElementById('anfrage-btn')
+if(anfrage_btn){
+    anfrage_btn.addEventListener('click', insertAnfrage);
+}
 
 async function insertAnfrage() {
-    console.log("hey")
-    const name = document.getElementById('gruppen-name').value;
-    const anfrageText = document.getElementById('anfrage').value;
-    let softwarepool = {
-        software_name: name,
-        software_description: anfrageText,
+
+
+    class Notifications {
+        constructor(Group_Name, Description, ) {
+
+            this.groupname = Group_Name;
+            this.description = Description;
+
+
+        }
+        toString() {
+            return this.groupname + " " + this.description ;
+        }
     }
 
+
+    const name = document.getElementById('gruppen-name').value;
+    const anfrageText = document.getElementById('anfrage').value;
+
+    notification = new Notifications(
+        name,
+        anfrageText
+    );
+
     const options = {
-        method: 'POST',
-        headers: {
-            'Content-Type': "application/json"
-        },
-        body: JSON.stringify(softwarepool)
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(notification)
     };
 
     const response = await fetch('/insertNotification', options);
     const data = await response.json();
 }
+

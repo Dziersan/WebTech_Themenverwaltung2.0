@@ -18,7 +18,7 @@ moduleOverview.get('/moduleOverview', async function (request, result) {
 /**
  * Verbindung zur Datenbank herstellen
  */
-// Werte der Datenbank die wichtig für G4-0050 sind
+
 
 
 /**

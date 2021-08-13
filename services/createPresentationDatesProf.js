@@ -14,22 +14,13 @@ createPresentationDatesProf.get('/createPresentationDatesProf', function (reques
     });
 });
 
-/*createPresentationDatesProf.post('/generatePresentation',  function  (request, result) {
-
-    let data =  getPresentation();
-    result.render("presentationDateProf.ejs", {
-        presentations: data
-    });
-});*/
 
 createPresentationDatesProf.post('/generatePresentation', async function (request, result) {
-    console.log("start ");
-    console.log("start");
+
     var sql = "INSERT INTO presentation(date,day_start,day_end,room, occasion) VALUES("+"'"+request.body.date + "', '" + request.body.start + "', '" + request.body.end + "', '" + request.body.room + "', '" + request.body.occasion  + "');";
     con.query(sql, function (err) {
         if (err) throw err;
     });
-    console.log("done");
 
 });
 
@@ -45,7 +36,7 @@ createPresentationDatesProf.post('/submit',   async function  (request, result) 
         if (err) throw err;
         for (var i = 0; i < result.length; i++) {
             pid[i] = result[i].id;
-            console.log(pid[i]);
+
         }
 
     });
@@ -70,7 +61,7 @@ setTimeout(() => {
             });
 
         }
-    console.log("hs")
+
 /*    }*/;
 }, 60);
 
