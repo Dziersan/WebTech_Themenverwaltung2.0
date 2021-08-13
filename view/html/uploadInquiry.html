@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./javascript/uploadInquiry.js" type="text/javascript" language="JavaScript" ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" language="JavaScript" src="https://kit.fontawesome.com/a076d05399.js"></script>
+</head>
+<body>
+<div class ="navbar"></div>
+
+
+    <table id= "table">
+        <thread>
+            <th>SoftwareName</th>
+            <th>Beschreibung</th>
+            <th>Linkkkkkk</th>
+        </thread>
+        <tbody id='student-table'></tbody>
+    </table>
+   
+
+
+    <div>
+        <label for="gruppen-name">
+            <input type="text" id="gruppen-name" placeholder="Name der Gruppe"><br/>
+        </label>
+    </div>
+    <div>
+        <label for="anfrage">
+           <textarea type="textarea" id="anfrage"></textarea>
+        </label>
+    </div>
+    <div class='formbox'>
+        <button onclick="insertAnfrage()" id="anfrage-btn">Anfrage Stellen</button>
+    </div>
+
+
+</body>
+<footer>
+    <div class ="footer"></div>
+</footer>
+</html>
+<script>
+    $(function(){
+        $(".navbar").load("navbar.html");
+    });
+</script>
+
+<script>
+    $(function(){
+        $(".footer").load("footer.html");
+    });
+</script>
+

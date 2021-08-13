@@ -1,6 +1,8 @@
+
 document.addEventListener('DOMContentLoaded', () => {
-    getData()
     getNotification()
+   getData()
+
 });
 
 async function getData() {
@@ -12,31 +14,44 @@ async function getData() {
 async function getNotification() {
     const response = await fetch('/getNotificationData')
     const data = await response.json();
-
     loadNotification(data);
 }
 
-document.getElementById('btn').addEventListener('click', insertData);
+
 
 async function insertData() {
+    class Softwarepool {
+        constructor(Software_Name, Software_Description,Software_Link ) {
+
+            this.software_name= Software_Name;
+            this.software_description= Software_Description;
+            this.software_link= Software_Link;
+
+
+        }
+        toString() {
+            return this.software_name= + " " + this.software_description + " " + this.software_link ;
+        }
+    }
+
+
     const name = document.getElementById('sftwname').value;
     const beschreibung = document.getElementById('sftwbeschreibung').value;
     const link = document.getElementById('sftwlink').value;
-    let software = {
-        SoftwareName: name,
-        Beschreibung: beschreibung,
-        Link: link
-    }
+
+    softwarepools = new Softwarepool(
+        name,
+        beschreibung,
+        link
+    )
 
     const options = {
-        method: 'POST',
-        headers: {
-            'Content-Type': "application/json"
-        },
-        body: JSON.stringify(software)
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(softwarepools)
     };
 
-    const response = await fetch('/insert', options);
+    const response = await fetch('/insertSoftware', options);
     const data = await response.json();
 }
 
@@ -52,11 +67,11 @@ function loadHTML(data) {
 
     for (item of data) {
         tbodyHTML += "<tr>";
-        tbodyHTML += `<td>${item.ID}</td>`
-        tbodyHTML += `<td>${item.SOFTWARENAME}</td>`;
-        tbodyHTML += `<td>${item.SOFTWARE_BESCHREIBUNG}</td>`;
-        tbodyHTML += `<td>${item.SOFTWARELINK}</td>`;
-        tbodyHTML += `<td><button class="delete-row-btn" data-id=${item.ID}>Delete</td>`;
+        tbodyHTML += `<td>${item.id}</td>`
+        tbodyHTML += `<td>${item.software_name}</td>`;
+        tbodyHTML += `<td>${item.software_description}</td>`;
+        tbodyHTML += `<td>${item.software_link}</td>`;
+        tbodyHTML += `<td><button class="deleteRowBtn"  id="deleRow" location.href='${item.software_link} data-id=${item.id}>Delete </td>`;
         tbodyHTML += "</tr>";
     }
 
@@ -75,40 +90,57 @@ function loadNotification(data) {
 
     for (item of data) {
         tbodyHTML += "<tr>";
-        tbodyHTML += `<td>${item.ID}</td>`
-        tbodyHTML += `<td>${item.GROUP_NAME}</td>`;
-        tbodyHTML += `<td>${item.BESCHREIBUNGS_TEXT}</td>`;
-        tbodyHTML += `<td><button class="delete-row-btn" data-id=${item.ID}>Erledigt</td>`;
+        tbodyHTML += `<td>${item.id}</td>`
+        tbodyHTML += `<td>${item.group_name}</td>`;
+        tbodyHTML += `<td>${item.description}</td>`;
+        tbodyHTML += `<td><button class="deleteRowBtn" data-id=${item.id}>Erledigt</td>`;
         tbodyHTML += "</tr>";
     }
 
     tbody.innerHTML = tbodyHTML;
 }
 
-document.getElementById('data-table').addEventListener('click', function (event) {
-    if (event.target.className === "delete-row-btn") {
+/*document.getElementById('data-table').addEventListener('click', function (event) {
+    if (event.target.className === "deleteRowBtn") {
         deleteRow(event.target.dataset.id);
     }
-});
+});*/
+/*var sel = event.target.categ;
+var categId = sel.options[sel.selectedIndex].getAttribute('id')*/
 
-document.getElementById('notification-table').addEventListener('click', function (event) {
-    if (event.target.className === "delete-row-btn") {
+/*var el = document.getElementById('deleRow');
+if(el){
+    console.log("Ja");
+    el.addEventListener('click', deleteNoctificationRow());
+}
+document.getElementById("deleRow").addEventListener("click", deleteNoctificationRow());*/
+
+//document.getElementById("deleRow").addEventListener("click", deleteNoctificationRow());
+
+/*document.getElementById('notification-table').addEventListener('click', function (event) {
+    if (event.target.className === "deleteRowBtn") {
         deleteNoctificationRow(event.target.dataset.id);
     }
-});
+});*/
+
+
 
 async function deleteNoctificationRow(id) {
-
-    const deleteOption = {
-
-        method: 'DELETE',
-        headers: {
-            'Content-Type': "application/json"
-        },
+    console.log("TEst")
+    var row = document.getElementById(id);
+    row.parentNode.removeChild(row);
+    const options = {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(softwarepools)
     };
 
-    const response = await fetch('/deleteNotification/' + id, deleteOption);
-    const data = await response.json();
 
-    console.log(data);
-}
+    fetch("/delReqData", options)
+    };
+
+
+
+
+
+

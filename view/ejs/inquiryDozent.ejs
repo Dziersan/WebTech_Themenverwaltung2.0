@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Anfrage an Dozenten für Hilfe und/oder Terminvereinbarung</title>
+    <link rel="stylesheet" href="../css/inquiryDozent.css">
+    <script type="text/javascript" src="../../javascript/inquiryDozentFunction.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
+
+</head>
+<body>
+<div class ="navbar"></div>
+
+<!--Formular zur Anfrage-->
+<form action="http://localhost:3000/sendMessage" method="post" id="sendMessage">
+    <!-- Gruppennummer -->
+    <h1 style="text-align: center">Anfrage an Dozenten</h1>
+    <h2> Anfrage für die Gruppe-Nr <%= Gruppennummer %></h2>
+
+    <p id="headline">
+        <b>Wollen Sie einen Termin ändern oder eine Frage stellen?</b>
+    </p>
+    <!-- Abfrage ob Termin änderung/ Fragestellung -->
+    <p>
+
+    <label class="group_id">Gruppennummer:
+        <input id="group_id" name="group_id">
+    </label>
+
+    <p>
+        <label for="dateRequest">Termin ändern</label>
+        <input type="radio" id="dateRequest" name="dateRequestQuestion" value="Termin änderung"
+               onclick="hideMessage();">
+    </p>
+    <p>
+        <label for="question">Frage stellen</label>
+        <input type="radio" id="question" name="dateRequestQuestion" value="Fragestellung"
+               onclick="showMessage();">
+    </p>
+    <!-- Nachricht -->
+    <div class="message" >
+
+        <textarea  id="message" name="message" maxlength="500" cols="50" rows="4" ;>"
+                  placeholder="Hier Ihre Nachricht eingeben(max.500 Zeichen)"></textarea>
+        <br>
+        <br>
+    </div>
+    <!-- Eingabe Datum -->
+    <label for="date">Datum:</label>
+    <input type="date" id="date" name="date">
+    <p>
+        <button type="button" style="text-align: center" onclick="noDateEntry()">Absenden</button>
+    </p>
+</form>
+
+</body>
+<footer>
+    <div class ="footer"></div>
+</footer>
+</html>
+<script>
+    $(function(){
+        $(".navbar").load("navbar.html");
+    });
+</script>
+
+<script>
+    $(function(){
+        $(".footer").load("footer.html");
+    });
+</script>

@@ -12,8 +12,8 @@ const path = require("../config/pathConfig.json");
 const connection = require('./getDatabaseConnection.js');
 
 
-router.get("/RequirementsEditGer", (request, response) => {
-    response.sendFile(path.path + "/view/html/mainPage.html");
+router.get("/Requirements", (request, response) => {
+    response.sendFile(path.path + "/view/html/requirements.html");
 });
 
 router.get("/MSGanttHome", (request, response) => {
@@ -46,15 +46,15 @@ router.get("/admin_G3", (request, response) => {
 });
 
 
-router.get("/student_G3", (request, response) => {
+router.get("/uploadInquiry", (request, response) => {
 
-        response.sendFile(path.path + "/view/html/student_G3.html");
+        response.sendFile(path.path + "/view/html/uploadInquiry.html");
 
 });
 
 
-router.get("/upload_G3", (request, response) => {
-        response.sendFile(path.path + "/view/html/upload_G3.html");
+router.get("/uploadData", (request, response) => {
+        response.sendFile(path.path + "/view/html/uploadData.html");
 
 });
 

@@ -4,23 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
+    <script src="./javascript/admin_G3.js" type="text/javascript" language="JavaScript" ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" language="JavaScript" src="https://kit.fontawesome.com/a076d05399.js"></script>
 </head>
 <body>
+<div class ="navbar"></div>
 
-<div class="navbar">
-
-    <div class="dropdown">
-        <button class="dropbtn">Gruppe 3
-            <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-            <a href="#">Link 1</a>
-            <a href="#admin">Admin 2</a>
-            <a href="#stud">Student</a>
-        </div>
-    </div>
-</div>
 
     <form>
         <div class='formbox'>
@@ -39,7 +29,7 @@
             </label>
         </div>
         <div class='formbox'>
-            <button id="btn">Add</button>
+            <button id="btn" onclick="insertData()">Add</button>
         </div>
     </form>
 
@@ -49,20 +39,33 @@
             <th>SoftwareName</th>
             <th>Beschreibung</th>
             <th>Link</th>
-            <th>Delete</th>
+
         </thread>
         <tbody id='data-table'></tbody>
     </table>
-    <table id= "table">
+    <table id= "table1">
         <thread>
-            <th>Gruppen Name</th>
-            <th>Text</th>
-            <th>Link</th>
+            <th>ID</th>
+            <th>GruppenName</th>
+            <th>Beschreibung</th>
         </thread>
         <tbody id='notification-table'></tbody>
     </table>
-    <script src="../../services/admin_G3.js">
-       
-    </script>
+
 </body>
+<footer>
+    <div class ="footer"></div>
+</footer>
 </html>
+<script>
+    $(function(){
+        $(".navbar").load("navbar.html");
+    });
+</script>
+
+<script>
+    $(function(){
+        $(".footer").load("footer.html");
+    });
+</script>
+

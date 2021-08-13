@@ -12,6 +12,6 @@ exports.listAllFiles = (req, res) => {
 }
 
 exports.downloadFile = (req, res) => {
-	var filename = req.params.filename;
+	let filename = req.params.filename;
 	res.download(uploadFolder + filename);
 }

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../css/createPresentationDatesProf.css">
+
+
+    <script src="/services/createPresentationDatesProfFunction.js"></script>
+    <meta charset="UTF-8">
+    <title>Erstellung Gruppenreihenfolge</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+<body>
+
+<script>
+</script>
+<div class ="navbar"></div>
+
+
+<!--Formular zur Erstellung des Präsentationstmerins-->
+<form method="post" action="http://localhost:3000/generatePresentation" id="generateDay">
+
+    <h2>Erstellung eines Präsentationstermins</h2>
+
+    <fieldset>
+
+        <label for="enterDate">Datum:</label>
+        <input type="date" name="Date" id="enterDate" class="expand"
+               placeholder="2020-04-20">
+
+        <label for="enterDayStart">Start:</label>
+        <input type="time" name="DayStart" id="enterDayStart"
+               class="expand"
+               placeholder="08:15">
+
+        <label for="enterDayEnd">Ende:</label>
+        <input type="time" name="DayEnd" id="enterDayEnd"
+               class="expand"
+               placeholder="11:30">
+
+        <label for="enterRoom">Raum:</label>
+        <input type="text" name="room" id="enterRoom" class="expand" placeholder="KD 301">
+
+        <label for="enterAnlass">Anlass:</label>
+        <input type="text" name="anlass" id="enterAnlass" class="expand" placeholder="Abschlusspräsentation">
+
+
+        <input type="submit"  value="Erstellen" onclick="setPresentationDay()">
+
+    </fieldset>
+    <input type="hidden" name="date" id="date">
+    <input type="hidden" name="start" id="start">
+    <input type="hidden" name="end" id="end">
+    <input type="hidden" name="room" id="room">
+    <input type="hidden" name="anlass" id="anlass">
+
+</form>
+
+<!--Formular zum Anlegen von Gruppen-->
+<form>
+    <h2>Anlegen der Gruppen</h2>
+    <fieldset>
+        <!--Gruppennummer-->
+        <label for ="enterGroupNumber">Gruppennummer</label>
+        <input type="number" name="Member" id="enterGroupNumber" class="expand"
+                value="">
+        <!--Thema-->
+        <label for ="enterTheme">Thema:</label>
+        <input type="text" name="Theme" id="enterTheme" class="expand"
+               placeholder="Thema" value="">
+        <!--Mitglieder-->
+        <label for="enterNumber">Anzahl der Mitglieder</label>
+        <input type="number" name="Number" id="enterNumber" class="expand"
+                value="">
+        <!--Startzeit-->
+        <label for ="enterStartTime">Startzeit:</label>
+        <input type="time" name="StartTime" id="enterStartTime" class="expand"
+                value="">
+        <!--Dauer-->
+        <label for ="enterDuration">Dauer:</label>
+        <input type="time" name="Duration" id="enterDuration" class="expand"
+               value="">
+        <!--Endzeit-->
+
+        <label for ="enterEnde">Endzeit:</label>
+        <input type="time" name="endTime" id="enterEnde" class="expand"
+               value="">
+
+        <!--Button zum Anlegen einer Gruppe-->
+        <input type="button" value="Hinzufügen" onclick="addGroup(); getGroups();">
+    </fieldset>
+</form>
+
+
+<h2>Angelegte Gruppen</h2>
+
+<table style="width:100%" id="groupTable">
+    <tr class="bordered">
+        <td class="bordered" style="width:10%">Reihenfolge</td>
+        <td class="bordered" style="width:30%">Gruppennummer</td>
+        <td class="bordered" style="width:30%">Thema</td>
+        <td class="bordered" style="width:20%">Anzahl der Mitglieder</td>
+        <td class="bordered" style="width:10%">Startzeit</td>
+        <td class="bordered" style="width:10%">Dauer</td>
+        <td class="bordered" style="width:20%">Endzeit</td>
+        <td class="bordered" style="width:20%">Löschen</td>
+    </tr>
+</table>
+
+<!--Formular zum Absenden der erstellten Präsentationstermine-->
+<form method="post" action="http://127.0.0.1:8080/submit">
+    <input type="hidden" name="submitter" id="submitter">
+    <input type="hidden" name="dateAgenda" id="dateAgenda">
+    <input type="hidden" name="starting" id="starting">
+    <input type="submit" value="Lossenden">
+</form>
+</body>
+<footer>
+    <div class ="footer"></div>
+</footer>
+</html>
+<script>
+    $(function(){
+        $(".navbar").load("navbar.html");
+    });
+</script>
+
+<script>
+    $(function(){
+        $(".footer").load("footer.html");
+    });
+</script>
