@@ -215,3 +215,5 @@ function deleteMessage() {
     } else {
     }
 }
+
+module.exports = diffMinutes;

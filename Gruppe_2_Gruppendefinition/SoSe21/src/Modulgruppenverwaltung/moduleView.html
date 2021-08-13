@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modulansicht</title>
+    <link rel="stylesheet" href="../style/moduleView.css" type="text/css">
+    <link rel="stylesheet" href="../style/style.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" language="JavaScript" src="https://kit.fontawesome.com/a076d05399.js"></script>
+</head>
+
+<body>
+<div class ="navbar"></div>
+
+<div class="pageContent grid">
+    <div class="grid-header"> <!-- Überschriftenzeile -->
+        <h1 id="moduleViewHeader"></h1>
+    </div>
+    <div class ="grid-topic"> <!-- Topic 1-->
+        <h2>Modulteilnehmer</h2>
+    </div>
+
+    <div class="grid-table table-view table-size">  <!-- Tabelle mit allen Modulteilnehmern -->
+        <table>
+            <thead>
+                <tr>
+                    <th class="participant-name">Name</th>
+                    <th class="participant-email">Matrikelnummer</th>
+                    <th class="participant-telefon">Studiengang</th>
+                </tr>
+            </thead>
+            <tbody id="moduleParticipants">
+            </tbody>
+        </table>
+    </div>
+
+    <div class ="grid-b-topic"> <!-- Topic 2-->
+        <h2>Hausarbeitsthemen</h2>
+    </div>
+
+    <div class="grid-b-table table-view table-size"> <!-- Tabelle mit Hausarbeitsthemen -->
+        <table>
+            <thead>
+            <tr>
+                <th class="participant-name">Thema</th>
+                <th>Teilnehmer</th>
+                <th>Max. Teilnehmer</th>
+                <th>Beitreten</th>
+            </tr>
+            </thead>
+            <tbody id="moduleGroupsUser">
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+<footer>
+    <div class ="footer"></div>
+</footer>
+</html>
+<script src="../scripts/moduleView.js"></script>
+<script>
+    $(function(){
+        $(".navbar").load("navbar.html");
+    });
+</script>
+
+<script>
+    $(function(){
+        $(".footer").load("footer.html");
+    });
+</script>
+
+<script>
+    jQuery(document).ready(function()
+    {
+        jQuery("#frmTest").submit(function()
+        {
+            if (jQuery('input:checkbox').filter(':checked').length < 1)
+            {
+                alert("Please Check at least one Check Box");
+                return false;
+            }
+        });
+    });
+</script>

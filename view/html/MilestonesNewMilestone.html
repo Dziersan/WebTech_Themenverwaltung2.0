@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Milestone</title>
+    <link type="text/css" rel="stylesheet" href="./css/MSnavigationBar.css">
+    <link type="text/css" rel="stylesheet" href="./css/MShomepage.css">
+    <link rel="stylesheet" type="text/css" href="./css/MSstylesheet.css">
+    <link type="text/css" rel="stylesheet" href="../css/MSnavigationBar.css">
+    <link type="text/css" rel="stylesheet" href="../css/MShomepage.css">
+    <link rel="stylesheet" type="text/css" href="../css/MSstylesheet.css">
+
+
+    <script src="./javascript/MSChart.js" ></script>
+    <script src="./javascript/MSScriptTest.js" ></script>
+    <script src="./javascript/MSMilestone.js" ></script>
+  <script src="./javascript/MSeditMilestone.js" ></script>
+
+</head>
+<body onload="getPredecessorNew()">
+<div id="UserMenu_All_Header">
+  <div id="All_Header_left" class="All_Header_Boxes" style="float: left; margin-right: 5px">
+    <a href="https://osca.hs-osnabrueck.de/">
+      <div class="outer-wrapper" style="float:left">
+        <div class="frame" style="height: 52px">
+          <img id="oscaImagelogo" class="oscaLogo">
+        </div>
+      </div>
+    </a>
+
+    <div class="dropdown" style="margin-left: 5px">
+      <form action="/myGroups">
+        <button class="header_button">Meine Gruppe</button>
+      </form>
+      <div class="dropdown-content">
+        <a href="/joinGroup">Gruppe beitreten</a>
+        <a href="/requirementsdefinition">Anforderungsdefinition</a>
+      </div>
+    </div>
+
+    <div class="dropdown" style="margin-left: 5px">
+      <form action="/MSGanttHome">
+        <button class="header_button" onclick="" >Meilensteinplanung</button>
+      </form>
+    </div>
+
+    <div class="dropdown" style="margin-left: 5px">
+      <form action="/RequirementsEditGer">
+        <button class="header_button" onclick="loadTable()" >Group 5</button>
+      </form>
+    </div>
+
+    <button class="header_button">Präsentation</button>
+
+  </div>
+
+
+  <div id="All_Header_right" class="All_Header_Boxes" style="float: right">
+
+    <div class="frame" style="float: left;">
+      <a href="https://my.hs-osnabrueck.de/owa/">
+        <div class="outer-wrapper" style="float:left">
+          <div class="frame" style="height: 52px">
+            <i id="mailIcon" class="far fa-envelope fa-lg" style="font-size: 25px"></i>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="frame" style="float: left;">
+      <a href="https://netcase.hs-osnabrueck.de">
+        <div class="outer-wrapper" style="float:left">
+          <div class="frame" style="height: 52px">
+            <i id="netcaseIcon" class="fas fa-briefcase fa-lg" style="font-size: 25px"></i>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="dropdown">
+      <form action="/showUsers">
+        <button class="header_button">Benutzer</button>
+      </form>
+    </div>
+    <div class="dropdown">
+      <form action="/logout" method="post">
+        <button class="header_button">Logout</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Navigationbar Left -->
+
+
+<div class="row">
+  <div class="col-3 menu">
+    <div>
+      <iframe name="Uebersicht" src="MSUebersicht.html" frameborder="0" width="100%" height="1000"></iframe>
+    </div>
+
+  </div>
+
+  <div class="col-9">
+
+      <div class="newMilestone">
+          <h1>Neuer Meilenstein</h1>
+          <table style="width: 100%">
+            <tr>
+              <td width="350"><label for="msDescription">Beschreibung: </label></td>
+              <td><input type="text" id="msDescription" name="msDescription"> </td>
+            </tr>
+            <tr>
+              <td><label for="msStatus">Status: </label></td>
+              <td>
+                <select id="msStatus" name="msStatus">
+                  <option value="1">Unbearbeitet</option>
+                  <option value="2">In Bearbeitung</option>
+                  <option value="3">Fertiggestellt</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td><label for="msPredecessorNew">Vorgänger: </label></td>
+              <td>
+                <select id="msPredecessorNew" name="msPredecessorNew">
+
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td><label for="msStart">Start: </label></td>
+              <td><input type="date" id="msStart" name="msStart"></td>
+            </tr>
+            <tr>
+              <td><label for="msDeadline">Deadline: </label></td>
+              <td><input type="date" id="msDeadline" name="msDeadline"></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><button id="newMilestoneBtn" style="float: left" class="editbtn" onclick="addMilestone()" >Speichern</button> </td>
+            </tr>
+          </table>
+      </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

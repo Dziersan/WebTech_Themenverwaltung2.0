@@ -173,6 +173,7 @@ app.use((request, respond, next) => {
  * GET Methods from routesGET.js
  */
 router = require("./services/getRouters.js");
+routerGrp2 = require("./Gruppe_2_Gruppendefinition/SoSe21/src/scripts/routingConfig.js");
 
 app.get("/", router);
 app.get("/login", redirectHome, redirectCookie, router);
@@ -198,7 +199,10 @@ app.get("/RequirementsEditGer", redirectLogin, router);
 app.get("/upload_G3",router);
 app.get("/admin_G3", router);
 app.get("/student_G3" ,router);
-
+app.get("/MSGanttHome", redirectLogin, router);
+app.get("/MilestonesSubpage1", redirectLogin, router);
+app.get("/newmilestone", router);
+app.get("/getMilestones", redirectLogin, router);
 /*
 router2 = require("./services/file.router")(app, router_G3, upload);
 /!*app.get("/api/files/upload", router2);
@@ -207,7 +211,6 @@ app.get('/upload_G3', router2);
 app.get('/admin_G3', router2);
 app.get('/student_G3', router2);
 */
-
 
 //Get without HTML|| email
 app.get("/cookie", (request, response) => {
@@ -333,6 +336,9 @@ app.use(routerChangePassword);
 routerLogin = require('./api/routesLogin.js');
 app.use(routerLogin);
 
+routerMilestone = require('./services/routesMilestone.js');
+app.use(routerMilestone);
+
 routerRegister = require('./api/routesRegister.js');
 app.use(routerRegister);
 
@@ -424,3 +430,99 @@ module.exports = {
     session: session
 };
 
+app.use('/style', express.static('./Gruppe_2_Gruppendefinition/SoSe21/src/style'));
+app.use('/scripts', express.static('./Gruppe_2_Gruppendefinition/SoSe21/src/scripts'));
+app.use('/Modul', express.static('./Gruppe_2_Gruppendefinition/SoSe21/src/Modulgruppenverwaltung'));
+app.use('/Gruppe', express.static('./Gruppe_2_Gruppendefinition/SoSe21/src/Modulgruppenverwaltung'));
+
+//Gruppe 2
+//Gruppenansicht
+app.post("/groupView/upload", routerGrp2);
+app.get("/groupView/tableGroupMembers", routerGrp2);
+app.get("/groupView/captionGroupName", routerGrp2);
+app.get("/groupView/calenderAppointments", routerGrp2);
+app.post("/groupView/calenderView/createAppointment", routerGrp2);
+app.get("/groupView/memberEditView/tableAddableMembers", routerGrp2);
+app.get("/groupView/memberEditView/tableRemovableMembers", routerGrp2);
+app.post("/groupView/memberEditView/addMember", routerGrp2);
+app.post("/groupView/memberEditView/removeMember", routerGrp2);
+app.post("/groupView/upload", routerGrp2);
+app.post("/groupView/leaveGroup", routerGrp2);
+
+//Modulansicht
+app.get("/moduleView/Header", routerGrp2);
+app.get("/moduleView/moduleParticipants", routerGrp2);
+app.get("/moduleView/moduleGroups", routerGrp2);
+app.get("/moduleView/deleteParticipantsView/moduleParticipants", routerGrp2);
+app.post("/moduleView/insertGroupsView/insertGroups",routerGrp2);
+app.post("/moduleView/deleteGroupsView/deleteGroups",routerGrp2);
+app.post("/moduleView/deleteParticipantsView/deleteParticipantFromModule",routerGrp2);
+app.get("/moduleView/groupDistributionView/tableSelectUser", routerGrp2);
+app.get("/moduleView/groupDistributionView/tableSelectGroups", routerGrp2);
+app.post("/moduleView/groupDistributionView/autoRollGroups", routerGrp2);
+app.post("/moduleView/addMemberView/userLookup", routerGrp2);
+app.post("/moduleView/addMemberView/addMember", routerGrp2);
+app.post("/moduleView/editGroupsView/aktiveGroup", routerGrp2);
+app.post("/moduleView/editGroupsView/inaktiveGroup", routerGrp2);
+app.post("/moduleView/editGroupsView/joinGroup", routerGrp2);
+app.post("/moduleView/editGroupsView/joinStopGroup", routerGrp2);
+app.get("/moduleView/createInviteCode", routerGrp2);
+app.post("/moduleOverview/joinModuleViaCode", routerGrp2);
+app.get("/moduleViewUser/moduleGroups", routerGrp2);
+app.post("/moduleViewUser/joinGroup", routerGrp2);
+
+//Übersicht Module
+app.post("/moduleOverview/createModulView/insertModul", routerGrp2);
+app.post("/moduleOverview/deleteModulView/deleteModul", routerGrp2);
+app.get("/moduleOverview/myModules", routerGrp2);
+app.get("/moduleOverview/createModulView/profList", routerGrp2);
+app.get("/moduleOverview/deleteModulView/listEveryModul", routerGrp2);
+
+//Übersicht Gruppen
+app.get("/groupOverview/getMyGroupsIntoTable", routerGrp2);
+
+//General
+app.get("/groupView", routerGrp2);
+app.get("/groupOverview", routerGrp2);
+app.get("/moduleView", routerGrp2);
+app.get("/moduleOverview", routerGrp2);
+
+app.get("/home/dropdownModules", (request, response, next) =>
+{
+    let userID = request.session.userId;
+    let query = `SELECT Modulname, modul.Modul_ID as Modul_ID FROM modul INNER JOIN user_modul ON modul.Modul_ID = user_modul.Modul_ID INNER JOIN user ON user_modul.User_ID = user.ID WHERE user.ID = '${userID}' LIMIT 5;`
+    connection.query(query, function(err, result, fields)
+    {
+        if (err) response.send(Error);
+        if (result != null)
+        {
+            var resultString = "";
+            for (var i = 0; i < result.length; i++)
+            {
+                resultString += '<a href="/moduleView?modulID=' + result[i].Modul_ID  + '">' + result[i].Modulname + '</a>';
+            }
+            response.send(resultString);
+        }
+        else response.send("Keine Module vorhanden.");
+    });
+});
+
+app.get("/home/dropdownGroups", (request, response, next) =>
+{
+    let userID = request.session.userId;
+    let query = `SELECT Gruppenname, groups.Group_ID as Group_ID FROM groups INNER JOIN user_group ON groups.Group_ID = user_group.Group_ID INNER JOIN user ON user_group.User_ID = user.ID WHERE user.ID = '${userID}' AND groups.active = 1 LIMIT 5;`
+    connection.query(query, function(err, result, fields)
+    {
+        if (err) response.send(Error);
+        if (result != null)
+        {
+            var resultString = "";
+            for (var i = 0; i < result.length; i++)
+            {
+                resultString += '<a href="/groupView?grpID=' + result[i].Group_ID + '">' + result[i].Gruppenname + '</a>';
+            }
+            response.send(resultString);
+        }
+        else response.send("Keine Gruppen vorhanden.");
+    });
+});

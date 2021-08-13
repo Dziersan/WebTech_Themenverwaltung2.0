@@ -1,0 +1,300 @@
+.grid-header h1
+{
+    font-weight: lighter;
+}
+
+.grid
+{
+    display: grid;
+    height: 75%;
+    margin-top: 3%;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 10% 65% 2% 15%;
+    grid-template-areas:
+        "header header header header"
+        "p-table p-table p-table calender"
+        "left-buttons left-buttons right-buttons none"
+        "u-field u-field u-field u-field"
+}
+
+.grid_admin
+{
+    display: grid;
+    height: 75%;
+    margin-top: 3%;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 10% 65% 2% 15%;
+    grid-template-areas:
+        "header header header header"
+        "p-table p-table p-table calender"
+        "left-buttons left-buttons right-buttons none"
+        "u-field u-field u-field u-field"
+}
+
+.grid-header
+{
+    grid-area: header;
+    min-height: min-content;
+}
+
+.grid-p-table
+{
+    grid-area: p-table;
+}
+
+.table-size table
+{
+    height: 100%;
+}
+
+.participant-name
+{
+    cursor: pointer;
+}
+.calender-frame
+{
+    width: 100%;
+    height: 50%;
+    max-height: 50%;
+    margin-bottom: 2%;
+}
+
+.calender 
+{
+    width: 100%;
+    height: 100%;
+    margin: 1px;    
+}
+
+.currentDate button
+{
+    background-color: var(--hsos-blue);
+    color: white;
+    font-weight: bolder;
+    font-family: OpenSans, arial, "sans-serif";
+}
+
+.calender_buttons
+{
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: 0;
+    font-family: OpenSans, arial, "sans-serif";
+    font-size: 0.8em;
+}
+
+.calender_table thead
+{
+    width: 20%;
+}
+
+.calender_table th 
+{
+    text-align: center;
+    width: 50px;
+}
+
+.calender_table td 
+{
+    width: 1000px;
+    height: 100%;
+    text-align: center;
+    line-height: 100% !important;
+    font-size: 1.5em;
+}
+
+#about 
+{
+    font-size: 5em !important;
+    position: absolute;
+    top: -35px;
+    right: 15px;
+}
+
+#about a 
+{
+    text-decoration: none;
+}
+
+.calender-notifications
+{
+    grid-area: calender;
+    position: relative;
+    width: 100%;
+    height: 70%;
+    background-color: #fff;
+    box-sizing: border-box;
+    overflow: auto;
+    margin-left: auto;
+    margin-right: 0;
+    margin-bottom: 3.5%;  
+}
+
+/* Buttons */
+#terminErstellenBtn,#createAppointmentBtn
+{
+    width: 100%;
+    background-color: var(--hsos-blue);
+    border: none;
+    color: white;
+    font-weight: bold;
+    padding: 6px 32px;
+    text-align: center;
+    font-size: 18px;
+    margin: 4px 2px;
+    opacity: 1;
+    transition: 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.calender-notifications li
+{
+    list-style-type: none;
+}
+
+.calender-notifications ul
+{
+    padding-left: 2%;
+}
+
+.upload-section
+{
+    grid-area: u-field;
+    height: 100%;
+    width: 100%;
+}
+
+.upload-box
+{
+    padding-top: 1%;
+    padding-left: 2%;
+    height: 100%;
+}
+
+.fileexpl
+{
+    grid-area: fileexpl;
+    height: 100%;
+    padding: 1em;
+}
+
+.popupCalender-content 
+{
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 25%;
+    height: 50%;
+    text-align: center;
+}
+
+.popupCalender-content h1
+{
+    margin-top: 2%;
+    margin-bottom: 8%;
+}
+
+.popupCalender-content input
+{
+    margin-top: 2%;
+    margin-bottom: 4%;
+    width: 65%;
+    text-align: center;
+    font-size: 18px;
+}
+
+.popupCalender-content label
+{
+    margin-top: 0%;
+    font-weight: bold;
+}
+
+.popupModulTeilnehmer-content 
+{
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 2%;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.popupTeilnehmerTable
+{
+    width: 100%;
+    height: 100%;
+    align-content: center;
+}
+
+.popupTeilnehmerTable table
+{
+    display: block;
+    color: #000000;
+    background-color: #e5e5e5;
+    width: 100%;
+    height: 250px;
+    overflow: scroll;
+    table-layout: fixed;
+    position: relative;
+    border-collapse: collapse;
+}
+
+.popupTeilnehmerTable thead, tbody
+{
+    display: block;
+}
+
+.popupTeilnehmerTable tr
+{
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    text-align: center;
+}
+
+.popupTeilnehmerTable th
+{
+    color: white;
+    background-color: var(--hsos-blue);
+    height: 50px;
+}
+    
+.popupTeilnehmerTable td
+{
+    color: #000000;
+    background-color: #e5e5e5;
+    padding: 5px;
+}
+
+.formAddTeilnehmerToGroup
+{
+    align-self: center;
+}
+
+.formDeleteTeilnehmerFromGroup
+{
+    align-self: center;
+}
+
+.button-right
+{
+    margin: 0 0 0 auto;
+}

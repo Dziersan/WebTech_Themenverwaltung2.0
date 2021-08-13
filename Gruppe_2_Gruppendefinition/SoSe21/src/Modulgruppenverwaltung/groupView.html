@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Gruppenansicht</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" language="JavaScript" src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="../style/groupView.css" type="text/css">
+    <link rel="stylesheet" href="../style/style.css" type="text/css">
+    <script src="../scripts/calender.js"></script>
+</head>
+
+<body>
+<div class ="navbar"></div>
+
+<div class="pageContent grid">
+    <div class="grid-header"> <!-- Überschriftenzeile -->
+        <h1 id="captionGroupName"> <!-- filled by sql query--> </h1>
+    </div>
+    <div id="table_GroupMembers" class="grid-p-table table-view table-size">  <!-- Tabelle mit allen Modulteilnehmern -->
+        <table>
+            <thead>
+                <th class="participant-nummer">Matrikel-Nr.</th>
+                <th class="participant-name">Name</th>
+                <th class="participant-email">E-Mail</th>
+            </thead>
+            <tbody id="tableGroupMembers"> <!-- filled by javascripts sql query-->
+
+            </tbody>
+        </table>
+    </div>
+    <div style="grid-area: right-buttons; margin-top: -1em;" class="button-right">
+        <form action="/groupView/leaveGroup" method="POST">
+            <input type="hidden" id="Gruppennummer" name="Gruppennummer">
+            <script>
+                var url = window.location.search;
+                url = url.replace("?grpID=", '');
+                document.getElementById("Gruppennummer").value = url;
+            </script>
+            <button type= "submit"class="button red">Gruppe Verlassen</button>
+        </form>
+    </div>
+
+    <div script="Gruppenansicht.js" class="calender-frame">  <!-- Kalender -->
+        <div class="calender" id="main">
+            <div class="jumbotron">
+              <h1 class="text-center"></a><span>&nbsp;</span><span id="month"> </span><span>&nbsp;</span><span id="year"> </span><span>&nbsp;</span></a></h1>
+            </div>
+            <div class="row">
+              <div class="col-sm-10 col-sm-offset-1">
+                <table class="calender_table" id="cal">
+
+                </table>
+              </div>
+            </div>
+        </div>
+        <div class="calender-notifications" >
+            <ul id="calenderEntries">
+                <!-- filled by sql query-->
+            </ul>
+        </div>
+        <button id="terminErstellenBtn">Termin erstellen</button>
+    </div>
+
+    <form class="upload-section" method="post" action="/groupView/upload" enctype="multipart/form-data">
+        <div class="upload-box" style="border: 1px solid black" style="align-content: center;">    <!-- Dateiupload-Sektion -->
+            <input class="box__file" type="file" name="uploadAbgaben" id="file">
+            <button class="button blue" type="submit" style="margin-top: 2%; ;">Upload</button>
+        </div>
+    </form>
+</div>
+
+<!------------------------------------------->
+<!--   PopUp Kalendereintrag hinzufügen    -->   
+<!------------------------------------------->
+<div id="popupCalender-boxID" class="popup-box">
+    <div class="popupCalender-content">
+        <span id="closePopupKalender" class="close">&times;</span>
+        <h1>Termin erstellen</h1>
+        <form action="/groupView/calenderView/createAppointment" method="POST">
+            <label> Beschreibung: </label><br>
+            <input type="text" placeholder="Beschreibung eintragen" name="Beschreibung" required><br><br>
+            <label> Datum: </label><br>
+            <input type="date" placeholder="Datum eintragen" name="Datum" max="2200-12-31" required><br><br>
+            <label> Uhrzeit: </label><br>
+            <input type="time" placeholder="Uhrzeit eintragen" name="Zeit" required><br><br>
+            <input type="hidden" id="pageUrlField" name="PageUrl" required>
+            <script>
+                var url = window.location.search;
+                url = url.replace("?grpID=", '');
+                document.getElementById("pageUrlField").value = url;
+            </script>
+            <button id="createAppointmentBtn" type="submit" style="width: 65%; margin-top: 6%;">Termin erstellen</button>
+        </form>
+    </div>
+</div>
+</body>
+<footer>
+    <div class ="footer"></div>
+</footer>
+</html>
+
+<script>
+    $(function(){
+        $(".navbar").load("navbar.html");
+    });
+</script>
+
+<script>
+    $(function(){
+        $(".footer").load("footer.html");
+    });
+</script>
+<script src="../scripts/groupView.js"></script>

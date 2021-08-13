@@ -16,6 +16,14 @@ router.get("/Requirements", (request, response) => {
     response.sendFile(path.path + "/view/html/requirements.html");
 });
 
+router.get("/MSGanttHome", (request, response) => {
+    response.sendFile(path.path + "/view/html/MSGanttHome.html");
+});
+
+router.get("/MilestonesSubpage1", (request, response) => {
+    response.sendFile(path.path + "/view/html/MilestonesSubpage1.html");
+});
+
 router.get("/RequirementsEditGer", (request, response) => {
     response.sendFile(path.path + "/view/html/login.html");
 });
@@ -73,7 +81,7 @@ router.get("/getUser", (request, response) => {
 /**
  * This method allows the user and admin to change their personal data.
  */
-router.get("/updateUser", (request, response) => {
+ router.get("/updateUser", (request, response) => {
 
     let sql = "SELECT id, name, surname, e_mail, password, course, authorization FROM USER;";
 
@@ -150,6 +158,10 @@ router.get("/successfullregistration", (request, response) => {
 
 router.get("/changepassword", (request, response) => {
     response.sendFile(path.path + '/view/html/changePassword.html');
+});
+
+router.get("/newmilestone", (request, response) => {
+    response.sendFile(path.path + '/view/html/MilestonesNewMilestone.html');
 });
 
 router.get("/confirmation", (request, response) => {
