@@ -32,7 +32,7 @@ var {
 } = process.env;
 
 
-app.use(session({
+/*app.use(session({
     name: sessionName,
     resave: false,
     saveUninitialized: false,
@@ -42,7 +42,7 @@ app.use(session({
         sameSite: true,
         secure: false    //in development in production :true
     }
-}));
+})); */
 
 
 //Takes E-Mail and password from User and check if these matches if database

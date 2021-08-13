@@ -194,7 +194,10 @@ app.get("/RequirementsEditGer", redirectLogin, router);
 app.get("/upload_G3",router);
 app.get("/admin_G3", router);
 app.get("/student_G3" ,router);
-
+app.get("/MSGanttHome", redirectLogin, router);
+app.get("/MilestonesSubpage1", redirectLogin, router);
+app.get("/newmilestone", router);
+app.get("/getMilestones", redirectLogin, router);
 /*
 router2 = require("./services/file.router")(app, router_G3, upload);
 /!*app.get("/api/files/upload", router2);
@@ -203,7 +206,6 @@ app.get('/upload_G3', router2);
 app.get('/admin_G3', router2);
 app.get('/student_G3', router2);
 */
-
 
 //Get without HTML|| email
 app.get("/cookie", (request, response) => {
@@ -328,6 +330,9 @@ app.use(routerChangePassword);
 
 routerLogin = require('./api/routesLogin.js');
 app.use(routerLogin);
+
+routerMilestone = require('./services/routesMilestone.js');
+app.use(routerMilestone);
 
 routerRegister = require('./api/routesRegister.js');
 app.use(routerRegister);

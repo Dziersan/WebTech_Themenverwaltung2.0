@@ -1,16 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link type="text/css" rel="stylesheet" href="./css/navigationBar.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
-    <script type="text/javascript" language="JavaScript" src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <script src="./javascript/home.js" type="text/javascript" language="JavaScript" ></script>
-    <script src="./javascript/MSgetTopic.js" type="text/javascript" language="JavaScript" ></script>
-    <script src="./javascript/getTopicId.js" type="text/javascript" language="JavaScript" ></script>
+    <title>Milestones Statistics</title>
+    <script src="./javascript/MSScriptTest.js" defer></script>
+    <script src="./javascript/MSgetStatisticTimes.js"></script>
+    <link type="text/css" rel="stylesheet" href="./css/MSnavigationBar.css">
+    <link type="text/css" rel="stylesheet" href="./css/MShomepage.css">
+    <link rel="stylesheet" type="text/css" href="./css/MSstylesheet.css">
+    <link type="text/css" rel="stylesheet" href="../css/MSnavigationBar.css">
+    <link type="text/css" rel="stylesheet" href="../css/MShomepage.css">
+    <link rel="stylesheet" type="text/css" href="../css/MSstylesheet.css">
 </head>
-<body onload="getTopic()">
+<body onload="getStatisticTimes(), getStatisticTimesChart()">
 
 <div id="UserMenu_All_Header">
     <div id="All_Header_left" class="All_Header_Boxes" style="float: left; margin-right: 5px">
@@ -33,26 +35,18 @@
         </div>
 
         <div class="dropdown" style="margin-left: 5px">
-            <form>
-                <button class="header_button">Meilensteinplanung</button>
+            <form action="/MSGanttHome">
+                <button class="header_button" onclick="loadTable()">Meilensteinplanung</button>
             </form>
-            <div class="dropdown-content" id="topic">
-
-            </div>
-        </div>
-
-        <div class="dropdown" style="margin-left: 5px">
-            <form action="/presentation">
-                <button class="header_button">Präsentation</button>
-            </form>
-
         </div>
 
         <div class="dropdown" style="margin-left: 5px">
             <form action="/RequirementsEditGer">
-                <button class="header_button" onclick="loadTable()" >Group 5</button>
+                <button class="header_button" onclick="loadTable()">Group 5</button>
             </form>
         </div>
+
+        <button class="header_button">Präsentation</button>
 
     </div>
 
@@ -90,26 +84,42 @@
     </div>
 </div>
 
-<h1 id="name"></h1>
-<form action="/logout" method="post">
-    <button>Logout</button>
-</form>
+<!-- Navigationbar Left -->
+<div class="row">
+    <div class="col-3 menu">
+        <div class="menu">
+            <iframe name="Uebersicht" src="MSUebersicht.html" frameborder="0" width="100%" height="1000"></iframe>
+        </div>
+    </div>
+    <div class="col-9">
+        <div class="grid-container">
 
-<br>
-<div>
-    <a href="/token">Token10</a>
-</div>
-<div>
-    <a href="/showUsers">Benutzer</a>
-</div>
+            <div class="statistics-grid-left">
+                <h1 align="center">Zeitaufwand Gesamt</h1>
+                <table class="statistics-graph" id="statisticsChartBody">
+                    <tbody id="chartBody">
+                    </tbody>
+                </table>
+            </div>
+            <div>
 
+                <table class="statistics-table" id="statisticsTableBody">
+                    <caption>Zeitaufwand Gesamt</caption>
+                    <tr>
+                        <th>T</th>
+                        <th>Name</th>
+                        <th>Stundenaufwand</th>
+                    </tr>
+                </table>
+
+
+                <a href="MilestoneStatisticsPDF.html" target="_blank">
+                    <button style="float: right" class="editbtn">Als PDF-Datei drucken</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
-<footer>
-    <div style="text-align: center">© 2020 Copyright:
-        <a href="/Impressum"> zum Impressum geht es hier lang</a>
-    </div>
-</footer>
 </html>
-
-

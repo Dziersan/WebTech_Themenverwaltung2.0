@@ -1,24 +1,16 @@
-/* DROP SCHEMA IF EXISTS Webtech;
-CREATE SCHEMA Webtech; */
+DROP SCHEMA IF EXISTS Webtech;
+CREATE SCHEMA Webtech;
 USE Webtech;
 
-/* DROP TABLE IF EXISTS requirements;
-CREATE TABLE requirements (
-    id INTEGER PRIMARY KEY,
-    name VARCHAR (255) NULL,
-    shortdesc VARCHAR (255),
-    starttime DATE NULL,
-    endtime DATE NULL
-); */
+/* milestone_status */
 
-DROP TABLE IF EXISTS requirements;
-CREATE TABLE requirements (
-    id VARCHAR(10) PRIMARY KEY,
-    name VARCHAR(255),
-    short_desc VARCHAR(255),
-    start_time DATE,
-    end_time DATE
+DROP TABLE IF EXISTS milestone_status;
+CREATE TABLE milestone_status (
+    milestone_status_id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    description VARCHAR (255)
 );
+
+/* module */
 
 DROP TABLE IF EXISTS module;
 CREATE TABLE module (
@@ -27,7 +19,7 @@ CREATE TABLE module (
     participants_number INTEGER
 );
 
-/* Wird von Gruppe 3 (Meilensteinplaung) benötigt*/
+/* topic */
 
 DROP TABLE IF EXISTS topic;
 CREATE TABLE topic (
@@ -45,6 +37,8 @@ CREATE TABLE topic (
             ON DELETE SET NULL
 );
 
+/* presentation */
+
 DROP TABLE IF EXISTS presentation;
 CREATE TABLE presentation (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
@@ -61,7 +55,7 @@ CREATE TABLE presentation (
 
 );
 
-
+/* agenda */
 
 DROP TABLE IF EXISTS agenda ;
 CREATE TABLE agenda (
@@ -78,7 +72,10 @@ CREATE TABLE agenda (
 
     CONSTRAINT agenda_presentation_id_fk
         FOREIGN KEY (presentation_id) REFERENCES presentation (id)
+
 );
+
+/* pw_forgot_token */
 
 DROP TABLE IF EXISTS pw_forgot_token;
 CREATE TABLE pw_forgot_token (
@@ -90,6 +87,8 @@ CREATE TABLE pw_forgot_token (
     used BOOLEAN
 );
 
+/* token */
+
 DROP TABLE IF EXISTS token;
 CREATE TABLE token (
     id INTEGER AUTO_INCREMENT PRIMARY KEY ,
@@ -100,6 +99,8 @@ CREATE TABLE token (
     user INTEGER
 );
 
+/* messages */
+
 DROP TABLE IF EXISTS messages ;
 CREATE TABLE messages (
     message_id INTEGER AUTO_INCREMENT PRIMARY KEY ,
@@ -109,7 +110,7 @@ CREATE TABLE messages (
     type VARCHAR(50) NULL
 );
 
-/* Wird von Gruppe 3 (Meilensteinplaung) benötigt*/
+/* user */
 
 DROP TABLE IF EXISTS user;
 CREATE TABLE user (
@@ -126,42 +127,7 @@ CREATE TABLE user (
     course VARCHAR(255)
 );
 
-DROP TABLE IF EXISTS notification;
-CREATE TABLE notification(
-    id   INTEGER AUTO_INCREMENT PRIMARY KEY ,
-    group_name VARCHAR(255),
-    description VARCHAR(255)
-);
-
-DROP TABLE IF EXISTS softwarepool;
-CREATE TABLE softwarepool(
-    id INTEGER AUTO_INCREMENT PRIMARY KEY ,
-    software_name VARCHAR(255),
-    software_description VARCHAR(255),
-    software_link VARCHAR(255)
-);
-
-/* (Gruppe 3 Meilensteinplanung) milestone_status */
-
-DROP TABLE IF EXISTS milestone_status;
-CREATE TABLE milestone_status (
-    milestone_status_id INTEGER AUTO_INCREMENT PRIMARY KEY,
-    description VARCHAR (255)
-);
-
-/* DROP TABLE IF EXISTS module;
-CREATE TABLE module(
-    module_id INT auto_increment primary key,
-    description VARCHAR (255),
-    participants_number INT
-);
-*/
-DROP TABLE IF EXISTS notification;
-CREATE TABLE notification(
-    id   int auto_increment primary key,
-    group_name varchar(255),
-    description varchar(255)
-/* (Gruppe 3 Meilensteinplanung) milestones */
+/* milestones */
 
 DROP TABLE IF EXISTS milestones;
 CREATE TABLE milestones (
@@ -196,7 +162,7 @@ CREATE TABLE milestones (
             ON DELETE SET NULL
 );
 
-/* (Gruppe 3 Meilensteinplanung) submilestones */
+/* submilestones */
 
 DROP TABLE IF EXISTS submilestones;
 CREATE TABLE submilestones (
@@ -217,7 +183,7 @@ CREATE TABLE submilestones (
 
 );
 
-/* (Gruppe 3 Meilensteinplanung) timeaccount */
+/* timeaccount */
 
 DROP TABLE IF EXISTS timeaccount;
 CREATE TABLE timeaccount (
@@ -237,7 +203,7 @@ CREATE TABLE timeaccount (
             ON DELETE SET NULL
 );
 
-/* (Gruppe 3 Meilensteinplanung) timeaccount_history */
+/* timeaccount_history */
 
 DROP TABLE IF EXISTS timeaccount_history;
 CREATE TABLE timeaccount_history (
@@ -253,14 +219,13 @@ CREATE TABLE timeaccount_history (
             ON DELETE SET NULL
 );
 
-/* (Gruppe 3 Meilensteinplanung) participan_group_details */
+/* participan_group_details */
 
 DROP TABLE IF EXISTS participant_group;
 CREATE TABLE participant_group (
     participan_group_details_id INTEGER AUTO_INCREMENT PRIMARY KEY,
     user_id INTEGER NULL,
     topic_id INTEGER NULL,
-    milestone_id INTEGER NULL,
 
     CONSTRAINT participant_group_user_id_fk
         FOREIGN KEY (user_id) REFERENCES user (id)
@@ -270,29 +235,46 @@ CREATE TABLE participant_group (
     CONSTRAINT participant_group_topic_id_fk
         FOREIGN KEY (topic_id) REFERENCES topic (id)
             ON UPDATE CASCADE
-            ON DELETE SET NULL,
-
-    CONSTRAINT participant_group_topic_id_fk
-        FOREIGN KEY (milestone_id) REFERENCES milestones (milestone_id)
-            ON UPDATE CASCADE
             ON DELETE SET NULL
 );
 
-/* (Gruppe 3 Meilensteinplanung) topic_status */
+/* notification */
+
+USE Webtech;
+
+DROP TABLE IF EXISTS notification;
+CREATE TABLE notification(
+    id   int auto_increment primary key,
+    group_name varchar(255),
+    description varchar(255)
+);
+
+/* requirements */
+
+DROP TABLE IF EXISTS requirements;
+CREATE TABLE requirements(
+    id varchar(10) primary key,
+    name varchar(255),
+    short_desc varchar(255),
+    start_time date,
+    end_time date
+);
+
+/* softwarepool */
+
+DROP TABLE IF EXISTS softwarepool;
+CREATE TABLE softwarepool(
+    id int auto_increment primary key,
+    software_name varchar(255),
+    software_description varchar(255),
+    software_link varchar(255)
+);
 
 DROP TABLE IF EXISTS topic_status;
-CREATE TABLE topic_status (
+CREATE TABLE topic_status(
     user_id int NOT NULL,
     topic_id int NOT NULL
-);
 
-/* (Gruppe 3 Meilensteinplanung) get_milestone_id */
-
-DROP TABLE IF EXISTS get_milestone_id;
-CREATE TABLE get_milestone_id (
-    milestone_id INTEGER,
-    user_id INTEGER,
-    description VARCHAR(255)
 );
 
 
@@ -301,6 +283,25 @@ CREATE TABLE get_milestone_id (
 
 
 
+
+
+
+
+
+
+
+
+
+/* project */
+
+/*DROP TABLE IF EXISTS project;
+CREATE TABLE project (
+    project_id INT AUTO_INCREMENT PRIMARY KEY,
+    description VARCHAR (255) NOT NULL,
+    start DATE NOT NULL,
+    end DATE NOT NULL,
+    duration INT AS (DATEDIFF(end, start))
+); */
 
 /* unused for now
 
@@ -311,114 +312,3 @@ CREATE TABLE STUDENT_MODUL(
 );
 
 */
-
-
-
-
-
-DROP SCHEMA IF EXISTS Webtech;
-CREATE SCHEMA Webtech;
-USE WEBTECH;
-
-DROP TABLE IF EXISTS Pw_forgot_token;
-CREATE TABLE Pw_forgot_token(
-                                ID INTEGER AUTO_INCREMENT PRIMARY KEY,
-                                E_Mail VARCHAR(255),
-                                Start DATETIME,
-                                End DATETIME,
-                                Token VARCHAR(255),
-                                Used BOOLEAN
-);
-
-DROP TABLE IF EXISTS Token;
-CREATE TABLE Token
-(
-    ID INTEGER AUTO_INCREMENT PRIMARY KEY,
-    Start DATETIME,
-    Time INTEGER,
-    End DATETIME,
-    Gentoken VARCHAR(255),
-    User INTEGER
-);
-
-DROP TABLE IF EXISTS User;
-CREATE TABLE User
-(
-    ID INTEGER AUTO_INCREMENT PRIMARY KEY,
-    User_ID VARCHAR(10) UNIQUE, /* Selbst gewählte Identifkationskennung */
-    HS_ID VARCHAR(20),
-    Token VARCHAR(255),
-    Name VARCHAR(255),
-    Surname VARCHAR(255),
-    E_Mail VARCHAR(255),
-    Password VARCHAR(255),
-    Verified BOOLEAN,
-    Authorization VARCHAR(255),
-    Confirm_Token VARCHAR(255),
-    Semester CHAR(2),
-    Course VARCHAR(255),
-    Position ENUM('Student', 'HS-Mitarbeiter', 'Dozent') /* Student, HS-Mitarbeiter, Dozent, Dekan */
-);
-
-DROP TABLE IF EXISTS Modul;
-CREATE TABLE Modul
-(
-    Modul_ID INTEGER AUTO_INCREMENT PRIMARY KEY,
-    Modulname VARCHAR(255),
-    Teilnehmer_Max INTEGER,
-    Semester CHAR(10), /* Damit ist das Jahr gemeint z.B. SoSe 20/21 */
-    Pruefungsform ENUM('Klausur1', 'Klausur2', 'Mündl. Prüfung', 'Hausarbeit')
-);
-
-DROP TABLE IF EXISTS Groups;
-CREATE TABLE Groups
-(
-    Group_ID INTEGER AUTO_INCREMENT PRIMARY KEY,
-    Modul_ID INTEGER,
-    Gruppenname VARCHAR(255),
-    Teilnehmer_Max INTEGER,
-    Abgabedatum DATETIME,
-    Active BOOLEAN,
-    Beitritt BOOLEAN
-);
-
-DROP TABLE IF EXISTS User_Modul;
-CREATE TABLE User_Modul
-(
-    User_ID INTEGER,
-    Modul_ID INTEGER,
-    Rolle ENUM('Teilnehmer', 'Dozent', 'Verwalter'),
-    PRIMARY KEY(User_ID, Modul_ID)
-);
-
-DROP TABLE IF EXISTS User_Group; /* group = hausarbeit */
-CREATE TABLE User_Group
-(
-    User_ID INTEGER,
-    Group_ID INTEGER,
-    Rolle ENUM('Teilnehmer', 'Dozent', 'Verwalter'),
-    PRIMARY KEY(User_ID, Group_ID)
-);
-
-
-DROP TABLE IF EXISTS Termine; /* group = hausarbeit */
-CREATE TABLE Termine
-(
-    Termin_ID INTEGER AUTO_INCREMENT PRIMARY KEY,
-    Group_ID INTEGER,
-    Beschreibung VARCHAR(255),
-    Datum DATE,
-    Zeit TIME,
-    Erinnerung BOOLEAN,
-    Ort VARCHAR(255),
-    Ersteller_ID INTEGER
-);
-
-DROP TABLE IF EXISTS InviteCodes;
-CREATE TABLE InviteCodes
-(
-    ID INTEGER AUTO_INCREMENT PRIMARY KEY,
-    inviteCode VARCHAR(20),
-    Modul_ID INTEGER,
-    Enddate DATETIME
-);
