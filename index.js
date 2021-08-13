@@ -193,7 +193,7 @@ app.get("/RequirementsEditGer", redirectLogin, router);
 app.get("/upload_G3",router);
 app.get("/admin_G3", router);
 app.get("/student_G3" ,router);
-app.get("/GanttHome", redirectLogin, router);
+app.get("/MSGanttHome", redirectLogin, router);
 app.get("/MilestonesSubpage1", redirectLogin, router);
 app.get("/newmilestone", router);
 app.get("/getMilestones", redirectLogin, router);

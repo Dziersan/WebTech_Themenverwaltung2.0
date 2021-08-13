@@ -1,3 +1,5 @@
+/* Funktion gehört zum Gantt-Diagramm */
+
 for(var i = 1; i<= asd; i++){
     document.writeln("<div class=\"chart-row\">\n" +
         "                    <div class=\"chart-row-item\">"+i+"</div>\n" +

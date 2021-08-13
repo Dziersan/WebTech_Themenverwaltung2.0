@@ -1,3 +1,15 @@
+/**
+ * Version 1.0
+ * 10.08.2021
+ *
+ *@author Kevin Bosse
+ */
+
+
+/**
+ * @class Submilestone with getSelected function (for getting html element values)
+ */
+
 class Submilestone {
 
     constructor(description) {
@@ -13,6 +25,12 @@ class Submilestone {
     }
 
 }
+
+/**
+ * @method
+ * This function fetches client data to createNewSubmilestone ressource on server
+ * @param
+ */
 
 function addSubmilestone() {
 

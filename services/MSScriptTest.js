@@ -1,3 +1,10 @@
+/**
+ * Version 1.0
+ * 08.06.2021
+ *
+ *@author Kai Kühl, Leon Lelle, Jonas Littmeyer
+ */
+
 //TimeEdit Btn and Modal
 // Get the modal
 var editTimeModal = document.getElementById("editTimeModal");

@@ -13,10 +13,11 @@
 
     <script src="./javascript/MSChart.js" ></script>
     <script src="./javascript/MSScriptTest.js" ></script>
-    <script src="./javascript/newMilestone.js" ></script>
+    <script src="./javascript/MSMilestone.js" ></script>
+  <script src="./javascript/MSeditMilestone.js" ></script>
 
 </head>
-<body>
+<body onload="getPredecessorNew()">
 <div id="UserMenu_All_Header">
   <div id="All_Header_left" class="All_Header_Boxes" style="float: left; margin-right: 5px">
     <a href="https://osca.hs-osnabrueck.de/">
@@ -38,7 +39,7 @@
     </div>
 
     <div class="dropdown" style="margin-left: 5px">
-      <form action="/GanttHome">
+      <form action="/MSGanttHome">
         <button class="header_button" onclick="" >Meilensteinplanung</button>
       </form>
     </div>
@@ -95,18 +96,6 @@
     <div>
       <iframe name="Uebersicht" src="MSUebersicht.html" frameborder="0" width="100%" height="1000"></iframe>
     </div>
-    <!-- Navigationbar Left -->
-    <!--        <div class="menu">-->
-    <!--            <ul>-->
-    <!--                <li><h2><a href="GanttHome.html" target="_parent">Übersicht</a></h2></li>-->
-    <!--                <li><a href="MilestonesSubpage1.html" target="_parent"> Meilenstein 1 </a></li>-->
-    <!--                <li><a href="MilestonesSubpage2.html" target="_parent">Meilenstein 2</a></li>-->
-    <!--                <li><a href="MilestonesSubpage3.html" target="_parent">Meilenstein 3</a></li>-->
-    <!--                <li><a href="MilestonesSubpage4.html" >Meilenstein 4</a></li>-->
-    <!--                <li><h3><a href="MilestonesStatistics.html">Statistik </a></h3></li>-->
-    <!--                <li id="newMilestone"><h3><a>+ Neuer Meilenstein</a></h3></li>-->
-    <!--            </ul>-->
-    <!--        </div>-->
 
   </div>
 
@@ -116,24 +105,13 @@
           <h1>Neuer Meilenstein</h1>
           <table style="width: 100%">
             <tr>
-              <td><label for="mtid">Thema: </label></td>
-              <td>
-                <select id="mtid" name="mtid">
-                  <option value="1">Hausarbeitsthemenverwaltung</option>
-                  <option value="2">SWOT-Analyse</option>
-                  <option value="3">Platzhalter für</option>
-                  <option value="4">Dynamik</option>
-                </select>
-              </td>
+              <td width="350"><label for="msDescription">Beschreibung: </label></td>
+              <td><input type="text" id="msDescription" name="msDescription"> </td>
             </tr>
             <tr>
-              <td width="350"><label for="mname">Beschreibung: </label></td>
-              <td><input type="text" id="mname" name="mname"> </td>
-            </tr>
-            <tr>
-              <td><label for="msid">Status: </label></td>
+              <td><label for="msStatus">Status: </label></td>
               <td>
-                <select id="msid" name="mtid">
+                <select id="msStatus" name="msStatus">
                   <option value="1">Unbearbeitet</option>
                   <option value="2">In Bearbeitung</option>
                   <option value="3">Fertiggestellt</option>
@@ -141,23 +119,20 @@
               </td>
             </tr>
             <tr>
-              <td><label for="mpre">Vorgänger: </label></td>
+              <td><label for="msPredecessorNew">Vorgänger: </label></td>
               <td>
-                <select id="mpre" name="mpre">
-                  <option value="">Meilenstein 1</option>
-                  <option value="">Meilenstein 2</option>
-                  <option value="">Meilenstein 3</option>
-                  <option value="">Meilenstein 4</option>
+                <select id="msPredecessorNew" name="msPredecessorNew">
+
                 </select>
               </td>
             </tr>
             <tr>
-              <td><label for="mstart">Start: </label></td>
-              <td><input type="date" id="mstart" name="mstart"></td>
+              <td><label for="msStart">Start: </label></td>
+              <td><input type="date" id="msStart" name="msStart"></td>
             </tr>
             <tr>
-              <td><label for="mdeadline">Deadline: </label></td>
-              <td><input type="date" id="mdeadline" name="mdeadline"></td>
+              <td><label for="msDeadline">Deadline: </label></td>
+              <td><input type="date" id="msDeadline" name="msDeadline"></td>
             </tr>
             <tr>
               <td></td>

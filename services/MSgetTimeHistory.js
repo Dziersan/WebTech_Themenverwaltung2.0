@@ -1,3 +1,16 @@
+/**
+ * Version 1.0
+ * 08.06.2021
+ *
+ *@author Kevin Bosse
+ */
+
+/**
+ * @method
+ * This function fetches client data to getTimeHistory ressource on server
+ * @param
+ */
+
 function getTime() {
 
     fetch('/getTimeHistory')
@@ -14,7 +27,7 @@ function getTime() {
 /**
  * @method
  * This function creates the table rows and loads the data from a JSON file.
- * @param data
+ * @param data: recieved response data from fetch
  */
 
 function renderHTMLTimeHistory(data) {
@@ -39,7 +52,5 @@ function renderHTMLTimeHistory(data) {
         document.getElementById("timeTable").appendChild(node);
 
     }
-
-    /* Beispiel in services/adminView.js Zeile 35 bis 66*/
 
 }

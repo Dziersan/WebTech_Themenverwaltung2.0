@@ -1,8 +1,12 @@
 /**
  * Version 1.0
- * 08.06.2021
+ * 01.08.2021
  *
- *
+ *@author Kevin Bosse
+ */
+
+/**
+ * @class Time with getSelectedTime function (for getting html element values)
  */
 
 class Time {
@@ -23,6 +27,12 @@ class Time {
 
 }
 
+/**
+ * @method
+ * This function fetches client data to createNewTime ressource on server
+ * @param
+ */
+
 function addTime() {
 
     let time = new Time().getSelectedTime();
@@ -35,7 +45,13 @@ function addTime() {
 
     fetch('/createNewTime', options)
         .then(response => response.json())
+
+    location.reload();
 }
+
+/**
+ * @class ManuallyTime with getTime function (for getting html element values)
+ */
 
 class ManuallyTime {
 
@@ -54,6 +70,12 @@ class ManuallyTime {
 
 }
 
+/**
+ * @method
+ * This function fetches client data to createNewManuallyTime ressource on server
+ * @param
+ */
+
 function addTimeManually() {
 
     let time = new ManuallyTime().getManuallyTime();
@@ -66,5 +88,7 @@ function addTimeManually() {
 
     fetch('/createNewTimeManually', options)
         .then(response => response.json())
+
+    location.reload();
 }
 

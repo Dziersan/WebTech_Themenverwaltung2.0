@@ -16,8 +16,8 @@ router.get("/RequirementsEditGer", (request, response) => {
     response.sendFile(path.path + "/view/html/mainPage.html");
 });
 
-router.get("/GanttHome", (request, response) => {
-    response.sendFile(path.path + "/view/html/GanttHome.html");
+router.get("/MSGanttHome", (request, response) => {
+    response.sendFile(path.path + "/view/html/MSGanttHome.html");
 });
 
 router.get("/MilestonesSubpage1", (request, response) => {
