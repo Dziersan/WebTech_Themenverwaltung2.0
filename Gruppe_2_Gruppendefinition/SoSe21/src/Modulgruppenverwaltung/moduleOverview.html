@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modulgruppenverwaltung</title>
+    <link rel="stylesheet" href="../style/moduleOverview.css" type="text/css">
+    <link rel="stylesheet" href="../style/style.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" language="JavaScript" src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <title>Modulgruppenübersicht</title>
+</head>
+
+<body>
+<div class ="navbar"></div>
+
+<div class="grid pageContent">
+    <div class="grid-header"> <!-- Überschriftenzeile -->
+        <h1>Modulübersicht</h1>
+    </div>
+    <div class="grid-p-table table-view table-size">  <!-- Tabelle mit allen Modulteilnehmern -->
+        <table>
+            <thead style="position: sticky">
+            <tr>
+                <th class="participant-name">Modulname</th>
+                <th class="participant-dozent">Dozent</th>
+                <th class="participant-semester">Semester</th>
+                <th class="participant-prüfungsform">Prüfungsform</th>
+            </tr>
+            </thead>
+            <tbody id="ModulList">
+            </tbody>
+        </table>
+    </div>
+    <div class="grid-footer">
+        <form action="/moduleOverview/joinModuleViaCode" method="POST">
+            <br>
+            <label style='font-weight: lighter;   font-family: OpenSans, arial, "sans-serif";'>Invite Code: </label>
+            <input type="text" id="inviteCodeInputID" name="inviteCode">
+            <button type="submit" class="button blue">Modul beitreten</button>
+        </form>
+    </div>
+</div>
+
+</body>
+<footer>
+    <div class ="footer"></div>
+</footer>
+</html>
+<script src="../scripts/moduleOverview.js"></script>
+<script>
+    $(function(){
+        $(".navbar").load("navbar.html");
+    });
+</script>
+
+<script>
+    $(function(){
+        $(".footer").load("footer.html");
+    });
+</script>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--<link type="text/css" rel="stylesheet" href="../css/navigationBar.css">-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
+    <script type="text/javascript" language="JavaScript" src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="./javascript/home.js" type="text/javascript" language="JavaScript" ></script>
+    <link href="../css/style.css" rel="stylesheet" type="text/css">
+
+
+</head>
+
+<body>
+
+<div class ="navbar"></div>
+<h1 id="name"></h1>
+<form action="/logout" method="post">
+    <button>Logout</button>
+</form>
+
+<br>
+<!--<div>
+    <a href="/token">Token_client</a>
+</div>
+<div>
+    <a href="/showUsers">Benutzer</a>
+</div>-->
+
+
+</body>
+<footer>
+    <div class ="footer"></div>
+</footer>
+
+</html>
+
+<script>
+    $(function(){
+        $(".navbar").load("navbar.html");
+    });
+</script>
+
+<script>
+    $(function(){
+        $(".footer").load("footer.html");
+    });
+</script>
+
