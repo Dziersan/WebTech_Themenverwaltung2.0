@@ -70,4 +70,7 @@ INSERT INTO  softwarepool(software_name, software_description, software_link)
 VALUES ('HeidiSQL', 'Für Datenbanken', 'https://www.heidisql.com/');
 
 INSERT INTO topic(project_description, module_name, semester)
-VALUES('Verbessern', 'Webtech', '3')
+VALUES('Verbessern', 'Webtech', '3');
+
+INSERT INTO topic(project_description, module_name, semester)
+VALUES('Ponyliga', 'SEP', '4')
