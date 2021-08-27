@@ -102,19 +102,23 @@ CREATE TABLE messages (
 
 /* Wird von Gruppe 3 (Meilensteinplaung) benötigt*/
 
-DROP TABLE IF EXISTS user;
-CREATE TABLE user (
-    id INTEGER AUTO_INCREMENT PRIMARY KEY ,
-    token VARCHAR(255),
-    name VARCHAR(255),
-    surname VARCHAR(255),
-    e_mail VARCHAR(255),
-    password VARCHAR(255),
-    verified BOOLEAN,
-    authorization VARCHAR(255),
-    confirm_token VARCHAR(255),
-    semester VARCHAR(2),
-    course VARCHAR(255)
+DROP TABLE IF EXISTS User;
+CREATE TABLE User
+(
+    ID INTEGER AUTO_INCREMENT PRIMARY KEY,
+    User_ID VARCHAR(10) UNIQUE, /* Selbst gewählte Identifkationskennung */
+    HS_ID VARCHAR(20),
+    Token VARCHAR(255),
+    Name VARCHAR(255),
+    Surname VARCHAR(255),
+    E_Mail VARCHAR(255),
+    Password VARCHAR(255),
+    Verified BOOLEAN,
+    Authorization VARCHAR(255),
+    Confirm_Token VARCHAR(255),
+    Semester CHAR(2),
+    Course VARCHAR(255),
+    Position ENUM('Student', 'HS-Mitarbeiter', 'Dozent') /* Student, HS-Mitarbeiter, Dozent, Dekan */
 );
 
 DROP TABLE IF EXISTS notification;
@@ -148,12 +152,14 @@ CREATE TABLE module(
 );
 */
 DROP TABLE IF EXISTS notification;
-CREATE TABLE notification(
-    id   int auto_increment primary key,
-    group_name varchar(255),
+CREATE TABLE notification
+(
+    id          int auto_increment primary key,
+    group_name  varchar(255),
     description varchar(255)
-/* (Gruppe 3 Meilensteinplanung) milestones */
+);
 
+/* (Gruppe 3 Meilensteinplanung) milestones */
 DROP TABLE IF EXISTS milestones;
 CREATE TABLE milestones (
     milestone_id INTEGER AUTO_INCREMENT PRIMARY KEY,
@@ -263,7 +269,7 @@ CREATE TABLE participant_group (
             ON UPDATE CASCADE
             ON DELETE SET NULL,
 
-    CONSTRAINT participant_group_topic_id_fk
+    CONSTRAINT participant_group_milestone_id_fk
         FOREIGN KEY (milestone_id) REFERENCES milestones (milestone_id)
             ON UPDATE CASCADE
             ON DELETE SET NULL
@@ -306,25 +312,6 @@ CREATE TABLE Token
     End DATETIME,
     Gentoken VARCHAR(255),
     User INTEGER
-);
-
-DROP TABLE IF EXISTS User;
-CREATE TABLE User
-(
-    ID INTEGER AUTO_INCREMENT PRIMARY KEY,
-    User_ID VARCHAR(10) UNIQUE, /* Selbst gewählte Identifkationskennung */
-    HS_ID VARCHAR(20),
-    Token VARCHAR(255),
-    Name VARCHAR(255),
-    Surname VARCHAR(255),
-    E_Mail VARCHAR(255),
-    Password VARCHAR(255),
-    Verified BOOLEAN,
-    Authorization VARCHAR(255),
-    Confirm_Token VARCHAR(255),
-    Semester CHAR(2),
-    Course VARCHAR(255),
-    Position ENUM('Student', 'HS-Mitarbeiter', 'Dozent') /* Student, HS-Mitarbeiter, Dozent, Dekan */
 );
 
 DROP TABLE IF EXISTS Modul;

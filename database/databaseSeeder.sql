@@ -6,9 +6,7 @@ INSERT INTO MODULE (description, participants_number)
 VALUES
     ('Webtechnologien', 30),
     ('Geschäftsprozessmanagement', 120);
-
-/* User */
-
+/*
 INSERT INTO USER( token, name, surname, e_mail, password, verified, authorization, confirm_token, semester, course)
 VALUES (
     'ABC',
@@ -123,8 +121,6 @@ VALUES (
     'Wirtschaftsinformatik'
 );
 
-/* Token */
-
 INSERT INTO TOKEN (start, time, end, gentoken, user)
 VALUES (
     '2020-07-11',
@@ -133,7 +129,7 @@ VALUES (
     'ABC',
     1
 );
-*/
+
 DELETE FROM User;
 DELETE FROM Modul;
 DELETE FROM Groups;
@@ -142,7 +138,7 @@ DELETE FROM Pw_forgot_token;
 DELETE FROM User_Group;
 DELETE FROM User_Modul;
 DELETE FROM Termine;
-
+*/
 INSERT INTO User(User_ID, HS_ID, Token, Name, Surname, E_Mail, Password, Verified, Authorization, Confirm_Token, Semester, Course, Position) VALUES
 ('murre97',     '895542',   'ABC',  'Maurice',  'Rethmann',     'maurice.rethmann@hs-osnabrueck.de',    'maurice13',    true,   'Student', 'ABC', '1', 'Wirtschaftsinformatik', 'Student'),
 ('pat112',      '903194',   'BCD',  'Patrick',  'Benten',       'patrick.benten@hs-osnabrueck.de',      'patrick14',    true,   'Student', 'BCD', '2', 'Wirtschaftsinformatik', 'Student'),
@@ -195,20 +191,20 @@ INSERT INTO Token (ID, Start, Time, End, Gentoken, User) VALUES
 (10,'18-07-21 09.00.00', 9, '18-07-21 18.00.00','LMN', 1);
 
 INSERT INTO User_Modul(User_ID, Modul_ID, Rolle) VALUES
-(1,     001, 'Teilnehmer'),
-(2,      001, 'Teilnehmer'),
-(3,  001, 'Teilnehmer'),
-(4,      001, 'Teilnehmer'),
-(5,      001, 'Teilnehmer'),
-(6,     001, 'Teilnehmer'),
-(7,    001, 'Teilnehmer'),
-(8,      001, 'Teilnehmer'),
-(9,    001, 'Teilnehmer'),
-(10,      001, 'Teilnehmer'),
-(11,      001, 'Teilnehmer'),
-(12,  001, 'Dozent'),
-(14,    005, 'Dozent'),
-(15,  002, 'Dozent');
+(1, 001, 'Teilnehmer'),
+(2, 001, 'Teilnehmer'),
+(3, 001, 'Teilnehmer'),
+(4, 001, 'Teilnehmer'),
+(5, 001, 'Teilnehmer'),
+(6, 001, 'Teilnehmer'),
+(7, 001, 'Teilnehmer'),
+(8, 001, 'Teilnehmer'),
+(9, 001, 'Teilnehmer'),
+(10, 001, 'Teilnehmer'),
+(11, 001, 'Teilnehmer'),
+(12, 001, 'Dozent'),
+(14, 005, 'Dozent'),
+(15, 002, 'Dozent');
 
 INSERT INTO User_Group(User_ID, Group_ID, Rolle) VALUES
 (15, 001, 'Dozent'),
@@ -344,66 +340,66 @@ WHERE milestone_id = 5;
 INSERT INTO SUBMILESTONES (milestone_id, description, status)
 VALUES
     (1, 'ER-Diagramm erstellen', 3),
-    (2, 'EER-Diagramm erstellen', 3),
-    (3, 'Allgemeine Datenbankabfragen schreiben', 2),
-    (4, 'Dynamische Datenbankabgragen schreiben', 1),
-    (5, 'Datenbank-Connection schreiben', 3),
-    (6, 'Bestehnde Verbindung zwischen Datenbank und Server erweitern', 1),
-    (7, 'Analyse der Stärken', 3),
-    (8, 'Analyse der Schwächen', 3),
-    (9, 'Chancen und Risiken feststellen', 2),
-    (10, 'bestehende Verbindung zwischen Datenbank und Server analysieren', 1),
-    (11, 'Code-Style in IntelliJ einbinden', 2);
+    (1, 'EER-Diagramm erstellen', 3),
+    (2, 'Allgemeine Datenbankabfragen schreiben', 2),
+    (2, 'Dynamische Datenbankabgragen schreiben', 1),
+    (3, 'Datenbank-Connection schreiben', 3),
+    (3, 'Bestehnde Verbindung zwischen Datenbank und Server erweitern', 1),
+    (4, 'Analyse der Stärken', 3),
+    (5, 'Analyse der Schwächen', 3),
+    (5, 'Chancen und Risiken feststellen', 2),
+    (5, 'bestehende Verbindung zwischen Datenbank und Server analysieren', 1),
+    (6, 'Code-Style in IntelliJ einbinden', 2);
 
 /* timeaccount */
 
 INSERT INTO TIMEACCOUNT (user_id, topic_id, max_time)
 VALUES
-    (3, 3, 35),
-    (3, 4, 10),
-    (4, 3, 50),
-    (5, 3, 30),
-    (6, 3, 40),
-    (7, 3, 25),
-    (8, 3, 35),
-    (1, 4, 8),
-    (2, 4, 12);
+    (3, 1, 35),
+    (3, 2, 10),
+    (4, 1, 50),
+    (5, 1, 30),
+    (6, 1, 40),
+    (7, 1, 25),
+    (8, 1, 35),
+    (1, 2, 8),
+    (2, 2, 12);
 
 /* timeaccount_history */
 
-INSERT INTO TIMEACCOUNT_HISTORY (timeaccount_id, used_time)
+INSERT INTO TIMEACCOUNT_HISTORY (timeaccount_id, used_time, used_time_to_iso)
 VALUES
-    (1, 5),
-    (1, 4),
-    (1, 8),
-    (1, 13),
-    (1, 5),
-    (2, 3),
-    (2, 2),
-    (2, 5),
-    (3, 8),
-    (3, 10),
-    (3, 8),
-    (3, 6),
-    (3, 9),
-    (3, 9),
-    (4, 30),
-    (5, 20),
-    (5, 10),
-    (5, 10),
-    (6, 25),
-    (7, 35);
+    (1, 5, 6),
+    (1, 4, 5),
+    (1, 8, 9),
+    (1, 13, 14),
+    (1, 5, 6),
+    (2, 3, 4),
+    (2, 2, 3),
+    (2, 5, 6),
+    (3, 8, 9),
+    (3, 10, 11),
+    (3, 8, 9),
+    (3, 6, 7),
+    (3, 9, 10),
+    (3, 9, 10),
+    (4, 30, 31),
+    (5, 20, 31),
+    (5, 10, 11),
+    (5, 10, 12),
+    (6, 25, 27),
+    (7, 35, 37);
 
 /* participant_group */
 
 INSERT INTO PARTICIPANT_GROUP (user_id, topic_id, milestone_id)
 VALUES
-    (3, 3, 1),
-    (3, 4, 2),
-    (1, 4, 2),
-    (2, 4, 2),
-    (4, 3, 2),
-    (5, 3, 1),
-    (6, 3, 1),
-    (7, 3, 4),
-    (8, 3, 5);
+    (3, 1, 1),
+    (3, 2, 2),
+    (1, 2, 2),
+    (2, 2, 2),
+    (4, 1, 2),
+    (5, 1, 1),
+    (6, 1, 1),
+    (7, 2, 4),
+    (8, 2, 5);
