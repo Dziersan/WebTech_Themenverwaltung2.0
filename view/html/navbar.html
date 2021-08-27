@@ -30,29 +30,48 @@
             </div>
         </a>
         <div class="dropdown" style="margin-left: 5px">
-            <form action="/moduleOverview">
-                <button class="header_button">Modulverwaltung</button>
+            <form action="/home">
+                <button class="header_button">Home</button>
             </form>
-            <div id="ModulesDropdown" class="dropdown-content">
-                <!-- to be filled by script -->
+
+        </div>
+
+
+
+
+        <div class="dropdown " style="margin-left: 5px">
+            <form action="">
+                <button class="header_button">Präsentation</button>
+            </form>
+            <div class="dropdown-content">
+                <a href="/moduleOverview">Übersicht Module</a>
+                <a href="/presentationDateProf">Überblick Presentationdatum</a>
+                <a href="/groupOrder">Gruppeneinstellung</a>
+                <a href="/liveTrackingProf">LiveTracking</a>
+                <a href="/presentationDateOverview">Präsentationdaten</a>
+                <a href="/presentationOverview">Präsentation</a>
+                <a href="/inquiryDozent">Anfrage stellen</a>
+                <a href="/createPresentationDatesProf">Präsentation verwalten</a>
+                <a href="/dozentmessage">Nachricht an Dozent</a>
+
             </div>
         </div>
+
+        <div class="dropdown " style="margin-left: 5px">
+            <form action="/uploadData">
+                <button class="header_button">Dateien hochladen</button>
+            </form>
+            <div class="dropdown-content">
+                <a href="/uploadInquiry">Anfrage stellen</a>
+                <a href="/admin_G3">Admin</a>
+            </div>
+        </div>
+
         <div class="dropdown" style="margin-left: 5px">
-            <form action="/groupOverview">
-                <button class="header_button">Meine Gruppen</button>
+            <form action="/requirements">
+                <button class="header_button">Anforderungen</button>
             </form>
-            <div id="GroupsDropdown" class="dropdown-content">
-                <!-- to be filled by script -->
-            </div>
-        </div>
-    </div>
-    <div class="dropdown " style="margin-left: 5px">
-        <form action="/upload_G3">
-            <button class="header_button">Upload Gruppe3</button>
-        </form>
-        <div class="dropdown-content">
-            <a href="/student_G3">Student</a>
-            <a href="/admin_G3">Admin</a>
+
         </div>
     </div>
     <div class="dropdown" style="margin-left: 5px">
@@ -104,7 +123,6 @@
 <form action="/logout" method="post">
     <button>Logout</button>
 </form>
-
 <br>
 <div>
     <a href="/token">Token_client</a>

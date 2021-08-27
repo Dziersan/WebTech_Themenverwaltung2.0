@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>G4-0800</title>
+    <link rel="stylesheet" href="../css/presentationOverview.css">
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script src="https://mottie.github.io/tablesorter/dist/js/jquery.tablesorter.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+
+
+<script>
+
+    //Sortieren der Tabelle
+    var table = $('table');
+    $('#thema_header', '#datum_header', '#raum_header')
+        .wrapInner('<span title="sort this column"/>')
+        .each(function () {
+            var th = $(this),
+                thIndex = th.index(),
+                inverse = false;
+            th.click(function () {
+                table.find('td').filter(function () {
+                        return $(this).index() === thIndex;
+                    }
+                ).sortElements(function (a, b) {
+                    return $.text([a]) > $.text([b]) ?
+                        inverse ? -1 : 1
+                        : inverse ? 1 : -1;
+                }, function () {
+                    return this.parentNode;
+                });
+                inverse = !inverse;
+            });
+        });
+</script>
+<script>
+    $(function () {
+        $("#sortableTable").tablesorter();
+    });
+</script>
+<div class ="navbar"></div>
+<!--Formular zum Abfrage der Gruppenreihenfolge-->
+<form method="post" action="http://127.0.0.1:8080/Reihenfolge" id="FormReihenfolge">
+    <table id="sortableTable" class="tablesorter" rules="rows" style="border-spacing: 32px 16px">
+        <thead>
+        <tr>
+            <th id="thema_header">Anlass</th>
+            <th id="datum_header">Datum</th>
+            <th id="raum_header">Raum</th>
+            <th id="praesentationsid_header">Präsentations ID</th>
+            <th>Gruppenreihenfolge</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--Thema, Tag und Raum der Präsentation aus Datenbank abfragen und anzeigen-->
+        <% for (var i = 0; i < module.length;i++) { %>
+            <tr>
+                <td> <%= module[i].occasion %></td>
+                <td> <%= module[i].date %></td>
+                <td> <%= module[i].room %></td>
+                <td> <%= module[i].topic_id %></td>
+                <!--FormReihenfolge wird beim Anklicken ausgeführt-->
+                <td style="color: -webkit-link; text-decoration: underline; cursor: pointer"
+                    onclick="document.getElementById('text').value = (document.getElementById('thema<%= i %>').innerText);
+                            setTimeout(() => {
+                            document.getElementById('FormReihenfolge').submit()
+                            }, 10);"> Reihenfolge der Gruppen ansehen</td>
+            </tr>
+        <% } %>
+        </tbody>
+    </table>
+    <input type="hidden" id="text" name="hidden">
+</form>
+<footer>
+    <div class ="footer"></div>
+</footer>
+</body>
+</html>
+<script>
+    $(function(){
+        $(".navbar").load("navbar.html");
+    });
+</script>
+
+<script>
+    $(function(){
+        $(".footer").load("footer.html");
+    });
+</script>

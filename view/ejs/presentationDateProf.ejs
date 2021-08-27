@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>G4-0100</title>
+    <link rel="stylesheet" href="../css/presentationDateProf.css">
+    <script type="text/javascript" src="../../javascript/presentationDateProf.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+</head>
+<body>
+<div class ="navbar"></div>
+
+<table rules="rows">
+    <thead>
+    <tr>
+        <th>Anlass</th>
+        <th>Datum</th>
+        <th>Raum</th>
+        <th>Gruppenreihenfolge</th>
+        <th><a href="./createPresentationDatesProf">Präsentationstermin erstellen</a></th>
+    </tr>
+    </thead>
+    <tbody>
+    <!--Anlass, Datum und Raum der Präsentationen aus Datenbank abfragen und anzeigen-->
+    <% for (var i = 0; i < presentations.length; i++) { %>
+    <tr>
+        <td><%=presentations[i].occasion%></td>
+        <td><%=presentations[i].date%></td>
+        <td><%= presentations[i].room %></td>
+        <td><a href="./liveTrackingProf.ejs">Gruppenreihenfolge erstellen</a> </td>
+    </tr>
+    <% }%>
+
+    </tbody>
+</table>
+</body>
+<footer>
+    <div class ="footer"></div>
+</footer>
+</html>
+<script>
+    $(function(){
+        $(".navbar").load("navbar.html");
+    });
+</script>
+
+<script>
+    $(function(){
+        $(".footer").load("footer.html");
+    });
+</script>

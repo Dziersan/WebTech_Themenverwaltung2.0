@@ -105,8 +105,8 @@ body {
     /*width: 100%;*/
 }
 
-#oscaImagelogo {
-    /*content: url("osca3-white.png");*/
+#oscaImagelogonB {
+    content: url("../../images/osca3-white.png");
     max-height: 65px ;
     display: block;
     margin: 0 auto;
@@ -152,14 +152,3 @@ body {
         float: none;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
