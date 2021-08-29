@@ -1,0 +1,133 @@
+#header
+{
+    float:right;
+    width:1088px;
+    background-color: lightgray;
+    position: static;
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    padding: 5px;
+}
+.logo {
+    border: none;
+    position: absolute;
+    bottom: -30px;
+    font-size: large;
+    font-family: Sans-serif;
+
+}
+
+#all
+{
+    width: 1100px;
+    position: relative;
+    top: 25%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
+#wrapper
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    border-style: none;
+}
+
+#block_left
+{
+    float:left;
+    width:155px;
+    height: 400px;
+    top: 44px;
+    background-color: gray;
+    position: static;
+    color: white;
+    font-family: Sans-serif;
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    padding: 5px;
+
+}
+
+#shapes
+{
+    border-color: white;
+    border-width: 1px;
+    border-style: solid;
+    padding: 5px;
+}
+
+#form
+{
+    border-color: white;
+    border-width: 1px;
+    border-style: solid;
+    padding: 5px;
+}
+
+#typography
+{
+    border-color: white;
+    border-width: 1px;
+    border-style: solid;
+    padding: 5px;
+}
+
+#workspace {
+    float:right;
+    position: relative;
+    width: 900px;
+    background: white url(../ressources/images/paper.png);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 7px;
+    touch-action: none;
+    height: 925px;
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    padding: 5px;
+}
+
+.vertical-center {
+    margin: 0;
+    position: relative;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.reset {
+    padding: 0px 10px;
+    text-align:center;
+    border: 2px black;
+    height:30px;
+    width:150px;
+    margin: -20px -50px;
+    position:relative;
+    left:35%;
+    right: 35%;
+}
+
+.btn {
+    font-weight: bold;
+    color: white;
+    background-color: #009fe3;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 5px 29px;
+}
+
+.btn:hover{
+    background-color: RoyalBlue;
+
+}
