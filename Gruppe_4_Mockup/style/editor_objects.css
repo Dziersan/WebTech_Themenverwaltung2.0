@@ -44,7 +44,7 @@
     max-width: 999px;
     max-height: 800px;
     position: absolute;
-    bottom: 350px;
+    bottom: 400px;
     right: 75px;
 }
 
@@ -94,15 +94,15 @@
 
 .radiobutton {
     position: absolute;
-    bottom: 150px;
+    bottom: 120px;
     right: 80px;
     visibility: hidden;
 }
 
 .button {
     position: absolute;
-    bottom: 300px;
-    right: 700px;
+    bottom: 250px;
+    right: 600px;
     visibility: hidden;
 }
 
@@ -115,7 +115,7 @@
 
 .dropdown {
     position: absolute;
-    bottom: 270px;
+    bottom: 220px;
     right: 80px;
     visibility: hidden;
 }
